@@ -4,7 +4,21 @@ Catalog of my programming and script languages, useful commands, tips&tricks and
 Currently:
 
 - Python
-- Conda
-- Git
+- Python Modules:
+  - Numpy
+  - Pandas
+  - Matplotlib
+  - Seaborn
+  - Plotly
+  - Gmpy2
+  - OpenCV
+  - Pickleshare
+- R
+- Matlab
+- Octave
+- C++
+- JavaScript
 - Linux commands
 - Pacman commands
+- Git commands
+- Conda commands

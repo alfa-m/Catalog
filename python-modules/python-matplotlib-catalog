@@ -41,8 +41,9 @@ url: (https://matplotlib.org/)
 - Gallery with many EXAMPLES and EXPLANATIONS:
 url: (https://matplotlib.org/gallery/index.html)
 
-- ColorMap Reference:
+- ColorMaps available:
 url: (https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html)
+url: (https://matplotlib.org/3.3.3/tutorials/colors/colormaps.html#lightness-of-matplotlib-colormaps)
 
 - Documentation:
 url: ()
@@ -50,7 +51,7 @@ url: ()
 
 ------------------------------------
 
-	PLOT
+	PLOT DIRECTLY
 
 - Show the plots as output on the line (for IPython and Jupyter):
 >>> %matplotlib inline
@@ -82,9 +83,16 @@ LABELS
 >>> plt.ylabel(<str>)
 
 
+
+------------------------------------
+
+	PARAMETERS
+
+
+
 STYLES
 
-- Change the plot style:
+- Set the plot style:
 >>> plt.style.use('<style>')
 
 style=
@@ -94,9 +102,30 @@ style=
 		dark_background		seaborn's 'darkgrid', but red, but negative
 
 
-------------------------------------
+- Set Style using Seaborn:
+>>> import seaborn as sns
+>>> sns.set_style(<style>)
+>>> sns.set_style(style='<style>')
 
-	FORMAT
+style=
+		darkgrid		- tha best
+		whitegrid
+		dark
+		white
+		ticks
+
+
+
+
+
+
+
+
+
+
+
+
+FORMAT
 
 - The parameters can be passed all together (e.g. 'ro' for red circles) without the keyword arguments.
 - All of these and more can also be separately controlled by keyword arguments.
@@ -121,11 +150,13 @@ marker=
 		'+'
 		'x'
 		'D'		diamond
+
 linestyle=
 			'-'		solid line
 			'--'	dashed line
 			'-.'	dash-dot line
 			':'		dotted line
+
 color=
 		'r'		red
 		'b'		blue
@@ -133,6 +164,9 @@ color=
 		'k'		black
 		'y'		yellow
 		'c'		cyan
+		
+		'#<hex-code-color>'
+		'#eaeaf2'				color from sns darkgrid
 
 
 - Set Line width:
@@ -168,6 +202,82 @@ Example format strings::
 	## - ##
 
 
+
+
+
+
+
+
+
+COLORMAP
+
+- A colormap to 3D plot:
+
+>>> <ax>.plot_surface(<xx>, <yy>, <zz>, cmap='<colormap>')
+
+colormap= 
+			plasma
+			inferno
+			magma
+			viridis
+			...
+
+
+- ColorMaps available:
+url: (https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html)
+url: (https://matplotlib.org/3.3.3/tutorials/colors/colormaps.html#lightness-of-matplotlib-colormaps)
+
+
+
+
+
+
+
+
+- Diplay colorbar:
+
+>>> <mappable> = <ax>.plot_surface(<xx>, <yy>, <zz>, cmap='<colormap>')
+>>> fig.colorbar(<mappable>, ax=<ax>)
+
+
+- Make pointed ends for out-of- range values:
+
+>>> fig.colorbar(<mappable>, ax=<ax>, extend='both')
+>>> fig.colorbar(<mappable>, ax=<ax>, extend='min')
+>>> fig.colorbar(<mappable>, ax=<ax>, extend='max')
+
+
+- Add minor ticks to colorbar
+
+>>> <cbar> = fig.colorbar(<mappable>, ax=<ax>)
+>>> <cbar>.minorticks_on()
+
+
+
+
+
+
+
+
+- Normalize data with a set center (default: vmin=0.0, vmax=1.0).
+- Useful when mapping data with an unequal rates of change around a conceptual center:
+
+>>> import matplotlib.colors as mcolors
+
+>>> <offset> = mcolors.TwoSlopeNorm( <value> )
+>>> <offset> = mcolors.TwoSlopeNorm( vcenter= <value> )
+>>> <offset> = mcolors.TwoSlopeNorm( vcenter= <value>, vmin= <value>, vmax= <value> )
+
+
+- Use the 'offset' to map a data-set (list, array, ...) to [0, 1]:
+>>> <offset>(<data>)
+
+
+- Use the 'offset' to map a colormap:
+>>> <ax>.plot_surface(<xx>, <yy>, <zz>, cmap='<colormap>', norm=<offset>)
+
+
+
 ------------------------------------
 
 	FIGURE
@@ -198,7 +308,6 @@ Example format strings::
 - Display Figure:
 >>> <fig>				# when using '%matplotlib inline'
 >>> <fig>.show()
-
 
 
 
@@ -303,7 +412,9 @@ SUBPLOTS
 
 
 - Add an Axe to a Figure:
->>> <axes> = <fig>.add_axes([<left>, <bottom>, <width>, <height>])
+>>> <axes> = <fig>.add_subplot([<left>, <bottom>, <width>, <height>])
+>>> <axes> = <fig>.add_axes([<left>, <bottom>, <width>, <height>])			# deprecated
+
 
 - Ploting on an Axe:
 >>> <axes>.plot(<x>, <y>, <fmt>)
@@ -368,6 +479,22 @@ LABELS
 - Set Axes Labels:
 >>> <axes>.set_xlabel(<str>)
 >>> <axes>.set_ylabel(<str>)
+
+
+
+
+
+LATEX
+
+- Put Latex Equations on titles:
+>>> import matplotlib as mpl
+>>> mpl.rcParams['text.usetex'] = True
+>>> <axes>.set_title(r'$<latex-markup>$')
+
+- Generate Latex markup online:
+url: (https://codecogs.com/latex/eqneditor.php)
+
+
 
 
 
@@ -466,6 +593,221 @@ BOX PLOT
 >>> plt.boxplot(data, vert=True, patch_artist=True)
 
 	## - ##
+
+
+
+
+
+
+
+
+
+
+SURFACE
+
+- Use Numpy meshgrid to plot a Surface:
+>>> <fig> = plt.figure()
+>>> <ax> = fig.add_subplot(projection='3d')
+>>> <ax>.plot_surface(<xx>, <yy>, <zz>)
+
+- Set view point:
+>>> <ax>.view_init(elev=<value>, azim=<value>)
+
+
+
+
+	## Examples ##
+
+>>> from numpy import linspace, pi, meshgrid, cos, transpose
+
+>>> x = linspace(-pi, pi, 50)
+>>> y = linspace(-pi, pi, 50)
+
+>>> (xx, yy) = meshgrid(x, y)
+
+>>> zz = cos(yy)/(1+xx**2)
+>>> zz = (zz - transpose(zz))/2
+
+>>> fig = plt.figure()
+>>> ax = fig.add_subplot(projection='3d')
+>>> ax.plot_surface(xx, yy, zz)
+
+	## - ##
+
+
+
+
+
+
+
+
+
+CONTOUR
+
+- Use Numpy meshgrid to make a Contour-plot:
+- Plot a Histogram from a List or Array:
+>>> plt.contour(<xx>, <yy>, <zz>)
+>>> <axes>.contour(<xx>, <yy>, <zz>)
+
+
+
+
+
+
+
+
+QUIVER PLOT
+
+- Use Numpy meshgrid to plot a Vector Field.
+- The coordinates are xx, yy, zz; and the components are uu, vv, ww.
+
+>>> <fig> = plt.figure()
+>>> <ax> = fig.add_subplot()
+>>> <ax>.quiver(<xx>, <yy>, <uu>, <vv>)
+
+>>> <fig> = plt.figure()
+>>> <ax> = fig.add_subplot(projection='3d')
+>>> <ax>.quiver(<xx>, <yy>, <zz>, <uu>, <vv>, <ww>)
+
+
+
+
+- Set view point:
+>>> <ax>.view_init(elev=<value>, azim=<value>)
+
+
+
+- Update quivers:
+
+>>> from numpy import array
+
+>>> <segm> = [xx, yy, xx+uu, yy+vv]
+>>> <segm> = array(segments).reshape(4,-1)
+>>> <segm> = [[[x, y], [u, v]] for x, y, u, v in zip(*list(<segm>))]
+
+>>> <quiver>.set_segments(<segm>)
+
+
+
+
+
+
+
+>>> from numpy import array
+
+>>> <segm> = [xx, yy, zz, xx+uu, yy+vv, zz+ww]
+>>> <segm> = array(segments).reshape(6,-1)
+>>> <segm> = [[[x, y, z], [u, v, w]] for x, y, z, u, v, w in zip(*list(<segm>))]
+
+>>> <quiver>.set_segments(<segm>)
+
+
+
+
+
+------------------------------------
+
+	ANIMATION
+
+- Use it only for testing, saving functionality is crap.
+
+
+
+
+- Import:
+>>> import import matplotlib.animation as anim
+
+
+
+
+
+- Create Figure and/or Axes and get a Line-object (return of any plot).
+- This can be done from inside a (init) function using 'global'.
+- All functions that are going to be passed to the animation need to return a list of Line-objects.
+
+	## Examples ##
+
+def init_axes():
+    
+    global fig
+    global ax
+    global line
+    
+    sns.set_style('darkgrid')
+    (fig, ax) = plt.subplots(facecolor='#eaeaf2')
+    
+    line, = ax.plot([], [])
+    
+    
+    title = ax.set_title("")
+    
+    ax.set_xlabel('')
+    ax.set_ylabel('')
+    
+    ax.set_xlim([0, 0])
+    ax.set_ylim([0, 0])
+    
+    return [line]
+
+	## - ##
+
+
+
+
+- Create an Update function, with at least one argument, that is going to update the graph.
+
+	## Examples ##
+
+def set_axes(_):
+
+    line.set_data([], [])
+    
+    return [line]
+
+	## - ##
+
+- Other update methods:
+
+>>> <line>.set_data(<x>, <y>)
+>>> <line>.set_xdata(<x>)
+>>> <line>.set_ydata(<y>)
+
+>>> <line3d>.set_data_3d(<x>, <y>, <z>)
+
+>>> <quiver>.set_segments(<segm>)
+
+>>> <text>.set_text(<str>)
+
+
+
+
+
+- Call the function 'FuncAnimation'.
+- The first argument must be a Figure object.
+
+>>> anim.FuncAnimation(<fig>, <update-func>, <iterable>)
+>>> anim.FuncAnimation(<fig>, <update-func>)
+>>> anim.FuncAnimation(fig=<fig>, func=<update-func>, frames=<iterable>)
+
+- Other possible parameters for 'FuncAnimation':
+
+interval = <int>			# interval in millisec. between frames
+
+repeat = <bool>				# if the animation repeats
+
+repeat_delay = <int>		# time in millisec. between repeats
+
+init_func = <function>		# function called once to draw the first frame
+
+fargs = <tuple>				# Additional args for the update function
+
+save_count = <int>			# used if number of frames can't be inferred from 'frames'
+
+blit = <bool>				# optimization
+
+cache_frame_data = <bool>	# disable it when 'frames' contain large objects
+
+
 
 
 ------------------------------------

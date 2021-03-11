@@ -2,10 +2,6 @@
 
 		LINUX
 
-
-
-
-
 ------------------------------------
 
 	MOINTOR SYSTEM
@@ -83,7 +79,7 @@ $ scp -r username@servername:'/some/path\ with\ spaces'
 
 
 
-	SERVER SETUP
+SERVER SETUP
 
 - Status of ssh server:
 $ systemctl status ssh
@@ -126,7 +122,11 @@ $ ss -au
 $ man sshd_config
 
 
-	SSH USING RSA & PASSPHRASE
+
+
+
+
+SSH USING RSA & PASSPHRASE
 
 	Create a really STRONG PASSPHRASE because it protects the private-key which enables login in all machines with the public key.
 	Create cryptographic key pair (RSA) on the CLIENT side, half public (saved on the servers) half private (saved on client), so the server can recognize the unique  client.

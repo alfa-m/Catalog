@@ -210,7 +210,7 @@ url: (https://numpy.org/doc/stable/reference/ufuncs.html)
 
 ----------------------------------
 
-	ARRAY OPERATIONS
+	ARRAY OPERATIONS & FUNCTIONS
 
 - Element by element operations on Arrays:
 >>> <array> + <array>		# Vector Addition
@@ -230,9 +230,8 @@ url: (https://numpy.org/doc/stable/reference/ufuncs.html)
 >>> <array> / <value>
 >>> <array> ** <value>
 
->>> np.sqrt(<array>)		# x^(1/2)
->>> np.exp(<array>)			# e^x
->>> np.sin(<array>)			# sin(x)
+
+
 
 
 - Mean & Standard Deviation
@@ -255,11 +254,42 @@ url: (https://numpy.org/doc/stable/reference/ufuncs.html)
 
 
 
-- Outer Product (Tensor Product):
+- Multiply each element of one Array by the corresponding on the other:
+>>> multiply (<array>, <array>)
+
+- Inner Product (Inner/Dot/Scalar Product):
+>>> np.dot (<array>, <array>)
+
+- Outer Product (Outer/Tensor Product):
 >>>> np.outer (<array>, <array>)
 
 - Transpose Matrix:
 >>> np.transpose(<array>)
+
+
+
+
+
+- Returns an array with the difference between each consecutive element:
+>> np.diff(<array>)
+
+
+
+----------------------------------
+
+	INTERNAL FUNCTIONS AND VALUES
+
+
+- Mathematical Values:
+
+	np.pi			Pi Number
+	np.e			Euler's Constant
+
+
+>>> np.sqrt(<array>)		# x^(1/2)
+>>> np.exp(<array>)			# e^x
+>>> np.sin(<array>)			# sin(x)
+>>> np.cos(<array>)			# cos(x)
 
 
 ------------------------------------
@@ -269,24 +299,26 @@ url: (https://numpy.org/doc/stable/reference/ufuncs.html)
 - How to make a 3D surface from a 2-variables function:
 
 - Create linear spaces for the for abscissa (x) and ordered (y):
->>> x_lin = np.arange(<start>, <stop>, <step>)
->>> y_lin = np.arange(<start>, <stop>, <step>)
+>>> x = np.arange(<start>, <stop>, <step>)
+>>> y = np.arange(<start>, <stop>, <step>)
 
 - Create Mesh Grids (values repeated according to corresponding Axis):
->>> (x, y) = np.meshgrid(x_lin, y_lin)
+>>> (xx, yy) = np.meshgrid(x, y)
 
 - Apply 2-variables function to the Mesh Grids:
->>> z = <function>(x, y)
+>>> z = <function>(xx, yy)
 
 	## Examples ##
 
 
->>> x_lin = np.linspace(-pi, pi, 5)
->>> y_lin = np.linspace(-pi, pi, 5)
+>>> x = np.linspace(-pi, pi, 5)
+>>> y = np.linspace(-pi, pi, 5)
 
->>> (x, y) = np.meshgrid(x_lin, y_lin)
+>>> (xx, yy) = np.meshgrid(x, y)
 
 >>> x
+[]	array([-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265])
+>>> xx
 []	 array([[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265],
 			[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265],
 			[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265],
@@ -294,6 +326,8 @@ url: (https://numpy.org/doc/stable/reference/ufuncs.html)
 			[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265]])
 
 >>> y
+[]	array([-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265])
+>>> yy
 []	 array([[-3.14159265, -3.14159265, -3.14159265, -3.14159265, -3.14159265],
 			[-1.57079633, -1.57079633, -1.57079633, -1.57079633, -1.57079633],
 			[ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ],

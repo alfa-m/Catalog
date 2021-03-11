@@ -197,6 +197,11 @@ $ git diff HEAD <file>
 $ git diff --name-only <commit>
 
 
+- View changes from a Commit to other:
+$ git diff <commit>..<commit>
+$ git diff --name-only <commit>..<commit>
+
+
 
 
 RESTORE FILES
@@ -393,7 +398,7 @@ $ git rebase <branch>
 
 ------------------------------------
 
-	REMOTES
+	REMOTES (GITHUB)
 
 - Add a Remote (previously created on Github website, if the Repository is a existent on-going preject, don't initialize with README file to avoid errors on push) to Local Repository:
 $ git remote add <name> <url>
@@ -441,6 +446,52 @@ $ git clone -b <branch> <url>
 
 
 
+CREDENTIALS CACHE
+
+- Store password on cache (default: 15 min):
+$ git config --global credential.helper cache
+
+- Display time limit of credentials cache:
+$ git config --global credential.helper
+
+- Change time limit of credentials cache ('time' in seconds):
+$ git config --global credential.helper 'cache --timeout=<time>'
+
+- More info on cache credentials:
+url: (https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git)
+
+
+
+
+- Using the package 'libsecret' to store credentials PERMANENTLY:
+(on Arch)
+$ git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
+
+(on Fedora, install 'git-credential-libsecret')
+$ git config --global credential.helper /usr/libexec/git-core/git-credential-libsecret
+
+(on Ubuntu)
+$ cd /usr/share/git/credential/libsecret
+$ sudo make
+$ git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+
+
+
+AUTHOR OF COMMITS
+
+- Configure Global user name and e-mail:
+$ git config --global user.name "<name>"
+$ git config --global user.email <email>
+
+- Configure user name and e-mail for a specific repo:
+$ cd <path-to-repo>
+$ git config user.name "<name>"
+$ git config user.email <email>
+
+- Fix identity of previous commit:
+$ git commit --amend --reset-author
+
+
 ------------------------------------
 
 
@@ -455,11 +506,9 @@ $ git clone -b <branch> <url>
 
 	MISC
 
-- Armazenar senha do github em cache (padrão: 15 min):
-$ git config --global credential.helper cache
 
-- Alterar o tempo limite padrão do cache da senha( <time> em segundos):
-$ git config --global credential.helper 'cache --timeout=<time>'
+- View changes from a Commits to other:
+url: (https://github.com/<user>/<repo>/compare/<commit>..<commit>)
 
 
 ------------------------------------

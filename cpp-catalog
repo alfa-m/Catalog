@@ -1,0 +1,967 @@
+ 
+		C++
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	package
+			description
+			
+[conda]		package
+			???
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://isocpp.org/)
+
+- Documentation:
+url: (https://devdocs.io/cpp/)
+
+
+------------------------------------
+
+	COMPILE AND RUN
+
+- Every ".cpp" has to be compiled.
+
+- To Compile a ".cpp" or ".c" file:
+$ gcc file.c
+$ g++ file.cpp
+
+- To Compile a ".cpp" or ".c" file to a specific output file:
+$ gcc file.c -o output.o
+$ g++ file.cpp -o output.o
+
+- To Run a compiled C or C++ program:
+$ ./output.o
+
+
+
+
+
+
+- To Compile the ".cpp" files containing "main" and separate Classes:
+$ g++ -c file.cpp SomeClass.cpp
+
+- And Link them:
+$ g++ file.o SomeClass.o -o output.o
+
+- Or, to Compile and Link:
+$ g++ file.cpp SomeClass.cpp -o output.o
+
+
+
+------------------------------------
+
+	OPERATIORS PRECEDENCE
+
+- Order of operations (Operator Precedence):
+
+	::						Scope Resolution.
+	
+	++	--					Suffix increment and decrement.
+	()						Function call.
+	[]						Subscript.
+	.	->					Member access.
+	
+	++	--					Prefix increment and decrement.
+	+	-					Unary operations.
+	!	~					Logical and Bitwise NOT.
+	*						Dereference.
+	&						Address-of.
+	new						Dynamic Memory allocation.
+	delete					Dynamic Memory deallocation.
+	
+	.*	->*					Pointer-to-member.
+	
+	*	/	%				Multiplication, division, modulo.
+	+	-					Addition and subtraction.
+	<<	>>					Bitwise shift left and right.
+	<	<=	>	>=			Relational.
+	==	!=					Equal and Not equal.
+	&						Bitwise AND.
+	^						Bitwise XOR.
+	|						Bitwise OR.
+	&&						Logical AND.
+	||						Logical OR.
+	
+	?:						Conditional expression
+	throw					Throw operator.
+	+=	-=	*=	/=	%=	=	Assingnment.
+	<<=	>>=					Bitwise shift Assingnment.
+	&=	^=	|=				AND, XOR, OR Assingnment.
+	
+	,						Comma.
+
+
+
+------------------------------------
+
+	BASICS
+
+
+- To make one line comment use the symbol "//".
+- To make many lines comment use the symbols "/*" and "*/".
+- On C++ every statement has to end with ';'.
+
+
+- Start by Including the "iostream" header, and using features of the Standart Library:
+
+#include <iostream>
+using namespace std;
+
+
+- C++ starts the execution on the "main" function.
+- Other functions must be declared before being called, outside of "main".
+
+int main(){
+	// code
+	return 0;
+}
+
+
+- C++ uses the '=' operator to assign variables.
+
+
+------------------------------------
+
+	DECLARE VARIABLES
+
+- Declare Int:
+
+int i = 0 ;
+int i=0, j=1, ..., k=i+j ;
+
+int signed i;		// positve and negative
+int unsigned i;		// just positive
+int short i;		// half default size (about 32000)
+int long i;			// twice default size (about 2 billion)
+
+
+- Declare Float:
+
+float f;		// 7 digits
+double f;		// 15 digits
+long double f;	// who nose
+
+
+- Declare String:
+
+#include <string>
+string s = "" ;
+std::string s = "" ;
+
+
+- Declare Char:
+
+char c = ' ' ;
+
+
+- Declare a Boolean:
+
+bool b = true ;
+bool b = false ;
+
+
+- Declare Array:
+
+int a[n] = {A1, A2, ..., An};
+float a[n] = {A1, A2, ..., An};
+
+int a[n][m] = {{A1, A2, ..., Am}, ... , {N1, N2, ..., Nm}};
+float a[n] = {{A1, A2, ..., Am}, ... , {N1, N2, ..., Nm}};
+
+
+- Constant variables.
+- Don´t change and must be initialized when declared.
+- Declare constant variables:
+
+const int i = 0;
+const float f = 0.0;
+const string s = "";
+const char c = ' ';
+const bool b = true;
+
+
+- Declare Pointer from the type of data it is going to point to:
+
+int * p;
+int * p1, * p2, ..., * pn;
+float * p;
+string * p;
+char * p;
+bool * p;
+
+
+- Declare Pointer requesting memory:
+
+int * p = new int;
+
+
+- Get the memory address of a variable (Pointer):
+
+p = &value;		// '&' is the 'reference' or 'address-of' operator
+
+
+- Get the value pointed to by a Pointer:
+
+value = *p;		// '*' is the 'dereference' operator
+
+
+- Arrays work very similarly to Pointers and can directly be assigned to a Pointer (points to its first element):
+
+int a[20];
+int * p;
+p = a;
+
+
+- The brackets "[]" are also dereference operators and can be used on Arrays and Pointers:
+
+a[5] = 0;       // a [offset of 5] = 0
+*(a+5) = 0;     // pointed to by (a+5) = 0 
+
+
+- Pointer Arithmetics:
+
+*p++   // *(p++): dereference address, then increment pointer
+*++p   // *(++p): increment pointer, then dereference address
+++*p   // ++(*p): dereference pointer, then increment value it points to
+(*p)++ // dereference pointer, then post-increment value it points to
+
+
+- Free up memory:
+
+int * p = new int;
+*p = 5;
+delete p;
+
+int i = 5;
+delete &i;
+
+
+
+	## Examples ##
+
+myvar = 25;
+foo = &myvar;	// 1776
+
+myvar == 25		// true
+&myvar == 1776	// true
+foo == 1776		// true
+*foo == 25		// true
+
+
+int firstvalue, secondvalue;
+int * mypointer;
+mypointer = &firstvalue;
+*mypointer = 10;
+mypointer = &secondvalue;
+*mypointer = 20;
+cout << firstvalue  << '\n';	// 10
+cout << secondvalue << '\n';	// 20
+
+
+
+int numbers[5];
+int * p;
+p = numbers;  *p = 10;
+p++;  *p = 20;
+p = &numbers[2];  *p = 30;
+p = numbers + 3;  *p = 40;
+p = numbers;  *(p+4) = 50;
+// numbers == {10, 20, 30, 40, 50}
+
+	## - ##
+
+
+------------------------------------
+
+	STANDARD INPUT & OUTPUT
+
+
+- Input value from std-in on variables (after declaring it):
+
+cin >> i ;
+cin >> i >> ... >> n ;
+
+std::cin >> i ;
+std::cin >> i >> ... >> n ;
+
+
+- Output value to std-out:
+
+cout << i+j << endl;
+cout << "string" << endl;
+cout << "string" << '\n';
+
+std::cout << i+j << std::endl;
+std::cout << "string" << std::endl;
+std::cout << "string" << '\n';
+
+
+------------------------------------
+
+	CODE FLOW CONTROL STRUCTURES
+
+
+if (bool){
+	// code
+}else{
+	// code
+}
+
+
+
+for (int i=0; i<n; i++){
+	// code
+}
+
+
+
+
+while (bool){
+	// code
+}
+
+
+
+do{
+	// code
+}while(bool);
+
+
+
+- Ternary Conditional:
+
+x = (bool)?caseTrue:caseFalse;
+
+
+// equivalent to:
+
+if (bool){
+	x = caseTrue;
+}else{
+	x = caseFalse;
+}
+
+
+
+
+
+switch(c){
+	case 'A':
+		//code 1
+		break;
+	...
+	case 'Z':
+		//code 26
+		break;
+		
+	default:
+		//code 0
+}
+
+
+
+------------------------------------
+
+	FUNCTIONS & OPERATORS
+
+- Get the size (in bytes) of a type or variable:
+
+sizeof(i);
+sizeof(int);
+sizeof(float);
+sizeof(string);
+sizeof(char);
+sizeof(bool);
+
+
+- Get Float default precision on std-out:
+
+streamsize ss = cout.precision();
+std::streamsize ss = std::cout.precision();
+
+
+- Set Float precision on std-out:
+
+cout.precision(number);
+
+
+- Reset Float precision on std-out:
+
+cout.precision(ss);
+
+
+- Suffix increment and decrement:
+
+i++;
+i--;
+
+
+- Prefix increment and decrement:
+
+++i;
+--i;
+
+
+	## Examples ##
+
+int x, y;
+
+x = 5;
+y = ++x;
+// y=6   x=6
+
+x = 5;
+y = x++;
+// y=5   x=6
+
+	## - ##
+
+------------------------------------
+
+	DECLARE FUNCTIONS
+
+- C++ starts inside the execution on the "main" function.
+- Other functions must be declared before being called, outside of "main".
+- However, functions may only be declared before "main" and then be defined after it.
+
+
+- Declare function with no return:
+
+void function(){
+	// code
+}
+
+
+- Declaring a function before "main" to define it after:
+
+void function();
+int main(){
+	// code
+}
+void function(){
+	// code
+}
+
+
+- Call a function:
+
+function();
+
+
+- Declare function with return:
+
+int function(){ return i; }
+float function(){ return f; }
+string function(){ return s; }
+char function(){ return c; }
+bool function(){ return b; }
+
+
+- Constant functions.
+- Can´t modify the objects it calls.
+- Declare constant functions:
+
+int function const(){}
+float function const(){}
+string function const(){}
+char function const(){}
+bool function const(){}
+
+
+- Declare function with parameters:
+
+void function(int i, float f, string s, char c, bool b){
+	// code
+}
+
+
+- Declare function with default parameters:
+
+void func(int i=0, float f=0.0, string s="", char c=' ', bool b=true){
+	// code
+}
+
+
+- Overloading.
+- Different functions can have the same name, but with different arguments and returns.
+
+void functionA(){
+	// code 1
+}
+int functionA(int i){
+	// code 2
+	return i;
+}
+float functionA(bool b){
+	// code 3
+	return 0.0;
+}
+
+
+------------------------------------
+
+	RANDOM NUMBERS
+
+- Include header:
+
+#include <cstdlib>
+
+
+- Pseudo random numbers:
+
+rand();
+min + (rand() % max);
+
+
+- Define seed:
+
+srand(seed);
+
+
+- Random numbers, using time from "ctime" header:
+
+#include <ctime>
+srand(time(0));
+rand();
+min + (rand() % max);
+
+
+------------------------------------
+
+	CLASS & OBJECTS
+
+- Create a Class:
+
+class SomeClass{
+public:
+	SomeClass(int arg){
+		// constructor
+	}
+	int pub_attributes;
+	void pub_methods(){
+		// code
+	}
+	
+private:
+	// private variables can only be used inside the Class
+	int priv_attributes;
+	void priv_methods(){
+		// code
+	}
+};
+
+
+- Use a Member Initializer to put value on constant and non-constant variables:
+
+class SomeClass{
+public:
+	SomeClass(int arg):i(arg){}
+	const int i;
+};
+
+
+- Instantiate a Class Object and Pointer:
+
+SomeClass instance;
+SomeClass instance(arg);
+SomeClass * p = &instance;
+
+
+- Access an Object´s public attributes and methods:
+
+instance.pub_attributes;
+instance.pub_methods();
+p->pub_attributes;
+p->pub_methods();
+
+
+- Constant Objects.
+- Can only use constant methods.
+- Instantiate a constant Class Object:
+
+const SomeClass instance(arg);
+
+
+- Friend function.
+- Can access private and protected attributes and methods of a Class.
+- Friendship is not inherited.
+- Add a friend function to a Class:
+
+class SomeClass{
+private:
+	int priv_i;
+	friend void function(SomeClass & inst);
+};
+void function(SomeClass & inst){
+	inst.priv_i = 0;
+}
+int main(){
+	SomeClass instance;
+	function(instance);
+	return 0;
+}
+
+
+- Friend Class.
+- Can access private and protected attributes and methods of a Class.
+- Friendship is not inherited.
+- Add a friend Class to a Class:
+
+class SomeClass{
+private:
+	friend class otherClass;
+};
+
+
+- Add friendship to a specific function from another Class:
+
+class SomeClass{
+private:
+	friend void otherClass::function(SomeClass & inst);
+};
+
+
+
+
+
+
+
+- Every C++ Object has a "this" pointer, referencing itself.
+
+
+
+
+
+
+------------------------------------
+
+	CLASS´ HEADER & SOURCE FILES
+
+- It is a good practice to separate Classes in a different file.
+- For this, we use "Header" and "Source" files.
+
+- In general, for Classes used only in one file, define them directly where they’re used in.
+- For Classes used in multiple files, or intended for general reuse, define them in a Header file that has the same name as the class.
+
+- That is so if a change is made on the Class in a Source file, only that Source file needs to be recompiled, not every file the includes the Header.
+
+
+
+- Header files are only for declaration.
+- On the Header file we put only the declaration of the Class and it´s attributes and methods.
+- On the Source File we define the constructor, destructor and methods of the Class.
+- All ".cpp" files need to be compiled.
+
+- Both Header and Source files must be on the same folder where the class is gona be included and used.
+
+- For a Class named "SomeClass", it´s Header file shoud be "SomeClass.h", and it´s source file should be "SomeClass.cpp"
+
+- Include a Class in a code:
+
+#include "SomeClass.h"
+
+
+- The format of the Header file ("SomeClass.h") is:
+
+#ifndef SOMECLASS_H
+#define SOMECLASS_H
+
+class SomeClass{
+public:
+	SomeClass(int arg);	// constructor
+	~SomeClass();	// destructor
+	
+	int pub_attributes;
+	void pub_methods(int arg);
+	
+private:
+	int priv_attributes;
+	void priv_methods(int arg);
+};
+
+#endif
+
+
+- The format of a Source file ("SomeClass.cpp") is:
+
+#include <iostream>
+#include "SomeClass.h"
+
+using namespace std;
+
+SomeClass::SomeClass(int arg){
+	// constructor
+}
+SomeClass::~SomeClass(){
+	// destructor
+}
+void SomeClass::pub_methods(int arg){
+	// code
+}
+void SomeClass::priv_methods(int arg){
+	// code
+}
+
+
+
+------------------------------------
+
+	CLASS INHERITANCE
+
+- Create a daughter Class that inherits attributes and methods from it´s father Class:
+
+class Daughter:public Father{
+public:				// accessible by any object
+	int pub_i;
+protected:			// accessible by inheriting Classes
+	int prot_i;
+private:			// only accessible by this Class
+	int priv_i;
+};
+
+
+- Inherit from multiple Classes:
+
+class Daughter:public Father, ..., public Mother{};
+
+
+- Virtual functions.
+- Should be accessed using pointer of the base Class.
+- Can be overriden by derived Classes.
+
+class Base{
+public:
+	virtual void virt_func(){
+		// code virt
+	}
+	void func(){-f
+		// code base
+	}
+};
+class Derived: public Base{
+public:
+	void virt_func(){
+		//code over
+	}
+	void func(){
+		// code derived
+	}
+};
+int main(){
+	Derived instance;
+	Base * p = &instance;
+	p -> virt_func();		// code over
+	p -> func();			// code base
+}
+
+
+
+------------------------------------
+
+	TEMPLATE
+
+- Template parameters.
+- Can be used to pass a not-yet-specified type as argument.
+- Declare a Template (both exact the same):
+
+template <class tempType>
+template <typename tempType>
+template <typename A, ..., typename Z>
+
+
+- Function templates.
+- Functions that operate with generic types.
+- Declare a function template:
+
+tempType function(tempType t){
+	// code
+	return t;
+}
+
+
+- To use the function, then specifying a type (sometimes the "<type>" might be omited):
+
+i = function <int>(i);
+f = function <float>(f);
+s = function <string>(s);
+c = function <char>(c);
+b = function <bool>(b);
+
+
+	## Examples ##
+
+template <typename T>
+
+T smaller(T n1, T n2){
+	return (n1 > n2)?n1:n2;
+}
+
+int i1 = 0, i2=12, i_out;
+float f1 = 13.5, f2 = 5.0, f_out;
+
+i_out = smaller (i1, i2);
+f_out = smaller (f1, f2);
+
+	## - ##
+
+
+
+- Fuck this.
+
+
+
+------------------------------------
+
+	ERRORS: TRY, CATCH & THROW
+
+- Try code possible errors.
+- In case of an error, treat as specified on the "catch" block.
+
+try{
+	// code
+	if (bool){
+		throw "error"
+	}
+	
+}catch(int x){		// any error
+	// code
+}
+
+
+
+
+------------------------------------
+
+	FILES
+
+- Include headers:
+
+#include <iostream>
+#include <fstream>
+#include <ofstream>		// output only	(write to file)
+#include <ifstream>		// input only	(read from file)
+
+
+- Create a File Class Object:
+
+fstream file;
+ofstream file;			// output only
+ifstream file;			// input only
+
+
+- Open or Create file in the project´s directory:
+
+file.open("<path>")
+
+
+- Optional parameters for the "open" method.
+- To use multiple parameters use '|' as separator. Eg. ios::out|ios::trunc.
+
+ 	ios::out		- write only
+ 	ios::in			- read only
+ 	ios::trunc		- deletes contents of the file when it is opened
+ 	ios::ate		- put the cursor At The End of the file.
+	ios::app 		- append every output to the end of the file.
+ 	ios::binary
+ 	ios::nocreate	- don´t Create file (fails "open" if it doesn´t exist).
+	ios::noreplace	- don´t override file (fails "open" if it exists)
+
+
+- Verify if the File is open (returns a Boolean):
+
+file.is_open();
+
+if (file.is_open()){
+	// code
+}
+
+
+- Write out to a File:
+
+file << "string";
+
+
+- Get next line from a File and put it in a variable.
+- Returns a Boolean:
+	- true if there is a line to get.
+	- false if File is over.
+
+getline(file, var)
+
+while getline(file, var){
+	// code
+}
+
+
+- Close the File:
+
+file.close()
+
+
+
+
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

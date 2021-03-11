@@ -13,6 +13,19 @@
 			GMP/MPIR, MPFR (Multiple Precision Floating-point Rounding), and MPC interface to Python 2.6+ and 3.x
 
 
+
+
+- Imports:
+>>> import gmpy2
+
+>>> from gmpy2 import mpfr
+>>> from gmpy2 import sqrt
+>>> from gmpy2 import sin, cos
+>>> from gmpy2 import exp, exp2, exp10
+>>> from gmpy2 import const_pi, const_euler
+>>> from gmpy2 import log, log2, log10
+
+
 ----------------------------------
 
 	REFERENCE
@@ -22,37 +35,6 @@ url: (https://github.com/aleaxit/gmpy)
 
 - Documentation (mpfr):
 url: (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
-
-
-----------------------------------
-
-	MULTIPLE-PRECISION REALS
-
-- Imports:
->>> import gmpy2
-
->>> from gmpy2 import mpfr
->>> from gmpy2 import sqrt
-
-
-
-- The default precision of an mpfr is 53 bits (same as Python’s float type).
-
--To take advantage of higher precision provided by the mpfr type, always pass constants as strings.
-
-
-
-- Create a mpfr type:
->>> mpfr('<number>')
-
-- Change precision (in bits) of active context:
->>> gmpy2.get_context().precision = <bits>
-
-
-
-- Square root that returns a mpfr type:
->>> sqrt( <number> )
-
 
 
 ----------------------------------
@@ -68,6 +50,7 @@ url: (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
 
 - Create a new context, with all options to default:
 >>> <ctx> = gmpy2.context()
+>>> <ctx> = gmpy2.context(precision=<value>)
 
 - Set active context:
 >>> gmpy2.set_context( <ctx> )
@@ -88,7 +71,7 @@ url: (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
 Context Attributes:
 
 precision - specified in bit.
-			The maximum precision that can be specified is platform dependent and can be retrieved with get_max_precision().
+			The maximum precision that can be specified is platform dependent and can be retrieved with gmpy2.get_max_precision().
 
 
 round - 
@@ -107,6 +90,66 @@ round -
 
 (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
 
+
+
+- Get the context according to IEEE-754 (Floating-Point Representation Standards):
+>>> gmpy2.ieee(32)
+>>> gmpy2.ieee(64)
+>>> gmpy2.ieee(128)
+
+
+----------------------------------
+
+	MULTIPLE-PRECISION REALS
+
+
+- The default precision of an mpfr is 53 bits.
+
+-To take advantage of higher precision provided by the mpfr type, always pass constants as strings.
+
+
+
+- Create a mpfr type:
+>>> mpfr('<number>')
+
+
+- Square root:
+>>> sqrt( <number> )
+
+
+- Trigonometric Functions (single values only):
+>> sin(<degree>)
+>> cos(<degree>)
+
+
+- Exponentials:
+>>> exp(<number>)			# e^x
+>>> exp2(<number>)			# 2^x
+>>> exp10(<number>)			# 10^x
+
+
+- Constants:
+>>> const_pi(<precision>)
+>>> const_euler(<precision>)
+
+
+- Logarithm:
+>>> log(<number>)			# natural log(x)
+>>> log2(<number>)			# base-2 log(x)
+>>> log10(<number>)			# base-10 log(x)
+
+
+
+- Some short-hand functions I made:
+
+def mp(num):
+    return mpfr(str(num))
+
+def backf(num, digits=5):
+    return float(round(num, digits))
+
+def listf( l ):
+    return list(map(backf, l))
 
 
 ----------------------------------

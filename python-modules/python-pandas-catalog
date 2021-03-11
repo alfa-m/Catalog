@@ -30,6 +30,10 @@ $	: Some command to be used on the Terminal (shell).
 			
 [pacman]	python-pandas-datareader
 			Data readers extracted from the pandas codebase.
+			
+			
+[conda-forge]	dataframe_image
+				???
 
 
 - Open Library written over Numpy.
@@ -39,7 +43,7 @@ $	: Some command to be used on the Terminal (shell).
 
 - Import:
 >>> import numpy as np
->>> import panda as pd
+>>> import pandas as pd
 
 >>> import pandas-datareader as pdr
 
@@ -98,7 +102,7 @@ url: (https://pandas-datareader.readthedocs.io/en/stable/remote_data.html)
 >>> <dataframe>[<new-column>] = <series>
 
 - Add a line to the DataFrame:
->>> <dataframe>.loc[<new-index>] = <series>
+>>> <dataframe>.loc[<new-index>] = <list>
 
 
 
@@ -942,7 +946,7 @@ JOIN
 
 ------------------------------------
 
-	DATA INPUT & OUTPUT
+	INPUT & OUTPUT DATA
 
 - On IPython you can see all possible Input methods by typing and pressing [tab]:
 >>> pd.read_
@@ -989,6 +993,13 @@ pd.read_excel(      pd.read_gbq(        pd.read_json(       pd.read_pickle(     
 >>> pd.read_html('<url>')
 
 
+
+COOL IMAGE
+
+
+- Export a really cool image (png) of the DataFrame:
+>>> import dataframe_image as dfi
+>>> dfi.export(<dataframe>, '<filepath>.png')
 
 
 

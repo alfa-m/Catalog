@@ -1,5 +1,5 @@
  
-		PLOTLY & CUFFLINKS
+		PLOTLY
 
 ------------------------------------
 
@@ -16,9 +16,6 @@ $	: Some command to be used on the Terminal (shell).
 
 	PACKAGES
 
-[pacman]		???
-				???
-			
 [conda]				plotly
 					???
 			
@@ -374,6 +371,10 @@ TOPOGRAPHICAL 3D SURFACE PLOT
 
 
 	## Examples ##
+
+# more examples on '/misc'
+
+
 
 >>> z_data = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv')
 

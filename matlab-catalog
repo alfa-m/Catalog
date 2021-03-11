@@ -1,0 +1,981 @@
+
+
+		MATLAB
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>	: Matlab Command.
+=>	: Output of a Matlab Command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: ()
+
+- Documentation:
+url: ()
+
+- Search terms you have doubts on here:
+url: (https://www.mathworks.com/help/matlab/)
+
+----------------------------------
+
+	BASICS
+
+- Matlab uses the '=' operator to assign variables.
+
+- When an output for a variable is not specified it is stored on the 'ans' variable.
+
+- If an statement ends with a semicolon ';' Matlab suppresses the display of output.
+
+- To make comments you use the symbol '%'. You can comment multiple lines and even make nested comments with:
+
+>> %{
+>> <comment>
+>> %}
+
+
+
+----------------------------------
+
+	USEFULL COMMANDS
+
+
+- Clear all variables on Workspace:
+>> clear
+
+- Close all figures:
+>> close all
+
+- Clear terminal:
+>> clc
+
+
+
+
+- List all variables:
+>> who
+
+- List variables´ details:
+>> whos
+>> whos <var>
+
+
+
+
+
+
+- Configure values print format:
+>> format			% default
+>> format shot		% 4 decimal cases
+>> format long
+>> format rat		% represent as ration
+>> format compact	% smaller line spacing
+>> format loose		% bigger line spacing
+>> format hex
+>> format bank		% dollar sign and 2 decimal cases
+
+
+
+------------------------------------
+
+	BASIC MATH OPERATIONS PREDECEDENCE
+
+- Order of operations (Operator Precedence):
+
+	^  '					Exponential. Transpose.
+	~  -					Logical NOT. Unary Negative.
+	*  /					Multiply. Devide.
+	+  -					Add. Subtract.
+	<  >  <=  >=  ==  ~=	Relational Operators.
+	:						Colon.
+	&						Logical AND.
+	|						Logical OR.
+	=						Assignment.
+
+------------------------------------
+
+	ARRAYS & MATRIX
+
+- Defining a Array of a single row (Row Vector):
+>> <array> = [ <element>  ...  <element> ]
+>> <array> = [ <element>, ..., <element> ]
+
+
+
+- Defining a Array with multiple rows (Matrix):
+>> <matrix> = [ <element>  ...  <element> 
+				... 
+				<element>  ...  <element> ]
+>> <matrix> = [ <element>  ...  <element> ;  ... ]
+
+>> <matrix> = [ <element>, ..., <element> 
+				... 
+				<element>, ..., <element> ]
+>> <matrix> = [ <element>, ..., <element> ;  ... ]
+
+
+
+- Extending a Matrix to add more dimentions:
+
+>> <matrix>(:,:, <index>) = <matrix>
+
+
+
+
+
+
+
+- Get the size of an Array or Matrix:
+>> size(<array>)
+>> size(<matrix>)
+
+- Get the number of elements of a Array ot Matrix:
+>> numel(<array>)
+>> numel(<matrix>)
+
+- Find index that correnspond to boolean expression no Vector:
+>> find( <vec> == <va>l )
+>> find( <vec> > <val> )
+>> find( <vec> != <val> )
+>> find( ~ <vec> )				% <vec> == 0
+
+
+
+
+
+- Create an Array of equally spaced values:
+>> <array> = <start>:<end>
+>> <array> = <start>:<step>:<end>
+
+- Create a linear space with a number of elements equally spaced:
+>> linspace(<start>, <end>, <number>)
+
+
+
+
+- Create an Array of zeros:
+>> zeros(<rows>, <columns>)
+
+- Create an Array of ones:
+>> ones(<rows>, <columns>)
+
+- Identity Matrix:
+>> eye(<rows>, <columns>)
+
+- Create an Array of random numbers:
+>> rand(<rows>, <columns>)
+
+- Create an Array of random numbers from a Normal Distribution:
+>> randn(<rows>, <columns>)
+
+- Create an NxN Magic Square (?):
+>> magic(<N>)
+
+
+
+
+------------------------------------
+
+	INDEXING
+
+- Access element of array or matrix (Index starts on 1):
+>> <array>(<index>)
+>> <matrix>(<index>, <index>)
+>> <matrix>(<index>, <index>, ...)
+
+- Access multiple elements (both optional parameters):
+>> <array>(<start>:<end>)
+
+- Assign multiple elements:
+>> <array>(<start>:<end>) = <value>
+
+- Remove multiple elements:
+>> <array>(<start>:<end>) = []
+
+
+
+------------------------------------
+
+	CELLS
+
+- Cells can contain any type of data:
+
+
+- Constructs an Cell:
+
+>> <cell> = { <element>  ...  <element> }
+>> <cell> = { <element>, ..., <element> }
+
+>> <cell> = { <element>  ...  <element> ; ... }
+>> <cell> = { <element>, ..., <element> ; ... }
+
+
+- Create an empty Cell with shape NxN:
+>> <cell> = cell(<N>)
+
+- Create an empty Cell with shape NxM:
+>> <cell> = cell(<N>, <M>)
+
+
+
+
+
+
+
+- Save element on a Cell:
+>> <cell>(<index>) = {<element>}
+>> <cell>(<index>, <index>) = {<element>}
+
+- Access element:
+>> <cell>{<index>}
+>> <cell>{<index>, <index>}
+
+- Display a Cell:
+>> celldisp(<cell>)
+
+- Diplay a Cell, but better:
+>> cellplot(<cell>)
+
+
+
+
+
+
+- Apply a function in all elements of a Cell:
+>> cellfun('<function>', <cell>)
+
+
+
+------------------------------------
+
+	STRINGS
+
+- Define a String:
+<string> = '<text>'
+
+
+
+
+- Print a String, without new line at the end:
+>> printf(<string>)
+
+- Print a String, with new line at the end:
+>> sprintf(<string>)
+
+- Get the length of a String:
+>> length(<string>)
+
+
+
+
+
+- Formating Strings:
+
+>> printf( " %s ... %s " , <obj>, ..., <obj>)
+>> sprintf( " %s ... %s " , <obj>, ..., <obj>)
+
+
+- Formating Operators:
+>>> ' %<padding>.<decimal><format> '
+
+padding :	Minimum padding width.
+			Negative number to align to the left, default to right.
+			Zero on front to fill remaning space with zeros.
+
+decimal :	Number of decimal cases (default=6).
+			Can also be a truncate index for strings.
+
+formats :	Type of format aplied:
+	s		- String (or any object with string representation, like numbers)
+	d		- Integers (decimal system)
+	f		- Floating point numbers
+	x		- Integers in hex representation (lowercase)
+	X		- Integers in hex representation (uppercase)
+
+
+
+
+
+
+
+- Concatenate Strings:
+>> strcat(<string>, ..., <string>)
+
+- Concatenate Strings verticaly:
+>> strvcat(<string>, ..., <string>)
+
+- Make all letters upper-case:
+>> upper(<string>)
+
+- Make all letters lower-case:
+>> lower(<string>)
+
+
+
+
+- Returns true if the object is a String:
+>> ischar(<obj>)
+
+- Returns an Array of booleans for each character on a String:
+>> isletter(<string>)
+>> isspace(<string>)
+
+- Compare if the Strings are identical:
+>> strcmp(<string>, <string>)
+
+- Compare if the Strings are equal, ignoring case:
+>> strcmpi(<string>, <string>)
+
+- Compare if the Strings are identical, until a n-th character:
+>> strncmp(<string>, <string>, <n>)
+
+
+
+
+
+
+- Find a pattern in a String:
+>> strfind(<string>, <pattern>)
+
+- Replace a pattern in a String by another String:
+>> strrep(<string>, <pattern>, <other-string>)
+
+- Split String on a pattern into two variables:
+>> (<string-1>, <string-2>) = strtok(<string>, <pattern>)
+
+- Turn number in the corresponding ASCII character:
+>> char(<number>, ..., <number>)
+
+- Execute a command written on the String:
+>> eval(<string>)
+
+
+
+
+
+- Return a String of N blanks:
+>> blanks(<N>)
+
+- Remove trailing whitespace and nulls from S.
+- If given a Matrix or Vector, trims each row to the length of longest string.
+>> deblank(<string>)
+>> deblank(<vec>)
+>> deblank(<matrix>)
+
+
+- Remove leading and trailing whitespace and nulls from S.
+- If given a Matrix or Vector, trims each row to the length of longest string.
+>> strtrim(<string>)
+>> strtrim(<vec>)
+>> strtrim(<matrix>)
+
+
+
+------------------------------------
+
+	MATRIX OPERATIONS
+
+- Sum all elements of a Array:
+>> sum(<array>)
+
+- Sum the elements on each column of a Matrix (returns a Array):
+>> sum(<matrix>)
+
+- Mean of a Array:
+>> mean(<array>)
+
+- Vector/Matrix Multiplication:
+>> <array> * <array>
+>> <matrix> * <matrix>
+
+- Element by element multiplication:
+>> <array> .* <array>
+>> <matrix> .* <matrix>
+
+- Element by element exponential:
+>> <array> .^ <array>
+>> <matrix> .^ <matrix>
+
+
+
+- Transpose:
+>> <array> '
+>> <matrix> '
+
+- Matrix determinant:
+>> det(<matrix>)
+
+- Inverse Matrix:
+>> inv(<matrix>)
+
+
+- Concatenate Matrix horizontaly:
+>> [ <matrix> ... <matrix> ]
+
+- Concatenate Matrix verticaly:
+>> [ <matrix>; ...; <matrix> ]
+
+
+
+------------------------------------
+
+	INTERNAL FUNCTIONS AND VALUES
+
+- Mathematical Values:
+
+	pi			Pi Number
+	e			Euler's Constant
+
+
+- Trigonometric Functions:
+
+>> sin(<radians>)
+>> cos(<radians>)
+>> tan(<radians>)
+
+>> sind(<degrees>)
+>> cosd(<degrees>)
+>> tand(<degrees>)
+
+>> asin(<radians>)		% arcsin(x), sin^-1(x)
+>> acos(<radians>)
+>> atan(<radians>)
+
+
+
+MATHEMATICAL FUNCTIONS
+
+
+>> sqrt(<x>)
+>> exp(<x>)
+>> log(<x>)			% ln(x)
+>> log10(<x>)
+
+
+- Modulo Division (remainder):
+>> mod(<dividend>, <divisor>)
+>> rem(<dividend>, <divisor>)		% differs on division by zero
+
+- Absolute Value:
+>> abs(<value>)
+
+
+
+
+------------------------------------
+
+	CODE FLOW CONTROL STRUCTURES
+
+
+>>	if <boolean>
+>>		<instructions>
+>>	else
+>>		<instructions>
+>>	end
+
+
+
+>>	for <index> = <start>:<step>:<end>
+>>		<statements>
+>>	end
+
+
+
+
+[https://www.mathworks.com/help/matlab/ref/for.html?s_tid=srchtitle]
+
+
+------------------------------------
+
+	FUNCTIONS & SCRIPT
+
+- All functions need to have an output.
+
+- Define simple function:
+>>	function <output> = <function> (<input>)
+>>		<statements>
+>>	end
+
+
+
+- Function with multiple  inputs/outputs:
+>>	function [<out>, ..., <out>] = <function> (<in>, ..., <in>)
+>>		<statements>
+>>	end
+
+
+- Call a function:
+>> <variable> = <function>()
+
+
+- Call funtion and Ignore outputs (using the '~' operator):
+>> [~, ..., <variable>] = function()
+
+
+
+
+
+
+SCRIPT
+
+- Create a new Script file (with name <script>.m) and open it:
+>> edit <script>
+
+- Run Script:
+>> <script>
+
+
+
+
+------------------------------------
+
+	PLOTING
+
+- Plot points or a line, using a arrays for the x and y vaules:
+>> plot(<x>, <y>)
+
+- Plot multiple graphs together:
+>> plot(<x1>, <y1>, ...,  <xn>, <yn>)
+
+
+- Formatting:
+>> plot(<x>, <y>, <fmt>)
+>> plot(<x1>, <y1>, <fmt>, ...,  <xn>, <yn>, <fmt>)
+
+- A format string consists of a part for color, marker and line::
+
+	fmt = '[marker][linestyle][color]'
+
+marker=
+		'.'		point
+		'o'		circle
+		'v'
+		'^'
+		'<'
+		'>'
+		's'		square
+		'*'		star
+		'+'
+		'x'
+		'D'		diamond
+linestyle=
+			'-'		solid line
+			'--'	dashed line
+			'-.'	dash-dot line
+			':'		dotted line
+color=
+		'r'		red
+		'b'		blue
+		'g'		green
+		'k'		black
+		'y'		yellow
+		'c'		cyan
+
+
+
+
+- Close all open figures:
+>> close all
+
+- Retain plots to add new plots to the same axes:
+>> hold on
+
+
+
+------------------------------------
+
+	ARTIFICIAL NEURAL NETWORK (ANN)
+
+- To create a nn, some parameters need to be defined.
+
+
+
+- Neurons on Input Layer.
+- A Matrix with size 'Nx2', where:
+	- the number N of lines defines the number of Neurons on the input layer.
+	- the values on each line, define the lower and upper bound for the inputs.
+
+>> <in_layer> = [ <lower>  <upper>
+				  ...
+				  <lower>  <upper>]
+
+
+
+
+- Number of Neurons on Hidden and Output Layers.
+- An Array with size '1xM', where:
+	- the number M of columns defines the number of Layers.
+	- the value on each column defines the number of Neurons on each layer.
+
+>> <layer_neur> = [ <number> ... <number>]
+
+
+
+
+- Output-functions on Hidden and Output Layers:
+- A Cell Array with size '1xM', where:
+	- the string on each column defines the output-function to be used on each layer.
+
+>> <out_funcs> = {'<out-func>', ..., '<out-func>'}
+
+- Possible output-functions:
+
+	logsig:		sigmoid (logistic),   x -> [ 0; 1]
+	tansig:		tang hiperbolic,      x -> [-1; 1]
+
+
+
+
+
+- Training Algorithm.
+- A string with the training Algorithm for the nn.
+
+>> <train_alg> = 'train-alg'
+
+- Possible Training Algorithms:
+
+	traingd:	gradient descendent
+	traingdm:	gd with mommentum
+	traingda:	gd with adaptative learning rate
+	traingdx:	gd with alr & mommentum
+
+
+
+
+
+- Define the Neural Network:
+>> <nn> = newff (<in_layer>, <layer_neur>, <out_funcs>, <train_alg>)
+
+
+
+
+
+
+- Define learning rate:
+>> <nn>.trainParam.lr = <value>			% [0.01;0.1]
+
+- Define momentum constant:
+>> <nn>.trainParam.mc = <value>			% [0.8;0.9]
+
+- Define min mean squar error:
+>> <nn>.trainParam.goal = <value>		% [0.001;0.005]
+
+- Define max number of epochs:
+>> <nn>.trainParam.epochs = <value>		% [100;10000]
+
+- Define mean square error sampling (?):
+>> <nn>.trainParam.show = <value>		% 100 (?)
+
+
+
+
+
+
+- Training Input.
+- An Matrix with size 'NxV', where:
+	- the number N of lines is number of Neurons on the input layer.
+	- the number V of columns is the number of inputs (train samlpe).
+	- the values on each line are the inputs for each Neuron.
+- Training Output.
+- An Array with size 'OxV', containing the desired output for each input, where:
+	- the number N of lines is number of Neurons on the input layer.
+	- the number V of columns is the number of inputs (train samlpe).
+	- the values on each line are the outputs for each Neuron.
+
+
+
+
+- Initiate random weights:
+>> <nn> = init(<nn>);
+
+- Train the neural network using a Training data-set:
+>> <nn> = train(<nn>, <train-input>, <train-output>);
+
+- Test the nn:
+>> <output> = sim (<nn>, <test-input>)
+
+
+
+
+
+
+
+	## Examples ##
+
+clear; close all; clc
+
+in_layer = [-1 1
+            -1 1];
+
+layer_neur = [5 7 5 1];
+
+out_func = {'tansig', 'tansig', 'tansig', 'tansig'};
+
+train_alg = 'traingdx';
+
+nn = newff (in_layer, layer_neur, out_func, train_alg);
+
+nn.trainParam.lr = 0.01;
+nn.trainParam.mc = 0.8;
+nn.trainParam.goal = 0.001;
+nn.trainParam.epochs = 1500;
+nn.trainParam.show = 100;
+
+nn = init(nn)
+
+X = [ -0.9   0.75
+      -0.8   0.7
+      -0.7   0.65
+       0.5   0.5 
+       0.3   0.3 
+       0.2   0.2 
+       0.9  -0.7 
+       0.95 -0.8 
+       0.7  -0.9 
+       0.7   0.9 
+       0.85  0.75
+       0.8   0.7 
+      -0.3  -0.3 
+      -0.4  -0.45
+      -0.5  -0.5 
+      -0.8  -0.8 
+      -0.8  -0.85
+      -0.8  -0.9 ]';
+
+d = [ 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 ];
+
+nn = train(nn, X, d);
+
+close all;
+hold on;
+
+for i = -1:0.05:1
+	for j = -1:0.05:1
+      
+		out = sim(nn, [i, j]');
+		if out >= 0.5
+			plot (i,j, '+y');
+		else
+			plot (i,j, 'og');
+		end
+        
+	end
+end
+
+plot (  X(1,1:9),  X(2,1:9),  '+b',
+		X(1,10:18), X(2,10:18), 'or');
+
+
+	## - ##
+
+
+------------------------------------
+
+	SELF-ORGANIZING MAPS (SOM)
+
+- Uses "Neural Network Toolbox".
+
+url: ()
+url: (http://faculty.petra.ac.id/resmana/private/matlab-help/toolbox/nnet/newsom.html)
+
+
+- Info on other self organizing map:
+url: (https://www.mathworks.com/help/deeplearning/ref/selforgmap.html)
+url: (https://www.mathworks.com/help/deeplearning/ug/cluster-with-self-organizing-map-neural-network.html)
+
+
+- To create a som, some parameters need to be defined.
+
+
+- Neurons on Input Layer.
+- A Matrix with size 'Nx2', where:
+	- the number N of lines defines the number of Neurons on the input layer.
+	- the values on each line, define the lower and upper bound for the inputs.
+
+>> <in_layer> = [ <lower>  <upper>
+				  ...
+				  <lower>  <upper>]
+
+
+
+
+- Dimentions of Competitive Layer.
+- An Array with size '1xN', where:
+	- the number N of columns is the number f dimentions (same as Neurons on input layer).
+	- the value on each column defines size of the grid.
+
+>> <comp_layer> = [ <number> ... <number>]
+
+
+
+
+
+- Define Self-Organizing Map:
+
+>> <som> = newsom( <in_layer>, <comp_layer> )
+>> <som> = newsom( <in_layer>, <comp_layer>, <top_func>, <dis_func>, <olr>, <osteps>, <tlr>, <tnd> )
+
+% Topology Function
+top_func=
+			'hextop'		% (default)
+			'gridtop'
+			'randtop'
+
+% Distance Function
+dis_func=
+			'linkdist'		% (default)
+			'dist'
+			'mandist'
+
+% Ordering phase Learning Rate
+olr=	<value>				% (default= 0.9)
+
+% Ordering phase Steps
+osteps=	<value>				% (default= 1000)
+
+% Tuning phase Learning Rate
+tlr=	<value>				% (default= 0.02)
+
+% Tuning phase Neighborhood Distance
+tnd=	<value>				% (default= 1)
+
+
+
+
+
+
+
+
+- Define max number of epochs:
+>> <som>.trainParam.epochs = <value>		% [100;10000]
+
+- Define mean square error sampling (?):
+>> <som>.trainParam.show = <value>		% [10;100] (?)
+
+
+
+
+
+
+
+- Training Input.
+- An Matrix with size 'NxV', where:
+	- the number N of lines is number of Neurons on the input layer.
+	- the number V of columns is the number of inputs (train samlpe).
+	- the values on each line are the inputs for each Neuron.
+
+
+
+
+
+- Initiate weights:
+>> <som> = init(<som>);
+
+- Train the neural network using a Training data-set:
+>> <som> = train(<som>, <train-input>);
+
+- Test the som:
+>> <output> = sim (<som>, <test-input>)
+
+
+
+
+
+
+
+
+
+
+
+
+
+	## Examples ##
+
+in_layer = [0 1
+            0 1];
+
+comp_layer = [2 2];
+
+som = newsom(in_layer, comp_layer);
+
+som.trainParam.epochs = 100;
+som.trainParam.show = 10;
+
+X = [0 0 1 1
+     0 1 0 1];
+
+som = init(som);
+som = train(som, X);
+som = sim(som, X);
+
+plot( X(1,:), X(2,:), '.g', 'markersize', 20)
+hold on
+plotsom( som.iw{1,1}, som.layers{1}.distances )
+hold off
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

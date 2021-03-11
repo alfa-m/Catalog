@@ -1,0 +1,1493 @@
+ 
+		R
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>	: Some R command.
+[]	: Output of a R command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	r
+			Language and environment for statistical computing and graphics.
+			
+[conda]		r
+			???
+			
+[conda]		rstudio
+			???
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://www.r-project.org/)
+
+- Documentation:
+url: ()
+
+- Introduction to Statistical Learning with R (ISLR) Book Website:
+url: (https://www.statlearning.com/)
+
+
+------------------------------------
+
+	HELP
+
+- Open a help file window about a function or type of object:
+> ?<function>
+> ?<typeof>
+
+
+- Display the type of a R object:
+> typeof(<object>)
+
+
+- How to cite R or R packages in publications:
+> citation()
+
+
+------------------------------------
+
+	LIBRARIES
+
+
+- Install package:
+> install.package("<package>")
+
+- Unintall package:
+> remove.package("<package>")
+
+- Load Libraries or Data Sets (attach packages):
+> library(<package>)
+
+	MASS		- Large collection of data sets and functions
+	ISLR		- Data sets of the book ISLR
+	car			- has te "vif" fucntion (variance inflation factor)
+	neuralnet	- Artificial Neural Networks
+
+
+- Find more info about a DataFrame (from a package):
+> ?<dataframe>
+
+
+- Unload package:
+> detach("package:<package>", unload=TRUE)
+
+
+------------------------------------
+
+	BASICS
+
+- Make comments with '#'.
+
+
+- Display varibles 'names':
+> names(<object>)
+
+
+- Access names (hint: you don't even need to write the full name):
+> <object>$<name>
+
+
+
+- Quit R:
+> q()
+
+
+------------------------------------
+
+	BASIC MATH OPERATIONS PREDECEDENCE
+
+- Order of operations (Operator Precedence):
+
+	^						Exponent.
+	%%						Modulus.
+	*  /					Multiply. Devide.
+	+  -					Add. Subtract.
+	<  >  <=  >=  ==  !=	Comparisons.
+	!						Logical NOT.
+	&  &&					Logical AND.
+	|  ||					Logical OR.
+	<-  =					Assignment.
+
+
+------------------------------------
+
+	VECTORS
+
+
+- Combine numbers:
+> c(<value>, ...)
+
+
+- Create Vector using the Concatenate function:
+> <vec> <- c(<value>, ...)
+> <vec> = c(<value>, ...)
+
+
+
+
+
+- Generate a Vector of size 'n', with random normal variables (deafult: mean=0, sd=1):
+> rnorm(<n>)
+> rnorm(<n>, mean=<value>, sd=<value>)
+
+- Set seed for generating the same set of random numbers:
+> set.seed(<seed>)
+
+- Reset seed:
+> rm(.Random.seed, envir=globalenv())
+
+
+
+
+
+- Create a sequence of numbers from a 'start' to an 'end' (step= 1):
+> <start>:<end>
+
+- Create a sequence of numbers from a 'start' to an 'end', with a step (default: start= 0, step= 1):
+> seq(<end>)
+> seq(<start>, <end>, by=<step>)
+
+- Create a sequence with a number of values equally spaced:
+> seq(<start>, <end>, length=<number>)
+
+
+
+
+
+
+- Make Vector into Vector of character:
+> paste(<vec>)
+
+- Join each element of a Vector with a Character, with a separator in between:
+> paste(<character>, <vec>, sep=<sep>)
+
+
+- Make Vector into Character with separator between elements:
+> paste(<vec>, collapse=<sep>)
+
+- Join Characters:
+> paste(<character>, ..., <character>)
+
+
+
+
+
+------------------------------------
+
+	MATRIX
+
+
+- Create Matrix from a List or Vector:
+> matrix(<data>, <nrow>, <ncol>)
+> matrix(data=<vec>, nrow=<value>, ncol=<value>)
+
+- By default, R creates Matrix filling the columns.
+- Populate Matrix row by row:
+> matrix(<data>, <nrow>, <ncol>, byrow=TRUE)
+> matrix(<data>, <nrow>, <ncol>, byrow=T)
+
+
+
+
+
+- Transpose a Matrix:
+> t(<matrix>)
+
+
+
+
+
+- Bind Matrix together, by column:
+> cbind(<matrix>, ..., <matrix>)
+
+- Bind Matrix together, by row:
+> rbind(<matrix>, ..., <matrix>)
+
+
+
+- Get the Dimensions of a Matrix (or DataFrame):
+> dim(<matrix>)
+
+
+
+
+
+
+
+
+SOLVE LINEAR SYSTEM
+
+
+- Create and solve a linear system (a %*% X = b):
+> solve (<a>, <b>)
+
+- Check if correct:
+> c( <a> %*% <X>)
+
+- Show in Equation:
+> showEqn(<a>, <b>)
+
+
+
+
+	## Examples ##
+
+> X <- matrix(c(3, 4,-5, 1,
+                2, 2, 2,-1,
+                1,-1, 5,-5,
+                5, 0, 0, 1), 4, 4, byrow=TRUE)
+> y <- c(10, 5, 7, 4)
+> sol <- solve(X, y)
+
+
+- Show in Equation:
+> showEqn(X, y)
+
+
+- Check if correct:
+
+> c(X %*% sol)
+
+
+	## - ##
+
+
+
+- Cool Stuff:
+url: (https://cran.r-project.org/web/packages/matlib/vignettes/linear-equations.html)
+
+
+
+------------------------------------
+
+	INDEXING
+
+- On R indexing starts from 1.
+
+
+- Access the i-th element of a Vector:
+> <vec>[<i>]
+
+- Access the element on i-th row, j-th column of a Matrix:
+> <matrix>[<i>, <j>]
+> <matrix>[<i>,    ]
+> <matrix>[   , <j>]
+
+
+
+- Access multiple elements in sequence:
+> <matrix>[ <i-start>:<i-end> , <j-start>:<j-end> ]
+
+- Access multiple specified elements:
+> <matrix>[ c(<i>, <i>, ...) , c(<j>, <j>, ...)]
+
+- Access ALL, except specified elements:
+> <matrix>[ -(<i-start>:<i-end>) , -(<j-start>:<j-end>) ]
+> <matrix>[ -c(<i>, <i>, ...) , -c(<j>, <j>, ...)]
+
+
+
+
+
+	## Examples ##
+
+> A = matrix(1:16, 4, 4)
+		[,1] [,2] [,3] [,4]
+	[1,]    1    5    9   13
+	[2,]    2    6   10   14
+	[3,]    3    7   11   15
+	[4,]    4    8   12   16
+
+
+> A[1:3,2:4]
+		[,1] [,2] [,3]
+	[1,]    5    9   13
+	[2,]    6   10   14
+	[3,]    7   11   15
+> A[1:3,]
+		[,1] [,2] [,3] [,4]
+	[1,]    1    5    9   13
+	[2,]    2    6   10   14
+	[3,]    3    7   11   15
+> A[,2:4]
+		[,1] [,2] [,3]
+	[1,]    5    9   13
+	[2,]    6   10   14
+	[3,]    7   11   15
+	[4,]    8   12   16
+
+
+> A[c(1,3), c(2,4)]
+		[,1] [,2]
+	[1,]    5   13
+	[2,]    7   15
+
+> A[-(2:4), -(3:4)]
+
+	## - ##
+
+
+----------------------------------
+
+	BOOLEAN & FILTERS
+
+- Get a Vector or Matrix of TRUE or FALSE from a logical operation:
+> <vec>  >  <value>
+> <vec>  <  <value>
+> <vec>  ==  <value>
+...
+> <vec>  %in%  <vec>
+> !(<vec>  %in%  <vec>)
+...
+> <matrix>  >  <value>
+> <matrix>  <  <value>
+> <matrix>  ==  <value>
+...
+
+
+- Use an Vector or Matrix of Logicals to extract specific elements from Vector or Matrix of same shape:
+
+>>> <vec>[<logical-vec>]
+>>> <matrix>[<logical-matrix>]
+
+
+
+
+
+
+------------------------------------
+
+	OPERATIONS AND VALUES
+
+
+- Mathematical Values:
+
+	pi			Pi Number
+	exp(1)		Euler's Constant
+
+
+
+
+
+
+
+- View and Edit Objects on new window:
+> fix(<object>)
+
+
+
+
+- Print on Terminal:
+> print(<whatever>)
+
+
+
+
+
+- Absolute value:
+> abs(<number>)
+> abs(<vec>)
+> abs(<matrix>)
+
+- Square Root of a number, or each element on Vector or Matrix:
+> sqrt(<value>)
+> sqrt(<vec>)
+> sqrt(<matrix>)
+
+- Raise a number to a power, or each element on Vector or Matrix:
+> <value> ^ <value>
+> <vec> ^ <value>
+> <matrix> ^ <value>
+
+
+
+
+
+- Get smallest or biggest element on a Vector or Matrix:
+> min(<vec>)
+> max(<vec>)
+> min(<matrix>)
+> max(<matrix>)
+
+- Get index of smallest or biggest element on Vector:
+> which.min(<vec>)
+> which.max(<vec>)
+
+- Get the Column of the biggest element on each Row of a Matrix:
+> max.col(<matrix>)
+
+- Get the Row of the biggest element on each Column of a Matrix:
+> max.col(t(<matrix>))
+
+
+
+
+
+- Mean of a Vector:
+> mean(<vec>)
+
+- Variance of a Vector:
+> var(<vec>)
+
+- Standard Deviation of a Vector:
+> sd(<vec>)
+> sqrt(var(<vec>))
+
+- Find the correlation between two Vectors:
+> cor(<vec>, <vec>)
+
+
+
+
+
+
+- Vector Addition (element by element):
+> <vec> + <vec>
+
+- Outer Product (Tensor Product):
+> outer (<vec>, <vec>)
+
+- Constructs a 2-D plane and apply a 2 variable function to it:
+> outer (<vec>, <vec>, <function>)
+
+
+
+
+
+
+
+	## Examples ##
+
+> x = rnorm(5)
+> y = x + rnorm(5, 50, .1)
+> y_not = rnorm(5, 50, .1)
+> y_maybe = x + rnorm(5, 1000, .1)
+
+> cor(x,y)
+[]	0.9945339
+
+> cor(x,y_not)
+[]	0.3986063
+
+> cor(x,y_maybe)
+[]	0.9971834
+
+> cor(x, y_not + y_maybe)
+[]	0.9986381
+
+	## - ##
+
+
+------------------------------------
+
+	CODE FLOW CONTROL STRUCTURES
+
+for (<index> in <vec>){
+	<instructions>
+}
+
+
+for (<index> in <start>:<end>){
+	<instructions>
+}
+
+
+
+
+------------------------------------
+
+	ENVIRONMENT
+
+
+- List current objects saved:
+> ls()
+
+- Delete or Remove an object from Global Environment:
+> rm(<object>)
+
+- Dele ALL objects:
+> rm(list=ls())
+
+
+
+
+HISTORY
+
+- Save History of all typed commands in current session:
+> savehistory()
+
+- Load History:
+> loadhistory()
+
+
+
+------------------------------------
+
+	FUNCTIONS
+
+- Create a function:
+
+> <func> = function() {
+> 	<instructions>
+> }
+
+
+- Display function:
+> <func>
+
+- Fix function:
+> fix(<func>)
+
+- Call function:
+> <func>()
+
+
+
+------------------------------------
+
+	PLOTS
+
+
+
+LINE AND SCATTER PLOTS
+
+- Plot a Scatterplot using two Vectors for abscissa (x) and ordered (y):
+> plot(<x>, <y>)
+> plot(<dataframe>)
+
+
+
+
+
+PARAMETERS
+
+- Different types of Plot
+
+type=
+		'p'		points (default)
+		'l'		lines
+		'b'		both
+		'c'		both, except is not both
+		'o'		both, except is MORE both
+		'h'		histogram
+		's'		steps
+		'S'		steps, except MORE steps
+		'n'		just ... don't
+
+
+- Parameter to change Plot color :
+
+col=	<character> or <value> or <vec>
+		'black'			1
+		'red'			2
+		'green'			3
+		'blue'			4
+		'cyan'			5
+						6
+		'yellow'		7
+		'gray'			8
+		'purple'
+		'pink'
+		'orange'
+		...
+
+
+- Parameter to scale plot line width :
+
+lwd=	<value>
+
+
+- Define x and y axis´ limits:
+
+xlim=	<vec>
+ylim=	<vec>
+
+
+- Parameter to change plot symbol :
+
+pch=	<character> or <value> or <vec>
+		'square'		0
+		'circle'		1
+		'triangle'		2
+		'plus'			3
+		'cross'			4
+		'diamond'		5
+						6
+		'square cross'	7
+		'point'			20
+
+
+
+LABELS
+
+- Define Plot Title:
+> plot(<x>, <y>, main=<character>)
+
+- Define Plot Sub-Title:
+> plot(<x>, <y>, sub=<character>)
+
+- Set Axis Labels:
+> plot(<x>, <y>, xlab=<character>)
+> plot(<x>, <y>, ylab=<character>)
+
+
+- Set Legend on a x and y position:
+> legend(<x>, <y>, legend=<vec>)
+> legend(<position>, inset=<va>, legend=<vec>)
+
+position= 
+			"bottomright"
+			"bottom"
+			"bottomleft"
+			"left"
+			"topleft"
+			"top"
+			"topright"
+			"right"
+			"center"
+
+inset= <val>			(default= 0)
+
+lty= <vec> or <val>
+	Vector of Line Types.
+	Or one value for all.
+
+col= <vec>
+	Vector of Colors.
+	Or one value for all.
+
+lwd= <vec> or <val>
+	Vector of Line Widths.
+	Or one value for all.
+
+pch= <vec> or <val>
+	Vector of of the symbol thingy.
+	Or one value for all.
+
+
+
+- More cool shit on legends:
+url: (http://www.sthda.com/english/wiki/add-legends-to-plots-in-r-software-the-easiest-way)
+
+
+
+
+
+
+
+MULTIPLE PLOTS
+
+
+- Add points to the current plot:
+> points(<x>, <y>)
+> points(<dataframe>)
+
+- Add line above current plot, with a intercept and slope values:
+> abline(<intercept>, <slope>)
+
+
+- Remember to properly set 'xlab', 'ylab', 'xlim' and 'ylim'.
+- Plot the very next plot without erasing the current one:
+> par(new=T)
+
+- Divide the screen into panels to plot multiple plots:
+> par(mfrow= c(<lines>, <columns>))
+
+
+
+
+
+
+
+
+MISC
+
+
+- End Plots (?):
+> dev.off()
+
+
+
+
+
+------------------------------------
+
+	SPECIAL PLOTS
+
+
+
+CONTOUR PLOT
+
+- Make a Countour Plot for three-dimensional data.
+- Using two Vectors for abscissa (x) and ordered (y), and a Matrix (z) with values for each pair of coordinates:
+
+> contour(<x>, <y>, <z>)
+
+
+- Define the number of levels in a contour (default = 10):
+> contour(<x>, <y>, <z>, nlevels=<number>)
+
+- Add to current plot (default = FALSE, F):
+> contour(<x>, <y>, <z>, add=<logical>)
+
+
+
+	## Examples ##
+
+> x = seq(-pi, pi, length=50)
+> y = seq(-pi, pi, length=50)
+> z = outer(x, y, function(x,y)cos(y)/(1+x^2))
+
+> contour(x, y, z)
+> contour(x, y, z, nlevels=45, add=T)
+
+> za = (z - t(z))/2
+> contour(x, y, za, nlevels=15)
+
+	## - ##
+
+
+
+
+
+
+
+HEATMAP
+
+- Make a Heatmap.
+- Using two Vectors for abscissa (x) and ordered (y), and a Matrix (z) with values for each pair of coordinates:
+
+> image(<x>, <y>, <z>)
+
+
+
+
+
+
+3D SURFACE PLOT
+
+- Make a Topographical Map.
+- Using two Vectors for abscissa (x) and ordered (y), and a Matrix (z) with values for each pair of coordinates:
+
+> persp(<x>, <y>, <z>)
+
+
+- Change perspective from which the plot is viewed:
+> persp(<x>, <y>, <z>, theta=<degree>, phi=<degree>)
+
+
+
+	## Examples ##
+
+> persp(x, y, za, theta=30)
+> persp(x, y, za, theta=30, phi=20)
+> persp(x, y, za, theta=30, phi=70)
+> persp(x, y, za, theta=30, phi=40)
+
+	## - ##
+
+
+
+
+
+------------------------------------
+
+	FILES: READING AND WRITING DATA
+
+
+- Get the Working Directory:
+> getwd()
+
+- Set Working Directory:
+> setwd("<path>")
+
+
+
+
+
+- Send some data to a file:
+> write.table(<data>, file= '<filepath>.data')
+
+- Send some data to a CSV file:
+> write.csv(<data>, file= '<filepath>.csv')
+
+
+
+
+
+
+- Read some data from a file (returns a DataFrame):
+> read.table('<filepath>.data')
+> read.table('<filepath>.data', header=T, na.strings="?")
+
+- Read a CSV file (returns a DataFrame):
+> read.csv("<filepath>.csv")
+> read.csv("<filepath>.csv", header=T, na.strings="?")
+
+
+
+
+
+
+
+PLOT
+
+- Save output of Plot:
+
+> png('<filepath>/<filename>.png')
+> jpeg('<filepath>/<filename>.jpeg')
+> pdf('<filepath>/<filename>.pdf')
+
+
+
+
+
+
+------------------------------------
+
+	DATAFRAMES
+
+
+
+- Make a DataFrame from a Matrix:
+> <dataframe> = data.frame( <matrix> )
+
+- Check the variable names (columns):
+> names(<dataframe>)
+> colnames(<dataframe>)
+
+- Define the names of the columns of a DataFrame:
+> colnames(<dataframe>) = c("<name>", ..., "<name>")
+> colnames(<dataframe>)[<index>] = "<name>"
+
+
+
+
+
+- Add Column to a DataFrame using a Vector:
+> <dataframe> = as.data.frame(cbind(<dataframe>,<vec>))
+
+- Add Column to a DataFrame from another DataFrame:
+> <dataframe>$<new-column> = <dataframe>$<column>
+
+- Add Rows to a DataFrame usinga a Vector:
+> <dataframe>[<row>, <column>:<column>] = <vec>
+> <dataframe> = as.data.frame(rbind(<dataframe>,<vec>))
+
+
+
+
+
+- Produce a numerical summary for each Column on a DataFrame or Vector:
+> summary(<dataframe>)
+> summary(<vec>)
+> summary(<dataframe>$<column>)
+
+
+
+
+
+
+
+
+
+- View DataFrame on a spreadsheet window:
+> fix(<dataframe>)
+
+- Omit the rows with missing data from a DataFrame
+> na.omit(<dataframe>)
+
+
+
+
+
+
+
+
+- Access a Column of a DataFrame (returns a Vector):
+> <dataframe>$<column>
+
+
+!!! If using a script, at the end ALWAYS detach what you´ve attached.
+
+- Make the Columns of a DataFrame accessible directly by name:
+> attach(<dataframe>)
+
+- Undo Attach:
+> detach(<dataframe>)
+
+
+
+
+
+
+
+- Find more info about a DataFrame (from a package):
+> ?<dataframe>
+
+
+
+
+
+
+PLOT AND IDENTIFY
+
+- Identify (interactively) points on a plot.
+- Adds labels to those points using a Column with labels.
+- Return the points row values.
+
+> plot(<column>, <column>)
+> identify(<column>, <column>, <label-column>)
+
+
+
+
+SAVE AS IMAGE
+
+- One DataFrame:
+
+> library(grid)
+> library(gridExtra)
+
+> <table> = tableGrob(<dataframe>, rows= NULL)
+> grid.newpage()
+> grid.draw(<table>)
+
+> png('<filepath>/<filename>.png')
+
+- BEAUTIFULL crap:
+url: (https://cran.r-project.org/web/packages/gridExtra/vignettes/tableGrob.html)
+
+
+------------------------------------
+
+	FACTOR VARIABLES (CATHEGORICAL or QUALITATIVE)
+
+- Convert a Vector of finite possible quantitative values into qualitative:
+> as.factor(<vec>)
+
+
+
+
+PLOT: BAR, BOX, SPINE
+
+	- Using Factor Variables on the 'plot' function will yeld different types of graphs:
+
+- Bar Plot:
+> plot(<fac-vec>)
+> plot(x= <fac-vec>)
+
+- Box Plot:
+> plot(<fac-vec>, <num-vec>)
+> plot(x= <fac-vec>, y= <num-vec>)
+
+- Spine Plot:
+> plot(<fac-vec>, <fac-vec>)
+> plot(x= <fac-vec>, y= <fac-vec>)
+
+
+
+- Box Plot extra arameters:
+
+varwidth=	<logical>
+horizontal=	<logical>
+
+
+
+
+
+
+
+HISTOGRAM
+
+- Plot a histogram (using Numeric Values):
+> hist(<vec>)
+> hist(<vec>, breaks=<value>)
+
+
+
+
+
+
+SCATTERPLOT MATRIX (PAIR PLOT)
+
+- Create a ScatterPlot Matrix from a DataFrame:
+> pairs(<dataframe>)
+
+- Make ScatterPlot Matrix from a subset of variable from a DataFrame:
+> pairs(~ <column> + ... + <column>, <DataFrame)
+
+
+	## Examples ##
+
+> Auto = read.table('~/Coding/R/islr/Auto.data', header=T, na.strings="?")
+
+> pairs (~ mpg + displacement + horsepower + weight + acceleration, Auto)
+
+	## - ##
+
+
+
+
+
+
+------------------------------------
+
+	FORMULAS
+
+- Formulas are often used to denote statistical models.
+
+- Formulas have all sorts of uses:
+	- regression
+	- neural networks
+
+
+
+- Create a model Formula object:
+
+> <formula> = <response> ~ <predictor>
+> <formula> = <response> ~ <predictor> + ... + <predictor>
+
+> <formula> = <output> ~ <input> + ... + <input>
+> <formula> = <output> + ... + <output> ~ <input> + ... + <input>
+
+
+
+
+------------------------------------
+
+	LINEAR REGRESSION
+
+
+SIMPLE LINEAR REGRESSION MODEL
+
+- Fit a Simple Linear Regression with data from a DataFrame:
+
+> lm.fit = lm(<response> ~ <predictor>, data=<dataframe>)
+
+> attach(<dataframe>)
+> lm.fit = lm(<response> ~ <predictor>)
+
+> lm.fit = lm(<formula>)
+
+
+!!! If using a script, at the end ALWAYS detach what you´ve attached.
+
+
+
+
+
+MULTIPLE LINEAR REGRESSION MODEL
+
+- Fit a Multiple Linear Regression with data from a DataFrame:
+> lm.fit = lm(<response> ~ <predictor> + ... + <predictor>, data=<dataframe>)
+
+
+
+- Fit a Multiple Linear Regression with all predictors from a DataFrame:
+> lm.fit = lm(<response> ~ . , data=<dataframe>)
+
+- Fit a Multiple Linear Regression with all but some predictors from a DataFrame:
+> lm.fit = lm(<response> ~ . -<predictor> , data=<dataframe>)
+> lm.fit = lm(<response> ~ . -<predictor> - ... -<predictor>  , data=<dataframe>)
+
+
+
+- Update a existing fit to remove (or add) a predictor:
+> lm.fit = update(lm.fit, ~. -<predictor>)
+
+
+
+
+
+
+
+INTERACTION TERMS
+
+- Include the predictors and an interaction term between them:
+> lm(<response> ~ <predictor>*<predictor>, data=<dataframe>)
+
+- Include just an interaction term between two predictors:
+> lm(<response> ~ <predictor>:<predictor>, data=<dataframe>)
+
+
+
+
+
+
+
+
+NON-LINEAR TRANSFORMATIONS OF PREDICTORS
+
+- Use function 'I' to inhibit the interpretation on the linear regression:
+> lm.fit = lm(<response> ~ <predictor> + I(<predictor>^2))
+
+- Produce a 'k'th-order polynomial transformation fit:
+> lm.fit = lm(<response> ~ poly(<predictor>, <k>))
+
+- Produce a log transformation fit:
+> lm.fit = lm(<response> ~ log(<predictor>, <k>))
+
+
+
+
+
+
+
+
+QUALITATIVE PREDICTORS
+
+- Given a qualitative variable, R automatically generates dummy variables.
+
+	## Examples ##
+
+> library(ISLR)
+> quali.fit = lm( Sales ~ . +Income:Advertising +Price:Age, data=Carseats)
+
+	## - ##
+
+
+
+- Get the coding that R uses for the dummy variables:
+> contrasts(<fac-predictor>)
+
+
+
+
+
+
+
+COMPONENTS
+
+
+- Get model coefficients fit (returns a vector):
+> coef(lm.fit)
+> summary(lm.fit)$coe
+> summary(lm.fit)$coefficients
+
+- Display detailed information (p-values, coefficient's SE, model's R2 statistic, model's F-statistic):
+> summary(lm.fit)
+
+- Get R2:
+> summary(lm.fit)$r.sq
+> summary(lm.fit)$r.squared
+
+- Get RSE:
+> summary(lm.fit)$s
+> summary(lm.fit)$sigma
+
+- Display varibles names:
+> names(lm.fit)
+> names(summary(lm.fit))
+
+- Access names:
+> lm.fit$<name>
+> summary(lm.fit)$<name>
+
+
+
+
+- Get the Predicted values:
+> predict(lm.fit)
+
+- Display Confidence Interval for the coefficients:
+> confint(lm.fit)
+
+- Produce Confidence Intervals for predictions, given a vector of values for the predictor:
+> predict(lm.fit,
+		  data.frame(<predictor>= <vec>)
+		  interval="confidence")
+
+- Produce Prediction Intervals for predictions, given a vector of values for the predictor:
+> predict(lm.fit,
+		  data.frame(<predictor>= <vec>)
+		  interval="prediction")
+
+
+
+
+
+
+
+DIAGNOSTIC PLOTS and TABLES
+
+- Plot data and simple regression line:
+> plot(<predictor>, <response>)
+> abline(lm.fit)
+
+
+
+
+- Plot four Residual plots:
+> par(mfcol=c(2,2))
+> plot(lm.fit)
+> par(mfrow=c(1,1))
+
+- Get the Residuals:
+> residuals(lm.fit)
+
+- Get the Studentized Residuals:
+> rstudent(lm.fit)
+
+- Plot Residuals and Studentized Residuals:
+> plot(predict(lm.fit), residuals(lm.fit))
+> plot(predict(lm.fit), rstudent(lm.fit))
+
+
+
+- Get Leverage statistics for any number of predictors:
+> hatvalues(lm.fit)
+
+- Plot Leverage statistics:
+> plot(hatvalues(lm.fit))
+
+- Which observation has largest leverage;
+> which.max(hatvalues(lm.fit))
+
+
+
+
+- Display Variance Inflation Factors:
+> library(car)
+> vif(lm.fit)
+
+
+
+
+- Analysis of Variance Table between two fits:
+> anova(<fit>, <fit>)
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+
+------------------------------------
+
+	ARTIFICIAL NEURAL NETWORK (ANN)
+
+- Load Library::
+> library("neuralnet")
+
+- Define a Neural Network with data from a DataFrame or Matrix:
+
+> <nn> = neuralnet(<desired_output> ~ <input> + ... + <input>, data= <dataframe>)
+> <nn> = neuralnet(<desired_output> ~ <input> + ... + <input> data= <matrix>)
+
+
+hidden= <vec> or <value>		(default= 1)
+		A Vector with size 'M', where:
+			- the M columns is the number of Layers.
+			- each value is number of Neurons on each hidden layer.
+
+threshold= <value>				(default= 0.01)
+		Threshold for error as stop criteria.
+
+stepmax= <value>				(default= 1e+05)
+
+learningrate= <value>
+		Learning rate used only for traditional backpropagation.
+
+linear.output= <logical>
+		(default= TRUE)
+		Uses a linear function as Activation function.
+		Overides 'act.fct'.
+
+act.fct=
+			'logistic'			(default)
+			'tanh'
+
+algorithm=
+			'backprop'	- Backpropagation
+			'rprop+'	- (default) Resilient Backprop with weight backtracking.
+			'rprop-'	- Resilient Backprop without weight backtracking.
+			'sag'		- ???
+			'slr'		- sei lá r (???)
+
+
+
+
+
+
+
+
+
+- Diplay visual representations of nn:
+> plot(<nn>)
+
+- Display info of error, reached threshold and steps taken:
+> <nn>$result.matrix[1:3,]
+
+
+
+
+- Test the nn.
+- Returns a list with the components:
+	- neurons: a list with the output of each layer of the nn
+	- net.result: a matrix with the nn output
+
+
+- Test nn:
+> <test> = compute(<nn>, <dataframe>)
+
+- Get the results from the test:
+> <test>$net.result
+
+
+
+
+
+
+	## Examples ##
+
+library("neuralnet");
+
+X = matrix(c(-0.9,  0.75,
+             -0.8,  0.7,
+             -0.7,  0.65,
+              0.5,  0.5,
+              0.3,  0.3,
+              0.2,  0.2,
+              0.9, -0.7,
+              0.95,-0.8,
+              0.7, -0.9,
+              0.7,  0.9,
+              0.85, 0.75,
+              0.8,  0.7,
+             -0.3, -0.3,
+             -0.4, -0.45,
+             -0.5, -0.5,
+             -0.8, -0.8,
+             -0.7, -0.85,
+             -0.7, -0.9), nrow = 18, ncol = 2, byrow = T);
+
+d = matrix(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0), nrow = 18);
+
+train_set = as.data.frame(cbind(X,d))
+colnames(train_set) = c("x1", "x2", "d")
+
+rm(X, d)
+attach(train_set)
+
+nn = neuralnet(d ~ x1 + x2, data=train_set,  hidden=c(4,3), threshold = 0.001)
+#plot(nn)
+
+test_set = data.frame(x=0, y = 0);
+cont = 0;
+for (i in seq(-1,1, by=0.05)) {
+  for (j in seq(-1,1, by=0.05)) {
+    cont = cont+1;
+    test_set[cont, 1:2] = c(i,j)
+  }
+}
+
+color = compute(nn, test_set)
+color = color$net.result > 0.5
+color = as.numeric(color) +4
+
+plot(test_set, col=color, pch=color-1)
+for (i in 1:4) {
+  points(train_set[1:18,1:2], col=d+2, pch=d+1)
+}
+
+detach(train_set)
+
+
+	## - ##
+
+
+------------------------------------
+
+	SELF-ORGANIZING MAPS (SOM)
+
+
+- Load Library::
+> library("kohonen")
+
+
+
+- To search:
+
+url: (http://rstudio-pubs-static.s3.amazonaws.com/437468_136a369149e24f24a4d0c152860ab4c3.html)
+url: (https://clarkdatalabs.github.io/soms/SOM_NBA)
+url: (https://www.polarmicrobes.org/tutorial-self-organizing-maps-in-r/)
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

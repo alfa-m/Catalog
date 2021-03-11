@@ -100,19 +100,19 @@ $ which conda
 
 - Order of operations (Operator Precedence):
 
-	**				Exponential.
-	~  +  -			Complement (all bits reversed), unary plus and minus.
-	*  /  %  //		Multiply, devide, modulo, floor division.
-	+  -
-	>> <<			Right and left bitwise shift.
-	&				Bitwise AND.
-	^  |			Bitwise XOR and OR.
-	<=  <  >  >=
-	=  %=  /=  //=	Assignment operators.
-	-=  +=  *=  **=	Assignment operators.
-	is  is not		Identity operators.
-	in  not in		Membreship operators.
-	not  or  and	Logical operators.
+	**					Exponential.
+	~	+	-			Complement (all bits reversed), unary plus and minus.
+	*	/	%	//		Multiply, devide, modulo, floor division.
+	+	-				Addition and subtraction.
+	>>	<<				Right and left bitwise shift.
+	&					Bitwise AND.
+	^  |				Bitwise XOR and OR.
+	<=	<	>	>=		Logical operators.
+	=	%=	/=	//=		Assignment operators.
+	-=	+=	*=	**=		Assignment operators.
+	is	is not			Identity operators.
+	in	not in			Membreship operators.
+	not	or	and			Logical operators.
 
 
 
@@ -237,6 +237,9 @@ Mod ->	1 | 2	<- Floor division
 >>> <string> + <string>
 >>> <string> * <integer-number>
 
+- Print message and return String from console input;
+>>> input(<str>)
+
 
 
 METHODS
@@ -339,11 +342,11 @@ decimal :	Number of decimal cases (default=6).
 			Can also be a truncate index for strings.
 
 formats :	Type of format aplied:
-	%s - String (or any object with string representation, like numbers)
-	%d - Integers (decimal system)
-	%f - Floating point numbers
-	%x - Integers in hex representation (lowercase)
-	%X - Integers in hex representation (uppercase)
+	s		- String (or any object with string representation, like numbers).
+	d		- Integers (decimal system).
+	f		- Floating point numbers.
+	x		- Integers in hex representation (lowercase).
+	X		- Integers in hex representation (uppercase).
 
 
 
@@ -353,9 +356,9 @@ NEW FORMATING METHOD
 
 - New formating method:
 
->>> ' {} '.format(<string>)
+>>> ' {} '.format(<obj>)
 
->>> ' {}  ...  {} '.format(<string>, ..., <string>)
+>>> ' {}  ...  {} '.format(<obj>, ..., <obj>)
 
 >>> ' {<d>[<key>]}  ...  {<d>[<key>]} '.format( <d>=<dict> )
 
@@ -369,17 +372,6 @@ NEW FORMATING METHOD
 	{<position>} - positional argument for strings given to 'format()'
 	{<key>} - keyword argument; must be defined on 'format()' arguments
 
-	## Examples ##
-
->>> ' {2} {0} {3} {1} '.format( 'one', 'three', 'zero', 'two' )
-[]	' zero one two three '
-
->>> B='bee'
->>> C='see'
->>> ' {a} {b} {c} '.format( b=B, c=C, a='eei' )
-[]	' eei bee see '
-
-	## - ##
 
 - Formating Operators (groups in the order they must be placed or not):
 
@@ -407,6 +399,14 @@ NEW FORMATING METHOD
 
 
 	## Examples ##
+
+>>> ' {2} {0} {3} {1} '.format( 'one', 'three', 'zero', 'two' )
+[]	' zero one two three '
+
+>>> B='bee'
+>>> C='see'
+>>> ' {a} {b} {c} '.format( b=B, c=C, a='eei' )
+[]	' eei bee see '
 
 >>> "Binary representation of {0} is {0:b}".format(12)
 []	'Binary representation of 12 is 1100'
@@ -1029,6 +1029,30 @@ LIST COMPREHENSION
 
 
 
+
+ARGS & KWARGS
+
+- Allows a function to handle undefined arguments and keyword-arguments.
+- When the function is called, the extra arguments go to a 'args' Tuple.
+- The extra keyword-arguments go to a 'kwargs' Dictionary.
+
+>>> def <function>(*args, ...):
+>>> 	<instructions>
+
+>>> def <function>(**kwargs, ...):
+>>> 	<instructions>
+
+
+
+
+
+
+
+
+
+
+
+
 	## Examples ##
 
 >>> def isprime(num):
@@ -1074,9 +1098,9 @@ LIST COMPREHENSION
 
 - Unpacking can be useful to use the items of a iterable as arguments for a function call requiring separated positional arguments.
 
-- For lists and tuples it is used the '*' operator.
+- For lists and tuples it is used the '*' operator BEFORE the thing.
 
-- For dictionaries it is used the '**' operator.
+- For dictionaries it is used the '**' operator  BEFORE the thing.
 
 
 
@@ -1351,7 +1375,7 @@ https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence
 
 	ERRORS: TRY & EXCEPT
 
-- Try code possible errors.
+- Try code with possible errors.
 - In case of a specific Exception, treat as specified on the except block. If the Exception is not specified, any error will be treated.
 - If none of the Exceptions occur, do 'else'.
 - To Capture the error message use 'except Exception as <object>'

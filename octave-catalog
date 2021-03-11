@@ -1,0 +1,303 @@
+ 
+		OCTAVE
+
+------------------------------------
+
+
+Only specify here what differs from Matlab.
+
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>	: Matlab Command.
+ans	: Output of a Matlab Command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[forge]		nnet
+			(unmaintained) A feed forward multi-layer neural network. 
+
+[forge]		signal
+			Signal processing tools, including filtering, windowing and display functions.
+
+[forge]		control
+			Computer-Aided Control System Design (CACSD) Tools for GNU Octave, based on the proven SLICOT Library.
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: ()
+
+- Documentation:
+url: ()
+
+
+------------------------------------
+
+	MANAGE PACKAGES
+
+- List installed packages:
+>> pkg list
+
+- Install from forge:
+>> pkg install -forge <package>
+
+- Install on different directory:
+>> pkg prefix <path>
+>> pkg prefix ~/Coding/.octave_packages/
+
+- Load packages on octave's path:
+>> pkg load <package>
+
+- Unload packages on octave's path:
+>> pkg unload <package>
+
+
+
+PATH
+
+- Display Octave’s load path:
+>> path()
+
+- Add file to octave's path:
+>> addpath('<path>')
+
+- Remove file from octave's path:
+>> rmpath('<path>')
+
+
+
+------------------------------------
+
+	ARTIFICIAL NEURAL NETWORK
+
+
+- Load package 'nnet' on octave's path:
+>> pkg load nnet
+
+
+
+
+- To create a nn, some parameters need to be defined.
+
+
+- Neurons on Input Layer.
+- A Matrix with size 'Nx2', where:
+	- the number N of lines defines the number of Neurons on the input layer.
+	- the values on each line, define the lower and upper bound for the inputs.
+
+>> <in_layer> = [ <lower>  <upper>
+				  ...
+				  <lower>  <upper>]
+
+
+
+
+- Number of Neurons on Hidden and Output Layers.
+- An Array with size '1xM', where:
+	- the number M of columns defines the number of Layers.
+	- the value on each column defines the number of Neurons on each layer.
+
+>> <layer_neur> = [ <number> ... <number>]
+
+
+
+
+- Output-functions on Hidden and Output Layers:
+- A Cell Array with size '1xM', where:
+	- the string on each column defines the output-function to be used on each layer.
+
+>> <out_funcs> = {'<out-func>', ..., '<out-func>'}
+
+- Possible output-functions:
+
+	logsig:		sigmoid (logistic),   x -> [ 0; 1]
+	tansig:		tang hiperbolic,      x -> [-1; 1]
+
+
+
+
+
+- Training Algorithm.
+- A string with the training Algorithm for the nn.
+
+>> <train_alg> = '<train-alg>'
+
+- Possible Training Algorithms:
+
+	traingd:	gradient descendent
+	traingdm:	gd with mommentum
+	traingda:	gd with adaptative learning rate
+	traingdx:	gd with alr & mommentum
+
+
+
+
+
+- Define the Neural Network:
+>> <nn> = newff (<in_layer>, <layer_neur>, <out_funcs>, 'trainlm', <train_alg>)
+
+
+
+
+
+- Define learning rate:
+>> <nn>.trainParam.lr = <value>			% [0.01;0.1]
+
+- Define momentum constant (not sure, who fucking knows):
+>> <nn>.trainParam.mc = <value>			% [0.8;0.9]
+
+- Define min mean squar error:
+>> <nn>.trainParam.goal = <value>		% [0.001;0.005]
+
+- Define max number of epochs:
+>> <nn>.trainParam.epochs = <value>		% [100;10000]
+
+- Define mean square error sampling (?):
+>> <nn>.trainParam.show = <value>		% 100 (?)
+
+
+
+
+
+WARNING: This package is old and unmaintained. To make it work, substitute 'finite' for 'isfinite' on the files:
+.../nnet-0.1.13/tansig.m
+.../nnet-0.1.13/tansig.m
+
+
+
+
+
+
+- Training Input.
+- An Matrix with size 'NxV', where:
+	- the number N of lines is number of Neurons on the input layer.
+	- the number V of columns is the number of inputs (train samlpe).
+	- the values on each line are the inputs for each Neuron.
+- Training Output.
+- An Array with size 'OxV', containing the desired output for each input, where:
+	- the number N of lines is number of Neurons on the input layer.
+	- the number V of columns is the number of inputs (train samlpe).
+	- the values on each line are the outputs for each Neuron.
+
+
+
+- Train the neural network using a Training data-set:
+>> <nn> = train(<nn>, <train-input>, <train-output>);
+
+- Test the nn:
+>> <output> = sim (<nn>, <test-input>)
+
+ 
+
+
+
+	## Examples ##
+
+in_layer = [-1 1
+			-1 1];
+neur = [3, 1];
+
+out_funcs = {'logsig', 'logsig'};
+train_alg = 'traingda';
+
+net = newff (in_layer, neur, out_funcs, 'trainlm', train_alg);
+
+net.trainParam.lr = 0.01;
+net.trainParam.goal = 0.001;
+net.trainParam.epochs = 10000;
+net.trainParam.show = 100;
+
+X = [-0.8   0.7
+	 -0.7   0.65
+	 -0.9   0.75
+	  0.9  -0.8
+	  0.87 -0.7
+	  0.7  -0.9
+	 -0.8  -0.8
+	 -0.7  -0.9
+	 -0.7  -0.87
+	  0.8   0.7
+	  0.7   0.9
+	  0.85  0.76]'  ;
+d = [0 0 0 0 0 0 1 1 1 1 1 1]
+
+net = train(net, X, d);
+
+hold on
+for i = -1:0.05:1
+	for j = -1:0.05:1
+		
+		a = sim(net, [i, j]');
+		
+		if a >= 0.5
+			plot (i,j, '+y');
+		else
+			plot (i,j, '+g');
+		end
+	end
+end
+plot (  X(1,1:6),  X(2,1:6),  '+b',
+		X(1,7:12), X(2,7:12), 'or');
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

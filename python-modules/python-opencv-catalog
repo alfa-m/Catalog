@@ -1,0 +1,147 @@
+ 
+		OPENCV 4.1.0
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>>	: Some python command.
+[]	: Output of a python command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[conda-forge]	opencv=4.1.0
+				Open Source Computer Vision Library
+
+
+- Import:
+>>> import cv2
+>>> import os
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://opencv.org/)
+
+- Documentation:
+url: ()
+
+
+------------------------------------
+
+	JUST DO THIS
+
+- Create images (preferably on a temp folder):
+
+os.chdir('<path>')
+
+filename = '<video_name>'
+
+for n in range(<value>):
+    
+    print ('Saving fig_{}...'.format(n))
+    
+    fig.savefig('temp/fig_{}.png'.format(n))
+
+
+
+- Setup AVI:
+
+fourcc_avi = cv2.VideoWriter_fourcc(*'XVID')   # avi
+height, width, _ = cv2.imread('pics_temp/fig_0.png').shape
+video_avi = cv2.VideoWriter(filename + '.avi', fourcc_avi, fps, (width,height))
+
+for path in ('temp/fig_{}.png'.format(p) for p in range(<value>)):
+    img = cv2.imread(path)
+    video_avi.write(img)
+
+video_avi.release()
+cv2.destroyAllWindows()
+
+
+
+
+
+- Setup MP4:
+
+fourcc_mp4 = cv2.VideoWriter_fourcc(*'mp4v')   # mp4
+height, width, _ = cv2.imread('temp/fig_0.png').shape
+video_mp4 = cv2.VideoWriter(filename + '.mp4', fourcc_mp4, fps, (width,height))
+
+for path in ('temp/fig_{}.png'.format(p) for p in range(<value>)):
+    img = cv2.imread(path)
+    video_mp4.write(img)
+
+#video_avi.release()
+video_mp4.release()
+cv2.destroyAllWindows()
+
+
+
+
+- Remove those pesky pics:
+
+for path in ('temp/fig_{}.png'.format(p) for p in range(<value>)):
+    os.remove(path)
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

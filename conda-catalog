@@ -1,9 +1,26 @@
  
-	CONDA
-	Anaconda
+		CONDA
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$			: Some command to be used on the Terminal (shell).
+(<env>)$	: Some Terminal command to be used on a specific enviroment.
+
+<description>	: Something to be replaced according to the description.
+
+------------------------------------
+
+	HELP
 
 - Help on a command:
 $ conda <command> --help
+
+
+------------------------------------
+
+	ENVIRONMENTS
 
 - List enviroments:
 $ conda env list
@@ -11,7 +28,7 @@ $ conda info --envs
 
 - Activate/deactivate enviroment (conda>=4.6):
 $ conda activate <enviroment>
-$ conda deactivate <enviroment>
+(<env>)$ conda deactivate <enviroment>
 
 - Create enviroment:
 $ conda create --name <env-name>
@@ -22,15 +39,14 @@ $ conda create -n <env-name> <package>
 $ conda create -n <env-name> <package>=<pack-version>
 
 - Exporting environment.yml
-$ conda activate <env>
-$ conda env export > environment.yml
+(<env>)$ conda env export > environment.yml
 
 - Creating an environment from a environment.yml:
 $ conda env create -f environment.yml
 
+------------------------------------
 
-
-JUṔYTER
+ JUPYTER
 
 - Open jupyter:
 (<env>)$ jupyter notebook
@@ -54,9 +70,9 @@ JUṔYTER
 
 	[d] + [d]			: Delete selected cell
 
+------------------------------------
 
-
-PACKAGES
+	PACKAGES
 
 	(basically, never use pip)
 	(conda on Virtual Enviroment)
@@ -89,9 +105,12 @@ $ conda search <package> -c conda-forge
 (<env>)$ conda install <package> -c conda-forge
 
 - List installed package:
-$ conda list
-$ conda list <package>
+(<env>)$ conda list
+(<env>)$ conda list <package>
 
+------------------------------------
+
+	UPDATES
 
 - Check available updates:
 $ conda update
@@ -102,15 +121,17 @@ $ conda update python
 $ conda update conda
 $ conda update anaconda
 
+- Update all packages on enviroment:
+(<env>)$ conda update --all
+
 - Remove a packages:
 (<env>)$ conda remove <package>
 $ conda remove <package> -n <env>
 
 
+------------------------------------
 
-
-
-MISC
+	MISC
 
 - Finding anaconda's install directory:
 $ which conda
@@ -118,8 +139,19 @@ $ which conda
 - Finding the anaconda's python interpreter (environmental):
 (<env>)$ which python
 
+------------------------------------
 
 
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
 
 
 
