@@ -4,6 +4,7 @@ Catalog of my programming and script languages, useful commands, tips&tricks and
 Currently:
 
 - Python
+
 - Python Modules:
   - Numpy
   - Pandas
@@ -13,12 +14,21 @@ Currently:
   - Gmpy2
   - OpenCV
   - Pickleshare
+  
 - R
+
 - Matlab
+
 - Octave
+
 - C++
-- JavaScript
+
+  
+
 - Linux commands
+
 - Pacman commands
+
 - Git commands
+
 - Conda commands
