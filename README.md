@@ -23,8 +23,6 @@ Currently:
 
 - C++
 
-  
-
 - Linux commands
 
 - Pacman commands
