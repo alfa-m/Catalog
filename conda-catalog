@@ -91,6 +91,10 @@ $ conda env create -f environment.yml
 - Install packages on other env:
 $ conda install <package> -n <env>
 
+- Remove a packages:
+(<env>)$ conda remove <package>
+$ conda remove <package> -n <env>
+
 - Search package:
 $ conda search <package>
 
@@ -123,11 +127,6 @@ $ conda update anaconda
 
 - Update all packages on enviroment:
 (<env>)$ conda update --all
-
-- Remove a packages:
-(<env>)$ conda remove <package>
-$ conda remove <package> -n <env>
-
 
 ------------------------------------
 

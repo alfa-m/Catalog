@@ -140,7 +140,15 @@ round -
 
 
 
+----------------------------------
+
+	MY FUNCTIONS
+
 - Some short-hand functions I made:
+
+set_mpfr(bits):
+	global gmpy2
+	gmpy2.set_context(gmpy2.context(precision=bits))
 
 def mp(num):
     return mpfr(str(num))
@@ -150,6 +158,15 @@ def backf(num, digits=5):
 
 def listf( l ):
     return list(map(backf, l))
+
+def listf( l,  digits=5):
+    return list(map(lambda x: backf(x, digits), l))
+
+def backf(val, digits=5):
+    return list(map(lambda x: backf(x, digits), val)) if isinstance(val, list) else float(round(val, digits))
+
+def backf(val, digits=8):
+    return list(map(lambda x: backf(x, digits), val)) if isinstance(val, (list, np.ndarray)) else float(round(val, digits))
 
 
 ----------------------------------

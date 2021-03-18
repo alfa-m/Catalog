@@ -10,7 +10,7 @@
 $ systemd-analyze blame
 
 - Print an SVG graphic highlighting the time system services spent on initialization:
-$ systemd-analyze plot > <flie>.svg
+$ systemd-analyze plot > <file>.svg
 
 - Show full path of a Shell command:
 $ which <command>
@@ -243,7 +243,7 @@ $ fuser -ck <file>
 
 - Configure rclone:
 (See rclone config docs (https://rclone.org/docs/) for more details.)
-(config flie:~/.config/rclone/rclone.conf)
+(config file:~/.config/rclone/rclone.conf)
 (for encryption you should create a remote and after a encrypted remote pointing to a folder on the other)
 $ rclone config
 

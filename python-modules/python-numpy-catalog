@@ -87,6 +87,26 @@ url: (https://numpy.org/doc/stable/reference/ufuncs.html)
 >>> np.round(<array>, <decimals>)
 
 
+
+
+
+
+
+
+SOLVE LINEAR SYSTEM
+
+
+- Create and solve a linear system (A * x = b):
+>>> <x> = np.linalg.solve (<A>, <b>)
+
+- Check if correct:
+>>> np.allclose(np.dot(<A>, <x>), <b>)
+
+
+
+
+
+
 ----------------------------------
 
 	INDEXING & SLICING

@@ -205,6 +205,52 @@ url: (https://www.mathworks.com/help/matlab/)
 
 ------------------------------------
 
+	MATRIX OPERATIONS
+
+- Sum all elements of a Array:
+>> sum(<array>)
+
+- Sum the elements on each column of a Matrix (returns a Array):
+>> sum(<matrix>)
+
+- Mean of a Array:
+>> mean(<array>)
+
+- Vector/Matrix Multiplication:
+>> <array> * <array>
+>> <matrix> * <matrix>
+
+- Element by element multiplication:
+>> <array> .* <array>
+>> <matrix> .* <matrix>
+
+- Element by element exponential:
+>> <array> .^ <array>
+>> <matrix> .^ <matrix>
+
+
+
+- Transpose:
+>> <array> '
+>> <matrix> '
+
+- Matrix determinant:
+>> det(<matrix>)
+
+- Inverse Matrix:
+>> inv(<matrix>)
+
+
+- Concatenate Matrix horizontaly:
+>> [ <matrix> ... <matrix> ]
+
+- Concatenate Matrix verticaly:
+>> [ <matrix>; ...; <matrix> ]
+
+
+
+------------------------------------
+
 	CELLS
 
 - Cells can contain any type of data:
@@ -377,52 +423,6 @@ formats :	Type of format aplied:
 >> strtrim(<string>)
 >> strtrim(<vec>)
 >> strtrim(<matrix>)
-
-
-
-------------------------------------
-
-	MATRIX OPERATIONS
-
-- Sum all elements of a Array:
->> sum(<array>)
-
-- Sum the elements on each column of a Matrix (returns a Array):
->> sum(<matrix>)
-
-- Mean of a Array:
->> mean(<array>)
-
-- Vector/Matrix Multiplication:
->> <array> * <array>
->> <matrix> * <matrix>
-
-- Element by element multiplication:
->> <array> .* <array>
->> <matrix> .* <matrix>
-
-- Element by element exponential:
->> <array> .^ <array>
->> <matrix> .^ <matrix>
-
-
-
-- Transpose:
->> <array> '
->> <matrix> '
-
-- Matrix determinant:
->> det(<matrix>)
-
-- Inverse Matrix:
->> inv(<matrix>)
-
-
-- Concatenate Matrix horizontaly:
->> [ <matrix> ... <matrix> ]
-
-- Concatenate Matrix verticaly:
->> [ <matrix>; ...; <matrix> ]
 
 
 

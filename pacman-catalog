@@ -1,11 +1,30 @@
  
 		PACMAN
 
-Se você presenciar um problema após uma atualização, confira a saída do pacman olhando em:
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+#	: Some command to be used on the Terminal (shell) as Super User.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	LOG & CONFIG FILES
+
+- If experience problems after update, check pacman´s output on:
 /var/log/pacman.log
 
-Configurações em:
+- Configurations in:
 /etc/pacman.conf
+
+
+#Color
+#ILoveCandy
+#TotalDownload
 
 __________________________________
 
@@ -20,120 +39,226 @@ __________________________________
 # reflector -l 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 [!] Make sure the resulting /etc/pacman.d/mirrorlist does not contain entries that you consider untrustworthy before syncing or updating with Pacman.
+
 __________________________________
+
+	MISC
 
 - Discover a package's binary:
 $ pacman -Qlq <package_name> | grep /usr/bin/
 
-- Discover which package owns a file:
-$ pacman -Qo <file>
-$ pacman -Qo <file> <file> ...
+- Query which package owns given files:
+$ pacman -Qo <file> ... <file>
+$ pacman -Q --owns <file> ... <file>
 
-__________________________________
 
+
+- Pacman Version:
 $ pacman -V
-__________________________________
+$ pacman --version
 
 
-pacman -T (deptest: list dependencies not currently satisfied)
+ .--.                  Pacman
+/ _.-' .-.  .-.  .-.   Copyright (C) 2006-2020 Pacman Development Team
+\  '-. '-'  '-'  '-'   Copyright (C) 2002-2006 Judd Vinet
+ '--'
+                       This program may be freely redistributed under
+                       the terms of the GNU General Public License.
 
-pacman -Qdt (query deps unrequired: list not needed dependencies, orphans)
 
-pacman -Qe (query explicitly installed packages)
+- Safely print a list of pending updates:
+$ checkupdates
 
-pacman -Qi <package> (info: information on package, two -ii shows backup files)
+- Download pending updates to the pacman cache:
+$ checkupdates -d
+$ checkupdates --download
 
-pacman -Ql <package> (list: query files owned by package(s))
+- Display this help message:
+$ checkupdates -h
+$ checkupdates --help
 
-pacman -Qm (foreign: packages not found in the sync database, typically downloaded manually and installed with pacman -U)
 
-pacman -Qs <terms> (search on local packages matching all terms)
-
-pacman -Qo <filename> (query owner: find which package owns a file)
-
-pacman -Qq (query quiet: less information, useful for scripts)
-
-pacman Qu (query upgrade: filter out-of-date packages, works better after sync update database: pacman -Sy)
-
-pacman -Rsn <package> (remove recursively nosave: remove package and not required and not explicitly installed dependencies, with no backup)
-
-pacman -Ru (remove unneeded targets)
-
-pacman -Sc (clean: removes no longer installed packages from cache, two -cc fully clears cache)
-
-pacman -Si <package> (info: more info, two -ii also displays packages that depend on it)
-
-pacman -Sl <repo> (list: List packages in specified repositorieS)
-
-pacman -Ss <terms> (search in sync database packages matching all terms)
-
-pacman -Su <package> (sysupgrade: upgrade package, two -uu downgrade)
-
-DO NOT USE pacman -Sy
-INSTEAD, USE pacman -Syu
-pacman -Sy (refresh: update master package database, two -yy force refresh of all packages database, pacman -Sy <package>, as this could lead to dependencies errors)
-
-pacman -Syu (ful system upgrade)
-
-pacman -Sw (downloadonly: download, but doesn't install nor upgrade)
-
-pacman -U <URL or path> (upgrade and install, also could use yaourt -U)
-
-pacman -Fy (refresh package databases, two -yy force a refreshforce a refresh)
 
 __________________________________
 
-/etc/pacman.conf
+	OPERATIONS & OPTIONS
 
-#Color
-#ILoveCandy
 
-#TotalDownload
+- These commands are grouped by Operations.
+- Operations use flags with upper-case.
+- Only one Operation can be done at-a-time.
+- Options use flags with lower-case.
+- Many Options can be combined in one Operation.
+
+
+HELP
+
+- Display general syntax or syntax for the given operation:
+$ pacman -h
+$ pacman -h <operation>
+$ pacman --help
+
+
+
+
+QUERY
+
+- Search on local packages matching all terms:
+$ pacman -Qs <terms> ... <terms>
+
+- Find the binary files for a Terminal command:
+$ which <command>
+
+- Query which package owns given files:
+$ pacman -Qo <file> ... <file>
+$ pacman -Q --owns <file> ... <file>
+
+- Information on a local package.
+- Two -ii shows list of backup files and their modification states.
+$ pacman -Qi <package>
+$ pacman -Qii <package>
+$ pacman -Q --info <package>
+
+- Query list of dependencies unrequired (orphans):
+$ pacman -Qdt
+$ pacman -Q --deps --unrequired
+
+- Query explicitly installed packages:
+$ pacman -Qe
+$ pacman -Q --explicit
+
+- Query files owned by package(s):
+$ pacman -Ql <package>
+$ pacman -Q --list <package>
+
+- Query foreign packages.
+- Packages not found in the sync database.
+$ pacman -Qm
+$ pacman -Q --foreign
+
+- Query quietly (less information, useful for scripts):
+$ pacman -Qq
+
+- Query out-of-date packages:
+$ Pacman -Qu
+$ Pacman -Q --upgrades
+
+
+
+
+REMOVE
+
+- Remove package with it´s not required AND not explicitly installed dependencies, with no backup:
+# pacman -Rsn <package>
+# pacman -R --recursive --nosave <package>
+
+
+
+
+SYNC
+
+- Search in sync database packages matching all terms:
+$ pacman -Ss <terms> ... <terms>
+
+- Install package(s):
+# pacman -S <package>
+# pacman -S <package> ... <package>
+
+- Update master package database and full system upgrade.
+- Two -yy force refresh of all packages database.
+- Can also install new packages together with the upgrade.
+- DO NOT USE ´pacman -Sy <package>´, as this could lead to dependencies errors.
+# pacman -Syu
+# pacman -Syu <package> ... <package>
+# pacman -S --refresh --sysupgrade
+
+- Information on a package from the sync database.
+- Two -ii also displays packages that depend on it.
+$ pacman -Si <package>
+$ pacman -Sii <package>
+$ pacman -S --info <package>
+
+- Removes no longer installed packages from cache.
+- Two -cc fully clears cache
+- (more info & better way to do this on section bellow)
+# pacman -Sc
+# pacman -Scc
+# pacman -S --clean
+
+- List packages in specified repository:
+$ pacman -Sl <repo>
+$ pacman -S --list <repo>
+
+
+
+OTHERS
+
+- List dependencies not currently satisfied:
+$ pacman -T
+$ pacman --deptest
+
+
+
 
 __________________________________
 
-	ARQUIVOS  .PACNEW E  .PACSAVE
+	FILES .PACNEW & .PACSAVE
 
-Ao atualizar ou remover um grande número de pacotes, arquivos .pac* atualizados serão perdidos.
-Esses arquivos exigem intervenção manual do usuário e é uma boa prática tratar deles imediatamente a cada atualização ou remoção de pacote. Se não for tratado, configurações inadequadas podem resultar em função inadequada do software ou o software sendo incapaz de funcionar por completo.
+- A .pacnew file may be created during upgrade to avoid overwriting a file which already exists and was previously modified by the user.
 
-Para descobrir se algum arquivo .pac* foi criado, se instalado, locate pode ser usado, primeiro reindexe a base de dados:
+- A .pacsave file may be created during a package removal.
+- Use of the -n option with pacman -R will result in complete removal of all files in the specified package, therefore no .pacsave files will be created.
 
-# updatedb
-$ locate --existing --regex "\.pac(new|save)$"
+- These files require manual intervention from the user.
+- It is a good practice treat them immediately after upgrades or removal of packages.
+- If not treated, inadequate Configurations might result in malfunction of a software or prevent it to fully function.
 
 
-GERENCIANDO ARQUIVOS .pac*
+- To find .pac* files, ue pacman's log:
+$ grep --extended-regexp "\.pac(new|save)" /var/log/pacman.log
 
-Pacman-contrib fornece pacdiff, uma ferramenta para gerenciar arquivos pac*, pode-se pesquisar todos os arquivos .pacnew e .pacsave e pedir por quaisquer ações neles. Ele usa vimdiff por padrão, mas você pode especificar uma ferramenta diferente, como o meld por exemplo:
 
-# DIFFPROG=meld pacdiff
+
+
+MANAGING FILES .pac*
+
+- Pacman-contrib (from ´pacman´ package)  provides a tool to manage these files.
+- It can search ALL .pacnew and .pacsave files and ask for what to do.
+- It uses ´vimdiff´ by default, but a different diff tool can be specified.
+- (just use Meld, it´s pretty good)
+
+# DIFFPROG=meld pacdiff
 
 
 __________________________________
 
 	CLEANING THE CACHE
 
-When pacman downloads packages, it saves them in a cache directory, including old packages you have downloaded.
 
+- When pacman downloads packages, it saves them in a cache directory, including old packages.
+
+- Cache directory:
 /var/cache/pacman/pkg
 
-This cache can be very useful if you have to install older packages in an emergency. However, left unchecked, this cache will grow very large over time.
-Systems running Pamac will already have access to it's automated pacman cache cleaning functions.
+- This cache can be useful to re-install older packages in an emergency.
+- However, left unchecked, this will grow very large over time.
 
-Pacman can remove packages that are no longer installed from the cache as well as currently unused sync databases:
+- Systems running Pamac will already have access to it´s automated pacman cache cleaning functions.
 
+
+
+- Pacman can remove packages that are no longer installed from the cache as well as currently unused sync databases:
 # pacman -Sc 
 
-Or remove all files from the cache (and use with care):
-
+- Or remove all files from the cache (and use with care):
 # pacman -Scc 
 
-A safer way to remove old package cache files is to [r]emove all packages, [v]erbose, [k]eeping the latest three package versions using paccache (already default):
 
-$ paccache -r
-$ paccache -rv
-$ paccache -rvk3
+
+- A safer way to remove old package cache files is to use paccache to [r]emove all packages, [v]erbose, [k]eeping a number of latest package versions:
+
+$ paccache -rvk 3
+$ paccache -rvk <num> 
 
 
 

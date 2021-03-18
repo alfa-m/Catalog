@@ -86,7 +86,7 @@ LABELS
 
 ------------------------------------
 
-	PARAMETERS
+	STYLES, FORMAT & COLORMAP, SCALE
 
 
 
@@ -278,6 +278,31 @@ url: (https://matplotlib.org/3.3.3/tutorials/colors/colormaps.html#lightness-of-
 
 
 
+
+
+
+SCALE X AND/OR Y AXIS
+
+- Set the plot scale of an axis:
+
+>>> plt.xscale(<scale>)
+>>> plt.yscale(<scale>)
+
+>>> <ax>.set_xscale(<scale>)
+>>> <ax>.set_yscale(<scale>)
+
+scale=
+		"linear"		- Linear Scale (default)
+		"log"			- Logarithmic Scale
+		"symlog"		- Symmetrical Logarithmic Scale
+		"logit"			- Logit Scale
+
+- Different keyword arguments are accepted, depending on the scale.
+- More info:
+url: (https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xscale.html)
+url: (https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xscale.html?highlight=xscale#matplotlib.axes.Axes.set_xscale)
+
+
 ------------------------------------
 
 	FIGURE
@@ -312,6 +337,10 @@ url: (https://matplotlib.org/3.3.3/tutorials/colors/colormaps.html#lightness-of-
 
 
 
+
+------------------------------------
+
+	EXPORT
 
 - Export Figure:
 >>> <fig>.savefig('<filepath>')
@@ -466,6 +495,10 @@ df['date'] = df['timeStamp'].apply(lambda t: t.date())
 
 
 
+
+------------------------------------
+
+	LABELS, LATEX & LEGEND
 
 
 LABELS

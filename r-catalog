@@ -87,6 +87,33 @@ url: (https://www.statlearning.com/)
 
 ------------------------------------
 
+	ENVIRONMENT
+
+
+- List current objects saved:
+> ls()
+
+- Delete or Remove an object from Global Environment:
+> rm(<object>)
+
+- Dele ALL objects:
+> rm(list=ls())
+
+
+
+
+HISTORY
+
+- Save History of all typed commands in current session:
+> savehistory()
+
+- Load History:
+> loadhistory()
+
+
+
+------------------------------------
+
 	BASICS
 
 - Make comments with '#'.
@@ -231,14 +258,14 @@ url: (https://www.statlearning.com/)
 SOLVE LINEAR SYSTEM
 
 
-- Create and solve a linear system (a %*% X = b):
-> solve (<a>, <b>)
+- Create and solve a linear system (A %*% x = b):
+> <x> = solve (<A>, <b>)
 
 - Check if correct:
-> c( <a> %*% <X>)
+> c( <A> %*% <x>)
 
 - Show in Equation:
-> showEqn(<a>, <b>)
+> showEqn(<A>, <b>)
 
 
 
@@ -342,7 +369,7 @@ url: (https://cran.r-project.org/web/packages/matlib/vignettes/linear-equations.
 
 ----------------------------------
 
-	BOOLEAN & FILTERS
+	BOOLEANS & FILTERS
 
 - Get a Vector or Matrix of TRUE or FALSE from a logical operation:
 > <vec>  >  <value>
@@ -504,33 +531,6 @@ for (<index> in <start>:<end>){
 	<instructions>
 }
 
-
-
-
-------------------------------------
-
-	ENVIRONMENT
-
-
-- List current objects saved:
-> ls()
-
-- Delete or Remove an object from Global Environment:
-> rm(<object>)
-
-- Dele ALL objects:
-> rm(list=ls())
-
-
-
-
-HISTORY
-
-- Save History of all typed commands in current session:
-> savehistory()
-
-- Load History:
-> loadhistory()
 
 
 
@@ -805,6 +805,78 @@ HEATMAP
 
 ------------------------------------
 
+	PLOT FACTOR VARIABLES (CATHEGORICAL or QUALITATIVE)
+
+- Convert a Vector of finite possible quantitative values into qualitative:
+> as.factor(<vec>)
+
+
+
+
+PLOT: BAR, BOX, SPINE
+
+	- Using Factor Variables on the 'plot' function will yeld different types of graphs:
+
+- Bar Plot:
+> plot(<fac-vec>)
+> plot(x= <fac-vec>)
+
+- Box Plot:
+> plot(<fac-vec>, <num-vec>)
+> plot(x= <fac-vec>, y= <num-vec>)
+
+- Spine Plot:
+> plot(<fac-vec>, <fac-vec>)
+> plot(x= <fac-vec>, y= <fac-vec>)
+
+
+
+- Box Plot extra arameters:
+
+varwidth=	<logical>
+horizontal=	<logical>
+
+
+
+
+
+
+
+HISTOGRAM
+
+- Plot a histogram (using Numeric Values):
+> hist(<vec>)
+> hist(<vec>, breaks=<value>)
+
+
+
+
+
+
+SCATTERPLOT MATRIX (PAIR PLOT)
+
+- Create a ScatterPlot Matrix from a DataFrame:
+> pairs(<dataframe>)
+
+- Make ScatterPlot Matrix from a subset of variable from a DataFrame:
+> pairs(~ <column> + ... + <column>, <DataFrame)
+
+
+	## Examples ##
+
+> Auto = read.table('~/Coding/R/islr/Auto.data', header=T, na.strings="?")
+
+> pairs (~ mpg + displacement + horsepower + weight + acceleration, Auto)
+
+	## - ##
+
+
+
+
+
+
+------------------------------------
+
 	FILES: READING AND WRITING DATA
 
 
@@ -970,78 +1042,6 @@ SAVE AS IMAGE
 
 - BEAUTIFULL crap:
 url: (https://cran.r-project.org/web/packages/gridExtra/vignettes/tableGrob.html)
-
-
-------------------------------------
-
-	FACTOR VARIABLES (CATHEGORICAL or QUALITATIVE)
-
-- Convert a Vector of finite possible quantitative values into qualitative:
-> as.factor(<vec>)
-
-
-
-
-PLOT: BAR, BOX, SPINE
-
-	- Using Factor Variables on the 'plot' function will yeld different types of graphs:
-
-- Bar Plot:
-> plot(<fac-vec>)
-> plot(x= <fac-vec>)
-
-- Box Plot:
-> plot(<fac-vec>, <num-vec>)
-> plot(x= <fac-vec>, y= <num-vec>)
-
-- Spine Plot:
-> plot(<fac-vec>, <fac-vec>)
-> plot(x= <fac-vec>, y= <fac-vec>)
-
-
-
-- Box Plot extra arameters:
-
-varwidth=	<logical>
-horizontal=	<logical>
-
-
-
-
-
-
-
-HISTOGRAM
-
-- Plot a histogram (using Numeric Values):
-> hist(<vec>)
-> hist(<vec>, breaks=<value>)
-
-
-
-
-
-
-SCATTERPLOT MATRIX (PAIR PLOT)
-
-- Create a ScatterPlot Matrix from a DataFrame:
-> pairs(<dataframe>)
-
-- Make ScatterPlot Matrix from a subset of variable from a DataFrame:
-> pairs(~ <column> + ... + <column>, <DataFrame)
-
-
-	## Examples ##
-
-> Auto = read.table('~/Coding/R/islr/Auto.data', header=T, na.strings="?")
-
-> pairs (~ mpg + displacement + horsepower + weight + acceleration, Auto)
-
-	## - ##
-
-
-
-
 
 
 ------------------------------------

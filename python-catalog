@@ -80,7 +80,7 @@ $ which conda
 - Show Object Documentation (on jupyter):
 <py-object>. + [shift] + [tab]
 
-- Show Function Documentation (on jupyter):
+- Show Function Parameters (on jupyter):
 <function>() + [shift] + [tab]
 
 
@@ -386,9 +386,9 @@ NEW FORMATING METHOD
 	{:+} - prints '+' for positive values
 	{: } - prints ' ' for positive and '-' for negative values
 
+	{:<padding>.<decimal>}
 	{:<padding>} - minimum padding width of string format
 	{:.<decimal>} - number of decimal cases (default=6), or truncate index for strings
-	{:<padding>.<decimal>}
 
 	{:d} - Integers (decimal system)
 	{:f} - Floating point numbers
@@ -843,6 +843,17 @@ METHODS
 
 	CODE FLOW CONTROL STRUCTURES
 
+
+- Return True if an object is an instance of a given type or tuple of types:
+>>> isinstance(<object>, <type>)
+>>> isinstance(<object>, type(<object>))
+>>> isinstance(<object>, <type-tuple>)
+
+
+
+
+
+
 >>> if <boolean>:
 >>> 	<instructions>
 >>> elif <boolean>:
@@ -852,6 +863,13 @@ METHODS
 
 
 >>> <element/instruction> if <boolean> else <element/instruction>
+
+
+
+
+
+
+
 
 
 >>> for <element> in <iterable>:
@@ -876,7 +894,30 @@ METHODS
 
 
 
-- Tuple unpacking:
+
+
+
+
+
+
+
+>>> while <boolean>:
+>>> 	<instructions>
+
+
+>>> while <boolean>:
+>>> 	<instructions>
+>>> else:
+>>> 	<instructions>
+
+
+
+
+
+
+TUPLE UNPACKING
+
+
 >>> (<elements>, ...) = <tuple>
 
 - Create a range-sequence of Integers (default start = 0):
@@ -907,15 +948,7 @@ METHODS
 
 
 
->>> while <boolean>:
->>> 	<instructions>
-
-
->>> while <boolean>:
->>> 	<instructions>
->>> else:
->>> 	<instructions>
-
+STOP REPETITIONS (BREAK & CONTINUE)
 
 
 - Stop repetition:
@@ -934,6 +967,13 @@ METHODS
 >>> 	if <boolean>:
 >>> 		continue
 >>> 	<instruction>
+
+>>> for <element> in <iterable>:
+>>> 	<instruction>
+>>> 	if <boolean>:
+>>> 		continue
+>>> 	<instruction>
+
 
 
 
@@ -1024,7 +1064,11 @@ LIST COMPREHENSION
 >>> 	return <object>
 
 
+- Recursive function:
 
+>>> def <func_A>(<args>):
+>>> 	<instructions>
+>>> 	<func_A>(<args>)
 
 
 
@@ -1384,7 +1428,7 @@ https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence
 >>> try:
 >>> 	<instructions>
 >>> 	
->>> except <Exception>:
+>>> except <exception>:
 >>> 	<instructions>
 >>> 	
 >>> except ...
@@ -1399,6 +1443,11 @@ https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence
 >>> finally:
 >>> 	<instructions>
 
+
+- Throw an Exception:
+
+>>> raise <exception>
+>>> raise NameError(<str>)
 
 
 

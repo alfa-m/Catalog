@@ -1,0 +1,552 @@
+
+		LaTex
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	texlive-most (group)
+
+[pacman]	kile
+			A user friendly TeX/LaTeX frontend for KDE
+
+[online]	Overleaf
+			An online LaTeX editor that's easy to use. No installation, real-time collaboration, version control, hundreds of LaTeX templates, and more.
+
+[pacman]	texstudio
+			Integrated writing environment for creating LaTeX documents
+
+
+
+
+"
+Wrote my whole thesis with VS Code and LaTeX Workshop. One of the best extensions out there!
+
+Wow man. Thank you. Seriously. I'm on KDE and, with a dark theme, no matter my GTK settings, Texstudio won't work nicely (white text on white background on the selected line) and Texmaker feels dated. I already use Visual Studio Code for everything anyway. This is killer!
+"
+
+
+
+----------------------------------
+
+	REFERENCE
+
+- Cool Slide;
+url: (https://pt.slideshare.net/smarzaro/latex-bsico-i)
+
+
+
+
+
+- Home Page:
+url: ()
+
+OVERLEAF
+
+- Learn LaTeX in 30 minutes:
+url: (https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes)
+
+- A quick guide to LaTeX:
+url: (https://www.overleaf.com/latex/templates/a-quick-guide-to-latex/fghqpfgnxggz)
+
+- Overleaf Documentation:
+url: (https://www.overleaf.com/learn)
+
+- Overleaf Templates:
+url: (https://www.overleaf.com/latex/templates)
+
+ABNTEX2
+
+- Home Page:
+url: (https://www.abntex.net.br/)
+
+- Por onde começar?
+url: (https://github.com/abntex/abntex2/wiki/PorOndeComecar)
+
+
+------------------------------------
+
+	BASICS
+
+- To make comments use %
+
+- Shortcut for comment: 
+
+	[ctrl] + /			(on Kile)
+	[ctrl] + T			(on TeXstudio)
+
+
+
+
+- A LaTeX file starts by defining the Class of document.
+- Different Classes of Documents have different commands and properties.
+
+- Define Class of the Document:
+
+\documentclass[<option>, ..., <option>]{<class>}
+
+
+classes:
+		article
+		book
+		report
+		letter
+		...
+
+options:
+		<number>pt		Font size (default= 10)
+		
+		onecolumn		(default)
+		twocolumn
+		
+		oneside			(default for ´article´ and ´report´)
+		twoside			(default for ´book´)
+		
+		titlepage		(default for ´book´ and ´report´)
+		notitlepage		(default for ´article´)
+		
+		openright		Chapters on new right page (default for ´book´)
+		openany			Chapters on any new page (default for ´report´)
+		
+		letterpaper		(default)
+		a4paper
+		a5paper
+		b5paper
+		legalpaper
+		executivepaper
+		...
+
+
+
+
+- Use a package:
+
+\usepackage[<options>][<package>]
+
+
+- Some useful packages:
+
+% Change language of automatic text to pt-br (eg. chapters, sections):
+\usepackage[brazil]{babel}
+
+% Proper read of accentuation and cedilla on the input file:
+\usepackage[utf8]{inputenc}
+% OR if using a encoding other than utf-8:
+\usepackage[latin1]{inputenc}
+
+% Proper mapping of accentuation and cedilla to the output document:
+\usepackage[T1]{fontenc}
+
+% Use the Latin Moder font:
+\usepackage{lmodern}
+
+
+
+
+
+
+
+
+- Begin and End Document.
+- This is where all the document content goes.
+- Some commands here are available for all Classes of Documents, some are exclusive to some Classes.
+
+
+\begin{document}
+
+	<content>
+
+\end{document}
+
+------------------------------------
+
+	DOCUMENT CONTENTS
+
+
+
+ORGANIZATION
+
+- LaTex numbers Sections, Subsections, Chapters, Parts, etc, automaticly.
+
+
+- Create new Section, Subsections and Subsubsections:
+
+\section{<title>}
+\subsection{<title>}
+\subsubsection{<title>}
+
+
+- Create unnumbered Sections:
+
+\section*{<title>}
+\subsection*{<title>}
+\subsubsection*{<title>}
+
+
+- Create titled Paragraphs and Subparagraphs:
+
+\paragraph{<title>}
+\subparagraph{<title>}
+
+
+
+
+
+PARAGRAPH IDENTATION
+
+- For LaTeX to separate paragraphs, make an empty line between then.
+
+- Make the next paragraph NOT be indented:
+
+\noindent
+
+
+- Or just give a new line at the end of the previous paragraph with:
+
+\\
+\newline
+
+
+- To indent the very first line after a new Section use the package:
+
+\usepackage{indentfirst}
+
+
+- To get the text to a new page:
+
+\newpage
+
+
+
+
+------------------------------------
+
+	TITTLE & TABLE OF CONTENTS
+
+- Define Author:
+
+\author{<name>}
+
+
+- Define Title of the Document:
+
+\title{<title>}
+
+
+- Define the Date:
+
+\date{<text>}
+\date{\today}
+
+
+
+- Generate Title:
+
+\maketitle
+
+
+
+- Generate Table of Contents:
+
+\tableofcontents
+
+
+
+------------------------------------
+
+	COMMANDS & CONFIGURATIONS
+
+- Commands have main parameters in braces '{}' and optional parameters in brackets '[]'.
+
+
+
+- Input a Tex file (only processes the file):
+
+\input{<tex-file>}
+
+
+- Include a Tex file (generates file´s pages):
+
+\include{<tex-file>}
+
+
+
+
+
+
+
+
+- Set till which depth of sections are numbered:
+
+\setcounter{secnumdepth}{<number>}
+
+number=
+		0		- Chapter
+		1		- Section
+		2		- Subsection (default)
+		3		- Subsubsection
+		4		- Paragraph
+		5		- Subparagraph
+
+
+- Set till which depth of sections are included on the Table of Contents:
+
+\setcounter{tocdepth}{<number>}
+
+
+
+
+
+
+
+- Teach LaTeX how to hyphenate a word or to never hyphenate it:
+
+\hyphenation{ hy-phe-na-te }
+\hyphenation{ neverHyphenate }
+
+\hyphenation{ hy-phe-na-te neverHyphenate }
+
+
+
+
+------------------------------------
+
+	SYMBOLS
+
+
+- Reserverd Symbols:
+
+	$ $, &, #, _, {, }, %
+
+- To include reserverd symbols on the text they need to be preceded by the escape character ´\´:
+
+	\$, \&, \#, \_, \{, \}, \%
+
+
+
+
+- To open quotes use back ` or ``
+- To close quotes use apostrophe ' or ''
+
+
+
+- Type of dashes:
+
+	-				hyphen
+	--				simple dash
+	---				indent
+	$-<number>$		minus sign (or )
+
+
+
+- Ellipsis ´...´:
+
+\dots
+
+
+
+- Write today´s date:
+
+\today
+
+
+
+- Write the LaTeX stylized thingy:
+
+\LaTeX
+
+
+
+
+
+------------------------------------
+
+	BASIC FORMATING
+
+
+- Bold:
+
+\textbf{<text>}
+
+	[alt] + [shift] + B		(on Kile)
+	[ctrl] + B				(on TeXstudio)
+
+
+- Italic:
+
+\textit{<text>}
+
+	[alt] + [shift] + I		(on Kile)
+	[ctrl] + I				(on TeXstudio)
+
+
+- Underline:
+
+\undeline{<text>}
+
+
+- Emphasis:
+
+\emph{<text>}
+
+
+
+
+
+- Some Fonts:
+
+\textrm{<text>}				% Romman Font
+\textsf{<text>}				% Sans Serif
+\texttt{<text>}				% Type Writer (good for code)
+\textsc{<text>}				% Small Caps
+
+
+- Font sizes:
+
+\tiny{<text>}
+\scriptsize{<text>}
+\footnotesize{<text>}
+\small{<text>}
+\normalize{<text>}
+\large{<text>}
+\Large{<text>}
+\LARGE{<text>}
+\huge{<text>}
+\Huge{<text>}
+
+
+
+
+- Align left (default):
+
+\begin{flushleft}
+	<text>
+\end{flushleft}
+
+
+- Centralize:
+
+\begin{center}
+	<text>
+\end{center}
+
+
+- Align right:
+
+\begin{flushright}
+	<text>
+\end{flushright}
+
+
+
+DIFFERENT FONT SIZES
+
+- On TeXstudio:  selecte Text -> Latex -> Font Size
+
+
+
+
+
+
+------------------------------------
+
+	CROSSED REFERENCE
+
+- Create a Label that can be referenced:
+
+\label
+
+
+- Reference the page number:
+
+\pageref
+
+
+- Reference the Section number:
+
+\ref
+
+
+
+
+------------------------------------
+
+	ARTICLE CONTENTS
+
+-
+
+
+
+
+------------------------------------
+
+	BOOK CONTENTS
+
+- Create new Part:
+
+\part{<title>}
+
+
+- Create new Chapter (available on books and reports):
+
+\chapter{<title>}
+
+
+
+
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
