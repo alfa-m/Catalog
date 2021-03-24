@@ -244,6 +244,7 @@ PARAGRAPH IDENTATION
 
 \date{<text>}
 \date{\today}
+\date{}				% blank date
 
 
 
