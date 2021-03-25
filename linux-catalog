@@ -3,6 +3,37 @@
 		LINUX
 
 
+
+
+
+------------------------------------
+
+	MOINTOR SYSTEM
+
+- List running units, ordered by time took to initialize:
+$ systemd-analyze blame
+
+- Print an SVG graphic highlighting the time system services spent on initialization:
+$ systemd-analyze plot > <flie>.svg
+
+- Show full path of a Shell command:
+$ which <command>
+
+
+
+
+------------------------------------
+
+	CHECK ERRORS
+
+- Check failed systemd processes:
+# systemctl --failed
+
+- Check errors in log files:
+# journalctl -p 3 -xb
+
+
+
 ------------------------------------
 
 	SSH / SCP

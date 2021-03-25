@@ -1,7 +1,7 @@
 #!/bin/bash
 
 case "$1" in
-	linux|bash)
+	sh|linux|bash)
         
         kate ~/Coding/CATALOGS/linux-catalog &
         
@@ -72,7 +72,7 @@ case "$1" in
         echo    "       $ sh catalog <opt>"
         echo
         echo    "   Catalogs Opt List:"
-        echo    "       Linux:             linux, bash"
+        echo    "       Linux:              sh, linux, bash"
         echo    "       Python:             py, python"
         echo    "       Python Projects:    pypro, py-projects"
         echo    "       Pacman:             pac,pacman"

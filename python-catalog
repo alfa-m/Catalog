@@ -1141,10 +1141,52 @@ pickle
 >>> from <package>.<sub-package>.<module> import <function>
 
 
-- Install new module:
-$ pip install <module>
 
-WARNING: NEVER run 'pip install <module>' on the TERMINAL. You should never make any changes to '/usr', except through pacman. If you need to install with pip do it in a Virtual Enviroment (like conda).
+
+
+
+
+	(basically, never use pip)
+	(conda on Virtual Enviroment)
+	(pacman on the system)
+
+	WARNING: NEVER run 'pip install <module>' on the TERMINAL. You should never make any changes to '/usr', except through pacman. If you need to install with pip do it in a Virtual Enviroment (like conda).
+
+	(if a package isn't available by conda, try conda-forge before even thinking on pip)
+	(https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#installing-non-conda-packages)
+
+
+- Install packages on current env:
+(<env>)$ conda install <package>
+(<env>)$ conda install <package>=<version>
+
+- Install packages on other env:
+$ conda install <package> -n <env>
+
+- Search package:
+$ conda search <package>
+
+- List installed package:
+$ conda list
+
+
+- Check available updates:
+$ conda update
+
+- Update a package:
+$ conda update <package>
+$ conda update python
+$ conda update conda
+$ conda update anaconda
+
+- Remove a packages:
+(<env>)$ conda install <package>
+$ conda install <package> -n <env>
+
+
+
+
+
 
 
 - Display where Python looks for modules:
@@ -1173,6 +1215,11 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 >>> imp.find_module('<module>')
 
 (The '__file__' attribute is not present for C modules that are statically linked into the interpreter; for extension modules loaded dynamically from a shared library, it is the pathname of the shared library file.)
+
+
+
+
+
 
 
 
