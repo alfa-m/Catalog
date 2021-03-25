@@ -1,1 +1,76 @@
  
+		PICKLE
+
+----------------------------------
+
+	PACKAGES
+	(although, alraedy native)
+
+
+[pacman]	python-pickleshare
+			File system based database that uses python pickles
+			
+			
+[conda]		pickleshare
+			Tiny 'shelve'-like database with concurrency support
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://github.com/pickleshare/pickleshare)
+
+- Documentation :
+url: ()
+
+
+
+----------------------------------
+
+	PICKLE
+
+- Pickle can save and load a instance of object from a created class.
+
+- Pickle saves the object's attributes. Not it's methods.
+- If a Class has it's methods modified, a loaded instance of a object saved by pickle will still be able to use it.
+- If a Class has it's attributes modified, a saved instance of a object would need to be overwriten.
+
+
+
+- Imports:
+>>> import pickle
+
+
+- Create a new file and dump a object's info on it:
+>>> with open('<file-path>.pkl', 'xb') as new_file:
+>>> 	pickle.dump(<object>, new_file, pickle.HIGHEST_PROTOCOL)
+
+
+- Load a object from a pickle file:
+>>> with open('<file-path>.pkl', 'rb') as input_file:
+>>> 	<object> = pickle.load(input_file)
+
+
+- Update (ovewrite) a pickle file:
+>>> with open('<file-path>.pkl', 'wb') as output_file:
+>>> 	pickle.dump(<object>, output_file, pickle.HIGHEST_PROTOCOL)
+
+
+
+----------------------------------
+
+
+
+----------------------------------
+
+
+
+----------------------------------
+
+
+
+----------------------------------
+
+

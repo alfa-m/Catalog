@@ -518,7 +518,7 @@ Mod ->	1 | 2	<- Floor division
 >>> <file> = open('<file-path>', mode='<mode>')
 
 Operations Mode:
-r - read (default)
+r - read (default), error if the file does not exist.
 w - write, creates the file if it does not exist. Overwrite if it does.
 a - append, creates the file if it does not exist.
 x - exclusive creation, creates the file, returns an error if the file exists.
@@ -1236,6 +1236,9 @@ $ conda install <package> -n <env>
 
 - Search package:
 $ conda search <package>
+
+- Search package info:
+$ conda search <package> --info
 
 - List installed package:
 $ conda list

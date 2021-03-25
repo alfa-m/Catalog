@@ -62,6 +62,9 @@ $ conda install <package> -n <env>
 - Search package:
 $ conda search <package>
 
+- Search package info:
+$ conda search <package> --info
+
 - List installed package:
 $ conda list
 $ conda list <package>

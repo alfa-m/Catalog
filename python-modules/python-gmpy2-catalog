@@ -1,1 +1,115 @@
- 
+
+		GMPY2
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	python-gmpy2
+			Provides C-coded Python modules for fast multiple-precision arithmetic.
+			
+			
+[conda]		gmpy2
+			GMP/MPIR, MPFR (Multiple Precision Floating-point Rounding), and MPC interface to Python 2.6+ and 3.x
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://github.com/aleaxit/gmpy)
+
+- Documentation (mpfr):
+url: (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
+
+
+----------------------------------
+
+	MULTIPLE-PRECISION REALS
+
+- Imports:
+>>> import gmpy2
+
+>>> from gmpy2 import mpfr
+>>> from gmpy2 import sqrt
+
+
+
+- The default precision of an mpfr is 53 bits (same as Python’s float type).
+
+-To take advantage of higher precision provided by the mpfr type, always pass constants as strings.
+
+
+
+- Create a mpfr type:
+>>> mpfr('<number>')
+
+- Change precision (in bits) of active context:
+>>> gmpy2.get_context().precision = <bits>
+
+
+
+- Square root that returns a mpfr type:
+>>> sqrt( <number> )
+
+
+
+----------------------------------
+
+
+	MANAGE CONTEXTS
+
+- Get active context object:
+>>> <ctx> = gmpy2.get_context()
+
+- Display active context:
+>>> gmpy2.get_context()
+
+- Create a new context, with all options to default:
+>>> <ctx> = gmpy2.context()
+
+- Set active context:
+>>> gmpy2.set_context( <ctx> )
+
+- Reset active context:
+>>> gmpy2.set_context(gmpy2.context())
+
+
+
+
+- Alter a context's attribute:
+>>> <ctx>.<attribute> = <value>
+
+- Alter active context's attribute:
+>>> gmpy2.get_context().<attribute> = <value>
+
+
+Context Attributes:
+
+precision - specified in bit.
+			The maximum precision that can be specified is platform dependent and can be retrieved with get_max_precision().
+
+
+...
+
+
+
+(https://gmpy2.readthedocs.io/en/latest/mpfr.html)
+
+
+
+----------------------------------
+
+
+
+----------------------------------
+
+
+
+----------------------------------
+
+
+
+----------------------------------
+
