@@ -19,23 +19,17 @@ case "$1" in
         
         ;;
         
-        
 	git)
         
         kate ~/Coding/CATALOGS/git-catalog &
         
         ;;
         
-        
-        
 	conda)
         
         kate ~/Coding/CATALOGS/conda-catalog &
         
         ;;
-        
-        
-        
         
     dir)
         
@@ -48,6 +42,22 @@ case "$1" in
         kate ~/catalog &
         
         ;;
+        
+        
+    -u|--update)
+        
+        cd ~/Coding/CATALOGS
+        
+        # Add possible changes from catalog script
+        cp -u ~/catalog ~/Coding/CATALOGS/catalog.sh
+        
+        # Commit to master and Push to origin
+        git add .
+        git commit -m "Update"
+        git push origin master
+        
+        ;;
+        
 	*)
 		
         echo
@@ -64,6 +74,7 @@ case "$1" in
         echo    "       "
         echo    "       Catalog Directory:  dir"
         echo    "       Catalog Script:     script, file"
+        echo    "       Update to Github:   -u,--update"
         echo    "       "
         echo
         echo		

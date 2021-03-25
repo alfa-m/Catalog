@@ -15,7 +15,7 @@ $ git remote -v
 - Update branches seen from remote repository:
 $ git fetch
 
-- Fetch from and integrate with another repository or a local branch:
+- Fetch from another repository or local branch and Update (integrate) local repo:
 $ git pull <remote> <branch>
 $ git pull origin master
 
