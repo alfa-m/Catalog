@@ -316,6 +316,8 @@ Mod ->	1 | 2	<- Floor division
 
 >>> [<element/instruction> for <element> in <iterable> for <element> in <iterable> ...]
 
+>>> {<key>: <value> for (<key>, <value>) in <iterable>}
+
 
 
 
@@ -650,6 +652,23 @@ Mod ->	1 | 2	<- Floor division
 
 
 
+>>> def func():
+>>> 	a = 1
+>>> 	print(locals())
+
+>>> sameFunc = func()
+	{'a': 1}
+>>> type(sameFunc)		# func() returned nothing
+	NoneType
+>>> sameFunc = func
+>>> def otherFunc(function):
+>>> 	function()
+>>> otherFunc(sameFunc)
+	{'a': 1}
+
+
+
+
 
 ------------------------------------
 
@@ -680,6 +699,16 @@ Mod ->	1 | 2	<- Floor division
 	3- global - in the top level of a file or declared as global in a function
 
 	4- built-in (python) - pre-assigned
+
+
+
+
+- Return a Dictionary of global or local variables:
+>>> locals()
+>>> globals()
+
+>>> locals()['<variable-label>']
+>>> globals())['<variable-label>']
 
 
 
@@ -925,6 +954,285 @@ https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence
 
 
 ------------------------------------
+
+	PACKAGES AND MODULES
+
+- Some libraries:
+math
+ramdom
+os
+time
+pickle
+
+
+- A directory with a file '__init__.py' is seen by Python as a Module and can be called a Package.
+(more info: https://docs.python.org/2/tutorial/modules.html#packages)
+
+
+- Import:
+>>> import <lib>
+>>> import <module>.<lib>
+
+>>> from <lib> import <function>
+>>> from <module> import <function>
+
+
+- Install new library:
+$ pip install <lib>
+
+
+
+
+------------------------------------
+
+	SOME BUILT-IN FUNCTIONS
+
+- MAP
+- Aply a function to all of a iterable's elements.
+- Returns a memory instruction (map type object).
+- Don't use the paranthesis on the function.
+- You can define a lambda right on the map() argument.
+
+>>> map(<function>, <iterable>)
+
+>>> list(map(<function>, <iterable>))
+
+
+
+
+
+- REDUCE
+- Aply a function to all of a iterable's elements, two by two.
+- Initially the first two, and then, it's result and the next from the iterable.
+- Goes until it is reduced to a single element which is returned.
+
+>>> from functools import reduce	# Python 3
+>>> reduce(<function>, <iterable>)
+
+
+
+
+
+- FILTER
+- Uses a filter function (with boolean return) to exclude items in an iterable object
+- Returns a memory instruction (filter type object).
+
+>>> filter(<function>, <iterable>)
+
+
+
+
+
+- ZIP
+- Returns an iterable of tuples from two or more iterables.
+- Each item with the same index from each iterable is paired together in a tuple.
+- If the iterables have different lengths, the zip has the size of the smaller one.
+- Returns a memory instruction (zip type object).
+
+>>> zip(<iterable-1>, <iterable-2>, ...)
+
+
+
+
+
+- ENUMERATE
+- Takes a collection (iterable) and adds a counter as key in a tuple with each item.
+- By default stars the counter from 0.
+- Returns a memory instruction (enumerate type object).
+
+>>> enumerate(<iterable>)
+>>> enumerate(<iterable>, <start>)
+
+
+
+
+
+- ALL & ANY
+- Returns True if (all or any) items in an iterable object are true.
+- If the iterable is empty, all() returns True and any() False.
+
+>>> all(<iterable>)
+
+>>> any(<iterable>)
+
+
+
+
+
+## Examples ##
+
+>>> celsius = [0, 9, 10, 15, 20, 22, 30, 40, 50, 90, 100, 120]
+>>> fahrenheit = list(map(lambda temp: temp * (9/5) + 32, celsius))
+	[32.0, 48.2, 50.0, 59.0, 68.0, 71.6, 86.0, 104.0, 122.0, 194.0, 212.0, 248.0]
+
+
+
+>>> from functools import reduce
+>>> values = [47, 11, 42, 13]
+>>> biggest = reduce( (lambda a,b: a if a>b else b) , values )
+	47
+
+
+
+>>> ages = [5, 12, 17, 18, 24, 32]
+>>> underage = list(filter( (lambda ag: False if x>18 else True) , ages))
+	[5, 12, 17]
+
+
+
+>>> uCase = ['A', 'B', 'C']
+>>> lCase = ['a', 'b', 'c']
+>>> nums = (1, 2, 3, 4, 5)
+>>> list(zip(uCase, lCase, nums))
+	[('A', 'a', 1), ('B', 'b', 2), ('C', 'c', 3)]
+
+
+
+
+
+
+
+
+------------------------------------
+
+	DECORATORS & CLOSURE
+
+- Make a Function that add other functionalities (Decorate) to a (existing or new) function:
+
+>>> def <decorator> (<in-func>):
+>>> 
+>>> 	def <out-func>( <parameters> ):
+>>> 		<instructions>
+>>> 		return <in-func>( <parameters> )
+>>> 	
+>>> 	return <out-func>
+
+>>> def <decorator> (<in-func>):
+>>> 
+>>> 	def <out-func>( <parameters> ):
+>>> 		<instructions>
+>>> 		<in-func>( <parameters> )
+>>> 		<instructions>
+>>> 	
+>>> 	return <out-func>
+
+
+
+
+
+- Decorate (existing or new, respectively):
+
+>>> <new-func> = <decorator> (<func>)
+
+>>> @<decorator>
+>>> def <func> ():
+>>> 	<instructions>
+
+
+- Multiple decorators can be chained:
+
+>>> <new-func> = <decorator1> ( <decorator2> ( ... (<func>)))
+
+>>> @<decorator1>
+>>> @<decorator2>
+>>> ...
+>>> def <func> ():
+>>> 	<instructions>
+
+
+
+
+
+- Make general decorators that work with any number of parameters.
+- 'args' will be the tuple of positional arguments
+- 'kwargs' will be the dictionary of keyword arguments
+
+>>> def <decorator> (<in-func>):
+>>> 
+>>> 	def <out-func>( *args, **kwargs ):
+>>> 		<instructions>
+>>> 		return <in-func>( *args, **kwargs )
+>>> 	
+>>> 	return <out-func>
+
+>>> def <decorator> (<in-func>):
+>>> 
+>>> 	def <out-func>( *args, **kwargs ):
+>>> 		<instructions>
+>>> 		<in-func>( *args, **kwargs )
+>>> 		<instructions>
+>>> 	
+>>> 	return <out-func>
+
+
+
+
+
+- Get some data attached (Closure) to a function.
+- By using this, once defined, the function will hold a "hidden" data.
+- Can be used to create objects storing data withou the need to make a Class.
+
+>>> def <closure>( <variables> ):
+>>> 
+>>> 	def <out-func>():
+>>> 		<instructions>( <variables> )
+>>> 	
+>>> 	return <out-func>
+
+>>> <func> = <closure>( <data> )
+
+
+
+
+
+- Accessing Enclosed Values.
+- Enclosed function objects have '__closure__' attribute with tuple of cell objects.
+- The cell object has the attribute 'cell_contents' which stores the closed value.
+
+>>> <enclosed-func>.__closure__
+
+>>> <enclosed-func>.__closure__[<index>].cell_contents
+
+
+
+
+
+
+
+## Examples ##
+
+>>> def make_multiplier(n):
+>>> 	
+>>> 	def multiplier(x):
+>>> 		return x * n
+>>> 	
+>>> 	return multiplier
+
+>>> times3 = make_multiplier(3)
+>>> times3(9)
+	27
+
+>>> times5 = make_multiplier(5)
+>>> times5(9)
+	45
+
+>>> def addExplaning(func):
+>>> 	
+>>> 	def outFunc(x):
+>>> 		print("I'm a function that multiplies %d by the given number %d:" %( func.__closure__[0].cell_contents, x))
+>>> 		return func(x)
+>>> 	
+>>> 	return outFunc
+>>> 
+>>> times5 = addExplaning(times5)
+>>> print(times5(9))
+	I'm a function that multiplies 5 by the given number 9:
+	45
+
+
+------------------------------------
+
+
 
 
 

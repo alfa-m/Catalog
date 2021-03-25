@@ -1,6 +1,12 @@
 #!/bin/bash
 
 case "$1" in
+	linux|bash)
+        
+        kate ~/Coding/CATALOGS/linux-catalog &
+        
+        ;;
+        
 	py|python)
         
         kate ~/Coding/CATALOGS/python-catalog &
@@ -66,6 +72,7 @@ case "$1" in
         echo    "       $ sh catalog <opt>"
         echo
         echo    "   Catalogs Opt List:"
+        echo    "       Linux:             linux, bash"
         echo    "       Python:             py, python"
         echo    "       Python Projects:    pypro, py-projects"
         echo    "       Pacman:             pac,pacman"
@@ -82,4 +89,3 @@ case "$1" in
 		;;
 esac
 
-# make a git repository later, then add a update option here

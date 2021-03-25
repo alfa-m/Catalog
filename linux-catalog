@@ -1,0 +1,302 @@
+
+
+		LINUX
+
+
+------------------------------------
+
+	SSH / SCP
+
+(standard ssh port: 22)
+(package for the ip: iproute2)
+(package for the ssh: libssh2)
+(package for the ssh-server: openssh)
+
+Configuration File for ssh
+/etc/ssh/ssh_config
+
+Configuration File for ssh-server daemon
+/etc/ssh/sshd_config
+
+- Version:
+$ ssh -V
+
+- Connect:
+$ ssh <username>@<remote-host>
+$ ssh <username>@<ip-address>
+$ ssh <servername> (will try to connect as current user name)
+$ ssh -p <port> <ip-address>
+
+
+
+- Secure copy File:
+$ scp <file>   <username>@<remote>:<destination-path>
+$ scp <username>@<remote>:<file>   <destination-path>
+
+- Secure copy Directory:
+$ scp -r <dir(don't / at end)>   <username>@<remote>:<destination-path>
+$ scp -r <username>@<remote>:<dir(don't / at end)>   <destination-path>
+
+
+
+- If you want to copy a file using SCP and the remote path contains spaces, you do it this way:
+$ scp -r username@servername:'/some/path\ with\ spaces'
+
+
+
+[Ctrl] . - Disconnect
+[Ctrl] d - Exit the terminal
+[Ctrl] z - Background ssh
+[Ctrl] ? - Display list of escape characters
+
+
+
+
+	SERVER SETUP
+
+- Status of ssh server:
+$ systemctl status ssh
+$ systemctl status sshd (Arch/Fedora)
+
+- Start ssh server:
+# systemctl start ssh
+# systemctl start sshd (Arch/Fedora)
+
+- Stop ssh server:
+# systemctl stop ssh
+# systemctl stop sshd (Arch/Fedora)
+
+- Enable ssh server on system boot:
+# systemctl enable ssh
+# systemctl enable sshd (Arch/Fedora)
+
+- Disable ssh server from system startup:
+# systemctl disable ssh
+# systemctl disable sshd (Arch/Fedora)
+
+- Make ufw allow ssh, limit to prevent brute force attack and enable it:
+# ufw enable
+# ufw allow ssh
+# ufw limit ssh
+# ufw status 
+
+- Displaying IP adress:
+$ ip a
+$ ip address
+$ ip route
+$ hostname -i
+
+- Display [a]ll [T]CP or [U]DP Sockets, with port [n]umbers:
+$ ss -at (service name instead of port number)
+$ ss -atn
+$ ss -au
+
+- More information on options of OpenSSH server:
+$ man sshd_config
+
+
+	SSH USING RSA & PASSPHRASE
+
+	Create a really STRONG PASSPHRASE because it protects the private-key which enables login in all machines with the public key.
+	Create cryptographic key pair (RSA) on the CLIENT side, half public (saved on the servers) half private (saved on client), so the server can recognize the unique  client.
+	
+	[T]ype, number of [b]its (For RSA keys, the minimum size is 1024 bits and the default is 2048 bits.).
+
+- Create cryptographic key pair (RSA) on the CLIENT side:
+$ ssh-keygen -t rsa -b 4096
+
+- (If you create ~/.ssh with mkdir yourself):
+$ chmod -R 700 ~/.ssh 
+
+- Send the public key to the SERVER:
+$ scp ~/.ssh/id_rsa.pub <user>@<server-hostname>:~/
+
+- To set the received key on the SERVER side:
+$ cp id_rsa.pub ~/.ssh/authorized_keys
+
+- Add other keys:
+$ cat [key_file] >> ~/.ssh/authorized_keys
+
+	After that, on the SERVER, you can disable login by password on the server by changing the /etc/ssh/sshd_config. And then, restart ssh server:
+
+/etc/ssh/sshd_config
+
+HostKey /etc/ssh/ssh_host_rsa_key
+PubkeyAuthentication yes
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+GSSAPIAuthentication no
+UsePAM no 						# (forced 'yes' on Fedora (?))
+
+- Restart ssh server:
+# systemctl restart ssh
+# systemctl restart sshd (Arch/Fedora)
+
+
+------------------------------------
+
+
+	MANAGE PROCESSES
+
+- Display amount of free and used memory in the system
+$ free
+
+- View your system’s tasks:
+$ top
+$ htop
+
+- List processes:
+$ ps -A (all processes)
+$ ps aux (command_path / user-oriented / all_process)
+$ pstree
+
+- Find process:
+$ ps -A | grep <process_name>
+$ pgrep <process_name> (gives no information but PID)
+
+- Kill a process:
+$ kill <PID>
+$ pkill <process_name>
+$ kill $(pgrep <process_name>)
+
+- Show info about process by clicking the window:
+$ xprop
+
+- Kill by clicking the process window (BE CAREFUL):
+$ xkill 
+
+- Kill all processes you can possibly kill:
+$ kill -9 -1
+
+- Put a process to run on the background:
+$ <command> &
+
+- List and check status of jobs:
+$ jobs
+$ jobs -l
+
+- Suspend a process current running on terminal: CTRL + Z
+
+- Get a suspended process back to foreground:
+$ fg <blank/process_name/ %job_number>
+
+- Get a suspended process to run on background:
+$ bg <blank/process_name/ %job_number>
+
+- Close shell keeping all subprocesses running (?):
+$ disown -a && exit
+
+- Check if some [u]ser is using a partition ([c]ompatibility, mounted block device):
+$ fuser -cu /dev/sdxX-
+
+- List open files
+$ lsof <path>
+
+- Kill a process that is blocking a file (?)
+$ fuser -ck <file>
+
+
+
+
+
+------------------------------------
+
+
+	RSYNC & ENCRYPTION & BACKUP
+
+- Copy, on [a]rchive move (bunch off shit), preserve [A]CL (and file permissions) and e[X]tended attributes, [v]erbose. 
+# rsync -aAXv <source> <destination>
+# rsync -aAXv <source> <user>@<host>:<destination>
+	--delete (remove files, if existent on destination)
+	--exclude={<partern>,<example: /home/teles/.cache/*>}
+
+- Configure rclone:
+(See rclone config docs (https://rclone.org/docs/) for more details.)
+(config flie:~/.config/rclone/rclone.conf)
+(for encryption you should create a remote and after a encrypted remote pointing to a folder on the other)
+$ rclone config
+
+- List rclone remotes:
+$ rclone listremotes
+
+- List contents:
+$ rclone lsf <remote>:	(files)
+$ rclone lsd <remote>:	(directories only)
+$ rclone ls <remote>:	(all content, prety shit)
+
+- Copy to destination skipping already copied:
+$ rclone copy <source> <remote>:<destination>
+$ rclone copy <source> <remote>:
+
+- Pull:
+$ rclone copy <remote>:<source>/<file> <destination>
+
+- Sync (makes them equal, but only changes destination):
+$ rclone sync <source> <remote>:<destination>
+
+------------------------------------
+
+	VI / VIM
+
+- Edit file using vi or vim (starts in commant mode):
+$ vi <file>
+$ vim <file>
+
+- Quit without saving:
+[esc]:q!
+
+- Save and quit:
+[esc]:wq
+
+- Save to different file:
+[esc]:w newfile
+
+- Read file and insert after current line 
+[esc]:r filename
+
+- Show content in hexadecimal format on vi (and [r]eturn to normal):
+[esc]:%!xxd
+[esc]:%!xxd -r
+
+On vi and vim command mode [esc]:
+
+i - insert mode at cursor
+I - insert at begginnig of line
+a - append text after cursor
+A - append text at end of line
+o - open new line after current
+O - open new line before current
+[esc] - terminate insert mode
+
+yy - copy line
+yw - copy from cursor to word end
+y$ - copy from cursor to line end
+yG - copy from cursor to file end
+P - paste on line after
+p - paste on line before
+/ - search
+
+u -undo last chage
+U - undo all chages to line
+
+~ - change case of one character
+dd - delete line
+3dd - delete 3 lines
+dw - delete word
+4dw - delete 4 words
+x - delete character
+X -delete character in backspace mode
+r - replace character
+
+   k
+h j  l
+H - move cursor to top of visible screen
+L - move cursor to bottom of visible screen
+:0 - move cursor to first line in file
+:$ - move cursor to last line in file
+[ctrl] f - forward one screen
+[ctrl] b - backward one screen
+[ctrl] u - up half screen
+[ctrl] d - down half screen
+
+------------------------------------
