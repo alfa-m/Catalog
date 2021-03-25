@@ -200,23 +200,72 @@ Mod ->	1 | 2	<- Floor division
 	FUCK ME
 
 
-
+	
 ------------------------------------
 
-	PRINT FORMATING
+	STRING FORMATING
 
-- Formating operators:
-    
+- Formating Operators:
+
+>>> ' %<form-op> ' % <obj>
+>>> ' %<form-op>  %<form-op>  ...  %<form-op> ' % (<obj>, <obj>, ..., <obj>)
+
+
+- Formating Operators:
+
 %s - String (or any object with a string representation, like numbers)
+%<total>s - total space for the string (negative to align left)
 
 %d - Integers
 
 %f - Floating point numbers
 
-%<total>.<digits>f - Floating point numbers with a fixed amount of digits precision and a total space for the hole numer (negative to align left)
+%<total>.<decimal>f - Floating point numbers with a fixed amount of decimal cases precision and a total space for the hole numer (negative to align left)
 
 %x - Integers in hex representation (lowercase)
 %X - Integers in hex representation (uppercase)
+
+
+
+
+
+- New formating (permanently) method:
+
+>>> ' {} '.format(<string>)
+>>> ' {}  {}  ...  {} '.format(<string>, <string>, ..., <string>)
+
+>>> ' {}  {}  ...  {} '.format( <dict> )
+
+- Format unpacking tuple:
+
+>>> ' {}  {}  ...  {} '.format( * <tuple> )
+
+
+
+
+>>> ' {<spec-op>:<form-op>} '
+
+
+- Specifiers Operators:
+
+{} - the strings will be aplied in the order they are passed on 'format()'
+
+{<number>} - positional argument for the strings given to 'format()'
+
+{<key>} - keyword argument, keywords must be defined on the 'format()' arguments
+
+
+- Formating Operators:
+
+{:b} - binary
+
+{:e} - exponent representation (scientific)
+
+{:.<decimal>} - number of decimal cases
+
+{:<} - left align
+{:^} - center align
+{:>} - right align
 
 
 
@@ -242,15 +291,6 @@ Mod ->	1 | 2	<- Floor division
 
 
 
-
-
-
-- Format using a tuple:
->>> print( <string> % <tuple>)
->>> print( <string> % tuple(<list>)
-
-
-## Examples ##
 >>> data = ("John", "Doe", 53.44)
 >>> format_string = "Hello %s %s. Your current balance is $%s."
 >>> print(format_string % data)
@@ -258,12 +298,6 @@ Mod ->	1 | 2	<- Floor division
 
 
 
-
-- Format (permanently) using a Dictionary:
->>> " {key} ".format( '<key>' = <element> )
-
-
-## Examples ##
 >>> aurelio = 'One: {a}\nTwo: {b}\nThree: {c}'
 >>> print(aurelio)
 	One: {a}
@@ -274,6 +308,23 @@ Mod ->	1 | 2	<- Floor division
 	One: {a}
 	Two: {b}
 	Three: {c}
+
+
+
+>>> ' {2} {0} {3} {1} '.format( 'one', 'three', 'zero', 'two' )
+	' zero one two three '
+
+	
+>>> b='bee'
+>>> c='see'
+>>> ' {a} {b} {c} '.format( b=b, c=c, a='eei' )
+	' eei bee see '
+
+
+>>> "Binary representation of {0} is {0:b}".format(12)
+
+
+
 
 
 
@@ -331,7 +382,7 @@ Mod ->	1 | 2	<- Floor division
 
 
 ## Examples ##
-- Método de compreensão em listas:
+
 >>> l_1 = [1,2,3]
 >>> l_2 = [4,5,6]
 >>> l_3 = [7,8,9]
@@ -680,6 +731,31 @@ Mod ->	1 | 2	<- Floor division
 
 
 
+
+------------------------------------
+
+	UNPACKING
+
+- Unpacking can be done with lists, tuples and dictionaries.
+
+- Unpacking can be useful to use the items of a iterable as arguments for a function call requiring separate positional arguments.
+
+- For lists and tuples it is used the '*' operator.
+
+- For dictionaries it is used the '**' operator.
+
+
+
+
+
+## Examples ##
+
+>>> args = [5, 27, 3]
+>>> list(range(*args))
+	[5, 8, 11, 14, 17, 20, 23, 26]
+
+>>> d = {'word':'butt' , 'l':'t'}
+>>> print( ' {word} {l} {var}'.format( **d, var='shit' ))
 
 ------------------------------------
 
@@ -1048,6 +1124,13 @@ $ pip install <module>
 
 '<main>.py'
 >>> from <package> import <function>
+
+
+
+
+
+>>> import os
+>>> clear = lambda: os.system('clear')
 
 
 
