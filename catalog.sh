@@ -59,7 +59,7 @@ case "$1" in
         
         # Commit to master and Push to origin
         git add .
-        git commit -m "Update"
+        git commit -m "Full Scripted Update"
         git push origin master
         
         ;;
