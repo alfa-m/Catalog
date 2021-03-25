@@ -1,6 +1,6 @@
 
 		GIT
-
+continue: (https://ndpsoftware.com/git-cheatsheet.html#loc=workspace;)
 ------------------------------------
 
 	HELP
@@ -9,10 +9,10 @@
 $ git help
 $ git help <command>
 
+- Official Glossary (confusing a.f.):
+$ man 'gitglossary(7)'
 
 url: (https://git-scm.com/docs)
-merge branches?
-git help merge
 
 ------------------------------------
 
@@ -21,7 +21,7 @@ git help merge
 - Repository (aka. Local Repository):
 	A Git Repository is the '.git/' directory inside a project, containing all the necessary repository files.
 
-- Work-tree (aka. Workspace, Working Directory):
+- Work-tree (aka. Working-tree, Workspace, Working Directory):
 	Place where the files of a project's Repository are.
 
 - Path component:
@@ -42,10 +42,23 @@ git help merge
 	Each Commit creates a ID (aka. SHA, hash) to keep record of what changed, when and by who.
 
 - Branch:
-	
+	A succession of Commits on the project.
+	An active Line of development.
+	A Git Repository can have any number of Branches.
 
-- Remote (aka. Upstream Repository):
-	
+- HEAD (aka. tip of that Branch):
+	Points to the last Commit to the current Branch.
+
+- Remote (aka. Remote Repository, Upstream Repository):
+	A Repository to track the project, but residing somewhere else.
+
+- Fetch:
+	Get a Branches’s head ref from a Remote repository.
+	To find out which objects are missing from the local Repository.
+
+- Push:
+	Updating a Remote Branch with a local Branch's content.
+	If the Remote head is not ancestor to the local head, the push fails.
 
 - Path name:
 	A file inside the Commits (inside the Repository) have a Path name.
@@ -67,60 +80,192 @@ git help merge
 
 	QUICK START AND BASIC MANAGEMENT
 
-- Create a local repository:
-$ cd <path-to-repo>
+- Create a local Repository:
+$ cd <path>
 $ git init
 
-- Add a remote repository (must be previously created on the github website):
+- Add a Remote (previously created on the Github website):
 $ git remote add <name> <url>
 $ git remote add origin https://github.com/<user>/<repo>
 
-- Display remotes:
+- Display Remotes:
 $ git remote -v
 
-- Update branches seen from remote repository:
-$ git fetch
+- Update Branches seen from Remote:
+$ git fetch <remote>
 
-- Fetch from another repository or local branch and Update (integrate) local repo:
+- Fetch and Merge Branch from a Remote:
 $ git pull <remote> <branch>
 $ git pull origin master
 
-- List remote branches in repo:
-$ git branch -r
-
-- Update commit with all contents from the working tree:
+- Add all files from the Work-tree to Index:
 $ git add .
 
-- Display updates to the index:
+- Display updates to the Index:
 $ git status
 
-- Creates commit (to current working branch) with the contents of the index and a log message:
-$ git commit -m "<log-message>"
+- Commit contents of Index to current Branch, with a log message:
+$ git commit -m '<log-message>'
 
-- List local branches in repo:
+- List local Branches in Repository:
 $ git branch
 
-- List all branches:
+- List Remote Branches:
+$ git branch -r
+
+- List all Branches:
 $ git branch -a
 
-- Update a remotes with a branch:
+- Update a Remote Branch with the current Branch's contents:
 $ git push <remote> <branch>
 $ git push origin master
 
 
 ------------------------------------
 
-	INDEX, COMMITS & LOCAL REPOSITORIES
+	WORK-TREE, INDEX, COMMITS & LOCAL REPOSITORIES
 
 - Display current Branch and Index (staged and untracked files):
 $ git status
 
-- Add all files in a directory (or some specific file) to Index:
+- Display differences not added to Index:
+$ git diff
+
+- Add all files (or some specific file) from the Work-tree to Index:
 $ git add .
 $ git add <file>
+$ git add <file> ... <file>
 
-- Remove a Staged File from the Index:
+- Commit contents of Index to current Branch, with a log message:
+$ git commit -m '<log-message>'
+
+- Display Commit history from current Branch:
+$ git log
+
+- View changes in Work-tree relative to a Commit:
+$ git diff <commit>
+$ git diff HEAD
+
+- Remove file from Work-tree and Index:
+$ git rm <file>
+
+- Move file from Work-tree and Index:
+$ git mv <file> <destination>
+
+
+
+RESTORE FILES
+
+- Remove a Staged File from the Index (restored from HEAD):
 $ git restore --staged <file>
+
+- Restore a Work-tree File (restored from Index):
+$ git restore --worktree <file>
+
+
+
+RESET BRANCH, INDEX OR HEAD
+
+- Reset current HEAD (not Index, nor Working-tree) to a previous Commit:
+$ git reset --soft <commit>
+
+- Reset Index (not Working-tree) to current HEAD:
+$ git reset
+$ git reset --mixed 		#(default)
+
+- Reset Index and Work-tree (and thus, HEAD) to a previous Commit:
+$ git reset --hard <commit>
+
+
+
+REVERT COMMITS
+
+git-revert(1) is about making a new commit that reverts the changes made by other commits.
+
+
+
+(See "Reset, restore and revert" in git(1) for the differences between the three commands.)
+
+
+
+MORE LOG
+
+- Compact Log:
+$ git log --oneline
+
+- Display a log graph for the Commits and Merges (not chronological order, topological ordering):
+$ git log --graph
+
+- Log of all Branches, and Branch's name:
+$ git log --all --decorate
+
+- Show only Commits done on the current Branch (excluding Commits done on other Branches before Merging):
+$ git log --first-parent
+
+- "Pretty" Log:
+$ git log --pretty="format:%h %ar %s"
+
+
+------------------------------------
+
+	BRANCHES
+
+- Create a new Branch (from current HEAD, or other commit):
+$ git branch <branch>
+$ git branch <branch> <commit>
+
+- Rename Branch:
+$ git -m <branch> <new-name>
+$ git --move <branch> <new-name>
+
+- View changes in Work-tree relative to the tip of another Branch:
+$ git diff <branch>
+
+- Switch Branch (updates Index and Work-tree match Branch):
+$ git switch <branch>
+
+- Delete Branch:
+$ git branch -d <branch>
+
+- Delete Branch even if current Branch doesn't have all commits from it:
+$ git branch -D <branch>
+
+
+
+- List local Branches in Repository:
+$ git branch
+$ git branch -l
+$ git branch -l '<pattern>'
+
+- List Remote Branches:
+$ git branch -r
+
+- List all Branches:
+$ git branch -a
+
+
+
+git merge
+git rebase
+
+
+
+------------------------------------
+
+	REMOTES
+
+$ git branch -d -r <remote>/<branch>
+$ git branch -r -l '<remote>/<pattern>'
+
+------------------------------------
+
+
+
+
+------------------------------------
+
+
+
 
 ------------------------------------
 
