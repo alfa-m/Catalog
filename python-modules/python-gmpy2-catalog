@@ -170,24 +170,24 @@ FUNCTIONS
 
 
 - Trigonometric Functions (single values only):
->> sin('<degree>')
->> cos('<degree>')
+>> sin(<degree>)
+>> cos(<degree>)
 
 
 - Exponentials:
->>> exp('<number>')				# e^x
->>> exp2('<number>')			# 2^x
->>> exp10('<number>')			# 10^x
+>>> exp(<number>)				# e^x
+>>> exp2(<number>)			# 2^x
+>>> exp10(<number>)			# 10^x
 
 
 - Logarithm:
->>> log('<number>')				# natural log(x)
->>> log2('<number>')			# base-2 log(x)
->>> log10('<number>')			# base-10 log(x)
+>>> log(<number>)				# natural log(x)
+>>> log2(<number>)			# base-2 log(x)
+>>> log10(<number>)			# base-10 log(x)
 
 
 - Square root:
->>> sqrt( '<number>' )
+>>> sqrt(<number>)
 
 
 
@@ -197,13 +197,15 @@ FUNCTIONS
 
 - Some short-hand functions I made to make life easier:
 
-set_mpfr(bits):
-	global gmpy2
-	gmpy2.set_context(gmpy2.context(precision=bits))
+bits=64
+gmpy2.set_context(gmpy2.context(precision=bits)
 
 def mp(num):
     return mpfr(str(num))
 
+def backf(val, digits=8):
+    return [backf(v, digits) for v in val] if isinstance(val, list) else float(round(val, digits))
+    
 #def backf(num, digits=5):
     #return float(round(num, digits))
 
@@ -213,11 +215,8 @@ def mp(num):
 #def listf( l,  digits=5):
     #return list(map(lambda x: backf(x, digits), l))
 
-#def backf(val, digits=5):
-    #return list(map(lambda x: backf(x, digits), val)) if isinstance(val, list) else float(round(val, digits))
-
-def backf(val, digits=8):
-    return list(map(lambda x: backf(x, digits), val)) if isinstance(val, (list, np.ndarray)) else float(round(val, digits))
+#def backf(val, digits=8):
+    #return list(map(lambda x: backf(x, digits), val)) if isinstance(val, (list, np.ndarray)) else float(round(val, digits))
 
 
 ----------------------------------

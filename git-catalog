@@ -213,7 +213,7 @@ $ git commit -m '<log-message>' --edit
 
 ------------------------------------
 
-	LOG
+	LOGS & REFLOG
 
 LOG
 
@@ -238,7 +238,7 @@ $ git log --pretty="format:%h %ar %s"
 
 
 
-GRAPH
+LOG GRAPH
 
 - Follows topological ordering, not chronological order.
 
@@ -420,6 +420,9 @@ $ git branch <branch> <commit>
 		If no Commit is given, considers current Branch's HEAD.
 		
 		Follows chronological order as in 'git log'.
+		
+		
+		'@' is equivalent to 'HEAD'
 	
 
 
