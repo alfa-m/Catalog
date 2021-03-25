@@ -24,6 +24,14 @@ $ jupyper lab
 $ jupyper lab <file.ipynb>
 
 
+- List running Jupyter servers:
+$ jupyter notebook list
+
+- Terminate Jupyter server:
+$ jupyter notebook stop
+$ jupyter notebook stop <port>
+
+
 - Jupyter shortcuts:
 
 [shift] + [Enter]: run cell & go next
@@ -309,7 +317,7 @@ Mod ->	1 | 2	<- Floor division
 >>> sorted(<list>)
 
 
-- List comprehesion:
+- List comprehension:
 >>> [<element/instruction> for <element> in <iterable>]
 >>> [<element/instruction> for <element> in <iterable> if <boolean>]
 >>> [<element/instruction> if <boolean> else <element/instruction> for <element> in <iterable>]
@@ -480,6 +488,9 @@ Mod ->	1 | 2	<- Floor division
 >>> 	<instructions>
 # iterables: lists, dictionary keys, dictionary values, dictionary items, tuples, strings, iterators
 
+>>> for _ in <iterable>:
+>>> 	<instructions>
+
 
 
 - For/else/break (executes the else after the loop only if it didn't find a break):
@@ -536,7 +547,7 @@ Mod ->	1 | 2	<- Floor division
 
 
 
-- List comprehesion:
+- List comprehension:
 >>> [<element/instruction> for <element> in <iterable>]
 >>> [<element/instruction> for <element> in <iterable> if <boolean>]
 >>> [<element/instruction> if <boolean> else <element/instruction> for <element> in <iterable>]
@@ -965,20 +976,78 @@ time
 pickle
 
 
-- A directory with a file '__init__.py' is seen by Python as a Module and can be called a Package.
+
 (more info: https://docs.python.org/2/tutorial/modules.html#packages)
+(See 'if __name__ == "__main__"' firefox-bookmark for more info)
+
+- A directory with a file '__init__.py' can be called a Package, and the files within are seen by Python as Modules.
+- If a package has a '__init__.py', once it is imported, this file is executed. Also, it will have "priority", meaning it wont search the module on other paths with same name.
+- If it doesn't has '__init__.py', is is trea as a namespace package (?), and will search the module on the current folder and on python's path.
+
+
+<project>/
+|
+|	<main>.py
+|	<module>.py
+|	
+|	<package>/
+|	|
+|	|	__init__.py
+|	|	<module>.py
+|	|	...
+|	|	
+|	|	<sub-package>/
+|	|	|
+|	|	|	__init__.py
+|	|	|	<module>.py
+|	|	|	...
+|	|	|
+|	|
+|
+
+
+
 
 
 - Import:
->>> import <lib>
->>> import <module>.<lib>
+>>> import <module>
+>>> import .<module>
+>>> import <package>.<module>
+>>> import <package>.<sub-package>.<module>
 
->>> from <lib> import <function>
->>> from <module> import <function>
+>>> import <module> as <name>
+
+>>> from <package>.<module> import <function>
+>>> from <package>.<sub-package>.<module> import <function>
 
 
-- Install new library:
-$ pip install <lib>
+- Install new module:
+$ pip install <module>
+
+
+
+
+
+## Examples ##
+
+
+
+'__init__.py'
+>>>
+
+'<main>.py'
+>>> from <package>.<module> import <function>
+
+
+
+
+
+
+'__init__.py'
+>>> from .<module> import *
+
+'<main>.py'
+>>> from <package> import <function>
 
 
 
@@ -1244,17 +1313,105 @@ $ pip install <lib>
 
 >>> next (<iterator>)
 
+>>> class <custom-iterator>:
+>>> 	
+>>> 	def __init___(self, max=0):
+>>> 		self.n = 0
+>>> 		self.max = max
+>>> 	
+>>> 	def __iter__(self):
+>>> 		return self
+>>> 	
+>>> 	def __next__(self):
+>>> 		if self.n > self.max:
+>>> 			raise StopIteration
+>>> 		
+>>> 		<instruction>
+>>> 		self.n += 1
+>>> 		return <value>
+>>> 
+>>> <obj> = <custom-iterator>(<max>)
+>>> <iterator> = iter(<obj>)
+
+
 
 
 
 - Function that generates and returns a iterator.
 - When called, returns a iterator object, but does not start execution immediately.
+- Mehods '__iter__()' and '__next__()' are implemented automatically.
+- Local variables are not destroyed when the function yields.
+- The generator object can be iterated only once.
+- Can be used to represent an infinite stream of data.
 
+>>> def <gerenator>():
+>>> 	<instructions>
+>>> 	yield <value>
+
+>>> <iterator> = <gerenator>()
+
+>>> next (<iterator>)
+
+
+
+
+
+- Gerenator Expression.
+- Much more memory efficient than an equivalent list comprehension.
+
+>>> (<element/instruction> for <element> in <iterable>)
+>>> (<element/instruction> for <element> in <iterable> if <boolean>)
+>>> (<element/instruction> if <boolean> else <element/instruction> for <element> in <iterable>)
+
+
+
+
+
+## Examples ##
+
+>>> def PowTwo(max=0):
+>>> 	n = 0
+>>> 	
+>>> 	while n < max:
+>>> 		yield 2 ** n
+>>> 		n += 1
+
+>>> numbers = PowTwo(3)		# object
+>>> i = iter(numbers)		# iterator
+
+>>> for i in PowTwo(3):
+>>> 	print(i, end=' ')
+	1 2 4 8 
+
+
+# Sum of the squares of the numbers in the Fibonacci Sequence
+>>> def fibonacci_numbers(nums):
+>>> 	x, y = 0, 1
+>>> 	for _ in range(nums):
+>>> 		x, y = y, x+y
+>>> 		yield x
 >>> 
+>>> def square(nums):
+>>> 	for num in nums:
+>>> 		yield num**2
+>>> 
+>>> print(sum(square(fibonacci_numbers(100))))
+	203023208030065646654504166904697594722575
 
+	
+------------------------------------
+
+	DEBUGGING
+
+- Evaluate a boolean and throw a 'AssertionError' (and message) if False:
+
+>>> assert <boolean>
+
+>>> assert <boolean>, <str-message>
 
 
 ------------------------------------
+
 
 
 
