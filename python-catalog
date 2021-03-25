@@ -1,0 +1,1102 @@
+
+
+		PYTHON
+
+
+------------------------------------
+
+	JUPYTER/CONDA
+
+
+- List enviroments:
+$ conda env list
+
+- Activate/deactivate enviroment (conda>=4.6):
+$ conda activate <enviroment>
+$ conda deactivate <enviroment>
+
+$ conda activate udemy
+
+- Open jupyter:
+$ jupyter notebook
+$ jupyter notebook <file.ipynb>
+$ jupyper lab
+$ jupyper lab <file.ipynb>
+
+
+- Jupyter shortcuts:
+
+[shift] + [Enter]: run cell & go next
+[ctrl] + [Enter]: run cell & DON'T go next
+[alt] + [Enter]: run cell & add one cell
+
+[d] + [d]: Delete selected cell
+
+
+------------------------------------
+
+	MARKDOWN FORMATING (jupyter)
+
+# Bigger
+**negrito**
+*itálico*
+
+
+------------------------------------
+
+	PYTHON HELP
+
+
+<py-object>. + [tab]: Show possible methods for the object (on jupyter)
+
+<py-object>. + [shift] + [tab]: Show object documentation (on jupyter)
+<function>() + [shift] + [tab]: Show function documentation (on jupyter)
+
+
+- Display the type of a object:
+>>> type(<object>)
+
+- Python documentation about object:
+>>> help(<py-object-type>)
+
+
+------------------------------------
+
+
+	OPERATORS PREDECEDENCE:
+
+	**				Exponential
+	~  +  -			Complement (all bits reversed), unary plus and minus
+	*  /  %  //		Multiply, devide, modulo, floor division
+	+  -
+	>> <<			Right and left bitwise shift
+	&				Bitwise AND
+	^  |			Bitwise XOR and OR
+	<=  <  >  >=
+	=  %=  /=  //=	Assignment operators
+	-=  +=  *= **=	Assignment operators
+	is is not		Identity operators
+	in not in		Membreship operators
+	not or and		Logical operators
+
+
+## Examples ##
+
+		9 | 4
+		  |---
+Mod ->	1 | 2	<- Floor division
+
+- Division:
+>>> 9/4
+	2.25
+
+- Floor division:
+>>> 9//4
+	2
+
+- Mod:
+>>> 9 % 4
+	1
+
+
+
+
+
+------------------------------------
+
+	STRINGS
+
+## Examples ##
+
+>>> ' Eu sou A. '
+>>> " I'm A. "
+>>> ' Citação: "A". '
+
+>>>  print('\t Hello \n\t World')
+		Hello
+		World
+
+
+
+
+
+- Tamanho (size):
+>>> len(<string>)
+
+
+- Access element:
+>>> <string>[<index>]
+
+## Examples ##
+>>> someString = 'FUCKING HELP ME'
+>>> someString[0]
+	F
+
+
+
+
+- Access multiple elements:
+>>> <string>[<included-start>:<excluded-stop>]
+
+## Examples ##
+>>> someString[:]
+	FUCKING HELP ME
+>>> print( someString[:4] , someString[13:] )
+	FUCK ME
+
+
+
+
+
+- Access elements with some frequency (increment):
+>>> <string>[::<step>]
+
+## Examples ##
+>>> someString[::2]
+	FCIGHL E
+>>> someString[::-1]
+	EM PLEH GNIKCUF
+
+
+
+
+- Concatenate:
+>>> <string> + <string>
+>>> <string> * <int-num>
+
+## Examples ##
+>>> someString + ", BITCH"
+	FUCKING HELP ME, BITCH
+>>> (someString[:4] + someString[7]) * 10
+	FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK 
+
+
+
+
+- Some methods:
+
+>>> someString.lower()
+	fucking help me
+>>> someString.islower()
+	True
+	
+>>> someString.upper()
+	FUCKING HELP ME
+>>> someString.isupper()
+	True
+
+>>> someString.split()
+	['FUCKING', 'HELP', 'ME']
+
+>>> someString.replace('ING HELP', '')
+	FUCK ME
+
+
+
+------------------------------------
+
+	PRINT FORMATING
+
+- Formating operators:
+    
+%s - String (or any object with a string representation, like numbers)
+
+%d - Integers
+
+%f - Floating point numbers
+
+%<total>.<digits>f - Floating point numbers with a fixed amount of digits precision and a total space for the hole numer (negative to align left)
+
+%x - Integers in hex representation (lowercase)
+%X - Integers in hex representation (uppercase)
+
+
+
+
+## Examples ##
+
+>>> numerooo = 69.69
+>>> otro_num = 27
+>>> a = 'Formating operators:\n'
+>>> n = 'Número como string: %s\n'
+>>> i = 'Inteiro:  %d\n'
+>>> f = 'Float(1 decimal):[%12.3f] \n                 [123456789-12]\n'
+>>> h = 'Hexadecimal: %X '
+>>> print( a, n % numerooo, i % numerooo, f % numerooo, h % otro_num)
+	Formating operators:
+
+	Número como string: 69.69 
+	Inteiro:  69 
+	Float(1 decimal):[      69.690] 
+	                 [123456789-12] 
+	Hexadecimal: 1B
+
+
+
+
+
+
+
+- Format using a tuple:
+>>> print( <string> % <tuple>)
+>>> print( <string> % tuple(<list>)
+
+
+## Examples ##
+>>> data = ("John", "Doe", 53.44)
+>>> format_string = "Hello %s %s. Your current balance is $%s."
+>>> print(format_string % data)
+
+
+
+
+
+- Format (permanently) using a Dictionary:
+>>> " {key} ".format( '<key>' = <element> )
+
+
+## Examples ##
+>>> aurelio = 'One: {a}\nTwo: {b}\nThree: {c}'
+>>> print(aurelio)
+	One: {a}
+	Two: {b}
+	Three: {c}
+>>> aurelio.format(a=1, b='two', c=12.3)
+>>> print(aurelio)
+	One: {a}
+	Two: {b}
+	Three: {c}
+
+
+
+------------------------------------
+
+	LISTS
+
+- Em python, listas permitem múltiplos tipos de dados e o tamanho não é fixo
+
+- Mesmas formas de acesso e indexação de strings funcionam em listas:
+
+## Examples ##
+>>> asdf = [1,2,'minha juda']
+
+>>> print(asdf[::-1])
+	['minha juda', 2, 1]
+
+>>> print(asdf[-1][::-1])
+	aduj ahnim
+
+
+
+
+
+- Append Method:
+>>> <list>.append(<list>)
+>>> <list> + <list>
+
+- Remove a element from a list and print it (default-index: -1):
+>>> <list>.pop()
+>>> <list>.pop(<index>)
+
+
+- Reverse list elements:
+>>> <list>.reverse()
+
+- Sort list elements:
+>>> <list>.sort()
+
+- Get the list elements sorted (without altering the string):
+>>> sorted(<list>)
+
+
+- List comprehesion:
+>>> [<element/instruction> for <element> in <iterable>]
+>>> [<element/instruction> for <element> in <iterable> if <boolean>]
+>>> [<element/instruction> if <boolean> else <element/instruction> for <element> in <iterable>]
+
+>>> [<element/instruction> for <element> in <iterable> for <element> in <iterable> ...]
+
+
+
+
+
+## Examples ##
+- Método de compreensão em listas:
+>>> l_1 = [1,2,3]
+>>> l_2 = [4,5,6]
+>>> l_3 = [7,8,9]
+>>> matrix = [l_1, l_2, l_3]
+
+>>> first_col = [row[0] for row in matrix]
+>>> print(first_col)
+	[1, 4, 7]
+>>> diag = [matrix[ind][ind] for ind in [0,1,2] ]
+	[1, 5, 9]
+>>> diag2 = [matrix[ind][2-ind] for ind in [0,1,2] 
+	[3, 5, 7]
+>>> fulllist = [ testBoard[i][j]  for i in [0,1,2] for j in [0,1,2]]
+
+
+>>> celsius = [0, 10, 15, 20, 30, 50, 100]
+>>> fahrenheit = [ temp*(9/5)+32  for temp in  celsius ]
+>>> [int(f) for f in fahrenheit]
+	[32, 50, 59, 68, 86, 122, 212]
+
+
+------------------------------------
+
+	DICTIONARIES
+
+- Defining dictionary:
+>>> <dict> = {'<key>':<object> , ...}
+
+- Accessing elements:
+>>> <dict>['key']
+
+- Adding new elements:
+>>> <dict>['key'] = <object>
+
+- Show dict keys (object type: dict_keys):
+>>> <dict>.keys()
+>>> list(<dict>.keys())
+
+
+- Show dict values (object type: dict_values):
+>>> <dict>.values()
+>>> list(<dict>.values())
+
+- Show dict items (object type: dict_items):
+>>> <dict>.items()
+>>> list(<dict>.items())
+
+
+------------------------------------
+
+	TUPLES
+
+- A tupla é imutável
+- Os únicos dois métodos são count e index
+- Mesmas formas de acesso e indexação de strings e lists funcionam em tuplas:
+
+- Defining tuple;
+>>> <tuple> = (<object> , ...)
+
+- Return the index of a element:
+>>> <tuple>.index(<object>)
+
+- Count how many times a element is repeated:
+>>> <tuple>.count(<object>)
+
+- Tuple unpacking:
+>>> (<elements>, ...) = <tuple>
+
+------------------------------------
+
+	FILES
+
+- Current working directory:
+>>> pwd
+
+- Open a file:
+>>> <file> = open('<file-path>')
+
+- Read file:
+>>> <file>.read()
+
+- Set cursor position:
+>>> <file>.seek(<position>)
+>>> <file>.seek(0)				# start of the file
+
+- Read file to the end of the line from cursor position:
+>>> <file>.readline()
+
+- Print line by line:
+>>> for line in <file>: print(line)
+
+
+
+
+
+
+
+## Examples ##
+- Importing a function:
+	
+>>> import os
+>>> cwd = os.getcwd()								# currently working directory
+>>> os.chdir("<directory-of-the-function-file>")	# REMEMBER TO USE UNDERSCORE (_) INSTEAD OF HIFEN (-) ON FILES YOU GONNA IMPORT FROM
+>>> from <file> import <function>
+
+>>> os.chdir(cwd)
+
+
+
+
+
+------------------------------------
+
+	SETS
+	
+- Sets só permitem valores únicos, sem repetir, e ordenados
+
+- Defining a set:
+>>> <set> = set()
+
+- Add elements to set:
+>>> <set>.add(<value>)
+
+
+
+
+
+## Examples ##
+- Get all values on a list, without repeating:
+>>> l = [1,2,2,33,4,4,11,22,3,3,2]
+>>> shit = list(set(l))
+>>> print(shit)
+	[1, 2, 33, 4, 3, 11, 22]
+
+
+
+
+------------------------------------
+
+	CODE FLOW CONTROL STRUCTURES
+
+>>> if <boolean>:
+>>> 	<instructions>
+>>> elif <boolean>:
+>>> 	<instructions>
+>>> else:
+>>> 	<instructions>
+
+
+>>> <element/instruction> if <boolean> else <element/instruction>
+
+
+>>> for <element> in <iterable>:
+>>> 	<instructions>
+# iterable: lists, dictionary keys, dictionary values, dictionary items, tuples, strings
+
+
+
+- For/else/break (executes the else after the loop only if it didn't find a break):
+
+>>> for <element> in <iterable>:
+>>> 	<instructions>
+>>> 	if <boolean>:
+>>> 		<instructions>
+>>> 		break
+>>> else:
+>>> <instructions>
+
+
+
+- Tuple unpacking:
+>>> (<elements>, ...) = <tuple>
+
+- Create a range-sequence of Integers:
+>>> range(<excluded-stop>)							# start = 0
+>>> range(<included-start>, <excluded-stop>)
+>>> range(<included-start>, <excluded-stop>, <step>)
+
+
+
+
+>>> while <boolean>:
+>>> 	<instructions>
+
+
+>>> while <boolean>:
+>>> 	<instructions>
+>>> else:
+>>> 	<instructions>
+
+
+
+- Stop repetition:
+	
+>>> while True:
+>>> 	<instructions>
+>>> 	if <boolean>:
+>>> 		break	# works on for and while
+
+
+
+- Stop current iteration and continue repetition:
+	
+>>> while <boolean>:
+>>> 	<instruction>
+>>> 	if <boolean>:
+>>> 		continue
+>>> 	<instruction>
+
+
+
+
+- List comprehesion:
+>>> [<element/instruction> for <element> in <iterable>]
+>>> [<element/instruction> for <element> in <iterable> if <boolean>]
+>>> [<element/instruction> if <boolean> else <element/instruction> for <element> in <iterable>]
+
+>>> [<element/instruction> for <element> in <iterable> for <element> in <iterable> ...]
+
+
+
+
+
+
+
+
+## Examples ##
+
+>>> range(0,10)
+	range(0, 10)
+>>> type(range(0,10))
+	range
+>>> list(range())
+	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+
+>>> x = 0
+>>> while x <= 10:
+>>> 	x += 1
+>>> 	if (x % 2) == 1:
+>>> 		continue
+>>> 	print (x, 'is even')
+	2 is even
+	4 is even
+	6 is even
+	8 is even
+	10 is even
+
+
+
+
+>>> l = [ (1, 2), (3, 4), (5, 6) ]
+>>> (um, dois) = l[0]
+>>> print (dois, um)
+	2 1
+
+>>> for (um, dois) in l:
+>>> 	print("%d x %d = %d" %(um,dois,um * dois))
+	1 x 2 = 2
+	3 x 4 = 12
+	5 x 6 = 30
+
+>>> for (key, value) in <dict>.items():
+>>> 	print(key, ':', value)
+
+
+
+- Print integers from 1 to 100, but for multiples of 3 print "Fizz" instead, for multiples of 5 print "Buzz" instead, and for multiples of both print "FizzBuzz" instead.
+
+>>> for n in range(1,101): print('FizzBuzz') if (n%3==0 and n%5==0) else (print('Fizz') if n%3==0 else (print('Buzz') if n%5==0 else print(n)))
+
+
+
+------------------------------------
+
+	FUNCTIONS
+
+- Defining simple function:
+>>> def <function>():
+>>> 	<instructions>
+
+- Call function:
+>>> <function>()
+
+- Add Docstring (description) to a function:
+>>> def <function>():
+>>> 	"""
+>>> 	<Docstring>
+>>> 	"""
+>>> 	<instructions>
+
+
+- Function with arguments:
+>>> def <function>(<args>, ...):
+>>> 	<instructions>
+
+
+- Return:
+>>> def <function>():
+>>> 	<instructions>
+>>> 	return <object>
+
+
+
+
+
+
+
+## Examples ##
+
+>>> def isprime(num):
+>>>     """
+>>>     Método pra checar se é primo
+>>>     """
+>>> 	for ind in range(2,num):
+>>>         if num%ind == 0 :
+>>>             print("Not prime")
+>>>             break
+>>>     else:
+>>>         print("Prime")
+>>> isprime(104729)
+	Prime
+
+
+
+
+
+------------------------------------
+
+	LAMBDA
+
+- Função definida em uma única linha.
+- Função "anônima".
+
+
+- Defining a lambda function:
+>>> lambda <args>, ... : <instruction>
+
+
+- Atributing lambda to a label:
+>>> <lambda> = lambda <args>, ... : <instruction>
+
+
+------------------------------------
+
+	NESTED STATEMENTS AND SCOPE
+
+- Scopes order:
+
+	1- local - inside functions
+
+	2- enclosing functions locals - on local scope of any nested functions, from insideout
+
+	3- global - in the top level of a file or declared as global in a function
+
+	4- built-in (python) - pre-assigned
+
+
+
+
+
+## Examples ##
+
+- Locals (x):
+
+>>> x = 'global'
+>>> def func():
+>>> 	x = 'local'
+>>> 	print(x)
+
+>>> print(x)
+	global
+>>> func()
+	local
+
+
+
+
+
+
+- Enclosing functions locals:
+
+>>> def outterFunc():
+>>> 	x = 'local'
+>>> 	def innerFunc1():
+>>> 		x = 'nested local'
+>>> 		print (x)
+>>> 	def innerFunc2():
+>>> 		nonlocal x
+>>> 		print (x)
+>>> 	innerFunc1()
+>>> 	innerFunc2()
+>>> outterFunc()
+	
+
+
+
+>>> name = 'global'
+>>> def greet():
+>>> 	name = 'local'
+>>> 	def hello():
+>>> 		print('enclosing function '+ name)
+>>> 	hello()
+>>> greet()
+	enclosing function local
+
+
+
+
+
+
+- Global:
+
+>>> name = 'global'
+>>> def greet():
+>>> 	# now without the enclosing function local
+>>> 	def hello():
+>>> 		print(name)
+>>> 	hello()
+>>> greet()
+	global
+
+
+
+
+
+>>> x = 'global'
+>>> def func():
+>>> 	global x
+>>> 	x = 'not local, global'
+>>> 	print(x)
+
+>>> func()
+	not local, global
+>>> print(x)
+	not local, global
+
+
+
+
+
+
+------------------------------------
+
+	OBJECT ORIENTED: CLASSES, PROPERTIES AND METHODS, INHERITANCE, SPECIAL METHODS
+
+
+- Classes have a Initialization Function, aka Constructors (__init__). Used to assign values to attributes and do operations necessary when the object is being created.
+
+- The 'self' parameter is reference to the current instance of the class. It is used to access attributes of the class. It doesn't need to be 'self', it can be whatever, but it has to be the first parameter of any function in the class.
+
+
+- Create a Class:
+
+>>> class <Class>:
+>>> 	
+>>> 	<attributes>
+>>> 	
+>>> 	def __init__(self, <parameters>, ...):
+>>> 		self.<property> = <parameter>
+>>> 	
+>>> 	def <methods>(self, <parameters>, ...):
+>>> 		<instructions>
+
+
+
+
+- Create an object (instance) from a Class:
+
+>>> <object> = <Class>()
+
+
+
+- Call a method:
+
+>>> <object>.<method> (<args>, ...)
+
+
+
+- A Class can inherit attributes and methods from other class.
+
+- A child Class can overwrite the methods inherited from the parent Class. After that, it is still possible to access the the parent's methods.
+
+
+
+- Create a Class that inherit the properties and methods from other Class:
+
+>>> class <Class> (<parent-Class>):
+>>> 	
+>>> 	<attributes>
+>>> 	<__init__>
+>>> 	<methods>
+>>> 	
+>>> 	# Overwriting a parent method:
+>>> 	
+>>> 	def <parente-method>(self, <parameters>, ...):
+>>> 		<new-instructions>
+>>> 	
+>>> 		# Using a overwriten parent method:
+>>> 		
+>>> 		<parent-Class>.<parente-method>()
+
+
+
+
+
+- More info on special methods: https://www.pythonlikeyoumeanit.com/Module4_OOP/Special_Methods.html
+- More info on special methods: https://diveintopython3.net/special-method-names.html
+
+- Special methods:
+
+>>> class <Class>:
+>>> 	
+>>> 	# Constructor. Behavior of '<object> = <class>()'
+>>> 	
+>>> 	def __init__(self, <parameters>, ...):
+>>> 		self.<property> = <parameter>
+>>> 	
+>>> 	
+>>> 	# Behavior when using '<object> + <other-object>'
+>>> 	
+>>> 	def __add__(self, <other-object>):
+>>> 		<instructions>
+>>> 	
+>>> 	
+>>> 	# Return when used the 'len(<object>)' function
+>>> 	
+>>> 	def __len__(self):
+>>> 		return <attribute/method>
+>>> 	
+>>> 	
+>>> 	# Behavior of '<object>[<key>]
+>>> 	
+>>> 	def __getitem__(self, key):
+>>> 		return <attribute/method>
+>>> 	
+>>> 	
+>>> 	# Return when 'str(<object>)' or 'print(<object>)'
+>>> 	
+>>> 	def __str__(self):
+>>> 		return <str>
+>>> 	
+>>> 	
+>>> 	# Behavior when object deleted by del(<object>)
+>>> 	
+>>> 	def __del__(self):
+>>> 		<instructions>
+
+
+
+
+
+
+
+
+- Delete attributes on objects, or delete whole objects:
+
+>>> del <object>.<attribute>
+
+>>> del <object>
+
+
+
+
+
+- Save object to file:
+https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence
+
+
+------------------------------------
+
+	ERRORS: TRY & EXCEPT
+
+- Try code possible errors.
+- In case of a specific Exception, treat as specified on the except block. If the Exception is not specified, any error will be treated.
+- If none of the Exceptions occur, do 'else'.
+- To Capture the error message use 'except Exception as <object>'
+- The 'finally' block runs independent of  what happens ( useful in case of: a return on the except block, if a Exception is thrown in the except block, if a Exception is thrown on the try block, but is not treated on any except block in which case finally is executed before the Exception is propagated).
+
+>>> try:
+>>> 	<instructions>
+>>> 	
+>>> except <Exception>:
+>>> 	<instructions>
+>>> 	
+>>> except ...
+>>> 	...
+>>> 	
+>>> except Exception as <object>:
+>>> 	<instructions>
+>>> 	
+>>> else:
+>>> 	<instructions>
+>>> 	
+>>> finally:
+>>> 	<instructions>
+
+
+
+
+------------------------------------
+
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+
+#
+#
+
+#
+#   -----------------------------------------
+#   RESERVED WORDS
+#
+False
+None
+True
+and
+as
+assert
+break
+class
+if
+def
+del
+elif
+else
+except
+return
+for
+from
+global
+try
+import
+in
+is
+lambda
+while
+not
+or
+pass
+raise
+finally
+continue
+nonlocal
+with
+yield
+#
+#   -----------------------------------------
+#   MATRIX
+>>>
+
+inf = float('inf')
+
+A = [[0,1,4,inf,3],
+     [1,0,2,inf,4],
+     [4,2,0,1,5],
+     [inf,inf,1,0,3],
+     [3,4,5,3,0]]
+
+def printmat(A,space=4):
+
+    print('\n'.join([''.join(['{{:{}}}'.format(str(space)).format(item) for item in row]) for row in A]))
+    return
+
+printmat(A,5)
+
+#
+#   -----------------------------------------
+#   EDX EXAMPLE:
+>>>
+
+name = input('Enter file: ')
+handle = option(name)
+
+counts = dict()
+for line in handle:
+    words = line.split()
+    for word in words:
+        counts[word] = counts.get(word,0) + 1
+
+bigcount = None
+bigword = None
+for word,count in counts.items():
+    if bigcount is None or count > bigcount:
+        bigword = word
+        bigcount = count
+
+print(bigword, bigcount)
+
+#
+#
+#   -----------------------------------------
+#	EXAMPLE
+#
+#   Remove all items in Python list containing a number [duplicate]
+#
+#
+
+foo = ['This', 'That', 'Those4423', '42', '13b', 'Yes', '2']
+
+foo1 = [x for x in foo if not any(x1.isdigit() for x1 in x)]
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#

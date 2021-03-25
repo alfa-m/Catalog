@@ -1,0 +1,134 @@
+ 
+PACMAN
+
+Se você presenciar um problema após uma atualização, confira a saída do pacman olhando em:
+/var/log/pacman.log
+
+Configurações em:
+/etc/pacman.conf
+
+__________________________________
+
+MIRRORS
+
+- Manjaro only:
+# pacman-mirrors --fasttrack && sudo pacman -Syyu 
+
+- Arch:
+# cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-back
+# pacman -S reflector
+# reflector -l 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+[!] Make sure the resulting /etc/pacman.d/mirrorlist does not contain entries that you consider untrustworthy before syncing or updating with Pacman.
+__________________________________
+
+- Discover a package's binary:
+$ pacman -Qlq <package_name> | grep /usr/bin/
+
+__________________________________
+
+$ pacman -V
+__________________________________
+
+
+pacman -T (deptest: list dependencies not currently satisfied)
+
+pacman -Qdt (query deps unrequired: list not needed dependencies, orphans)
+
+pacman -Qe (query explicitly installed packages)
+
+pacman -Qi <package> (info: information on package, two -ii shows backup files)
+
+pacman -Ql <package> (list: query files owned by package(s))
+
+pacman -Qm (foreign: packages not found in the sync database, typically downloaded manually and installed with pacman -U)
+
+pacman -Qs <terms> (search on local packages matching all terms)
+
+pacman -Qo <filename> (query owner: find which package owns a file)
+
+pacman -Qq (query quiet: less information, useful for scripts)
+
+pacman Qu (query upgrade: filter out-of-date packages, works better after sync update database: pacman -Sy)
+
+pacman -Rsn <package> (remove recursively nosave: remove package and not required and not explicitly installed dependencies, with no backup)
+
+pacman -Ru (remove unneeded targets)
+
+pacman -Sc (clean: removes no longer installed packages from cache, two -cc fully clears cache)
+
+pacman -Si <package> (info: more info, two -ii also displays packages that depend on it)
+
+pacman -Sl <repo> (list: List packages in specified repositorieS)
+
+pacman -Ss <terms> (search in sync database packages matching all terms)
+
+pacman -Su <package> (sysupgrade: upgrade package, two -uu downgrade)
+
+DO NOT USE pacman -Sy
+INSTEAD, USE pacman -Syu
+pacman -Sy (refresh: update master package database, two -yy force refresh of all packages database, pacman -Sy <package>, as this could lead to dependencies errors)
+
+pacman -Syu (ful system upgrade)
+
+pacman -Sw (downloadonly: download, but doesn't install nor upgrade)
+
+pacman -U <URL or path> (upgrade and install, also could use yaourt -U)
+
+pacman -Fy (refresh package databases, two -yy force a refreshforce a refresh)
+
+__________________________________
+
+/etc/pacman.conf
+
+#Color
+#ILoveCandy
+
+#TotalDownload
+
+__________________________________
+
+ARQUIVOS  .PACNEW E  .PACSAVE
+
+Ao atualizar ou remover um grande número de pacotes, arquivos .pac* atualizados serão perdidos.
+Esses arquivos exigem intervenção manual do usuário e é uma boa prática tratar deles imediatamente a cada atualização ou remoção de pacote. Se não for tratado, configurações inadequadas podem resultar em função inadequada do software ou o software sendo incapaz de funcionar por completo.
+
+Para descobrir se algum arquivo .pac* foi criado, se instalado, locate pode ser usado, primeiro reindexe a base de dados:
+
+# updatedb
+$ locate --existing --regex "\.pac(new|save)$"
+
+
+GERENCIANDO ARQUIVOS .pac*
+
+Pacman-contrib fornece pacdiff, uma ferramenta para gerenciar arquivos pac*, pode-se pesquisar todos os arquivos .pacnew e .pacsave e pedir por quaisquer ações neles. Ele usa vimdiff por padrão, mas você pode especificar uma ferramenta diferente, como o meld por exemplo:
+
+# DIFFPROG=meld pacdiff
+
+
+CLEANING THE CACHE
+
+When pacman downloads packages, it saves them in a cache directory, including old packages you have downloaded.
+
+/var/cache/pacman/pkg
+
+This cache can be very useful if you have to install older packages in an emergency. However, left unchecked, this cache will grow very large over time.
+Systems running Pamac will already have access to it's automated pacman cache cleaning functions.
+
+Pacman can remove packages that are no longer installed from the cache as well as currently unused sync databases:
+
+# pacman -Sc 
+
+Or remove all files from the cache (and use with care):
+
+# pacman -Scc 
+
+A safer way to remove old package cache files is to [r]emove all packages [k]eeping the latest three package versions using paccache:
+
+$ paccache -rvk3
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+ 
+        GIT
+
+- Create a local repository:
+$ cd <path-to-repo>
+$ git init
+
+- Add a remote repository (must be previously created on the github website):
+$ git remote add <name> <url>
+$ git remote add origin https://github.com/<user>/<repo>
+
+- Display remotes:
+$ git remote -v
+
+- Update branches seen from remote repository:
+$ git fetch
+
+- Fetch from and integrate with another repository or a local branch:
+$ git pull <remote> <branch>
+$ git pull origin master
+
+- List remote branches in repo:
+$ git branch -r
+
+- Update commit with all contents from the working tree:
+$ git add .
+
+- Display updates to the index:
+$ git status
+
+- Creates commit (to current working branch) with the contents of the index and a log message:
+$ git commit -m "<log-message>"
+
+- List local branches in repo:
+$ git branch
+
+- Update a remotes with a branch:
+$ git push <remote> <branch>
+$ git push origin master
+
+
+
+
+- Download from a remote repository (master branch):
+$ git clone <url>
+
+- Download a specific branch from a remote repository:
+$ git clone -b <branch> <url>
+
+- List all branches:
+$ git branch -a
+
+- Create new branch:
+$ git branch <new-branch-name>
+
+- Check and update branch to work in:
+$ git checkout <branch>
+$ git checkout master
+
+- Delete branch:
+$ git branch -d <branch-name>
+$ git branch -rd <remote-branch-name>
+
+- Switch branch:
+$ git switch <branch>
+
+- Armazenar senha do github em cache (padrão: 15 min):
+$ git config --global credential.helper cache
+
+- Alterar o tempo limite padrão do cache da senha( <time> em segundos):
+$ git config --global credential.helper 'cache --timeout=<time>'
+
+
+
+

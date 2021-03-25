@@ -1,0 +1,38 @@
+ 
+CONDA
+Anaconda
+
+- Help on a command:
+$ conda <command> --help
+
+- List enviroments:
+$ conda env list
+
+- Activate/deactivate enviroment (conda>=4.6):
+$ conda activate <enviroment>
+$ conda deactivate <enviroment>
+
+- Create enviroment:
+$ conda create --name <env-name>
+$ conda create -n <env-name> python=<version>
+
+- Create enviroment with specific package:
+$ conda create -n <env-name> <package>
+$ conda create -n <env-name> <package>=<pack-version>
+
+- Exporting environment.yml
+$ conda activate <env>
+$ conda env export > environment.yml
+
+- Creating an environment from a environment.yml:
+$ conda env create -f environment.yml
+
+
+
+
+- Open jupyter:
+$ jupyter notebook
+$ jupyter notebook <file.ipynb>
+$ jupyper lab
+$ jupyper lab <file.ipynb>
+
