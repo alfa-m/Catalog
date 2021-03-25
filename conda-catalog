@@ -64,6 +64,7 @@ $ conda search <package>
 
 - List installed package:
 $ conda list
+$ conda list <package>
 
 
 - Check available updates:

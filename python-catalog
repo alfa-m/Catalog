@@ -1089,9 +1089,9 @@ pickle
 [pacman]	python-gmpy2
 			Provides C-coded Python modules for fast multiple-precision arithmetic.
 			(https://github.com/aleaxit/gmpy)
+			(https://gmpy2.readthedocs.io/en/latest/mpfr.html)
 			
-			# WARNING (see later below)
-[pip]		gmpy2
+[conda]		gmpy2
 			GMP/MPIR, MPFR (Multiple Precision Floating-point Rounding), and MPC interface to Python 2.6+ and 3.x
 
 
@@ -1168,6 +1168,7 @@ $ conda search <package>
 
 - List installed package:
 $ conda list
+$ conda list <package>
 
 
 - Check available updates:

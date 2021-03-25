@@ -1,5 +1,5 @@
  
-PACMAN
+		PACMAN
 
 Se você presenciar um problema após uma atualização, confira a saída do pacman olhando em:
 /var/log/pacman.log
@@ -9,7 +9,7 @@ Configurações em:
 
 __________________________________
 
-MIRRORS
+	MIRRORS
 
 - Manjaro only:
 # pacman-mirrors --fasttrack && sudo pacman -Syyu 
@@ -92,7 +92,7 @@ __________________________________
 
 __________________________________
 
-ARQUIVOS  .PACNEW E  .PACSAVE
+	ARQUIVOS  .PACNEW E  .PACSAVE
 
 Ao atualizar ou remover um grande número de pacotes, arquivos .pac* atualizados serão perdidos.
 Esses arquivos exigem intervenção manual do usuário e é uma boa prática tratar deles imediatamente a cada atualização ou remoção de pacote. Se não for tratado, configurações inadequadas podem resultar em função inadequada do software ou o software sendo incapaz de funcionar por completo.
@@ -110,7 +110,9 @@ Pacman-contrib fornece pacdiff, uma ferramenta para gerenciar arquivos pac*, p
 # DIFFPROG=meld pacdiff
 
 
-CLEANING THE CACHE
+__________________________________
+
+	CLEANING THE CACHE
 
 When pacman downloads packages, it saves them in a cache directory, including old packages you have downloaded.
 
@@ -127,8 +129,10 @@ Or remove all files from the cache (and use with care):
 
 # pacman -Scc 
 
-A safer way to remove old package cache files is to [r]emove all packages [k]eeping the latest three package versions using paccache:
+A safer way to remove old package cache files is to [r]emove all packages, [v]erbose, [k]eeping the latest three package versions using paccache (already default):
 
+$ paccache -r
+$ paccache -rv
 $ paccache -rvk3
 
 
