@@ -1,2 +1,2 @@
 # Catalog
-Catalog of my programming languages
+Catalog of my programming and script languages
