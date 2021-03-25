@@ -547,7 +547,10 @@ AMEND (PREVIOUS COMMIT)
 $ git commit --amend
 
 - Amend HEAD with new message:
-$ git commit --amend -m "log-message"
+$ git commit --amend -m "<log-message>"
+
+- Amend HEAD, suppress Editor´s opening:
+$ git commit --amend --no-edit
 
 - Automatically stage files:
 $ git commit --amend -a
@@ -717,6 +720,8 @@ $ git rebase -i <commit>
 $ git commit --amend --author="<name> <<email>>" --no-edit
 $ git commit --amend --reset-author --no-edit
 $ git rebase --continue
+
+
 
 
 

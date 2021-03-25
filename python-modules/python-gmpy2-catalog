@@ -13,19 +13,6 @@
 			GMP/MPIR, MPFR (Multiple Precision Floating-point Rounding), and MPC interface to Python 2.6+ and 3.x
 
 
-
-
-- Imports:
->>> import gmpy2
-
->>> from gmpy2 import mpfr
->>> from gmpy2 import sqrt
->>> from gmpy2 import sin, cos
->>> from gmpy2 import exp, exp2, exp10
->>> from gmpy2 import const_pi, const_euler
->>> from gmpy2 import log, log2, log10
-
-
 ----------------------------------
 
 	REFERENCE
@@ -39,8 +26,26 @@ url: (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
 
 ----------------------------------
 
+	IMPORTS
+
+- Use as needed.
+
+>>> import gmpy2
+
+>>> from gmpy2 import mpfr
+>>> from gmpy2 import const_pi, const_euler
+>>> from gmpy2 import sin, cos
+>>> from gmpy2 import exp, exp2, exp10
+>>> from gmpy2 import log, log2, log10
+>>> from gmpy2 import sqrt
+
+>>> from gmpy2 import mpc
+
+
+----------------------------------
 
 	MANAGE CONTEXTS
+
 
 - Get active context object:
 >>> <ctx> = gmpy2.get_context()
@@ -48,9 +53,12 @@ url: (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
 - Display active context:
 >>> gmpy2.get_context()
 
+
+
+
+
 - Create a new context, with all options to default:
 >>> <ctx> = gmpy2.context()
->>> <ctx> = gmpy2.context(precision=<value>)
 
 - Set active context:
 >>> gmpy2.set_context( <ctx> )
@@ -61,14 +69,38 @@ url: (https://gmpy2.readthedocs.io/en/latest/mpfr.html)
 
 
 
-- Alter a context's attribute:
+
+
+- Create a new context, settings precision for float-points:
+>>> <ctx> = gmpy2.context(precision=<value>)
+
+- Create a new context, settings precision for complex numbers:
+>>> <ctx> = gmpy2.context(real_prec=<value>, imag_prec=<value>)
+>>> <ctx> = gmpy2.context(real_prec=<value>, imag_prec=<value>, allow_complex=True)
+
+- Get the context according to IEEE-754 (Floating-Point Representation Standards):
+>>> gmpy2.ieee(32)
+>>> gmpy2.ieee(64)
+>>> gmpy2.ieee(128)
+
+
+
+
+
+
+- Alter a context´s attribute:
 >>> <ctx>.<attribute> = <value>
 
-- Alter active context's attribute:
+- Alter active context´s attribute:
 >>> gmpy2.get_context().<attribute> = <value>
 
 
-Context Attributes:
+
+
+
+
+
+CONTEXT ATTRIBUTES
 
 precision - specified in bit.
 			The maximum precision that can be specified is platform dependent and can be retrieved with gmpy2.get_max_precision().
@@ -81,70 +113,89 @@ round -
 		3 - RoundDown: rounded towards -Infinity
 		4 - RoundAwayZero: rounded away from 0.0
 
-
+allow_complex -
+				False - (default) sqrt of negative numbers raises an exception.
+				True - sqrt of negative return a mpc-object.
 
 
 ...
 
 
 
-(https://gmpy2.readthedocs.io/en/latest/mpfr.html)
-
-
-
-- Get the context according to IEEE-754 (Floating-Point Representation Standards):
->>> gmpy2.ieee(32)
->>> gmpy2.ieee(64)
->>> gmpy2.ieee(128)
-
-
 ----------------------------------
 
-	MULTIPLE-PRECISION REALS
+	MULTIPLE-PRECISION REALS (MPFR)
 
 
 - The default precision of an mpfr is 53 bits.
 
--To take advantage of higher precision provided by the mpfr type, always pass constants as strings.
+-To take advantage of higher precision provided by the mpfr type, always pass constants as strings OR an already mpfr-object.
 
 
 
-- Create a mpfr type:
+- Create a mpfr object:
 >>> mpfr('<number>')
 
 
-- Square root:
->>> sqrt( <number> )
+
+
+METHODS
+
+- Returns True if is an integer:
+>>> <mpfr>.is_integer()
+
+- Get mantissa, exponent, and precision (3-tuple):
+>>> <mpfr>.digits()
+
+- Get mantissa and exponent (2-tuple):
+>>> <mpfr>.as_mantissa_exp()
+
+- Returns a 2-tuple containing the numerator and denominator:
+>>> <mpfr>.as_integer_ratio()
+
+- Returns mpq-type of approximation of simpliest rational (error <  1/(2**precision)):
+>>> <mpfr>.as_simple_fraction()
+
+
+
+
+
+
+
+FUNCTIONS
+
+- Constants:
+>>> const_pi(<precision>)		# pi
+>>> const_euler(<precision>)	# e
 
 
 - Trigonometric Functions (single values only):
->> sin(<degree>)
->> cos(<degree>)
+>> sin('<degree>')
+>> cos('<degree>')
 
 
 - Exponentials:
->>> exp(<number>)			# e^x
->>> exp2(<number>)			# 2^x
->>> exp10(<number>)			# 10^x
-
-
-- Constants:
->>> const_pi(<precision>)
->>> const_euler(<precision>)
+>>> exp('<number>')				# e^x
+>>> exp2('<number>')			# 2^x
+>>> exp10('<number>')			# 10^x
 
 
 - Logarithm:
->>> log(<number>)			# natural log(x)
->>> log2(<number>)			# base-2 log(x)
->>> log10(<number>)			# base-10 log(x)
+>>> log('<number>')				# natural log(x)
+>>> log2('<number>')			# base-2 log(x)
+>>> log10('<number>')			# base-10 log(x)
+
+
+- Square root:
+>>> sqrt( '<number>' )
 
 
 
 ----------------------------------
 
-	MY FUNCTIONS
+	MY FUNCTIONS (MPFR)
 
-- Some short-hand functions I made:
+- Some short-hand functions I made to make life easier:
 
 set_mpfr(bits):
 	global gmpy2
@@ -153,17 +204,17 @@ set_mpfr(bits):
 def mp(num):
     return mpfr(str(num))
 
-def backf(num, digits=5):
-    return float(round(num, digits))
+#def backf(num, digits=5):
+    #return float(round(num, digits))
 
-def listf( l ):
-    return list(map(backf, l))
+#def listf( l ):
+    #return list(map(backf, l))
 
-def listf( l,  digits=5):
-    return list(map(lambda x: backf(x, digits), l))
+#def listf( l,  digits=5):
+    #return list(map(lambda x: backf(x, digits), l))
 
-def backf(val, digits=5):
-    return list(map(lambda x: backf(x, digits), val)) if isinstance(val, list) else float(round(val, digits))
+#def backf(val, digits=5):
+    #return list(map(lambda x: backf(x, digits), val)) if isinstance(val, list) else float(round(val, digits))
 
 def backf(val, digits=8):
     return list(map(lambda x: backf(x, digits), val)) if isinstance(val, (list, np.ndarray)) else float(round(val, digits))
@@ -171,6 +222,80 @@ def backf(val, digits=8):
 
 ----------------------------------
 
+	MULTIPLE-PRECISION COMPLEX (MPC)
+
+- The context manager settings for mpfr arithmetic are applied to mpc arithmetic by default.
+
+-It is possible to specifiy different precision and rounding modes for both the real and imaginary components of an mpc.
+
+
+
+- Create a mpc-object:
+>>> mpc('<real> + <imaginary>j')
+
+
+
+
+METHODS
+
+- Get the complex conjugate:
+>>> <mpc>.conjugate()
+
+- Get real and imaginary components as mantissa, exponent, and precision (3-tuple of 2-tuple):
+>>> <mpc>.digits()
+
+
+
+FUNCTIONS
+
+- Works with most of the same functions as mpfr-type does.
+
+
+
+- The norm of a complex number is defined as x.real**2 + x.imag**2.
+- The abs(<mpc>) is the square root of norm.
+
+- Norm:
+>>> norm(<mpc>)
+
+- Phase (a.k.a. argument of a complex):
+>>> phase(<mpc>)
+
+- Polar Coordinates (in rectangular form):
+>>> polar(<mpc>)
+>>> rect(<mpc>)
+
+- Projection of complex on to Riemann sphere:
+>>> polar(<mpc>)
+
+
+
+
+
+
+----------------------------------
+
+	ATTRIBUTES (MPFR & MPC)
+
+- Get an atrribute value:
+>>> <mpfr>.<attribute>
+>>> <mpc>.<attribute>
+
+- Attributes:
+
+real		- Returns real component. For mpfr-object returns a copy of the object.
+
+imag		- Returns imaginary component. For mpfr-object returns 0.
+
+precision	- Returns precision.
+
+rc:
+			- Result Code (a.k.a. ternary value in MPFR documentation).
+			- Returns  0 if mpfr object is exactly equal to the infinite precision value.
+			- Returns  1 if mpfr object is greater than the infinite precision value.
+			- Returns -1 if mpfr object is less than the infinite precision value.
+
+
 
 
 ----------------------------------
@@ -183,3 +308,10 @@ def backf(val, digits=8):
 
 ----------------------------------
 
+
+
+----------------------------------
+
+
+
+----------------------------------

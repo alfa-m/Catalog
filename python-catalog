@@ -45,7 +45,7 @@ $ conda activate udemy
 - Jupyter shortcuts:
 
 	[shift] + [Enter]	: run cell & go next
-	[ctrl] + [Enter]	: run cell & DON'T go next
+	[ctrl] + [Enter]	: run cell & DON´T go next
 	[alt] + [Enter]		: run cell & add one cell
 
 	[d] + [d]			: Delete selected cell
@@ -54,10 +54,10 @@ $ conda activate udemy
 
 MISC
 
-- Finding anaconda's install directory:
+- Finding anaconda´s install directory:
 $ which conda
 
-- Finding the anaconda's python interpreter (environmental):
+- Finding the anaconda´s python interpreter (environmental):
 (<env>)$ which python
 
 
@@ -135,6 +135,10 @@ NUMBERS
 
 - Round with some decimal precision (default=0, also accepts negative):
 >>> round(<num>, <precision>)
+
+- Returns a 2-tuple containing the numerator and denominator:
+>>> <float>.as_integer_ratio()
+
 
 
 
@@ -501,7 +505,7 @@ OTHER (weird) WAY OF FORMATING
 
 	LISTS
 
-- In Python, Lists allow multiple types of data and don't have a fixed size.
+- In Python, Lists allow multiple types of data and don´t have a fixed size.
 - The same ways of accessing and indexing Strings works for Lists.
 
 - Defining a List:
@@ -882,7 +886,7 @@ METHODS
 
 
 
-- For/else/break (executes the else after the loop only if it didn't find a break):
+- For/else/break (executes the else after the loop only if it didn´t find a break):
 
 >>> for <element> in <iterable>:
 >>> 	<instructions>
@@ -1167,7 +1171,7 @@ ARGS & KWARGS
 	LAMBDA
 
 - Função definida em uma única linha.
-- Função "anônima".
+- Função ´anônima´.
 
 
 - Defining a lambda function:
@@ -1291,7 +1295,7 @@ ARGS & KWARGS
 
 - Classes have a Initialization Function, aka Constructors (__init__). Used to assign values to attributes and do operations necessary when the object is being created.
 
-- The 'self' parameter is reference to the current instance of the class. It is used to access attributes of the class. It doesn't need to be 'self', it can be whatever, but it has to be the first parameter of any function in the class.
+- The 'self' parameter is reference to the current instance of the class. It is used to access attributes of the class. It doesn´t need to be 'self', it can be whatever, but it has to be the first parameter of any function in the class.
 
 
 - Create a Class:
@@ -1325,7 +1329,7 @@ INHERITANCE
 
 - A Class can inherit attributes and methods from other class.
 
-- A child Class can overwrite the methods inherited from the parent Class. After that, it is still possible to access the the parent's methods.
+- A child Class can overwrite the methods inherited from the parent Class. After that, it is still possible to access the the parent´s methods.
 
 
 
@@ -1482,7 +1486,7 @@ numpy
 
 - A directory with a file '__init__.py' can be called a Package, and the files within are seen by Python as Modules.
 - If a package has a '__init__.py', once it is imported, this file is executed. Also, it will have "priority", meaning it wont search the module on other paths with same name.
-- If it doesn't has '__init__.py', is is trea as a namespace package (?), and will search the module on the current folder and on python's path.
+- If it doesn´t has '__init__.py', is is trea as a namespace package (?), and will search the module on the current folder and on python´s path.
 
 
 <project>/
@@ -1536,7 +1540,7 @@ numpy
 
 	WARNING: NEVER run 'pip install <module>' on the TERMINAL. You should never make any changes to '/usr', except through pacman. If you need to install with pip do it in a Virtual Enviroment (like conda).
 
-	(if a package isn't available by conda, try conda-forge before even thinking on pip)
+	(if a package isn´t available by conda, try conda-forge before even thinking on pip)
 	(https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#installing-non-conda-packages)
 
 
@@ -1663,7 +1667,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 	MAP, REDUCE, FILTER, ZIP, ENUMERATE, ALL & ANY
 
 - MAP
-- Aply a function to all of a iterable's elements.
+- Aply a function to all of a iterable´s elements.
 - Returns a memory instruction (map type object).
 - Do not use the paranthesis on the function.
 - You can define a lambda right on the map() argument.
@@ -1678,8 +1682,8 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 - REDUCE
-- Aply a function to all of a iterable's elements, two by two.
-- Initially with the first two, and then, with it's result and the next from the iterable.
+- Aply a function to all of a iterable´s elements, two by two.
+- Initially with the first two, and then, with it´s result and the next from the iterable.
 - Goes until it is reduced to a single element which is returned.
 
 >>> from functools import reduce	# Python 3
@@ -1904,14 +1908,14 @@ CLOSURE
 >>> def addExplaning(func):
 >>> 	
 >>> 	def outFunc(x):
->>> 		print("I'm a function that multiplies %d by the given number %d:" %( func.__closure__[0].cell_contents, x))
+>>> 		print("I´m a function that multiplies %d by the given number %d:" %( func.__closure__[0].cell_contents, x))
 >>> 		return func(x)
 >>> 	
 >>> 	return outFunc
 >>> 
 >>> times5 = addExplaning(times5)
 >>> print(times5(9))
-[]	I'm a function that multiplies 5 by the given number 9:
+[]	I´m a function that multiplies 5 by the given number 9:
 []	45
 
 	## - ##
@@ -2082,7 +2086,7 @@ DEFAULTDICT
 
 - Does not return a error when trying to access a non existing key.
 - The defaultdict has a default item, which might be a type object (int, list, object, functions ...) or a function.
-- When it tries to access a item with a key that doesn't exist it creates the item using the default item.
+- When it tries to access a item with a key that doesn´t exist it creates the item using the default item.
 
 - Import:
 >>> from collections import defaultdict
@@ -2143,7 +2147,7 @@ NAMEDTUPLE
 >>> <instance> = <n-tuple>(<value>, ... ,<value>)
 >>> <instance> = <n-tuple>(<parameter> = <value>, ... ,<parameter> = <value>)
 
-- Access the value from a Named Tuple's parameter:
+- Access the value from a Named Tuple´s parameter:
 >>> <instance>.<parameter>
 
 	## Examples ##
@@ -2370,7 +2374,7 @@ LINE PROFILER
 					'^' has no special meaning if it’s not the first character in the set.
 					Example:
 					[^5]		Any character except '5'.
-					[^^]		Any character except '^
+					[^^]		Any character except '^'.
 
 
 
