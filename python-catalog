@@ -389,13 +389,15 @@ Mod ->	1 | 2	<- Floor division
 >>> matrix = [l_1, l_2, l_3]
 
 >>> first_col = [row[0] for row in matrix]
->>> print(first_col)
+	[1, 4, 7]
+>>> first_col = list(list(zip(*matrix))[0])
 	[1, 4, 7]
 >>> diag = [matrix[ind][ind] for ind in [0,1,2] ]
 	[1, 5, 9]
 >>> diag2 = [matrix[ind][2-ind] for ind in [0,1,2] 
 	[3, 5, 7]
->>> fulllist = [ testBoard[i][j]  for i in [0,1,2] for j in [0,1,2]]
+>>> fulllist = [ matrix[i][j]  for i in [0,1,2] for j in [0,1,2]]
+	[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
 >>> celsius = [0, 10, 15, 20, 30, 50, 100]
