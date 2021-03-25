@@ -19,7 +19,12 @@ $ git help
 $ git help <command>
 
 - Official Glossary (confusing a.f.):
-$ man 'gitglossary(7)'
+$ man gitglossary
+$ git help gitglossary
+
+- More info on spell Commits:
+$ man gitrevisions
+$ git help gitrevisions
 
 url: (https://git-scm.com/docs)
 
@@ -57,6 +62,12 @@ url: (https://git-scm.com/docs)
 
 - HEAD (aka. tip of that Branch):
 	Points to the last Commit to the current Branch.
+
+- Clean Work-tree:
+	When a Working-tree corresponds to the current HEAD, i.e. all it's modifications have been committed to the current Branch.
+
+- Dirty Work-tree:
+	When a Work-tree contains modifications which have not been committed to the current Branch.
 
 - Remote (aka. Remote Repository, Upstream Repository):
 	A Repository to track the project, but residing somewhere else.
@@ -168,8 +179,11 @@ $ git commit <path-name>
 - Don't commit, show summary of what's included on next commit:
 $ git commit --dry-run
 
-- Display Commit history from current Branch:
+- Display Commit history from current Branch (chronological order):
 $ git log
+
+- Display compact graph of all Branches:
+$ git log --graph --all --oneline
 
 - View changes in Work-tree or specific file, relative to a Commit:
 $ git diff <commit>
@@ -216,25 +230,28 @@ $ git reset --hard <commit>
 
 REVERT COMMITS
 
+- Make a new Commit reverting the HEAD to a previous Commit (requieres Clean Work-tree):
+$ git revert <commit>
+
 git help revert
 git-revert(1) is about making a new commit that reverts the changes made by other commits.
 
 
 
-(See "Reset, restore and revert" in git(1) for the differences between the three commands.)
+(See "Reset, restore and revert" in 'git(1)' for the differences between the three commands.)
 
 
 
 MORE LOG
 
-- Compact Log:
-$ git log --oneline
-
 - Display a log graph for the Commits and Merges (not chronological order, topological ordering):
 $ git log --graph
 
-- Log of all Branches, and Branch's name:
-$ git log --all --decorate
+- Compact Log:
+$ git log --oneline
+
+- Log of all Branches:
+$ git log --all
 
 - Show only Commits done on the current Branch (excluding Commits done on other Branches before Merging):
 $ git log --first-parent
@@ -242,6 +259,75 @@ $ git log --first-parent
 - "Pretty" Log:
 $ git log --pretty="format:%h %ar %s"
 
+
+
+------------------------------------
+
+	SPELL COMMITS
+
+- How to refer to a specific Commit.
+
+- By SHA-1:
+	The full SHA-1 object name (40-byte hexadecimal string), or it's short version (a leading substring that is unique within the Repository).
+	
+	See it's short version with:
+	$ git log --oneline
+	Or, it's full version with:
+	$ git log
+
+- Refnames:
+	HEAD - last Commit of current Branch
+	FETCH_HEAD - Branch fetched from Remote with last 'git fetch'
+	ORIG_HEAD - records Commit before a operation that move the HEAD in a drastic way (what ever that means), eg. 'git merge'.
+	MERGE_HEAD - records Commit of Branch that merges into current Branch when run 'git merge'.
+	CHERRY_PICK_HEAD - records the Commit of 'git cherry-pick' (?).
+	
+	<branch-name> - will refer to a Branch's HEAD
+	@ - with no refname given, refer to current Branch's HEAD
+	
+- Refnames for prior Commits:
+	<refname>@{<n>}
+		A Refname with the suffix '@' and a number (n) refers the n-th prior Commit of that ref.
+		If no Refname is given, considers current Branch's HEAD.
+		Follows chronological order as in 'git log'.
+	
+	<commit>^{<n>}
+		A Commit with the suffix '^' and a number (n) refers the n-th parent of that Commit.
+		DOES NOT Follow chronological order as in 'git log --graph'.
+		
+		('<commit>^' is equivalent to '<commit>^1')
+		('<commit>^0' means the commit itself)
+	
+	<commit>~{<n>}
+		A Commit with the suffix '^' and a number (n) refers the n-th ancestor of that Commit, following only the first parents.
+		DOES NOT Follow chronological order as in 'git log --graph'.
+		
+		I.e.  '<commit>~3' is equivalent to '<commit>^^^' which is equivalent to '<commit>^1^1^1', but NOT '<commit>^3'.
+	
+		Example:
+		Consider that:
+		- Commit F recieves a Commit and becomes E.
+		- Commit E recieves a Commit and becomes B.
+		- Commit B merges C, D and E; and becomes A.
+		
+		A---.
+		| \  \
+		B  C  D
+		|
+		E
+		|
+		F
+		
+		In this case:
+		A^1 = B		= A^
+		A^2 = C
+		A^3 = D
+		
+		A~1 = B
+		A~2 = E
+		A~3 = F		= A^^^ = A^1^1^1
+		
+	
 
 ------------------------------------
 
@@ -282,7 +368,7 @@ $ git branch -D <branch>
 
 
 
-WARNING: Running 'git merge' with uncommitted changes is discouraged.
+WARNING: Running 'git merge' with uncommitted changes is discouraged (Dirty Work-tree).
 
 - Merge current Branch with other Branch's commit (if the other Branch's name is passed, it's HEAD is the commit used):
 $ git merge <commit>
