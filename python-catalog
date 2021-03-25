@@ -478,7 +478,7 @@ Mod ->	1 | 2	<- Floor division
 
 >>> for <element> in <iterable>:
 >>> 	<instructions>
-# iterable: lists, dictionary keys, dictionary values, dictionary items, tuples, strings
+# iterables: lists, dictionary keys, dictionary values, dictionary items, tuples, strings, iterators
 
 
 
@@ -1228,6 +1228,30 @@ $ pip install <lib>
 >>> print(times5(9))
 	I'm a function that multiplies 5 by the given number 9:
 	45
+
+
+------------------------------------
+
+	ITERATORS & GENERATORS
+
+- A Python Iterator Object must implement the methods '__iter__()' and '__next__()' (iterator protocol).
+- The 'next()' and 'iter()' functions call the '__next__()' and '__iter__()' methods.
+- The 'next()' function manually iterate through all the items.
+- When reachs the end raises the 'StopIteration' Exception.
+- The 'iter()' function returns an iterator from a object.
+
+>>> <iterator> = iter(<iterable>)
+
+>>> next (<iterator>)
+
+
+
+
+- Function that generates and returns a iterator.
+- When called, returns a iterator object, but does not start execution immediately.
+
+>>> 
+
 
 
 ------------------------------------
