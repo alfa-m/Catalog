@@ -1,4 +1,4 @@
-#!/bin/bash
+# #!/bin/bash
 
 case "$1" in
 	sh|linux|bash)
@@ -16,6 +16,12 @@ case "$1" in
 	py-projects|pypro)
         
         dolphin ~/Coding/python/Projects &
+        
+        ;;
+        
+	py-data)
+        
+        kate ~/home/teles/Coding/CATALOGS/python-data-sci-mach-learning &
         
         ;;
         
@@ -52,15 +58,52 @@ case "$1" in
         
     -u|--update)
         
+        
+        # IF Working on 'master' Branch
         cd ~/Coding/CATALOGS
+        branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
         
-        # Add possible changes from catalog script
-        cp -u ~/catalog ~/Coding/CATALOGS/catalog.sh
-        
-        # Commit to master and Push to origin
-        git add .
-        git commit -m "Scripted Full Update"
-        git push origin master
+		case "$branch" in
+			
+			master)
+				
+				echo "On master Branch. Update and Push."
+				
+				# Add changes from catalog script
+				cp -u ~/catalog ~/Coding/CATALOGS/catalog.sh
+				
+				# Commit on PRIVATE master and Push to priv Remote.
+				git add .
+				git commit -m "Update on master (Catalog script)."
+				git push priv master
+				
+				echo "Done."
+				;;
+			
+			dev)
+				
+				echo
+				echo
+				echo "You are working on dev Branch."
+				echo "Go check if the Work-tree is clean, then switch."
+				echo "Nothing done."
+				echo
+				echo
+				;;
+			
+			*)
+			
+				echo
+				echo
+				echo "Not 'master', nor 'dev'. "
+				echo "Nothing done."
+				echo
+				echo "Branch: $branch"
+				echo
+				echo
+				;;
+		
+		esac
         
         ;;
         
@@ -75,6 +118,7 @@ case "$1" in
         echo    "       Linux:              sh, linux, bash"
         echo    "       Python:             py, python"
         echo    "       Python Projects:    pypro, py-projects"
+        echo    "       Python DataSci:     py-data"
         echo    "       Pacman:             pac,pacman"
         echo    "       Git:                git"
         echo    "       Conda:              conda"

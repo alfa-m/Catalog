@@ -1,12 +1,13 @@
  
-CONDA
-Anaconda
+	CONDA
+	Anaconda
 
 - Help on a command:
 $ conda <command> --help
 
 - List enviroments:
 $ conda env list
+$ conda info --envs
 
 - Activate/deactivate enviroment (conda>=4.6):
 $ conda activate <enviroment>
@@ -29,7 +30,7 @@ $ conda env create -f environment.yml
 
 
 
-
+JUṔYTER
 
 - Open jupyter:
 (<env>)$ jupyter notebook
@@ -37,10 +38,25 @@ $ conda env create -f environment.yml
 (<env>)$ jupyper lab
 (<env>)$ jupyper lab <file.ipynb>
 
+- List running Jupyter servers:
+(<env>)$ jupyter notebook list
+
+- Terminate Jupyter server:
+(<env>)$ jupyter notebook stop
+(<env>)$ jupyter notebook stop <port>
+
+
+- Jupyter shortcuts:
+
+	[shift] + [Enter]	: run cell & go next
+	[ctrl] + [Enter]	: run cell & DON'T go next
+	[alt] + [Enter]		: run cell & add one cell
+
+	[d] + [d]			: Delete selected cell
 
 
 
-
+PACKAGES
 
 	(basically, never use pip)
 	(conda on Virtual Enviroment)
@@ -80,18 +96,23 @@ $ conda update conda
 $ conda update anaconda
 
 - Remove a packages:
-(<env>)$ conda install <package>
-$ conda install <package> -n <env>
+(<env>)$ conda remove <package>
+$ conda remove <package> -n <env>
 
 
 
 
 
-
+MISC
 
 - Finding anaconda's install directory:
 $ which conda
 
 - Finding the anaconda's python interpreter (environmental):
 (<env>)$ which python
+
+
+
+
+
 

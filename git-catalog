@@ -1,9 +1,8 @@
 
 		GIT
 
-continue: 
-	revert
-	rebase
+continue:
+	rebase (https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 	remote
 	pull
 	fetch
@@ -84,6 +83,9 @@ url: (https://git-scm.com/docs)
 	Incorporate on current Branch changes from other Branch's commit since the time their histories diverged.
 	Record the result in a new commit.
 
+- Rebase:
+	Incorporate on current Branch changes from other Branch's commit by rewriting the Commit history, producing a linear succession of commits.
+
 - Path name:
 	A file inside the Commits (inside the Repository) have a Path name.
 	The Path name is all the Path from the Top level to where this file is in the Work-tree.
@@ -140,7 +142,7 @@ $ git branch -r
 - List all Branches:
 $ git branch -a
 
-- Update a Remote Branch with the current Branch's contents:
+- Update a Remote Branch with the current Branch's contents (same name Branches):
 $ git push <remote> <branch>
 $ git push origin master
 
@@ -188,7 +190,12 @@ $ git log --graph --all --oneline
 - View changes in Work-tree or specific file, relative to a Commit:
 $ git diff <commit>
 $ git diff <commit> <file>
+
 $ git diff HEAD
+$ git diff HEAD <file>
+
+$ git diff --name-only <commit>
+
 
 
 
@@ -232,9 +239,6 @@ REVERT COMMITS
 
 - Make a new Commit reverting the HEAD to a previous Commit (requieres Clean Work-tree):
 $ git revert <commit>
-
-git help revert
-git-revert(1) is about making a new commit that reverts the changes made by other commits.
 
 
 
@@ -305,10 +309,10 @@ $ git log --pretty="format:%h %ar %s"
 		I.e.  '<commit>~3' is equivalent to '<commit>^^^' which is equivalent to '<commit>^1^1^1', but NOT '<commit>^3'.
 	
 		Example:
-		Consider that:
+		Consider this Branch:
 		- Commit F recieves a Commit and becomes E.
 		- Commit E recieves a Commit and becomes B.
-		- Commit B merges C, D and E; and becomes A.
+		- Commit B merges C and D; and becomes A.
 		
 		A---.
 		| \  \
@@ -357,7 +361,7 @@ $ git branch --move <branch> <new-name>
 - View changes in Work-tree relative to the tip of another Branch:
 $ git diff <branch>
 
-- Switch Branch (updates Index and Work-tree match Branch):
+- Switch Branch (updates Index and Work-tree match Branch, thus, commit your work before switching):
 $ git switch <branch>
 
 - Delete Branch:
@@ -383,16 +387,27 @@ $ git merge --quit
 
 
 
+- Rebase current Branch onto other Branch:
+$ git rebase <branch>
+
+
 ------------------------------------
 
 	REMOTES
 
-- Add a Remote (previously created on Github website) to Local Repository:
+- Add a Remote (previously created on Github website, if the Repository is a existent on-going preject, don't initialize with README file to avoid errors on push) to Local Repository:
 $ git remote add <name> <url>
 $ git remote add origin https://github.com/<user>/<repo>
 
 - Display Remotes:
 $ git remote -v
+
+- Rename a Remote:
+$ git remote rename <remote> <new-name>
+
+- Remove Remote:
+$ git remote remove <remote>
+$ git remote rm <remote>
 
 --
 $ git branch -rd <remote>/<branch>
@@ -403,16 +418,17 @@ $ git branch -r -l '<remote>/<pattern>'
 - Update Branches seen from Remote:
 $ git fetch <remote>
 
-- Fetch and Merge Branch from a Remote:
+- Fetch and Merge Branch from a Remote Branch:
 $ git pull <remote> <branch>
 $ git pull origin master
 
 
 
-
-- Push to a Remote Branch:
+- Push to a Remote Branch  (same name Branches):
 $ git push <remote> <branch>
 
+- Push from a Branch to Another Branch:
+$ git push <remote> <source_branch>:<dest_branch>
 
 
 

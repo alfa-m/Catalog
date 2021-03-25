@@ -5,6 +5,18 @@
 
 ------------------------------------
 
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>>	: Some python command.
+[]	: Output of a python command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+[key]			: Some Keyboard key to be pressed.
+
+------------------------------------
+
 	JUPYTER/CONDA
 
 
@@ -18,32 +30,32 @@ $ conda deactivate <enviroment>
 $ conda activate udemy
 
 - Open jupyter:
-$ jupyter notebook
-$ jupyter notebook <file.ipynb>
-$ jupyper lab
-$ jupyper lab <file.ipynb>
-
+(<env>)$ jupyter notebook
+(<env>)$ jupyter notebook <file.ipynb>
+(<env>)$ jupyper lab
+(<env>)$ jupyper lab <file.ipynb>
 
 - List running Jupyter servers:
-$ jupyter notebook list
+(<env>)$ jupyter notebook list
 
 - Terminate Jupyter server:
-$ jupyter notebook stop
-$ jupyter notebook stop <port>
+(<env>)$ jupyter notebook stop
+(<env>)$ jupyter notebook stop <port>
 
 
 - Jupyter shortcuts:
 
-[shift] + [Enter]: run cell & go next
-[ctrl] + [Enter]: run cell & DON'T go next
-[alt] + [Enter]: run cell & add one cell
+	[shift] + [Enter]	: run cell & go next
+	[ctrl] + [Enter]	: run cell & DON'T go next
+	[alt] + [Enter]		: run cell & add one cell
 
-[d] + [d]: Delete selected cell
+	[d] + [d]			: Delete selected cell
+
 
 
 ------------------------------------
 
-	MARKDOWN FORMATING (jupyter)
+	MARKDOWN FORMATING (also jupyter)
 
 # Title
 **negrito**
@@ -54,24 +66,31 @@ $ jupyter notebook stop <port>
 
 	PYTHON HELP
 
+- Show possible Methods for the object (on jupyter):
+<py-object>. + [tab]
 
-<py-object>. + [tab]: Show possible methods for the object (on jupyter)
+- Show Object Documentation (on jupyter):
+<py-object>. + [shift] + [tab]
 
-<py-object>. + [shift] + [tab]: Show object documentation (on jupyter)
-<function>() + [shift] + [tab]: Show function documentation (on jupyter)
+- Show Function Documentation (on jupyter):
+<function>() + [shift] + [tab]
+
 
 
 - Display the type of a object:
 >>> type(<object>)
 
 - Python documentation about object:
->>> help(<py-object-type>)
+>>> help(<py-object>)
+>>> print(<py-object>.__doc__)		# equivalent
 
 
 ------------------------------------
 
 
-	OPERATORS PREDECEDENCE:
+	NUMBERS, OPERATORS PREDECEDENCE & RESERVED WORDS
+
+- Order of operations:
 
 	**				Exponential
 	~  +  -			Complement (all bits reversed), unary plus and minus
@@ -88,7 +107,70 @@ $ jupyter notebook stop <port>
 	not or and		Logical operators
 
 
-## Examples ##
+
+NUMBERS
+
+- Hexadecimal:
+>>> hex(<number>)
+
+- Binary:
+>>> bin(<number>)
+
+- Pow (equivalent to x**y ):
+>>> pow(<num>, <num>)
+
+- Pow (equivalent to (x**y)%z ):
+>>> pow(<num>, <num>, <num>)
+
+- Absolute Value:
+>>> abs(<num>)
+
+- Round with some decimal precision (default=0, also accepts negative):
+>>> round(<num>, <precision>)
+
+
+
+
+RESERVED WORDS
+
+	False
+	None
+	True
+	and
+	as
+	assert
+	break
+	class
+	if
+	def
+	del
+	elif
+	else
+	except
+	return
+	for
+	from
+	global
+	try
+	import
+	in
+	is
+	lambda
+	while
+	not
+	or
+	pass
+	raise
+	finally
+	continue
+	nonlocal
+	with
+	yield
+
+
+
+
+	## Examples ##
 
 		9 | 4
 		  |---
@@ -96,130 +178,141 @@ Mod ->	1 | 2	<- Floor division
 
 - Division:
 >>> 9/4
-	2.25
+[]	2.25
 
 - Floor division:
 >>> 9//4
-	2
+[]	2
 
 - Mod:
 >>> 9 % 4
-	1
+[]	1
 
 
-
+	## - ##
 
 
 ------------------------------------
 
 	STRINGS
 
-## Examples ##
-
+- Simple or double quotation marks can be used to define a String.
+- Examples:
 >>> ' Eu sou A. '
 >>> " I'm A. "
 >>> ' Citação: "A". '
 
->>>  print('\t Hello \n\t World')
-		Hello
-		World
-
+- Scape Characters:
+	\t		Tab
+	\n		New Line
 
 
 - Print string:
 >>> print (<str>)
 
-- Print raw string (any escape sequence will be ignored):
+- Print raw string (any escape sequence interpretation will be ignored):
 >>> print (r <str>)
 
-
-
-
-
-
-- Tamanho (size):
+- Size:
 >>> len(<string>)
 
-
-- Access element:
+- Access element (index starts on 0):
 >>> <string>[<index>]
 
-## Examples ##
->>> someString = 'FUCKING HELP ME'
->>> someString[0]
-	F
-
-
-
-
-- Access multiple elements:
+- Access multiple elements (both optional parameters):
 >>> <string>[<included-start>:<excluded-stop>]
 
-## Examples ##
->>> someString[:]
-	FUCKING HELP ME
->>> print( someString[:4] , someString[13:] )
-	FUCK ME
-
-
-
-
-
-- Access elements with some frequency (increment):
+- Access elements with some frequency (increment, accepts negative):
 >>> <string>[::<step>]
-
-## Examples ##
->>> someString[::2]
-	FCIGHL E
->>> someString[::-1]
-	EM PLEH GNIKCUF
-
-
-
 
 - Concatenate:
 >>> <string> + <string>
->>> <string> * <int-num>
+>>> <string> * <integer-number>
 
-## Examples ##
->>> someString + ", BITCH"
-	FUCKING HELP ME, BITCH
+
+
+METHODS
+
+- Make first letter Upper Case:
+>>> <string>.capitalize()
+
+- Count how many instances of a character there is:
+>>> <string>.count('<char>')
+
+- Find position of first instance of a character:
+>>> <string>.find('<char>')
+
+- Make string centered on a specific size using some character:
+>>> <string>.center(<size>, '<char>') 
+
+	## Example ##
+
+>>> 'hellooo'.center(20,'~')
+[]	'~~~~~~hellooo~~~~~~~'
+
+	## - ##
+
+- Check if there are only AlphaNumeric characters:
+>>> <string>.isalnum()
+
+- Check if there are only Alphabetical characters:
+>>> <string>.isalpha()
+
+- Make all Lower case:
+>>> <string>.lower()
+
+- Check if is all Lower case:
+>>> <string>.islower()
+
+- Make all Upper case:
+>>> <string>.upper()
+
+- Check if is all Upper case:
+>>> <string>.isupper()
+
+- Check if ends with a character:
+>>> <string>.endswith('<char>')
+
+- Returns a List using a character as divisor (default=' '):
+>>> <string>.split(<divisor>)
+
+- Returns a List including the divisor:
+>>> <string>.partition(<divisor>)
+
+- Replace any appearence of a pattern by other:
+>>> <string>.replace('<pattern>', '<replacement>')
+
+- Get a String from a List, adding a divisor between each element:
+>>> '<divisor>'.join(<list>)
+
+
+
+
+
+
+	## Examples ##
+
+>>> someString = 'FUCKING HELP ME'
+>>> someString[::2]
+[]	FCIGHL E
+
+>>> someString[::-1]
+[]	EM PLEH GNIKCUF
+
 >>> (someString[:4] + someString[7]) * 10
-	FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK 
+[]	FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK 
 
+>>> '! '.join(['FUCKING', 'HELP', 'ME'])
+[]	'FUCKING! HELP! ME'
 
-
-
-- Some methods:
-
-
->>> someString.lower()
-	fucking help me
->>> someString.islower()
-	True
-	
->>> someString.upper()
-	FUCKING HELP ME
->>> someString.isupper()
-	True
-
-
->>> someString.split()
-	['FUCKING', 'HELP', 'ME']
-
-
->>> someString.replace('ING HELP', '')
-	FUCK ME
-
-
->>> '  |separator|  '.join(['FUCKING', 'HELP', 'ME'])
-	FUCKING  |separator|  HELP  |separator|  ME
-
+	## - ##
 
 
 ------------------------------------
 
 	STRING FORMATING
+
+OLD FORMATING METHOD
 
 - Formating Strings:
 
@@ -230,11 +323,14 @@ Mod ->	1 | 2	<- Floor division
 - Formating Operators:
 >>> ' %<padding>.<decimal><format> '
 
-padding - minimum padding width (negative to align left, default right, zero on front to fill remaning space with zeros)
+padding :	Minimum padding width.
+			Negative number to align to the left, default to right.
+			Zero on front to fill remaning space with zeros.
 
-decimal - number of decimal cases (default=6), or truncate index for strings
+decimal :	Number of decimal cases (default=6).
+			Can also be a truncate index for strings.
 
-formats - type of format aplied
+formats :	Type of format aplied:
 	%s - String (or any object with string representation, like numbers)
 	%d - Integers (decimal system)
 	%f - Floating point numbers
@@ -245,48 +341,39 @@ formats - type of format aplied
 
 
 
+NEW FORMATING METHOD
 
+- New formating method:
 
-- New formating (permanently) method:
 >>> ' {} '.format(<string>)
+
 >>> ' {}  ...  {} '.format(<string>, ..., <string>)
+
 >>> ' {<d>[<key>]}  ...  {<d>[<key>]} '.format( <d>=<dict> )
-
-- Format unpacking tuple:
->>> ' {}  ...  {} '.format( * <tuple> )
-
-- Format unpacking dictionary:
->>> ' {<key>}  ...  {<key>} '.format( ** <dict> )
-
-- Formating class attributes:
->>> <obj> = <Class>()
->>> ' {<c>.<attribute>}  ...  {<c>.<attribute>} '.format(<c>=<obj>)
-
-
-
-
-- Format with local variables:
-
->>> <var> = <value>
->>> f' {<var>} '
-
->>> <dict> = {...}
->>> f' {<dict>[<key>]}  ...  {<dict>[<key>]} '
-
-
 
 
 
 - Formating Operators:
 >>> ' {<spec-op>:<form-op>} '
 
-Specifiers Operators:
+- Specifiers Operators:
 	{} - strings will be aplied in the order passed on 'format()'
 	{<position>} - positional argument for strings given to 'format()'
-	{<key>} - keyword argument, must be defined on 'format()' arguments
+	{<key>} - keyword argument; must be defined on 'format()' arguments
 
+	## Examples ##
 
-Formating Operators (groups in the order they must be placed or not):
+>>> ' {2} {0} {3} {1} '.format( 'one', 'three', 'zero', 'two' )
+[]	' zero one two three '
+
+>>> B='bee'
+>>> C='see'
+>>> ' {a} {b} {c} '.format( b=B, c=C, a='eei' )
+[]	' eei bee see '
+
+	## - ##
+
+- Formating Operators (groups in the order they must be placed or not):
 
 	{:*} - fill remaning space with '*'
 	{:0} - fill remaning space with zeros
@@ -311,8 +398,30 @@ Formating Operators (groups in the order they must be placed or not):
 	{:%} - faction to percentage
 
 
+	## Examples ##
+
+>>> "Binary representation of {0} is {0:b}".format(12)
+[]	'Binary representation of 12 is 1100'
+
+	## - ##
+
+
 - Dynamic Formating:
->>> ' {:{fill}{align}{width}} '.format(<str>, fill='<*/0>', align='<</^/>>', width=<padding>))
+>>> ' {:{fill}{align}{width}} '.format(<str>, fill='<*/0>', align='< </^/> >', width=<padding>))
+
+
+
+
+
+- Format unpacking tuple:
+>>> ' {}  ...  {} '.format( * <tuple> )
+
+- Format unpacking dictionary:
+>>> ' {<key>}  ...  {<key>} '.format( ** <dict> )
+
+- Formating class attributes:
+>>> <obj> = <Class>()
+>>> ' {anything.<attribute>}  ...  {anything.<attribute>} '.format(anything=<obj>)
 
 
 
@@ -321,8 +430,21 @@ Formating Operators (groups in the order they must be placed or not):
 
 
 
+OTHER (weird) WAY OF FORMATING
 
-## Examples ##
+- Format with local variables:
+
+>>> <var> = <value>
+>>> f' {<var>} '
+
+>>> <dict> = {...}
+>>> f' {<dict>[<key>]}  ...  {<dict>[<key>]} '
+
+
+
+
+
+	## Examples ##
 
 >>> numerooo = 69.69
 >>> otro_num = 27
@@ -331,14 +453,15 @@ Formating Operators (groups in the order they must be placed or not):
 >>> i = 'Inteiro:  %d\n'
 >>> f = 'Float(1 decimal):[%12.3f] \n                 [123456789-12]\n'
 >>> h = 'Hexadecimal: %X '
->>> print( a, n % numerooo, i % numerooo, f % numerooo, h % otro_num)
-	Formating operators:
 
-	Número como string: 69.69 
-	Inteiro:  69 
-	Float(1 decimal):[      69.690] 
-	                 [123456789-12] 
-	Hexadecimal: 1B
+>>> print( a, n % numerooo, i % numerooo, f % numerooo, h % otro_num)
+[]	Formating operators:
+[]
+[]	Número como string: 69.69 
+[]	Inteiro:  69 
+[]	Float(1 decimal):[      69.690] 
+[]	                 [123456789-12] 
+[]	Hexadecimal: 1B
 
 
 
@@ -352,63 +475,56 @@ Formating Operators (groups in the order they must be placed or not):
 
 >>> aurelio = 'One: {a}\nTwo: {b}\nThree: {c}'
 >>> print(aurelio)
-	One: {a}
-	Two: {b}
-	Three: {c}
+[]	One: {a}
+[]	Two: {b}
+[]	Three: {c}
+
 >>> aurelio.format(a=1, b='two', c=12.3)
 >>> print(aurelio)
-	One: {a}
-	Two: {b}
-	Three: {c}
+[]	One: {a}
+[]	Two: {b}
+[]	Three: {c}
 
 
 
->>> ' {2} {0} {3} {1} '.format( 'one', 'three', 'zero', 'two' )
-	' zero one two three '
-
-	
->>> b='bee'
->>> c='see'
->>> ' {a} {b} {c} '.format( b=b, c=c, a='eei' )
-	' eei bee see '
-
-
->>> "Binary representation of {0} is {0:b}".format(12)
-
-
-
-
-
+	## - ##
 
 ------------------------------------
 
 	LISTS
 
-- Em python, listas permitem múltiplos tipos de dados e o tamanho não é fixo
+- In Python, Lists allow multiple types of data and don't have a fixed size.
+- The same ways of accessing and indexing Strings works for Lists.
 
-- Mesmas formas de acesso e indexação de strings funcionam em listas:
+- Defining a List:
+>>> <lsit> = [<element>, ..., <element>]
 
-## Examples ##
->>> asdf = [1,2,'minha juda']
+- Append element to the end of a List:
+>>> <list>.append(<element>)
 
->>> print(asdf[::-1])
-	['minha juda', 2, 1]
-
->>> print(asdf[-1][::-1])
-	aduj ahnim
-
-
-
-
-
-- Append Method:
->>> <list>.append(<list>)
+- Add Lists (extend)
 >>> <list> + <list>
+>>> <list>.extend(<list>)
 
-- Remove a element from a list and print it (default-index: -1):
->>> <list>.pop()
+- Insert a element on a specific index:
+>>> <list>.insert(<index>, <element>)
+
+- Remove a element of a index from a list and return it (default-index: -1):
 >>> <list>.pop(<index>)
 
+- Remove the first occurrence of a element:
+>>> <list>.remove(<element>)
+
+- Check if an element is in a List (boolean):
+>>> <element> in <list>
+
+
+
+
+METHODS
+
+- Get the index of a specific element:
+>>> <list>.index(<element>)
 
 - Reverse list elements:
 >>> <list>.reverse()
@@ -419,21 +535,32 @@ Formating Operators (groups in the order they must be placed or not):
 - Get the list elements sorted (without altering the string):
 >>> sorted(<list>)
 
+- Count how many times a element appears:
+>>> <list>.count(<element>)
 
-- List comprehension:
+
+
+
+
+LIST COMPREHENSION
+
 >>> [<element/instruction> for <element> in <iterable>]
 >>> [<element/instruction> for <element> in <iterable> if <boolean>]
 >>> [<element/instruction> if <boolean> else <element/instruction> for <element> in <iterable>]
 
 >>> [<element/instruction> for <element> in <iterable> for <element> in <iterable> ...]
 
->>> {<key>: <value> for (<key>, <value>) in <iterable>}
 
 
 
 
+	## Examples ##
 
-## Examples ##
+>>> asdf = [1,2,'minha juda']
+>>> print(asdf[::-1])
+	['minha juda', 2, 1]
+>>> print(asdf[-1][::-1])
+	aduj ahnim
 
 
 >>> l_1 = [1,2,3]
@@ -442,15 +569,15 @@ Formating Operators (groups in the order they must be placed or not):
 >>> mat = [l_1, l_2, l_3]
 
 >>> first_col = [row[0] for row in mat]
-	[1, 4, 7]
+[]	[1, 4, 7]
 >>> first_col = list(list(zip(*mat))[0])
-	[1, 4, 7]
+[]	[1, 4, 7]
 >>> diag = [mat[ind][ind] for ind in [0,1,2] ]
-	[1, 5, 9]
+[]	[1, 5, 9]
 >>> diag2 = [mat[ind][2-ind] for ind in [0,1,2] 
-	[3, 5, 7]
+[]	[3, 5, 7]
 >>> fulllist = [ mat[i][j]  for i in range(len(mat)) for j in range(len(mat[i]))]
-	[1, 2, 3, 4, 5, 6, 7, 8, 9]
+[]	[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
 
@@ -459,14 +586,14 @@ Formating Operators (groups in the order they must be placed or not):
 >>> celsius = [0, 10, 15, 20, 30, 50, 100]
 >>> fahrenheit = [ temp*(9/5)+32  for temp in  celsius ]
 >>> [int(f) for f in fahrenheit]
-	[32, 50, 59, 68, 86, 122, 212]
+[]	[32, 50, 59, 68, 86, 122, 212]
 
 
 
 
 
 
->>> # Multiply matrix
+- Multiply matrix using list comprehension:
 
 >>> X = [[12,7,3],
 >>> 	[4 ,5,6],
@@ -478,12 +605,13 @@ Formating Operators (groups in the order they must be placed or not):
 
 >>> result = [[sum(a*b for a,b in zip(X_row,Y_col)) for Y_col in zip(*Y)] for X_row in X]
 >>> for r in result: print(r)
-	[114, 160, 60, 27]
-	[74, 97, 73, 14]
-	[119, 157, 112, 23]
+[]	[114, 160, 60, 27]
+[]	[74, 97, 73, 14]
+[]	[119, 157, 112, 23]
 
 
 
+	## - ##
 
 ------------------------------------
 
@@ -492,16 +620,25 @@ Formating Operators (groups in the order they must be placed or not):
 - Defining dictionary:
 >>> <dict> = {'<key>':<object> , ...}
 
+- Create dictionary using list comprehension:
+>>> {<key>: <value> for (<key>, <value>) in <iterable>}
+
 - Accessing elements:
 >>> <dict>['key']
 
 - Adding new elements:
 >>> <dict>['key'] = <object>
 
+
+
+METHODS
+
+- Return the value of key OR returns a value if the key does not exist:
+>>> <dict>.get(<key>, <value>)
+
 - Show dict keys (object type: dict_keys):
 >>> <dict>.keys()
 >>> list(<dict>.keys())
-
 
 - Show dict values (object type: dict_values):
 >>> <dict>.values()
@@ -510,6 +647,8 @@ Formating Operators (groups in the order they must be placed or not):
 - Show dict items (object type: dict_items):
 >>> <dict>.items()
 >>> list(<dict>.items())
+
+
 
 
 ------------------------------------
@@ -534,7 +673,7 @@ Formating Operators (groups in the order they must be placed or not):
 
 
 
-- Defining a tuple if only one item:
+- Defining a tuple with only one item:
 >>> <tuple> = (<object>, )
 
 ------------------------------------
@@ -556,14 +695,14 @@ Formating Operators (groups in the order they must be placed or not):
 >>> <file> = open('<file-path>', mode='<mode>')
 
 Operations Mode:
-r - read (default), error if the file does not exist.
-w - write, creates the file if it does not exist. Overwrite if it does.
-a - append, creates the file if it does not exist.
-x - exclusive creation, creates the file, returns an error if the file exists.
+	r - read (default), error if the file does not exist.
+	w - write, creates the file if it does not exist. Overwrite if it does.
+	a - append, creates the file if it does not exist.
+	x - exclusive creation, creates the file, returns an error if the file exists.
 
 Mode:
-t - text (default)
-b - binary
+	t - text (default)
+	b - binary
 
 
 - When working with files in text mode, it is highly recommended to specify the encoding type.
@@ -610,7 +749,7 @@ b - binary
 
 
 
-
+SAFETY
 
 - Close a file after it is used:
 >>> <file>.close()
@@ -618,16 +757,20 @@ b - binary
 - If an exception occurs when performing a operation on the file, the code exits without closing it.
 - Thus, a safer way to use de file is:
 
->>> try:
->>> 	<file> = open('<file-path>', <encoding>)
->>> 	
->>> finally:
->>> 	<file>.close()
-
-- Or even saferer:
 
 >>> with open('<file-path>', <encoding>) as <file>:
 >>> 	<instructions>
+
+
+
+
+STRINGIO
+
+- Import:
+>>> import io
+
+- Create a file from a string:
+>>> <file-obj> = io.StringIO(<string>)
 
 
 
@@ -638,25 +781,53 @@ b - binary
 
 	SETS
 	
-- Sets só permitem valores únicos, sem repetir, e ordenados
+- Sets only allow ordered repeating values or elements.
 
 - Defining a set:
 >>> <set> = set()
+>>> <set> = {<element>, ... ,<element>}
 
 - Add elements to set:
->>> <set>.add(<value>)
+>>> <set>.add(<element>)
+
+- Discart element of a set:
+>>> <set>.discart(<element>)
+
+
+METHODS
+
+- Clear set:
+>>> <set>.clear()
+
+- Create a copy of a set:
+>> <copy-set> = <set>.copy()
+
+- Return a set with the Difference between a set and another:
+>>> <set>.difference(<another-set>)
+
+- Update a set to be the Difference between anoter set:
+>>> <set>.difference_update(<another-set>)
+
+- Return a set with Intersection between a set and another:
+>>> <set>.intersection(<anoter-set>)
+
+- Update a set to be the Intersection with anoter set:
+>>> <set>.intersection_update(<another-set>)
+
+- Return a set as Union of a set and another:
+>>> <set>.union(<anoter-set>)
 
 
 
+	## Examples ##
 
-
-## Examples ##
 - Get all values on a list, without repeating:
 >>> l = [1,2,2,33,4,4,11,22,3,3,2]
 >>> shit = list(set(l))
 >>> print(shit)
-	[1, 2, 33, 4, 3, 11, 22]
+[]	[1, 2, 33, 4, 3, 11, 22]
 
+	## - ##
 
 
 
@@ -677,7 +848,8 @@ b - binary
 
 >>> for <element> in <iterable>:
 >>> 	<instructions>
-# iterables: lists, dictionary keys, dictionary values, dictionary items, tuples, strings, iterators
+
+- Iterables are: lists, dictionary keys, dictionary values, dictionary items, tuples, strings, iterators.
 
 >>> for _ in <iterable>:
 >>> 	<instructions>
@@ -699,8 +871,8 @@ b - binary
 - Tuple unpacking:
 >>> (<elements>, ...) = <tuple>
 
-- Create a range-sequence of Integers:
->>> range(<excluded-stop>)							# start = 0
+- Create a range-sequence of Integers (default start = 0):
+>>> range(<excluded-stop>)
 >>> range(<included-start>, <excluded-stop>)
 >>> range(<included-start>, <excluded-stop>, <step>)
 
@@ -737,8 +909,8 @@ b - binary
 
 
 
+LIST COMPREHENSION
 
-- List comprehension:
 >>> [<element/instruction> for <element> in <iterable>]
 >>> [<element/instruction> for <element> in <iterable> if <boolean>]
 >>> [<element/instruction> if <boolean> else <element/instruction> for <element> in <iterable>]
@@ -752,14 +924,14 @@ b - binary
 
 
 
-## Examples ##
+	## Examples ##
 
 >>> range(0,10)
-	range(0, 10)
+[]	range(0, 10)
 >>> type(range(0,10))
-	range
+[]	range
 >>> list(range())
-	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[]	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
 
@@ -770,11 +942,11 @@ b - binary
 >>> 	if (x % 2) == 1:
 >>> 		continue
 >>> 	print (x, 'is even')
-	2 is even
-	4 is even
-	6 is even
-	8 is even
-	10 is even
+[]	2 is even
+[]	4 is even
+[]	6 is even
+[]	8 is even
+[]	10 is even
 
 
 
@@ -782,13 +954,13 @@ b - binary
 >>> l = [ (1, 2), (3, 4), (5, 6) ]
 >>> (um, dois) = l[0]
 >>> print (dois, um)
-	2 1
+[]	2 1
 
 >>> for (um, dois) in l:
 >>> 	print("%d x %d = %d" %(um,dois,um * dois))
-	1 x 2 = 2
-	3 x 4 = 12
-	5 x 6 = 30
+[]	1 x 2 = 2
+[]	3 x 4 = 12
+[]	5 x 6 = 30
 
 >>> for (key, value) in <dict>.items():
 >>> 	print(key, ':', value)
@@ -800,6 +972,7 @@ b - binary
 >>> for n in range(1,101): print('FizzBuzz') if (n%3==0 and n%5==0) else (print('Fizz') if n%3==0 else (print('Buzz') if n%5==0 else print(n)))
 
 
+	## - ##
 
 ------------------------------------
 
@@ -812,7 +985,7 @@ b - binary
 - Call function:
 >>> <function>()
 
-- Add Docstring (description) to a function:
+- Add Docstring (a type of description) to a function:
 >>> def <function>():
 >>> 	"""
 >>> 	<Docstring>
@@ -836,7 +1009,7 @@ b - binary
 
 
 
-## Examples ##
+	## Examples ##
 
 >>> def isprime(num):
 >>>     """
@@ -849,7 +1022,7 @@ b - binary
 >>>     else:
 >>>         print("Prime")
 >>> isprime(104729)
-	Prime
+[]	Prime
 
 
 
@@ -859,28 +1032,27 @@ b - binary
 >>> 	print(locals())
 
 >>> sameFunc = func()
-	{'a': 1}
+[]	{'a': 1}
 >>> type(sameFunc)		# func() returned nothing
-	NoneType
+[]	NoneType
 >>> sameFunc = func
 >>> def otherFunc(function):
 >>> 	function()
 >>> otherFunc(sameFunc)
-	{'a': 1}
+[]	{'a': 1}
 
 
 
+	## - ##
 
 
 ------------------------------------
 
-	UNPACKING
-
-- Aka Starred Expression.
+	UNPACKING (aka STARRED EXPRESSIONS)
 
 - Unpacking can be done with lists, tuples and dictionaries.
 
-- Unpacking can be useful to use the items of a iterable as arguments for a function call requiring separate positional arguments.
+- Unpacking can be useful to use the items of a iterable as arguments for a function call requiring separated positional arguments.
 
 - For lists and tuples it is used the '*' operator.
 
@@ -890,14 +1062,17 @@ b - binary
 
 
 
-## Examples ##
+	## Examples ##
 
 >>> args = [5, 27, 3]
 >>> list(range(*args))
-	[5, 8, 11, 14, 17, 20, 23, 26]
+[]	[5, 8, 11, 14, 17, 20, 23, 26]
 
 >>> d = {'word':'butt' , 'l':'t'}
 >>> print( ' {word} {l} {var}'.format( **d, var='shit' ))
+[]	butt t shit
+
+	## - ##
 
 ------------------------------------
 
@@ -937,13 +1112,13 @@ b - binary
 >>> globals()
 
 >>> locals()['<variable-label>']
->>> globals())['<variable-label>']
+>>> globals()['<variable-label>']
 
 
 
 
 
-## Examples ##
+	## Examples ##
 
 - Locals (x):
 
@@ -953,11 +1128,9 @@ b - binary
 >>> 	print(x)
 
 >>> print(x)
-	global
+[]	global
 >>> func()
-	local
-
-
+[]	local
 
 
 
@@ -975,7 +1148,8 @@ b - binary
 >>> 	innerFunc1()
 >>> 	innerFunc2()
 >>> outterFunc()
-	
+[]	nested local
+[]	local
 
 
 
@@ -983,13 +1157,10 @@ b - binary
 >>> def greet():
 >>> 	name = 'local'
 >>> 	def hello():
->>> 		print('enclosing function '+ name)
+>>> 		print(name)
 >>> 	hello()
 >>> greet()
-	enclosing function local
-
-
-
+[]	local
 
 
 
@@ -1002,7 +1173,7 @@ b - binary
 >>> 		print(name)
 >>> 	hello()
 >>> greet()
-	global
+[]	global
 
 
 
@@ -1022,6 +1193,7 @@ b - binary
 
 
 
+	## - ##
 
 
 ------------------------------------
@@ -1080,13 +1252,13 @@ b - binary
 >>> 	def <parente-method>(self, <parameters>, ...):
 >>> 		<new-instructions>
 >>> 	
->>> 		# Using a overwriten parent method:
->>> 		
->>> 		<parent-Class>.<parente-method>()
+>>> 	# Using a overwriten parent method:
+>>> 	
+>>> 	<parent-Class>.<parente-method>()
 
 
 
-
+SPECIAL METHODS
 
 - More info on special methods: https://www.pythonlikeyoumeanit.com/Module4_OOP/Special_Methods.html
 - More info on special methods: https://diveintopython3.net/special-method-names.html
@@ -1148,6 +1320,8 @@ b - binary
 
 
 - Save object to file:
+- /python-modules/python-pickleshare-catalog
+- Also:
 https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence
 
 
@@ -1192,6 +1366,8 @@ ramdom
 os
 time
 pickle
+line_profiler
+numpy
 
 
 - Available:
@@ -1217,18 +1393,19 @@ pickle
 <project>/
 |
 |	<main>.py
-|	<module>.py
+|	<module-a>.py
+|	...
 |	
 |	<package>/
 |	|
 |	|	__init__.py
-|	|	<module>.py
+|	|	<module-b>.py
 |	|	...
 |	|	
 |	|	<sub-package>/
 |	|	|
 |	|	|	__init__.py
-|	|	|	<module>.py
+|	|	|	<module-c>.py
 |	|	|	...
 |	|	|
 |	|
@@ -1239,13 +1416,16 @@ pickle
 
 
 - Import:
->>> import <module>
->>> import .<module>
->>> import <package>.<module>
->>> import <package>.<sub-package>.<module>
 
+>>> import .<module-a>
+>>> import <package>.<module-b>
+>>> import <package>.<sub-package>.<module-c>
+
+>>> import <module>
 >>> import <module> as <name>
 
+>>> from <module> import *
+>>> from <module> import <function>
 >>> from <package>.<module> import <function>
 >>> from <package>.<sub-package>.<module> import <function>
 
@@ -1305,7 +1485,7 @@ $ conda install <package> -n <env>
 - Display where Python looks for modules:
 >>> import sys
 >>> type(sys.path)
-	list
+[]	list
 >>> print('\n'.join(sys.path))
 
 
@@ -1340,7 +1520,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 
-## Examples ##
+	## Examples ##
 
 
 
@@ -1381,18 +1561,20 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 >>> os.chdir(cwd)
 
 
+	## - ##
 
 ------------------------------------
 
-	SOME BUILT-IN FUNCTIONS
+	MAP, REDUCE, FILTER, ZIP, ENUMERATE, ALL & ANY
 
 - MAP
 - Aply a function to all of a iterable's elements.
 - Returns a memory instruction (map type object).
-- Don't use the paranthesis on the function.
+- Do not use the paranthesis on the function.
 - You can define a lambda right on the map() argument.
 
 >>> map(<function>, <iterable>)
+>>> map(<lambda>, <iterable>)
 
 >>> list(map(<function>, <iterable>))
 
@@ -1402,7 +1584,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 - REDUCE
 - Aply a function to all of a iterable's elements, two by two.
-- Initially the first two, and then, it's result and the next from the iterable.
+- Initially with the first two, and then, with it's result and the next from the iterable.
 - Goes until it is reduced to a single element which is returned.
 
 >>> from functools import reduce	# Python 3
@@ -1413,7 +1595,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 - FILTER
-- Uses a filter function (with boolean return) to exclude items in an iterable object
+- Uses a filter function with boolean return to exclude items in an iterable object.
 - Returns a memory instruction (filter type object).
 
 >>> filter(<function>, <iterable>)
@@ -1458,24 +1640,24 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 
-## Examples ##
+	## Examples ##
 
 >>> celsius = [0, 9, 10, 15, 20, 22, 30, 40, 50, 90, 100, 120]
 >>> fahrenheit = list(map(lambda temp: temp * (9/5) + 32, celsius))
-	[32.0, 48.2, 50.0, 59.0, 68.0, 71.6, 86.0, 104.0, 122.0, 194.0, 212.0, 248.0]
+[]	[32.0, 48.2, 50.0, 59.0, 68.0, 71.6, 86.0, 104.0, 122.0, 194.0, 212.0, 248.0]
 
 
 
 >>> from functools import reduce
 >>> values = [47, 11, 42, 13]
 >>> biggest = reduce( (lambda a,b: a if a>b else b) , values )
-	47
+[]	47
 
 
 
 >>> ages = [5, 12, 17, 18, 24, 32]
 >>> underage = list(filter( (lambda ag: False if x>18 else True) , ages))
-	[5, 12, 17]
+[]	[5, 12, 17]
 
 
 
@@ -1483,12 +1665,16 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 >>> lCase = ['a', 'b', 'c']
 >>> nums = (1, 2, 3, 4, 5)
 >>> list(zip(uCase, lCase, nums))
-	[('A', 'a', 1), ('B', 'b', 2), ('C', 'c', 3)]
+[]	[('A', 'a', 1), ('B', 'b', 2), ('C', 'c', 3)]
 
 
 
+- Remove all items in Python list containing a number:
+>>> foo = ['This', 'That', 'Those4423', '42', '13b', 'Yes', '2']
+>>> [word for word in foo if not any(letter.isdigit() for letter in word)]
 
 
+	## - ##
 
 
 
@@ -1519,13 +1705,17 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 
-- Decorate (existing or new, respectively):
+- Decorate existing functions:
 
 >>> <new-func> = <decorator> (<func>)
+
+
+- Decorate new functions:
 
 >>> @<decorator>
 >>> def <func> ():
 >>> 	<instructions>
+
 
 
 - Multiple decorators can be chained:
@@ -1566,6 +1756,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 
+CLOSURE
 
 - Get some data attached (Closure) to a function.
 - By using this, once defined, the function will hold a "hidden" data.
@@ -1598,7 +1789,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 
-## Examples ##
+	## Examples ##
 
 >>> def make_multiplier(n):
 >>> 	
@@ -1609,11 +1800,11 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 >>> times3 = make_multiplier(3)
 >>> times3(9)
-	27
+[]	27
 
 >>> times5 = make_multiplier(5)
 >>> times5(9)
-	45
+[]	45
 
 >>> def addExplaning(func):
 >>> 	
@@ -1625,9 +1816,10 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 >>> 
 >>> times5 = addExplaning(times5)
 >>> print(times5(9))
-	I'm a function that multiplies 5 by the given number 9:
-	45
+[]	I'm a function that multiplies 5 by the given number 9:
+[]	45
 
+	## - ##
 
 ------------------------------------
 
@@ -1659,19 +1851,20 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 >>> 		<instruction>
 >>> 		self.n += 1
 >>> 		return <value>
->>> 
+
 >>> <obj> = <custom-iterator>(<max>)
 >>> <iterator> = iter(<obj>)
 
 
 
-
+GENERATOR
 
 - Function that generates and returns a iterator.
 - When called, returns a iterator object, but does not start execution immediately.
 - Mehods '__iter__()' and '__next__()' are implemented automatically.
 - Local variables are not destroyed when the function yields.
 - The generator object can be iterated only once.
+
 - Can be used to represent an infinite stream of data.
 
 >>> def <gerenator>():
@@ -1697,7 +1890,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 
-## Examples ##
+	## Examples ##
 
 >>> def PowTwo(max=0):
 >>> 	n = 0
@@ -1711,7 +1904,7 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 >>> for i in PowTwo(3):
 >>> 	print(i, end=' ')
-	1 2 4 8 
+[]	1 2 4 8 
 
 
 # Sum of the squares of the numbers in the Fibonacci Sequence
@@ -1726,18 +1919,519 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 >>> 		yield num**2
 >>> 
 >>> print(sum(square(fibonacci_numbers(100))))
-	203023208030065646654504166904697594722575
+[]	203023208030065646654504166904697594722575
 
-	
+
+	## - ##
+
 ------------------------------------
 
 	DEBUGGING
 
 - Evaluate a boolean and throw a 'AssertionError' (and message) if False:
-
 >>> assert <boolean>
-
 >>> assert <boolean>, <str-message>
+
+
+PYTHON DEBUGGER
+
+- Can create a interactive debugging point (set_trace).
+- On it, while running, the code pauses.
+- Then, it is possible to modify variables, check their values, etc..
+- Once we are done, type 'c' to continue execution.
+
+- Import:
+>>> import pdb
+
+- Create a set_trace:
+>>> pdb.set_trace()
+
+Commands:
+	h	help		- Print available commands.
+	c	continue	- Continue execution.
+
+More Commands:
+(https://docs.python.org/dev/library/pdb.html#debugger-commands)
+
+
+------------------------------------
+
+	COLLECTIONS MODULE
+
+
+
+
+COUNTER
+
+- Import:
+>>> from collections import Counter
+
+- Count how many times each element appears in a iterable (returns a type Counter object):
+>>> Counter(<iterable>)
+
+- See a number of elements ordered by most common appearences (default=all):
+>>> Counter(<iterable>).most_common()
+>>> Counter(<iterable>).most_common(<number>)
+
+- Common methods for Counter:
+>>> Counter.values()
+>>> Counter.items()			# From a Counter to a List of pairs in Tuples.
+>>> Counter(dict(<list>))	# From a List of pairs in Tuples to a Counter.
+>>> Counter.clear()			# Redefine counts (?).
+
+
+
+
+
+DEFAULTDICT
+
+- Does not return a error when trying to access a non existing key.
+- The defaultdict has a default item, which might be a type object (int, list, object, functions ...) or a function.
+- When it tries to access a item with a key that doesn't exist it creates the item using the default item.
+
+- Import:
+>>> from collections import defaultdict
+
+- Create a DefaultDict with a default item:
+>>> <d-dict> = defaultdict(<type-object/function>)
+
+
+
+
+
+
+	## Examples ##
+
+>>> from collections import defaultdict
+
+>>> d = defaultdict(lambda : 42)
+>>> d['existent'] = 0
+>>> d['existent']
+[]	0
+>>> d['non-existent']
+[]	42
+
+>>> str = 'mississippi'
+>>> d = defaultdict(int)
+>>> for letter in str:
+>>> 	d[letter] += 1
+
+>>> d.items()
+[]	dict_items([('m', 1), ('i', 4), ('s', 4), ('p', 2)])
+
+
+>>> s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+>>> d = defaultdict(list)
+>>> for color, value in s:
+>>> 	d[color].append(value)
+
+>>> d.items()
+[]	dict_items([('yellow', [1, 3]), ('blue', [2, 4]), ('red', [1])])
+
+	## - ##
+
+
+
+
+
+NAMEDTUPLE
+
+- Named tuples are basically easy-to-create, lightweight object types.
+
+- Import:
+>>> from collections import namedtuple
+
+- Create a Named Tuple 'Class' with a name and parameters (separated by spaces) that can holf values:
+>>> <n-tuple> = namedtuple('<name>', '<parameter> ... <parameter>')
+
+- Instanciate a Named Tuple:
+>>> <instance> = <n-tuple>(<value>, ... ,<value>)
+>>> <instance> = <n-tuple>(<parameter> = <value>, ... ,<parameter> = <value>)
+
+- Access the value from a Named Tuple's parameter:
+>>> <instance>.<parameter>
+
+	## Examples ##
+
+>>> from collections import namedtuple
+>>> Point = namedtuple('Point', 'x y')
+>>> pt1 = Point(1.0, 5.0)
+>>> pt2 = Point(2.5, 1.5)
+
+>>> from math import sqrt
+>>> line_length = sqrt((pt1.x - pt2.x)**2 + (pt1.y - pt2.y)**2)
+[]	3.8078865529319543
+
+	## - ##
+
+
+
+
+------------------------------------
+
+	DATETIME
+
+
+- Import:
+>>> import datetime
+
+- Create a Time Stamp with time info:
+>>> <time-stamp> = datetime.time(<hour>,<minute>,<second>)
+
+- Access parameters:
+>>> <time-stamp>.hour
+>>> <time-stamp>.minute
+>>> <time-stamp>.second
+>>> <time-stamp>.microsecond
+>>> <time-stamp>.tzinfo			# timezone
+
+- Parameters info:
+>>> datetime.time.min
+>>> datetime.time.max
+>>> datetime.time.resolution
+
+
+
+
+- Create a Time Stamp with date info:
+>>> <time-stamp> = datetime.date(<year>,<month>,<day>)
+>>> <time-stamp> = datetime.date.today()
+
+
+
+- Create a Time Stamp with both time and date info:
+>>> <time-stamp> = datetime.datetime(<year>,<month>,<day>,<hour>,<minute>,<second>)
+
+
+
+- More complete info about Date Stamp:
+>>> <time-stamp>.ctime()
+
+
+	## Example ##
+
+>>> today = datetime.datetime(2020,11,25,11,9,25)
+>>> today.ctime()
+[]	'Wed Nov 25 11:09:25 2020'
+
+	## - ##
+
+
+	
+	
+- Convert DateTime Objects to String (Formating):
+>>> <time-stamp>.strftime(<format>)
+
+- Convert String to DateTime Objects (Parsing):
+>>> <time-stamp> = datetime.strptime(<string>, <format>)
+
+
+Formats:
+	%Y	-	Year
+	%y	-	Year without century as a decimal number [00,99].
+	%m	-	Month as a decimal number [01,12].
+	%d	-	Day as a decimal number [01,31].
+
+More Formats:
+(https://docs.python.org/dev/library/time.html#time.strftime)
+
+
+
+------------------------------------
+
+	EXECUTION TIME
+
+- Import:
+>>> import timeit
+
+- Measure and sum execution time of a single-line code, for a number of executions:
+>>> timeit.timeit('<instruction>', number=<executions-times>)
+
+	## Examples ##
+
+>>> "-".join(str(n) for n in range (10))
+[]	'0-1-2-3-4-5-6-7-8-9'
+>>> "-".join(map(str, range (10)))
+[]	'0-1-2-3-4-5-6-7-8-9'
+>>> timeit.timeit('"-".join(str(n) for n in range (100))', number=100000)
+[]	3.819706880999547
+>>> >>> timeit.timeit('"-".join(map(str, range (100)))', number=100000)
+[]	2.6763063040007182
+
+	## - ##
+
+
+- On Jupyter notebook, is possible to use Timeit to get statistics about the execution:
+>>> %timeit <instruction>
+
+
+	## Examples ##
+
+>>> %timeit "-".join(str(n) for n in range (100))
+[]	35.1 µs ± 2.09 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+>>> %timeit "-".join(map(str, range (100)))
+[]	24.4 µs ± 918 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+
+	## - ##
+
+
+LINE PROFILER
+
+- Analyse a code and show which part or line is wasting more time.
+
+- Package: line_profiler
+
+- Info: (https://zapier.com/engineering/profiling-python-boss/)
+- Read the article before using it.
+
+- Set up:
+
+	try:
+		from line_profiler import LineProfiler
+
+		def do_profile(follow=[]):
+			def inner(func):
+				def profiled_func(*args, **kwargs):
+					try:
+						profiler = LineProfiler()
+						profiler.add_function(func)
+						for f in follow:
+							profiler.add_function(f)
+						profiler.enable_by_count()
+						return func(*args, **kwargs)
+					finally:
+						profiler.print_stats()
+				return profiled_func
+			return inner
+
+	except ImportError:
+		def do_profile(follow=[]):
+			"Helpful if you accidentally leave in production!"
+			def inner(func):
+				def nothing(*args, **kwargs):
+					return func(*args, **kwargs)
+				return nothing
+			return inner
+
+
+
+- Just decorate your test function and pass the problem function in the follow argument!
+- Example of usage:
+
+
+	def get_number():
+		for x in xrange(5000000):
+			yield x
+
+	@do_profile(follow=[get_number])
+	def expensive_function():
+		for x in get_number():
+			i = x ^ x ^ x
+		return 'some result!'
+
+	result = expensive_function()
+
+
+
+------------------------------------
+
+	REGULAR EXPRESSIONS
+
+- Info: (https://docs.python.org/dev/library/re.html)
+
+- Find text patterns.
+- Using Unicode charaters.
+- Returns a Match Object.
+- Returns nothing if pattern not found.
+- Span is a tuple with initial and final position for matches found.
+
+- Import:
+>>> import re
+
+- Find a pattern on a string:
+>>> re.search(<pattern>, <string>)
+
+- Match Object methods:
+>>> <match>.start()			# Position of first match
+>>> <match>.end()			# End of last match
+
+
+- Pattern Repetition Syntax:
+	\		Escapes special characters.
+	*		Match 0 or more repetitions of the preceding RE.
+	+		Match 1 or more repetitions of the preceding RE.
+	?		Match 0 or 1 repetitions of the preceding RE.
+	{m}		Exactly m copies of the previous RE should be matched.
+	{m,n}	Match from m to n repetitions of the preceding RE.
+			Omitting m specifies a lower bound of zero, and omitting n specifies an infinite upper bound (comma may not be omitted).
+	A|B		Match either A or B
+	[]		Indicate a set of possible characters.
+			[-]		Range of possible characters. Examples:
+					[a-z]			From a to z.
+					[0-9A-Fa-f]		Any hexadecimal digit.
+					[0-5][0-9] 		All two-digits numbers from 00 to 59.
+			[^]		Complementing the set.
+					'^' has no special meaning if it’s not the first character in the set.
+					Example:
+					[^5]		Any character except '5'.
+					[^^]		Any character except '^
+
+
+
+RE METHODS
+
+- Split strings on patters:
+>>> re.split(<pattern>, <string>)
+
+- Find all matches and Return it:
+>>> re.findall(<pattern>, <string>)
+
+
+
+
+
+
+	## Examples ##
+
+>>> import re
+>>> patterns = ['term1', 'term2']
+>>> text = 'String with term1. Another with term2.'
+>>> re.search(patterns[0], text)
+[]	<re.Match object; span=(12, 17), match='term1'>
+
+>>> for patt in patterns:
+>>> 	if re.search(patt, text[:18]):
+>>> 		print('Found "%s" in "%s".' % (patt, text[:18]))
+>>> 	else:
+>>> 		print('Didn´t found "%s" in "%s".' % (patt, text[:18]))
+[]	Found "term1" in "String with term1.".
+[]	Didn´t found "term2" in "String with term1.".
+
+	## - ##
+
+
+------------------------------------
+
+	GUI
+
+- List of common frameworks for GUI:
+(https://wiki.python.org/moin/GuiProgramming)
+
+- Recommended:
+	PyQt		- Because
+	PyGame		- For graphic games
+	ipywidgets	- For Jupyter
+
+
+
+- Tip:
+	"Se você quer construir aplicativos web, provavelmente vai querer evitar o Python como GUI e usá-lo para o trabalho de back-end usando Flask ou Django. Com os aplicativos da Web, você desejará explorar HTML, CSS e Javascript para fornecer a GUI para seu usuário."
+
+
+
+IPYWIDGETS
+
+- GUIs for Jupyter
+- Package: ipywidgets
+- For jupyte lab:
+(<env>) $ conda install nodejs npm
+(<env>) $ jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+
+
+- Import:
+>>> from ipywidgets import interact, interactive, fixed
+>>> import ipywidgets as wid
+
+
+
+- Make a Widget for inputs (int, boolean, string, tuple, dictionaries ...) of a function with return, giving a initial value:
+>>> interact(<function>, <input>=<value>, ... , <input>=<value>)
+
+- Make a Widget, fixing some of the inputs:
+>>> interact(<function>, <input>=<value>, <input>=fixed(<value>))
+
+
+
+
+
+- Slider Widget:
+
+>>> interact(<function>, <input>=wid.IntSlider(min=<value>, max=<value>, step=<value>, value=<value>))
+>>> interact(<function>, <input>=wid.FloatSlider(min=<value>, max=<value>, step=<value>, value=<value>))
+
+>>> interact(<function>, <input>=(<min>, <max>))
+>>> interact(<function>, <input>=(<min>, <max>, <step>))
+
+
+
+
+
+- Get an instance of Widget:
+>>> <widget> = interactive(<function>, <input>=<value>, ...)
+
+- Display instance of Widget:
+>>> from IPython.display import display
+>>> display(<widget>)
+
+- Close Widget:
+>>> <widget>.close()
+
+- Get current arguments from Widget:
+>>> <widget>.kwargs
+
+- Get current return of Widget:
+>>> <widget>.result
+
+
+
+
+
+
+- Create a Button that executes a function every time it is clicked:
+>>> <button> = wid.Button(description=<string>)
+>>> <button>.on_click(<function>)
+>>> display(<button>)
+ 
+
+ 
+ - Create a Widget that executes a function when text is submitted:
+ >>> <text-widget> = wid.Text()
+ >>> <text-widget>.on_submit(<function>)
+ >>> display(<text-widget>)
+ 
+ 
+ 
+ 
+ 
+ - A fucking bunch of Widgets:
+ 
+ >>> wid.Text(value=<string>, description=<string>)
+ >>> wid.Textarea(value=<string>, description=<string>)
+ 
+ >>> wid.IntSlider(min=<value>, max=<value>, step=<value>, value=<value>)
+ 
+ >>> wid.FloatSlider(min=<value>, max=<value>, step=<value>, value=<value>)
+ >>> wid.FloatSlider( ... , orientation = 'vertical')
+ 
+ >>> wid.FloatProgress(value=<value>, min=<value>, max=<value>, description=<string>)
+ 
+ >>> wid.BoundedFloatText(value=<value>, min=<value>, max=<value>)
+ 
+ >>> wid.CheckBox(value=<boolean>, description=<string>)
+ >>> wid.ToggleButton(value=<boolean>, description=<string>)
+ 
+ >>> wid.Dropdown(options=<list/dictionary>, value=<value>, description=<string>)
+ >>> wid.RadioButtons(options=<list/dictionary>, value=<value>, description=<string>)
+ 
+ 
+ 
+ 
+ 
+ 
+------------------------------------
+
+
 
 
 ------------------------------------
@@ -1754,25 +2448,15 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 - 
 
-------------------------------------
 
 
 
-------------------------------------
+
+	## Examples ##
 
 
 
-------------------------------------
-
-
-
-------------------------------------
-
-
-
-------------------------------------
-
-
+	## - ##
 
 
 ------------------------------------
@@ -1791,131 +2475,6 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 
 
-------------------------------------
 
 
 
-
-#
-#
-
-#
-#   -----------------------------------------
-#   RESERVED WORDS
-#
-False
-None
-True
-and
-as
-assert
-break
-class
-if
-def
-del
-elif
-else
-except
-return
-for
-from
-global
-try
-import
-in
-is
-lambda
-while
-not
-or
-pass
-raise
-finally
-continue
-nonlocal
-with
-yield
-#
-#   -----------------------------------------
-#   MATRIX
->>>
-
-inf = float('inf')
-
-A = [[0,1,4,inf,3],
-     [1,0,2,inf,4],
-     [4,2,0,1,5],
-     [inf,inf,1,0,3],
-     [3,4,5,3,0]]
-
-def printmat(A,space=4):
-
-    print('\n'.join([''.join(['{{:{}}}'.format(str(space)).format(item) for item in row]) for row in A]))
-    return
-
-printmat(A,5)
-
-#
-#   -----------------------------------------
-#   EDX EXAMPLE:
->>>
-
-name = input('Enter file: ')
-handle = option(name)
-
-counts = dict()
-for line in handle:
-    words = line.split()
-    for word in words:
-        counts[word] = counts.get(word,0) + 1
-
-bigcount = None
-bigword = None
-for word,count in counts.items():
-    if bigcount is None or count > bigcount:
-        bigword = word
-        bigcount = count
-
-print(bigword, bigcount)
-
-#
-#
-#   -----------------------------------------
-#	EXAMPLE
-#
-#   Remove all items in Python list containing a number [duplicate]
-#
-#
-
-foo = ['This', 'That', 'Those4423', '42', '13b', 'Yes', '2']
-
-foo1 = [x for x in foo if not any(x1.isdigit() for x1 in x)]
-
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
