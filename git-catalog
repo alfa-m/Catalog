@@ -1,4 +1,4 @@
- 
+
 		GIT
 
 ------------------------------------
@@ -12,10 +12,60 @@ $ git help <command>
 
 url: (https://git-scm.com/docs)
 merge branches?
+git help merge
 
 ------------------------------------
 
-	BASIC START AND MANAGE LOCAL BRANCH AND REMOTES
+	GLOSSARY
+
+- Repository (aka. Local Repository):
+	A Git Repository is the '.git/' directory inside a project, containing all the necessary repository files.
+
+- Work-tree (aka. Workspace, Working Directory):
+	Place where the files of a project's Repository are.
+
+- Path component:
+	Directories and subdirectories inside the Work-tree that lead to a file.
+
+- Top level:
+	The path to the Work-tree.
+
+- Index (aka. Staging Area):
+	Where the files from the project that will be commited are placed.
+	Those files in the Index are called "Staged Files".
+	The ones not added are "Untracked Files".
+	Files can be added and removed from Index at will, before commiting.
+
+- Commit (aka. Revision):
+	Record of changes to the Repository's files.
+	Commits usually contain a brief message/description.
+	Each Commit creates a ID (aka. SHA, hash) to keep record of what changed, when and by who.
+
+- Branch:
+	
+
+- Remote (aka. Upstream Repository):
+	
+
+- Path name:
+	A file inside the Commits (inside the Repository) have a Path name.
+	The Path name is all the Path from the Top level to where this file is in the Work-tree.
+	Never start with slash. As: "path/to/file".
+	
+	Git don't store files or directories with a '.git/' Path componet. Thus, a Repository don't store another Repositories within it.
+	You can create a Git Repository within the Work-tree of another Git repository, but you can't add and commit it to the other.
+
+- Nested repository:
+	A Repository (and Work-tree) that is in another Repository's Work-tree.
+
+- Submodules:
+	A Git Repository that is refered to in another Git Repository.
+
+
+
+------------------------------------
+
+	QUICK START AND BASIC MANAGEMENT
 
 - Create a local repository:
 $ cd <path-to-repo>
@@ -57,6 +107,20 @@ $ git branch -a
 $ git push <remote> <branch>
 $ git push origin master
 
+
+------------------------------------
+
+	INDEX, COMMITS & LOCAL REPOSITORIES
+
+- Display current Branch and Index (staged and untracked files):
+$ git status
+
+- Add all files in a directory (or some specific file) to Index:
+$ git add .
+$ git add <file>
+
+- Remove a Staged File from the Index:
+$ git restore --staged <file>
 
 ------------------------------------
 
