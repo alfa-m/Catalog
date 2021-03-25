@@ -13,7 +13,6 @@ $	: Some command to be used on the Terminal (shell).
 
 <description>	: Something to be replaced according to the description.
 ...				: Possible to repeated pattern indefinitely.
-[key]			: Some Keyboard key to be pressed.
 
 ------------------------------------
 
@@ -53,6 +52,15 @@ $ conda activate udemy
 
 
 
+MISC
+
+- Finding anaconda's install directory:
+$ which conda
+
+- Finding the anaconda's python interpreter (environmental):
+(<env>)$ which python
+
+
 ------------------------------------
 
 	MARKDOWN FORMATING (also jupyter)
@@ -90,21 +98,21 @@ $ conda activate udemy
 
 	NUMBERS, OPERATORS PREDECEDENCE & RESERVED WORDS
 
-- Order of operations:
+- Order of operations (Operator Precedence):
 
-	**				Exponential
-	~  +  -			Complement (all bits reversed), unary plus and minus
-	*  /  %  //		Multiply, devide, modulo, floor division
+	**				Exponential.
+	~  +  -			Complement (all bits reversed), unary plus and minus.
+	*  /  %  //		Multiply, devide, modulo, floor division.
 	+  -
-	>> <<			Right and left bitwise shift
-	&				Bitwise AND
-	^  |			Bitwise XOR and OR
+	>> <<			Right and left bitwise shift.
+	&				Bitwise AND.
+	^  |			Bitwise XOR and OR.
 	<=  <  >  >=
-	=  %=  /=  //=	Assignment operators
-	-=  +=  *= **=	Assignment operators
-	is is not		Identity operators
-	in not in		Membreship operators
-	not or and		Logical operators
+	=  %=  /=  //=	Assignment operators.
+	-=  +=  *=  **=	Assignment operators.
+	is  is not		Identity operators.
+	in  not in		Membreship operators.
+	not  or  and	Logical operators.
 
 
 
@@ -781,17 +789,17 @@ STRINGIO
 
 	SETS
 	
-- Sets only allow ordered repeating values or elements.
+- Sets only allow ordered non repeating values or elements.
 
 - Defining a set:
->>> <set> = set()
+>>> <set> = set(<iterable>)
 >>> <set> = {<element>, ... ,<element>}
 
 - Add elements to set:
 >>> <set>.add(<element>)
 
 - Discart element of a set:
->>> <set>.discart(<element>)
+>>> <set>.discard(<element>)
 
 
 METHODS
@@ -878,6 +886,26 @@ METHODS
 
 
 
+	## Examples ##
+
+>>> for (um, dois) in [ (1, 2), (3, 4), (5, 6) ]:
+>>> 	print("%d x %d = %d" %(um,dois,um * dois))
+[]	1 x 2 = 2
+[]	3 x 4 = 12
+[]	5 x 6 = 30
+
+>>> for (key, value) in <dict>.items():
+>>> 	print(key, ':', value)
+
+	## - ##
+
+
+
+
+
+
+
+
 
 >>> while <boolean>:
 >>> 	<instructions>
@@ -956,14 +984,6 @@ LIST COMPREHENSION
 >>> print (dois, um)
 []	2 1
 
->>> for (um, dois) in l:
->>> 	print("%d x %d = %d" %(um,dois,um * dois))
-[]	1 x 2 = 2
-[]	3 x 4 = 12
-[]	5 x 6 = 30
-
->>> for (key, value) in <dict>.items():
->>> 	print(key, ':', value)
 
 
 
@@ -1232,6 +1252,8 @@ LIST COMPREHENSION
 >>> <object>.<method> (<args>, ...)
 
 
+
+INHERITANCE
 
 - A Class can inherit attributes and methods from other class.
 
@@ -2100,6 +2122,7 @@ NAMEDTUPLE
 
 
 - Create a Time Stamp with both time and date info:
+>>> <time-stamp> = datetime.datetime(<year>,<month>,<day>)
 >>> <time-stamp> = datetime.datetime(<year>,<month>,<day>,<hour>,<minute>,<second>)
 
 

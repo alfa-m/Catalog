@@ -81,6 +81,13 @@ $ conda search <package>
 - Search package info:
 $ conda search <package> --info
 
+- Search package on the channel conda-forge:
+$ conda search <package> --channel conda-forge
+$ conda search <package> -c conda-forge
+
+- Install packages from the channel conda-forge:
+(<env>)$ conda install <package> -c conda-forge
+
 - List installed package:
 $ conda list
 $ conda list <package>

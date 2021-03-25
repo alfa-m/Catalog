@@ -1,0 +1,89 @@
+
+- More info:
+url: (https://code.visualstudio.com/docs)
+
+
+WORKSPACE
+
+- When you open a Folder it starts a Workspace.
+
+- You can also set Settings for the User (which have a global effect) or Workspace Settings, which overwrite the User Settings only that specific Workspace.
+
+- Add Folder to Workspace:
+> File -> Add Folder to Workspace
+
+- Remove Folder to Workspace:
+> [right click on Folder] -> Remove Folder from Workspace
+
+- Save Workspace:
+> File -> Save Workspace As ...
+
+- Close Folder/Workspace:
+> File -> Close Folder
+> File -> Close Workspace
+
+
+
+
+
+CODING
+
+- Run:
+> [ctrl] + [f5]
+
+- Debug:
+> [f5]
+
+- Split Editors:
+> View -> Editor Layout -> Split [...]
+
+- Peek:
+> [shift] + [f12]
+> [right click function] -> Go to References
+> [right click function] -> Peek -> Peek Definitions
+> [right click function] -> Peek -> Peek References
+
+- Add Selection to next find Match on the entire file:
+> [ctrl] + [D]
+
+
+
+
+
+
+SHORTCUTS
+
+- Open Command Palette:
+[ctrl] + [shift] + [P]
+
+- Switch between Workspaces:
+[ctrl] + [R]
+
+- Switch between Files:
+[ctrl] + [P]
+
+
+
+
+
+COMMAND PALETTE KEYWORDS:
+
+- Color Theme
+
+- File Icon Theme
+
+- Open Keyboard Shortcuts
+
+- Open Settings
+
+- Python: Select Interpreter
+
+
+
+
+
+
+
+
+
+

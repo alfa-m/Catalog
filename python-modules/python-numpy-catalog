@@ -1,0 +1,354 @@
+ 
+
+		NUMPY
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>>	: Some python command.
+[]	: Output of a python command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	python-numpy
+			Scientific tools for Python
+			
+			
+[conda]		numpy
+			???
+
+
+- Linear Algebra Library for Python.
+
+- Import:
+>>> import numpy as np
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://numpy.org/)
+
+- Documentation:
+url: (https://numpy.org/doc/stable/)
+
+- Numpy Universal Functions:
+url: (https://numpy.org/doc/stable/reference/ufuncs.html)
+
+----------------------------------
+
+	ARRAYS CREATION
+
+- On Numpy, Arrays can be either Vectors (1-D) or Matrix (2-D).
+- Arrays can be of many types of data, but NOT mixed, like in Python.
+
+- Create an Array from a Python List Object:
+>>> np.array(<list>)
+>>> np.array(<list>, dtype=<data-type>)
+
+
+
+
+
+- Create Array with values from included start to excluded stop, with step (default: start= 0, step= 1):
+>>> np.arange(<stop>)
+>>> np.arange(<start>, <stop>, <step>)
+
+- Create an Array with a number of values equally spaced:
+>>> np.linspace(<start>, <stop>, <number>)
+
+
+
+
+
+- Create an Array of zeros, given a shape (int or tuple of ints):
+>>> np.zeros(<shape>)
+
+- Create an Array of ones, given a shape (int or tuple of ints):
+>>> np.ones(<shape>)
+
+- Create an Identity Matrix:
+>>> np.eye(<size>)
+
+
+
+
+
+- Round an Array with some decimals precision:
+>>> np.round(<array>, <decimals>)
+
+
+----------------------------------
+
+	INDEXING & SLICING
+
+- Access element (Index starts on 0):
+>>> <array>[<index>]
+>>> <array>[<index>, <index>, ...]
+
+- Access multiple elements (both optional parameters):
+>>> <array>[<included-start>:<excluded-stop>]
+
+- Assign multiple elements:
+>>> <array>[<start>:<stop>] = <value>
+
+
+----------------------------------
+
+	BOOLEAN OPERATIONS & FILTERS
+
+- Boolean expressions can be aplied directly on Numpy Arrays to be checked for all of it's elements.
+
+- Return a Arrays of Booleans for each element bigger than a value:
+>>> <array>  >  <value>
+
+- Return a Arrays of Booleans for even elements:
+>>> <array>  % 2 == 0
+
+- Use an Array of Booleans to extract specific elements from a Array of same shape:
+>>> <array>[<bool-array>]
+
+
+	## Examples ##
+
+>>> a = np.arange(0,11)
+>>> a % 2 == 0
+[]	array([True, False, True, False, True, False, True, False, True, False, True])
+>>> a[ a % 2 == 0 ]
+[]	array([ 0,  2,  4,  6,  8, 10])
+
+	## - ##
+
+
+
+
+----------------------------------
+
+	RANDOM
+
+- Create an Array with a number of random Integers:
+>>> np.random.randint(<min>, <max>, <number>)
+
+- Create Array populated with random samples from a Uniform Distribution (same probability) from 0 to 1:
+>>> np.random.rand(<size>, ..., <size>)
+
+- Create Array populated with random samples from a "Standard Normal" distribution (mean 0, standard deviation 1):
+>>> np.random.randn(<size>, ..., <size>)
+
+
+
+----------------------------------
+
+	METHODS
+
+- Get a copy of a Array to be assigned:
+>>> <array>.copy()
+
+- Give a new shape (int or tuple of ints) to an array without changing its data:
+>>> <array>.reshape(<shape>)
+
+- Find biggest value on Array:
+>>> <array>.max()
+
+- Find Index of biggest element on Array:
+>>> <array>.argmax()
+
+- Find smallest value on Array:
+>>> <array>.min()
+
+- Find Index of smallest element on Array:
+>>> <array>.argmin()
+
+- Count how many times a element appears on a Array:
+>>> np.count_nonzero( <array> == <element> )
+
+
+	## Examples ##
+
+>>> pyList1 = [[1,2,3],[4,5,6]]
+>>> pyList2 = pyList1[0]
+>>> pyList2[1] = 200
+[]	[[1, 200, 3], [4, 5, 6]]
+[]	[1, 200, 3]
+
+>>> pyList1 = [[1,2,3],[4,5,6]]
+>>> pyList2 = pyList1[0][:]				# pyList2 = [ * pyList1[0] ]
+>>> pyList2[1] = 300
+[]	[[1, 2, 3], [4, 5, 6]]
+[]	[1, 300, 3]
+
+>>> List1 = np.array([[1,2,3],[4,5,6]])
+>>> List2 = List1[0]
+>>> List2[1] = 400
+
+
+>>> List1 = np.array([[1,2,3],[4,5,6]])
+>>> List2 = List1[0,:].copy()
+>>> List2[1] = 500
+
+	## - ##
+
+
+
+----------------------------------
+
+	PARAMETERS
+
+- Shape of Array:
+>>> <array>.shape
+
+
+
+----------------------------------
+
+	ARRAY OPERATIONS
+
+- Element by element operations on Arrays:
+>>> <array> + <array>		# Vector Addition
+>>> <array> - <array>
+>>> <array> * <array>
+>>> <array> / <array>
+>>> <array> ** <array>
+
+- On division, if not possible, might return NaN (Not a Number) or Inf (infinity).
+
+
+
+- Scalar Operations:
+>>> <array> + <value>
+>>> <array> - <value>
+>>> <array> * <value>
+>>> <array> / <value>
+>>> <array> ** <value>
+
+>>> np.sqrt(<array>)		# x^(1/2)
+>>> np.exp(<array>)			# e^x
+>>> np.sin(<array>)			# sin(x)
+
+
+- Mean & Standard Deviation
+>>> np.mean(<array>)
+>>> np.std(<array>)
+
+- Sum of all elements:
+>>> <array>.sum()
+>>> np.sum(<array>)
+
+- Sum axis (number: 0 - sum line to line, 1 - sum column to column, ...):
+>>> <array>.sum(<axis>)
+>>> <array>.sum((<axis>, <axis>, ...))
+>>> np.sum(<array>, axis=<axis>)
+>>> np.sum(<array>, axis=(<axis>, ...))
+
+- More Functions:
+(https://numpy.org/doc/stable/reference/ufuncs.html)
+
+
+
+
+- Outer Product (Tensor Product):
+>>>> np.outer (<array>, <array>)
+
+- Transpose Matrix:
+>>> np.transpose(<array>)
+
+
+------------------------------------
+
+	3D SURFACE
+
+- How to make a 3D surface from a 2-variables function:
+
+- Create linear spaces for the for abscissa (x) and ordered (y):
+>>> x_lin = np.arange(<start>, <stop>, <step>)
+>>> y_lin = np.arange(<start>, <stop>, <step>)
+
+- Create Mesh Grids (values repeated according to corresponding Axis):
+>>> (x, y) = np.meshgrid(x_lin, y_lin)
+
+- Apply 2-variables function to the Mesh Grids:
+>>> z = <function>(x, y)
+
+	## Examples ##
+
+
+>>> x_lin = np.linspace(-pi, pi, 5)
+>>> y_lin = np.linspace(-pi, pi, 5)
+
+>>> (x, y) = np.meshgrid(x_lin, y_lin)
+
+>>> x
+[]	 array([[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265],
+			[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265],
+			[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265],
+			[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265],
+			[-3.14159265, -1.57079633,  0.        ,  1.57079633,  3.14159265]])
+
+>>> y
+[]	 array([[-3.14159265, -3.14159265, -3.14159265, -3.14159265, -3.14159265],
+			[-1.57079633, -1.57079633, -1.57079633, -1.57079633, -1.57079633],
+			[ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ],
+			[ 1.57079633,  1.57079633,  1.57079633,  1.57079633,  1.57079633],
+			[ 3.14159265,  3.14159265,  3.14159265,  3.14159265,  3.14159265]])
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

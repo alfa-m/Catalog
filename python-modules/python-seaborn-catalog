@@ -1,0 +1,639 @@
+ 
+		SEABORN
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>>	: Some python command.
+[]	: Output of a python command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	python-seaborn
+			Statistical data visualization
+			
+[conda]		seaborn
+			???
+
+
+- Statistical data visualization.
+- Written over Matplotlib.
+- Designed to work with Pandas' DataFrame.
+
+
+- Import:
+>>> import seaborn as sns
+
+- Show the plots as output on the line (for IPython and Jupyter):
+>>> %matplotlib inline
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://seaborn.pydata.org/)
+
+- Gallery with many EXAMPLES and EXPLANATIONS:
+url: (https://seaborn.pydata.org/examples/index.html)
+
+- Application Programming Interface (API) Reference:
+url: (https://seaborn.pydata.org/api.html)
+
+- Documentation:
+url: ()
+
+
+------------------------------------
+
+	DISTRIBUTION PLOTS
+
+- All of seaborn's Plots return matplotlib's Axes.
+
+
+- Seaborn has some DataSets Pre-loaded:
+>>> tips = sns.load_dataset('tips')
+
+
+
+DISPLOT & KDE
+
+- Create a Distribution and Plots a Histogram of a Column on a DataFrame:
+>>> sns.distplot(<dataframe>[<column>])			# deprecated
+>>> sns.displot(<dataframe>[<column>])
+
+- Show the Kernel Density Estimation (KDE) (combines sns.histplot with sns.kdeplot):
+>>> sns.displot(<dataframe>[<column>], kde=True)
+
+- Define bins:
+>>> sns.distplot(<dataframe>[<column>], bins=<bins>)	# deprecated
+>>> sns.displot(<dataframe>[<column>], bins=<bins>)
+
+
+	## Examples ##
+
+>>> sns.displot(tips['total_bill'], kde=True, bins=20)
+
+	## - ##
+
+
+
+
+JOINT DISTRIBUTION
+
+- Create a Joint Distribution of two columns of a DataFrame:
+>>> sns.jointplot(x=<column>, y=<column>, data=<dataframe>)
+
+- Display Joint Distribution as Linear Regression:
+>>> sns.jointplot(x=<column>, y=<column>, data=<dataframe>, kind='reg')
+
+- Display Joint Distribution as HeatMap with Hexagons:
+>>> sns.jointplot(x=<column>, y=<column>, data=<dataframe>, kind='hex')
+
+
+	## Examples ##
+
+>>> sns.jointplot(x='total_bill', y='tip', data=tips, kind='reg')
+
+	## - ##
+
+
+
+
+
+PAIRPLOTS
+
+- Make Joint Plots of all numeric variables of a DataFrame:
+>>> sns.pairplot(<dataframe>)
+
+- Distinguish Plots according to a column:
+>>> sns.pairplot(<dataframe>, hue=<column>)
+
+	## Examples ##
+
+>>> sns.pairplot(tips, hue='sex')
+
+	## - ##
+
+
+
+
+------------------------------------
+
+	KERNEL DENSITY ESTIMATION (KDE)
+
+- Draw marks for each point in a univariate distribution:
+>>> sns.rugplot(<dataframe>[<column>])
+
+- KDE is a Nonparametric Distribution (without use of std and mean).
+- The KDE replace each observation with a Gaussian distribution centered around those value.
+- Usefull when the Random Variable doesn't follow a Gaussian curve.
+
+- Generate the KDE:
+>>> sns.kdeplot(<dataframe>[<column>])
+
+
+
+
+	## Examples ##
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+import seaborn as sns
+
+plt.figure(figsize=( 15,6  ), facecolor='w')
+
+### RugPlots and Gaussians ###
+
+plt.subplot(1,3,1)
+plt.title("RugPlots and Gaussians")
+
+# Dataset
+tips = sns.load_dataset('tips')
+dataset = np.array(tips['total_bill'])
+
+# RugPlot
+sns.rugplot(dataset, c = 'red')
+
+# Cofigure X axis
+x_min = dataset.min() - 2
+x_max = dataset.max() + 2
+x_axis = np.linspace(x_min,x_max,100)
+
+# Configure bandwidth. 
+# More info: 
+# url = http://en.wikipedia.org/wiki/Kernel_density_estimation#Practical_estimation_of_the_bandwidth
+bandwidth = ((4*dataset.std()**5)/(3*len(dataset)))**.2
+
+# Kernel List
+kernel_list = []
+
+# Draw Gaussian for Each Point
+for point in dataset:
+    
+    # Creates a Kernel for each point, over the X axis
+    kernel = stats.norm(point, bandwidth).pdf(x_axis)
+    kernel_list.append(kernel)
+    
+    # Ploting, Scale Ajusting.
+    kernel = kernel / kernel.max()
+    kernel = kernel * .4
+    plt.plot(x_axis, kernel, 'b', lw=1 ,alpha=0.2)
+plt.ylim(0,.6)
+
+### Sum of the Basis Functions ###
+
+plt.subplot(1,3,2)
+plt.title('Sum of the Basis Functions')
+
+# Sum the kernel of each point
+sum_of_kde = np.sum(kernel_list,axis=0)
+plt.plot(x_axis, sum_of_kde, color='b')
+plt.ylim(0,15)
+
+sns.rugplot(dataset, c = 'r')
+
+### Using Seaborn ###
+
+plt.subplot(1,3,3)
+plt.title('Using Seaborn')
+
+sns.kdeplot(tips['total_bill'])
+sns.rugplot(tips['total_bill'])
+
+plt.show()
+
+	## - ##
+
+
+------------------------------------
+
+	CATEGORICAL PLOTS
+
+- Categorical Data are data that usually contain text and are discrete (limited different possible values).
+
+
+
+BAR PLOTS
+
+- Create Bars of a column wiht Categorical Data and the mean of a column with numerical data:
+>>> sns.barplot(x=<cat-column>, y=<num-column>, data=<dataframe>)
+
+- Create Bars of Categorical Data, passing a function intead of the mean:
+>>> sns.barplot(x=<cat-column>, y=<num-column>, data=<dataframe>, estimator=<function>)
+
+
+	## Examples ##
+
+>>> sns.barplot(x='sex', y='total_bill', data=tips)
+
+>>> sns.barplot(x='sex', y='total_bill', data=tips, estimator=np.std)
+
+	## - ##
+
+
+
+COUNT PLOT
+
+- Create Bars with the count of some Categorical Data:
+>>> sns.countplot(x=<column>, data=<dataframe>)
+
+
+
+
+BOX PLOT
+
+- On a Box-Plot:
+	from the lower bar to the border of the box		25% of the data;
+	from the lower border of the box to the middle	50% of the data;
+	from the middle of the box to the upper border	75% of the data;
+	from the upper border to the upper bar			100% of the data;
+	the other points don't fit the distribution.
+
+- Create Box-Plots:
+>>> sns.boxplot(x=<cat-column>, y=<num-column>, data=<dataframe>)
+
+- Create horizontal Box-Plots:
+>>> sns.boxplot(data=<dataframe>, orient='h')
+
+- Distinguish Plots according to a Category from a column:
+>>> sns.boxplot(x=<cat-column>, y=<num-column>, data=<dataframe>, hue=<cat-column>)
+
+	## Examples ##
+
+>>> sns.barplot(x='day', y='total_bill', data=tips)
+
+	## - ##
+
+
+
+
+
+
+VIOLIN PLOT
+
+- The Violin Plot combines the KDE and the Box-Plot.
+
+
+- Create Violin Plot, with column of Categorical Data and with column of numerical data:
+>>> sns.violinplot(x=<cat-column>, y=<num-column>, data=<dataframe>)
+
+
+- Distinguish Plots according to a Category from a column:
+>>> sns.violinplot(x=<cat-column>, y=<num-column>, data=<dataframe>, hue=<cat-column>)
+
+- If the column passed to 'hue' has only two possible values, it is usefull to split the graph:
+>>> sns.violinplot(x=<cat-column>, y=<num-column>, data=<dataframe>, hue=<cat-column>, split=True)
+
+	## Examples ##
+
+>>> sns.violinplot(x='day', y='tip', data=tips, hue='sex', split=True)
+
+	## - ##
+
+
+
+
+
+
+STRIP PLOT
+
+- Adds points where the values occur.
+
+- Create a Strip Plot, with column of Categorical Data and with column of numerical data:
+>>> sns.stripplot(x=<cat-column>, y=<num-column>, data=<dataframe>)
+
+- Add jitter for better visualization:
+>>> sns.stripplot(x=<cat-column>, y=<num-column>, data=<dataframe>, jitter=True)
+
+- Distinguish Plots with 'hue' and adding split:
+>>> sns.stripplot(x=<cat-column>, y=<num-column>, data=<dataframe>, jitter=True, hue=<cat-column>, split=True))
+
+
+
+
+
+SWARM PLOT
+
+- Adds points where the values occur.
+
+- Create a Strip Plot, with column of Categorical Data and with column of numerical data:
+>>> sns.swarmplot(x=<cat-column>, y=<num-column>, data=<dataframe>)
+
+- Distinguish Plots with 'hue' and adding split:
+>>> sns.swarmplot(x=<cat-column>, y=<num-column>, data=<dataframe>, hue=<cat-column>, split=True))
+
+- Change Marker size:
+>>> sns.swarmplot(x=<cat-column>, y=<num-column>, data=<dataframe>, size=<value>)
+
+
+	## Examples ##
+
+>>> sns.swarmplot(x='day', y='total_bill', data=tips, color='black')
+>>> sns.violinplot(x='day', y='total_bill', data=tips)
+
+	## - ##
+
+
+
+------------------------------------
+
+	MATRIX PLOT
+
+- Seaborn has some DataSets Pre-loaded:
+>>> flights = sns.load_dataset('flights')
+>>> tips = sns.load_dataset('tips')
+
+
+
+
+
+- For the Matrix Plots, it is important both Columns and Index to be related to the values on the Matrix.
+
+- Good for visualizing Correlation Tables and Pivot Tables.
+
+
+
+
+
+
+HEATMAP
+
+- Plot a HeatMap of a Matrix:
+>>> sns.heatmap(<dataframe>)
+
+- Use a different ColorMap:
+>>> sns.heatmap(<dataframe>, cmap='<colormap>')
+
+- Show the values on the boxes of the HeatMap:
+>>> sns.heatmap(<dataframe>, annot=True)
+
+- Add lines between the boxes of the HeatMap:
+>>> sns.heatmap(<dataframe>, linecolor='<color>', lw=value)
+
+
+	## Examples ##
+
+- Make a HeatMap of the Correlation of the data on the tips table:
+>>> sns.heatmap(tips.corr(), cmap='coolwarm', annot=True)
+
+
+
+- Make a Table for flights as Months x Years:
+>>> piv = flights.pivot_table(values='passengers', index='month', columns='year')
+
+- Make a HeatMap of flights as Months x Years:
+>>> sns.heatmap(piv, cmap='magma')
+
+	## - ##
+
+
+
+
+
+
+CLUSTER MAP
+
+- Try to identify and indicate pattern and sets of data.
+
+- Create a CluserMap of a Matrix:
+>>> sns.clustermap(<dataframe>)
+
+
+	## Examples ##
+
+>>> sns.clustermap(piv, cmap='magma')
+
+	## - ##
+
+
+
+------------------------------------
+
+	REGRESSION PLOTS
+
+- Create Linear-Model Plot:
+>>> sns.lmplot(x=<column>, y=<column>, data=<dataframe>)
+
+- Distinguish Plots according to a column:
+>>> sns.lmplot(x=<column>, y=<column>, data=<dataframe>, hue=<column>)
+
+- Separate Plots in rows and/or columns, according to a column(s):
+>>> sns.lmplot(x=<column>, y=<column>, data=<dataframe>, row=<column>, col=<column>)
+
+
+	## Examples ##
+
+>>> sns.lmplot(x='total_bill', y='tip', data=tips, hue='sex', palette='magma', markers=['*', 'v'])
+
+>>> sns.lmplot(x='total_bill', y='tip', data=tips, col='sex', row='time', hue='sex', palette='magma', markers=['*', 'v'])
+
+
+	## - ##
+
+
+
+
+- lmplot() uses regplot() internally and takes most of its parameters. - However, regplot() is an axes-level function, it draws directly onto an axes (the currently active or the one provided 'ax' kwarg)
+- lmplot() is a figure-level function and manages through a FacetGrid.
+
+- Create Linear-Regression Plot:
+>>> sns.regplot(x=<column>, y=<column>, data=<dataframe>)
+
+
+
+
+
+------------------------------------
+
+	PAIRGRIDS
+
+- Those return a FacetGrid object.
+- FacetGrid has a 'axes' parameter, which is a Array, containing another Array(s) with the Axes.
+
+
+- Seaborn has some DataSets Pre-loaded:
+>>> iris = sns.load_dataset('iris')
+>>> tips = sns.load_dataset('tips')
+
+
+
+
+PAIRGRID
+
+- Initiate a PairGrid:
+>>> <grid> = sns.PairGrid(<dataframe>)
+
+- Replicate the effect of the PairPlot method using plt.scatter:
+>>> <grid>.map(plt.scatter)
+
+- Map different regions of the Grid with different plots:
+>>> <grid>.map_diag(<plot-function>)
+>>> <grid>.map_upper(<plot-function>)
+>>> <grid>.map_lower(<plot-function>)
+
+
+	## Examples ##
+
+>>> g = sns.PairGrid(iris, hue='species')
+
+>>> g.map_diag(plt.hist)
+>>> g.map_upper(plt.scatter)
+>>> g.map_lower(sns.kdeplot)
+
+	## - ##
+
+
+
+
+
+
+
+FACETGRID
+
+- Works with Categorical Data.
+
+- Initiate a FacetGrid:
+>>> <grid> = sns.FacetGrid(<dataframe>, col=<cat-column>, row=<cat-column>)
+
+- Get a Grid of Histograms of a numerical data column:
+>>> <grid>.map(plt.hist, <num-column>)
+
+
+	## Examples ##
+
+>>> g = sns.FacetGrid(tips, col='time', row='smoker')
+>>> g.map(plt.hist, 'total_bill')
+
+	## - ##
+
+
+
+------------------------------------
+
+	STYLES & COLORS
+
+- Most Plot can have a matplotlib ColorMap applied, using the parameter 'palette'.
+
+- ColorMaps available:
+url: (https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html)
+
+
+
+
+
+
+- Set Style:
+>>> sns.set_style(<style>)
+>>> sns.set_style(style='<style>')
+
+style=
+		darkgrid		- tha best
+		whitegrid
+		dark
+		white
+		ticks
+
+
+
+
+- Remove borders of the plot (default: top=True, right=True):
+>>> sns.despine()
+>>> sns.despine(left=True)
+>>> sns.despine(bottom=True)
+
+
+
+
+
+- Change Figure size, width and height (in inches):
+>>> plt.figure(figsize=( <width>, <height> ))
+
+- Change Figure size, height (in inches) and aspect ratio:
+>>> sns.<plot>(<arguments>, height=<height>, aspect=<value>)
+
+
+
+
+
+- Set Context and Font Scale:
+sns.set_context(<context>)
+sns.set_context(context='<context>')
+sns.set_context(context='<context>', font_scale=<value>)
+
+context=
+		paper
+		notebook
+		talk
+		poster
+
+
+
+	## Examples ##
+
+>>> sns.set_style('darkgrid')
+>>> sns.set_context('paper', font_scale=1.5)
+>>> sns.lmplot(x='total_bill', y='tip', data=tips, hue='sex', palette='inferno')
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

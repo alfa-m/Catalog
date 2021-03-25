@@ -1,0 +1,519 @@
+ 
+		MATPLOTLIB
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>>	: Some python command.
+[]	: Output of a python command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	python-matplotlib
+			A python plotting library, making publication quality plots
+			
+			
+[conda]		matplotlib
+			???
+
+
+- Library for Data Visualization.
+- Similar to Matlab Ploting.
+
+
+- Import:
+>>> import matplotlib.pyplot as plt
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://matplotlib.org/)
+
+- Gallery with many EXAMPLES and EXPLANATIONS:
+url: (https://matplotlib.org/gallery/index.html)
+
+- ColorMap Reference:
+url: (https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html)
+
+- Documentation:
+url: ()
+
+
+------------------------------------
+
+	PLOT
+
+- Show the plots as output on the line (for IPython and Jupyter):
+>>> %matplotlib inline
+
+- Plot a graph using two Array of values for abscissa (x) and ordered (y):
+>>> plt.plot(<x>, <y>)
+
+- Display plot:
+>>> plt.show()
+
+	## Examples ##
+
+>>> x = np.linspace(0, 5, 11)
+>>> y = x**2
+>>> plt.plot(x, y)
+>>> plt.show()
+
+	## - ##
+
+
+
+LABELS
+
+- Plot Title:
+>>> plt.title(<str>)
+
+- Axis labels:
+>>> plt.xlabel(<str>)
+>>> plt.ylabel(<str>)
+
+
+STYLES
+
+- Change the plot style:
+>>> plt.style.use('<style>')
+
+style=
+		default
+		bmh					seaborn's 'darkgrid'
+		ggplot				seaborn's 'darkgrid', but red
+		dark_background		seaborn's 'darkgrid', but red, but negative
+
+
+------------------------------------
+
+	FORMAT
+
+- The parameters can be passed all together (e.g. 'ro' for red circles) without the keyword arguments.
+- All of these and more can also be separately controlled by keyword arguments.
+
+- Formatting:
+>>> plt.plot(<x>, <y>, <fmt>)
+>>> <axes>.plot(<x>, <y>, <fmt>)
+
+- A format string consists of a part for color, marker and line::
+
+	fmt = '[marker][linestyle][color]'
+
+marker=
+		'.'		point
+		'o'		circle
+		'v'
+		'^'
+		'<'
+		'>'
+		's'		square
+		'*'		star
+		'+'
+		'x'
+		'D'		diamond
+linestyle=
+			'-'		solid line
+			'--'	dashed line
+			'-.'	dash-dot line
+			':'		dotted line
+color=
+		'r'		red
+		'b'		blue
+		'g'		green
+		'k'		black
+		'y'		yellow
+		'c'		cyan
+
+
+- Set Line width:
+>>> plt.plot(<x>, <y>, <fmt>, linewidth=<value>)
+>>> plt.plot(<x>, <y>, <fmt>, lw=<value>)
+>>> <axes>.plot(<x>, <y>, <fmt>, lw=<value>)
+
+- Set Marker size:
+>>> plt.plot(<x>, <y>, <fmt>, markersize=<value>)
+>>> <axes>.plot(<x>, <y>, <fmt>, markersize=<value>)
+
+- Set Marker color:
+>>> plt.plot(<x>, <y>, <fmt>, markerfacecolor=<str>)
+>>> <axes>.plot(<x>, <y>, <fmt>, markerfacecolor=<str>)
+
+- Set Line transparency (value from 0 to 1):
+>>> plt.plot(<x>, <y>, <fmt>, alpha=<value>)
+>>> <axes>.plot(<x>, <y>, <fmt>, alpha=<value>)
+
+
+
+
+	## Examples ##
+
+Example format strings::
+
+    'b'    # blue markers with default shape
+    'or'   # red circles
+    '-g'   # green solid line
+    '--'   # dashed line with default color
+    '^k:'  # black triangle_up markers connected by a dotted line
+
+	## - ##
+
+
+------------------------------------
+
+	FIGURE
+
+- The Figure object can have many Axes where plots can be made.
+
+- Create a Figure:
+>>> <fig> = plt.figure()
+>>> <fig> = plt.figure(facecolor = 'w')		# background not transparent
+
+
+
+- Define Figure width and height, in inches (default=[6.4, 4.8]):
+>>> <fig> = plt.figure(figsize=( <width>, <height> ))
+
+- Define Figure resolution in dpi (default=100):
+>>> <fig> = plt.figure(dpi=<int>)
+
+
+
+
+
+
+- Define whole Figure Title:
+>>> <fig>.suptitle('str')
+
+
+- Display Figure:
+>>> <fig>				# when using '%matplotlib inline'
+>>> <fig>.show()
+
+
+
+
+
+
+- Export Figure:
+>>> <fig>.savefig('<filepath>')
+>>> <fig>.savefig('<filepath>'.'<extention>')
+
+
+
+
+
+------------------------------------
+
+	SUBPLOT & SUBPLOTS
+
+SUBPLOT
+
+- Works with a grid of plots.
+
+- Create subplot using a number of rows and columns:
+>>> plt.subplot(<nrows>, <ncols>)
+
+- Select the current working plot:
+>>> plt.subplot(<nrows>, <ncols>, <nplot>)
+
+
+
+
+SUBPLOTS
+
+- This method is Object Oriented.
+
+- From it's instatiation, it creates a Figure and an Axe (or Array of Axes) object.
+
+- Create Subplots:
+>>> (<fig>, <axes>) = plt.subplots()
+>>> (<fig>, <axes>) = plt.subplots(<nrows>, <ncols>)
+>>> (<fig>, <axes>) = plt.subplots(<nrows>, <ncols>, facecolor = 'w')
+
+
+- Most Plot functions (from pandas, matplotlib, seaborn, ...) have a 'ax' kwargs, which allow for it's outputs to be assinged to these Subplots' Axes.
+- Those that don't usualy hava a 'axes' parameter for it.
+
+
+
+
+- Automatically adjust subplot parameters (may specify padding):
+>>> plt.tight_layout()
+
+
+
+
+- Define Figure width, height in inches (default=[6.4, 4.8]):
+>>> (<fig>, <axes>) = plt.subplots(figsize=( <width>, <height> ))
+
+- Define Figure resolution in dpi (default=100):
+>>> (<fig>, <axes>) = plt.subplots(dpi=<int>)
+
+
+
+	## Examples ##
+
+>>> import numpy as np
+>>> import pandas as pd
+>>> import matplotlib.pyplot as plt
+>>> import seaborn as sns
+
+>>> sns.set_style('darkgrid')
+>>> df = pd.read_csv('4. Projetos de dados/911.csv')
+>>> df['timeStamp'] = pd.to_datetime(df['timeStamp'])
+>>> df['month'] = df['timeStamp'].apply(lambda time: time.month)
+>>> byMonth = df.groupby('month').count()
+
+>>> (fig, axes) = plt.subplots(1, 2, facecolor = 'w', figsize=[12, 5])
+
+>>> byMonth['twp'].plot.area(alpha=.7, ax=axes[0])
+>>> axes[0].set_title('911 calls per month')
+
+>>> sns.regplot(x='month', y='twp', data=byMonth.reset_index(), ax=axes[1])
+>>> axes[1].set_xlim([0, 13])
+>>> axes[1].set_ylim([0, 14000])
+>>> axes[1].set_title('Linear Model Regression')
+
+>>> fig.show()
+
+	## - ##
+
+
+
+
+------------------------------------
+
+	AXES
+
+- The Axes recieve a list with four PERCENTUAL values:
+	- 'distance' from the left border of the figure
+	- 'distance' from the bottom border of the figure
+	- width,
+	- height.
+
+
+- Add an Axe to a Figure:
+>>> <axes> = <fig>.add_axes([<left>, <bottom>, <width>, <height>])
+
+- Ploting on an Axe:
+>>> <axes>.plot(<x>, <y>, <fmt>)
+
+
+
+- Set Axis limits:
+>>> <axes>.set_xlim([<lower>, <upper>])
+>>> <axes>.set_ylim([<lower>, <upper>])
+
+- Get Axis limits (return a tuple):
+>>> <axes>.get_xlim()
+>>> <axes>.get_ylim()
+
+
+
+	## Examples ##
+
+>>> import pandas as pd
+>>> import matplotlib.pyplot as plt
+>>> import seaborn as sns
+
+>>> sns.set_style('darkgrid')
+>>> df = pd.read_csv('4. Projetos de dados/911.csv')
+>>> df['timeStamp'] = pd.to_datetime(df['timeStamp'])
+df['date'] = df['timeStamp'].apply(lambda t: t.date())
+
+>>> (fig, axes) = plt.subplots(1, 3, facecolor = 'w', figsize=[18, 5])
+>>> fig.suptitle('911 Calls per Department (2015-16)')
+
+>>> df[df['department'] == 'Traffic'].groupby('date').count()['twp'].plot.area(alpha=.5, rot=90, ax=axes[0], color='b')
+>>> df[df['department'] == 'Fire'].groupby('date').count()['twp'].plot.area(alpha=.5, rot=90, ax=axes[1], color='r')
+>>> df[df['department'] == 'EMS'].groupby('date').count()['twp'].plot.area(alpha=.5, rot=90, ax=axes[2], color='g')
+
+>>> axes[0].set_title('Traffic')
+>>> axes[1].set_title('Fire')
+>>> axes[2].set_title('EMS')
+
+>>> ylims = list(zip(*map(lambda ax: ax.get_ylim(), axes)))
+>>> ylims = [min(ylims[0]), max(ylims[1])]
+>>> for ax in axes:
+>>> 	ax.set_ylim(ylims)
+>>> 	ax.set_xlabel('')
+
+>>> fig.show()
+
+	## - ##
+
+
+
+
+
+
+LABELS
+
+- Define whole Figure Title:
+>>> <fig>.suptitle(<str>)
+
+- Set Axes Title:
+>>> <axes>.set_title(<str>)
+
+- Set Axes Labels:
+>>> <axes>.set_xlabel(<str>)
+>>> <axes>.set_ylabel(<str>)
+
+
+
+LEGEND
+
+- The Axes recieve a list with four PERCENTUAL values:
+
+	- width,
+	- height.
+
+
+- Add an Axe to a Figure:
+>>> <axes> = <fig>.add_axes([<left>, <bottom>, <width>, <height>])
+
+- Adding a Label to the plot to be shown on the legend:
+>>> <axes>.plot(<x>, <y>, <fmt>, label=<str>)
+
+- Display Legends on the Axe:
+>>> <axes>.legend()
+>>> <axes>.legend(loc=<1/2/3/4>)
+>>> <axes>.legend(loc=[<left>, <bottom>])
+
+loc=
+	 0			automatic (default)
+	 1			top-right
+	 2			top-left
+	 3			bottom-left
+	 4			bottom-right
+	 <left>		PERCENTUAL 'distance' from left border
+	 <bottom>	PERCENTUAL 'distance' from bottom border
+
+
+
+	## Examples ##
+
+>>> fig = plt.figure()
+>>> axes1 = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+>>> axes2 = fig.add_axes([0.2, 0.5, 0.3, 0.3])
+
+>>> axes1.plot(x,y,'b')
+>>> axes1.set_xlabel("Eixo X")
+>>> axes1.set_title("Título")
+>>> axes1.plot(y, x,'r')
+
+>>> axes2.plot(y, x,'r')
+
+	## - ##
+
+
+
+------------------------------------
+
+	SPECIAL PLOTS
+
+- Plot Scattered points with no lines between:
+>>> plt.scatter(<x>, <y>)
+>>> <axes>.scatter(<x>, <y>)
+
+
+
+
+HISTOGRAM
+
+- Plot a Histogram from a List or Array:
+>>> plt.hist(<list>)
+>>> <axes>.hist(<list>)
+
+- The 'bins' of a Histogram can be a Int or List.
+- If is an integer, defines the number of equal-width bins.
+- If is a list, defines the bin edges.
+- Define bins:
+>>> plt.hist(<list>, bins=<bins>)
+>>> <axes>.hist(<list>, bins=<bins>)
+
+
+
+
+BOX PLOT
+
+- On a Box-Plot:
+	from the lower bar to the border of the box		25% of the data;
+	from the lower border of the box to the middle	50% of the data;
+	from the middle of the box to the upper border	75% of the data;
+	from the upper border to the upper bar			100% of the data;
+	the other points don't fit the distribution.
+
+- Plot a Box-Plot:
+>>> plt.boxplot(<data>, vert=True, patch_artist=True)
+>>> <axes>.boxplot(<data>, vert=True, patch_artist=True)
+
+
+
+	## Examples ##
+
+>>> data = [np.random.normal(0, std, 100) for std in range(1, 4)]
+>>> plt.boxplot(data, vert=True, patch_artist=True)
+
+	## - ##
+
+
+------------------------------------
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

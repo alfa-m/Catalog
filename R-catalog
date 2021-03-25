@@ -1,0 +1,723 @@
+ 
+		R
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>	: Some R command.
+[]	: Output of a R command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	r
+			Language and environment for statistical computing and graphics.
+			
+[conda]		r
+			???
+			
+[conda]		rstudio
+			???
+
+
+- ???
+- ???
+
+
+- Import:
+>
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: (https://www.r-project.org/)
+
+- Documentation:
+url: ()
+
+- Introduction to Statistical Learning with R (ISLR) Book Website:
+url: (https://www.statlearning.com/)
+
+
+------------------------------------
+
+	R HELP
+
+- Open a help file window about a function or type of object:
+> ?<function>
+> ?<typeof>
+
+
+- Display the type of a R object:
+> typeof(<object>)
+
+
+
+- Quit:
+> q()
+
+
+------------------------------------
+
+	VECTORS & CONCATENATE & MATRIX
+
+
+- Combine numbers:
+> c(<value>, ...)
+
+
+- Create Vector using the Concatenate function:
+> <vec> <- c(<value>, ...)
+> <vec> = c(<value>, ...)
+
+
+
+
+
+- Generate a Vector of size 'n', with random normal variables (deafult: mean=0, sd=1):
+> rnorm(<n>)
+> rnorm(<n>, mean=<value>, sd=<value>)
+
+- Set seed for generating the same set of random numbers:
+> set.seed(<seed>)
+
+- Reset seed:
+> rm(.Random.seed, envir=globalenv())
+
+
+
+
+
+- Create a sequence of numbers from a 'start' to an 'end' (step= 1):
+> <start>:<end>
+
+- Create a sequence of numbers from a 'start' to an 'end', with a step (default: start= 0, step= 1):
+> seq(<end>)
+> seq(<start>, <end>, by=<step>)
+
+- Create a sequence with a number of values equally spaced:
+> seq(<start>, <end>, length=<number>)
+
+
+
+
+
+
+
+- Create Matrix from a Lsit or Vector:
+> matrix(<data>, <nrow>, <ncol>)
+> matrix(data=<vec>, nrow=<value>, ncol=<value>)
+
+- By default, R creates Matrix filling the columns.
+- Populate Matrix row by row:
+> matrix(<data>, <nrow>, <ncol>, byrow=TRUE)
+> matrix(<data>, <nrow>, <ncol>, byrow=T)
+
+
+
+- Get the Dimensions of a Matrix (or DataFrame):
+> dim(<matrix>)
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+	INDEXING
+
+- Access the i-th element of a Vector:
+> <vec>[<i>]
+
+- Access the element on i-th row, j-th column of a Matrix:
+> <matrix>[<i>, <j>]
+
+
+
+- Access multiple elements in sequence:
+> <matrix>[ <i-start>:<i-end> , <j-start>:<j-end> ]
+
+- Access multiple specified elements:
+> <matrix>[ c(<i>, <i>, ...) , c(<j>, <j>, ...)]
+
+- Access ALL, except specified elements:
+> <matrix>[ -(<i-start>:<i-end>) , -(<j-start>:<j-end>) ]
+> <matrix>[ -c(<i>, <i>, ...) , -c(<j>, <j>, ...)]
+
+
+
+
+
+	## Examples ##
+
+> A = matrix(1:16, 4, 4)
+		[,1] [,2] [,3] [,4]
+	[1,]    1    5    9   13
+	[2,]    2    6   10   14
+	[3,]    3    7   11   15
+	[4,]    4    8   12   16
+
+
+> A[1:3,2:4]
+		[,1] [,2] [,3]
+	[1,]    5    9   13
+	[2,]    6   10   14
+	[3,]    7   11   15
+> A[1:3,]
+		[,1] [,2] [,3] [,4]
+	[1,]    1    5    9   13
+	[2,]    2    6   10   14
+	[3,]    3    7   11   15
+> A[,2:4]
+		[,1] [,2] [,3]
+	[1,]    5    9   13
+	[2,]    6   10   14
+	[3,]    7   11   15
+	[4,]    8   12   16
+
+
+> A[c(1,3), c(2,4)]
+		[,1] [,2]
+	[1,]    5   13
+	[2,]    7   15
+
+> A[-(2:4), -(3:4)]
+
+	## - ##
+
+
+------------------------------------
+
+	OPERATIONS AND VALUES
+
+- Mathematical Values:
+
+	pi			Pi Number
+	exp(1)		Euler's Constant
+
+
+
+
+
+
+- Vector Addition (element by element):
+> <vec> + <vec>
+
+- Outer Product (Tensor Product):
+> outer (<vec>, <vec>)
+
+- Constructs a 2-D plane and apply a 2 variable function to it:
+> outer (<vec>, <vec>, <function>)
+
+
+
+
+- Transpose a Matrix:
+> t(<matrix>)
+
+
+
+
+
+- Mean of a Vector:
+> mean(<vec>)
+
+- Variance of a Vector:
+> var(<vec>)
+
+- Standard Deviation of a Vector:
+> sd(<vec>)
+> sqrt(var(<vec>))
+
+- Find the correlation between two Vectors:
+> cor(<vec>, <vec>)
+
+
+
+
+
+- Square Root of a number, or each element on Vector or Matrix:
+> sqrt(<value>)
+> sqrt(<vec>)
+> sqrt(<matrix>)
+
+- Raise a number to a power, or each element on Vector or Matrix:
+> <value>^<value>
+> <vec>^<value>
+> <matrix>^<value>
+
+
+
+
+
+
+	## Examples ##
+
+> x = rnorm(5)
+> y = x + rnorm(5, 50, .1)
+> y_not = rnorm(5, 50, .1)
+> y_maybe = x + rnorm(5, 1000, .1)
+
+> cor(x,y)
+[]	0.9945339
+
+> cor(x,y_not)
+[]	0.3986063
+
+> cor(x,y_maybe)
+[]	0.9971834
+
+> cor(x, y_not + y_maybe)
+[]	0.9986381
+
+	## - ##
+
+
+------------------------------------
+
+	BUILTIN FUNCTIONS
+
+
+- List current objects saved:
+> ls()
+
+- Delete a object:
+> rm(<object>)
+
+- Dele ALL objects:
+> rm(list=ls())
+
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+	PLOTS
+
+
+
+SCATTER AND LINE PLOTS
+
+- Plot a Scatterplot using two Vectors for abscissa (x) and ordered (y):
+> plot(<x>, <y>)
+
+- Different options for Plot:
+> plot(<x>, <y>, type=<type>)
+
+type=
+		'p'		points (default)
+		'l'		lines
+		'b'		both
+		'c'		both, except is not both
+		'o'		both, except is MORE both
+		'h'		histogram
+		's'		steps
+		'S'		steps, except MORE steps
+		'n'		just ... don't
+
+
+
+
+
+
+LABELS
+
+- Define Plot Title:
+> plot(<x>, <y>, main=<character>)
+
+- Define Plot Sub-Title:
+> plot(<x>, <y>, sub=<character>)
+
+- Set Axis Labels:
+> plot(<x>, <y>, xlab=<character>)
+> plot(<x>, <y>, ylab=<character>)
+
+
+
+
+
+
+CONTOUR PLOT
+
+- Make a Countour Plot for three-dimensional data.
+- Using two Vectors for abscissa (x) and ordered (y), and a Matrix (z) with values for each pair of coordinates:
+
+> contour(<x>, <y>, <z>)
+
+
+- Define the number of levels in a contour (default = 10):
+> contour(<x>, <y>, <z>, nlevels=<number>)
+
+- Add to current plot (default = FALSE, F):
+> contour(<x>, <y>, <z>, add=<logical>)
+
+
+
+	## Examples ##
+
+> x = seq(-pi, pi, length=50)
+> y = seq(-pi, pi, length=50)
+> z = outer(x, y, function(x,y)cos(y)/(1+x^2))
+
+> contour(x, y, z)
+> contour(x, y, z, nlevels=45, add=T)
+
+> za = (z - t(z))/2
+> contour(x, y, za, nlevels=15)
+
+	## - ##
+
+
+
+
+
+
+
+HEATMAP
+
+- Make a Heatmap.
+- Using two Vectors for abscissa (x) and ordered (y), and a Matrix (z) with values for each pair of coordinates:
+
+> image(<x>, <y>, <z>)
+
+
+
+
+
+
+3D SURFACE PLOT
+
+- Make a Topographical Map.
+- Using two Vectors for abscissa (x) and ordered (y), and a Matrix (z) with values for each pair of coordinates:
+
+> persp(<x>, <y>, <z>)
+
+
+- Change perspective from which the plot is viewed:
+> persp(<x>, <y>, <z>, theta=<degree>, phi=<degree>)
+
+
+
+	## Examples ##
+
+> persp(x, y, za, theta=30)
+> persp(x, y, za, theta=30, phi=20)
+> persp(x, y, za, theta=30, phi=70)
+> persp(x, y, za, theta=30, phi=40)
+
+	## - ##
+
+
+
+
+
+
+
+
+SAVE
+
+- Save output of Plot as pdf:
+> pdf('<filepath>/<filename>.<extension>')
+
+- Save output of Plot as jpeg:
+> jpeg('<filepath>/<filename>.<extension>')
+
+
+
+
+- End Plots (?):
+> dev.off()
+
+
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+	LOADING AND WRITING DATA
+
+- Send some data to a file:
+> write.table(<data>, file= '<filepath>.data')
+
+- Send some data to a CSV file:
+> write.csv(<data>, file= '<filepath>.csv')
+
+
+
+
+
+
+- Read some data from a file (returns a DataFrame):
+> read.table('<filepath>.data')
+> read.table('<filepath>.data', header=T, na.strings="?")
+
+- Read a CSV file (returns a DataFrame):
+> read.csv("<filepath>.csv")
+> read.csv("<filepath>.csv", header=T, na.strings="?")
+
+
+
+
+
+HISTORY
+
+- Save History of all typed commands in current session:
+> savehistory()
+
+- Load History:
+> loadhistory()
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+	DATAFRAMES
+
+
+- View DataFrame on a spreadsheet window:
+> fix(<dataframe>)
+
+- Omit the rows with missing data from a DataFrame
+> na.omit(<dataframe>)
+
+- Check the variable (column) names:
+> names(<dataframe>)
+
+
+
+
+- Access a Column of a DataFrame (returns a Vector):
+> <dataframe>$<column>
+
+- Make the Columns of a DataFrame accessible directly by name:
+> attach(<dataframe>)
+
+- Undo Attach:
+> detach(<dataframe>)
+
+
+
+
+
+- Produce a numerical summary for each Column on a DataFrame or Vector:
+> summary(<dataframe>)
+> summary(<vec>)
+> summary(<dataframe>$<column>)
+
+
+
+
+
+
+PLOT AND IDENTIFY
+
+- Identify (interactively) points on a plot.
+- Adds labels to those points using a Column.
+- Return the points row values.
+
+> plot(<column>, <column>)
+> identify(<column>, <column>, <label-column>)
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+	FACTOR VARIABLES (CATHEGORICAL or QUALITATIVE)
+
+- Convert a Vector of finite possible quantitative values into qualitative:
+> as.factor(<vec>)
+
+
+
+
+PLOT: BAR, BOX, SPINE
+
+- Using Factor Variables on the 'plot' function will yeld different types of graphs.
+
+
+
+- Bar Plot:
+> plot(<fac-vec>)
+> plot(x= <fac-vec>)
+
+- Box Plot:
+> plot(<fac-vec>, <num-vec>)
+> plot(x= <fac-vec>, y= <num-vec>)
+
+- Spine Plot:
+> plot(<fac-vec>, <fac-vec>)
+> plot(x= <fac-vec>, y= <fac-vec>)
+
+
+
+
+
+
+- Box Plot extra arameters:
+
+varwidth=	<logical>
+horizontal=	<logical>
+
+
+
+
+
+
+
+HISTOGRAM
+
+- Plot a histogram (using Numeric Values):
+> hist(<vec>)
+> hist(<vec>, breaks=<value>)
+
+
+
+
+
+SCATTERPLOT MATRIX (PAIR PLOT)
+
+- Create a ScatterPlot Matrix from a DataFrame:
+> pairs(<dataframe>)
+
+- Make ScatterPlot Matrix from a subset of variable from a DataFrame:
+> pairs(~ <column> + ... + <column>, <DataFrame)
+
+
+	## Examples ##
+
+> Auto = read.table('~/Coding/R/islr/Auto.data', header=T, na.strings="?")
+
+> pairs (~ mpg + displacement + horsepower + weight + acceleration, Auto)
+
+	## - ##
+
+
+
+
+COLOR
+
+- Parameter to change Plot color :
+
+col=	<character>	or 	<value>		# color
+		'black'			1
+		'red'			2
+		'green'			3
+		'blue'			4
+		'cyan'			5
+						6
+		'yellow'		7
+		'gray'			8
+		'purple'
+		'pink'
+		'orange'
+		...
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

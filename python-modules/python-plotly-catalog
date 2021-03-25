@@ -1,0 +1,775 @@
+ 
+		PLOTLY & CUFFLINKS
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>>	: Some python command.
+[]	: Output of a python command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]		???
+				???
+			
+[conda]				plotly
+					???
+			
+[conda-forge]		cufflinks-py
+					???
+
+
+- Plotly is for Interactive Data Visualization.
+- Plotly has some functions available for Free. Those functions are offline.
+
+- Cufflinks have Productivity Tools for Plotly + Pandas.
+
+
+- ImportError: 
+The plotly.plotly module is deprecated, please install the chart-studio package and use the chart_studio.plotly module instead. 
+
+
+----------------------------------
+
+	REFERENCE
+
+- Plotly Home Page:
+url: (https://plotly.com/)
+
+- Plotly Python Graphing Library (COOL SHIT !!!):
+url: (https://plotly.com/python/)
+
+- Python Figure Reference - Choropleth:
+url: (https://plotly.com/python/reference/choropleth/)
+
+- Download Plotly Cheat Sheet:
+url: (https://images.plot.ly/plotly-documentation/images/plotly_js_cheat_sheet.pdf)
+
+- Git for Plotly Cheat Sheet:
+url: (https://github.com/jabhij/PY-Plotly_CheatSheet)
+
+- Documentation:
+url: ()
+
+
+
+
+- Cufflinks Github page:
+url: (https://github.com/santosjorge/cufflinks)
+
+- Cufflinks Github Conda-Forge page:
+url: (https://github.com/conda-forge/python-cufflinks-feedstock)
+
+
+
+
+
+
+- Some quick easy examples:
+url: (https://4bic.github.io/notebooks/plotly_and_cufflinks.html)
+
+
+------------------------------------
+
+	IMPORTS & SETUP
+
+EXTRA INSTALL (FOR JUPYTER)
+
+- For Jupyter Lab:
+(<env>)$ jupyter labextension install jupyterlab-plotly
+
+- Check Plotly version:
+>>> from plotly import __version__
+>>> __version__
+
+
+
+FOR INTERACTIVE PLOTS (ON JUPYTER)
+
+- Imports.
+- Setup Plotly and Cufflinks (connect to jupyter nb, go offline).
+
+>>> import numpy as np
+>>> import pandas as pd
+>>> import matplotlib.pyplot as plt
+
+>>> from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+>>> init_notebook_mode(connected=True)
+
+>>> import cufflinks as cf
+>>> cf.go_offline()
+
+
+
+
+
+FOR INTERACTIVE PLOTS (ELSEWHERE)
+
+>>> import numpy as np
+>>> import pandas as pd
+
+>>> import plotly.graph_objects as go
+>>> from plotly.offline import plot
+
+
+
+
+FOR GEOGRAPHIC PLOTS
+
+- Imports:
+
+>>> import pandas as pd
+
+>>> from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+>>> init_notebook_mode(connected=True)
+
+>>> import chart_studio.plotly as py
+>>> import plotly.graph_objs as go
+
+
+
+
+------------------------------------
+
+	INTERACTIVE PLOTS (ON JUPYTER)
+
+- All of these Plots can be applied to Pandas' DataFrames.
+
+
+
+
+SCATTER
+
+- Make Scatter Plot:
+>>> <dataframe>.iplot(kind='scatter', x=<column>, y=<column>, mode='markers')
+>>> <dataframe>.iplot(kind='scatter', x=<column>, y=<column>, mode='markers', size=<value>)
+
+
+	## Examples ##
+
+>>> df1 = pd.DataFrame(np.random.randn(100,4),columns='A B C D'.split())
+
+>>> df1.iplot(kind='scatter', x='A', y='B')
+>>> df1.iplot(kind='scatter', x='A', y='B', mode='markers')
+
+	## - ##
+
+
+
+
+
+BAR PLOT
+
+- Make Bar Plot:
+>>> <dataframe>.iplot(kind='bar', x=<cat-column>, y=<numm-column>)
+
+
+
+
+
+
+BOX PLOT
+
+- Make Box Plot:
+>>> <dataframe>.iplot(kind='box')
+
+	## Examples ##
+
+>>> df2 = pd.DataFrame({'Categoria':['A','B','C'],'Valores':[32,43,50]})
+>>> df2.iplot(kind='box')
+
+	## - ##
+
+
+
+
+
+
+
+
+TOPOGRAPHICAL 3D SURFACE PLOT
+
+- Make 3D Surface Plot:
+>>> <dataframe>.iplot(kind='surface')
+>>> <dataframe>.iplot(kind='surface', colorscale='<colormap>')
+
+
+	## Examples ##
+
+>>> df3 = pd.DataFrame({'x':[1,2,3,4,5],'y':[10,20,30,20,10],'z':[5,4,3,2,1]})
+>>> df3.iplot(kind='surface',colorscale='rdylbu')
+
+	## - ##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SPREAD PLOT
+
+- Make Spread Plot:
+>>> <dataframe>.iplot(kind='spread')
+
+
+	## Examples ##
+
+>>> df1[['A', 'B']].iplot(kind='spread')
+
+	## - ##
+
+
+
+
+
+HISTOGRAM
+
+- Make Histogram:
+>>> <dataframe>[<column>].iplot(kind='hist')
+>>> <dataframe>[<column>].iplot(kind='hist', bins=<bins>)
+
+
+
+
+
+
+BUBBLE PLOT
+
+- Make Bubble Plot:
+>>> <dataframe>.iplot(kind='bubble', x=<column>, y=<column>, size=<column>)
+
+
+	## Examples ##
+
+>>> df1.iplot(kind='bubble', x='A', y='B', size='C')
+
+	## - ##
+
+
+
+
+
+
+
+SCATTER MATRIX (PairPlot)
+
+- Make Scatter Matrix:
+>>> <dataframe>.scatter_matrix()
+
+
+
+
+
+
+------------------------------------
+
+	INTERACTIVE PLOTS (incomplete, missing a lot)
+
+- All of these Plots can be applied to Pandas' DataFrames.
+
+
+
+
+SCATTER
+
+- Make Scatter Plot:
+
+>>> 
+
+
+	## Examples ##
+
+>>> df1 = pd.DataFrame(np.random.randn(100,4),columns='A B C D'.split())
+
+>>> df1.iplot(kind='scatter', x='A', y='B')
+>>> df1.iplot(kind='scatter', x='A', y='B', mode='markers')
+
+	## - ##
+
+
+
+
+
+BAR PLOT
+
+- Make Bar Plot:
+
+>>> 
+
+
+
+
+
+
+BOX PLOT
+
+- Make Box Plot:
+
+>>> 
+
+	## Examples ##
+
+>>> df2 = pd.DataFrame({'Categoria':['A','B','C'],'Valores':[32,43,50]})
+
+	## - ##
+
+
+
+
+
+
+
+
+TOPOGRAPHICAL 3D SURFACE PLOT
+
+
+- Make Figure with 3D Surface Plot:
+
+>>> <fig> = go.Figure(data=[go.Surface(z=<dataframe>.values)])
+>>> <fig> = go.Figure(data=[go.Surface(z=<dataframe>.values, x=<x>, y=<y>)])
+
+
+- Add Surface Contours:
+
+>>> <fig>.update_traces(contours_z= dict(show=True,
+>>> 									 usecolormap=True,
+>>> 									 highlightcolor="limegreen",
+>>> 									 project_z=True))
+
+
+- Edit Figure Layout:
+
+>>> <fig>.update_layout(title= <str>,
+>>> 					autosize= <bool>,
+>>> 					width= <value>,
+>>> 					height= <value>,
+>>> 					margin= dict(l= <value>,
+>>> 								 r= <value>,
+>>> 								 b= <value>,
+>>> 								 t= <value>))
+
+
+- Display:
+
+>>> plot(<fig>)
+
+
+
+
+
+	## Examples ##
+
+>>> z_data = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv')
+
+>>> z = z_data.values
+
+>>> (sh_x, sh_y) = z.shape
+
+>>> x = np.linspace(0, 1, sh_x)
+>>> y = np.linspace(0, 1, sh_y)
+
+>>> fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+
+>>> fig.update_traces(contours_z= dict(show=True,
+>>> 								   usecolormap=True,
+>>> 								   highlightcolor="limegreen",
+>>> 								   project_z=True))
+
+>>> fig.update_layout(title= 'Mt Bruno Elevation',
+>>> 				  autosize= False,
+>>> 				  width= 500,
+>>> 				  height= 500,
+>>> 				  margin= dict(l= 65,
+>>> 							   r= 50,
+>>> 							   b= 65,
+>>> 							   t= 90))
+
+>>> from plotly.offline import plot
+>>> plot(fig)
+
+	## - ##
+
+
+
+
+
+
+
+
+
+
+
+
+SPREAD PLOT
+
+- Make Spread Plot:
+
+>>>
+
+
+	## Examples ##
+
+>>> df1[['A', 'B']].iplot(kind='spread')
+
+	## - ##
+
+
+
+
+
+HISTOGRAM
+
+- Make Histogram:
+
+>>> 
+
+>>> <dataframe>[<column>].iplot(kind='hist', bins=<bins>)
+
+
+
+
+
+
+BUBBLE PLOT
+
+- Make Bubble Plot:
+
+>>>
+
+
+	## Examples ##
+
+>>> df1.iplot(kind='bubble', x='A', y='B', size='C')
+
+	## - ##
+
+
+
+
+
+
+
+SCATTER MATRIX (PairPlot)
+
+- Make Scatter Matrix:
+
+>>> 
+
+
+
+
+
+
+
+------------------------------------
+
+	GEOGRAPHIC PLOTS   (CHOROPLETH MAP)
+
+- Matplotlib can also make Geographic Plots with the Basemap Extension.
+
+
+
+
+- Download Plotly Cheat Sheet:
+url: (https://images.plot.ly/plotly-documentation/images/plotly_js_cheat_sheet.pdf)
+
+- Git for Plotly Cheat Sheet:
+url: (https://github.com/jabhij/PY-Plotly_CheatSheet)
+
+
+
+
+
+
+USA - TEST
+
+- Make a Dictionaries with Layout and with Data for the Map creation:
+
+>>> layout= dict( geo={'scope':'usa'} )
+
+>>> data = dict(type= 'choropleth',
+>>> 			locationmode= 'USA-states',
+>>> 			locations= ['AZ', 'CA', 'NY'],
+>>> 			colorscale= 'Portland',
+>>> 			text= ['AZ txt','CA txt','NY txt'],
+>>> 			z= [1.0,2.0,3.0],
+>>> 			colorbar={'title':'ColorBar Title'})
+
+
+
+locationmode= <type of information to match 'locations'>
+				"ISO-3"
+				"USA-states"
+				"country names"
+				"geojson-id"
+
+locations= <states list>
+
+text= <text over locations>
+
+z= <colorlevel for locations>
+
+colorscale=
+			'pairs'
+			'Greys'
+			'Greens'
+			'Bluered'
+			'Hot'
+			'Picnic'
+			'Portland'
+			'Jet'
+			'RdBu'
+			'Blackbody'
+			'Earth'
+			'Electric'
+			'ylorrd'
+			'YIGnBu'
+
+
+
+- Create a Graph_objects of the Map:
+>>> choromap = go.Figure(data=[data], layout=layout)
+
+- Display:
+>>> plot(choromap)
+>>> iplot(choromap)		# on Jupyter
+
+
+
+
+
+
+
+
+USA - AGRICULTURAL EXPORTS
+
+- Using DataFrame '2011_US_AGRI_Exports':
+
+>>> df = pd.read_csv('3. Python para Visualização de dados/Geographical Plotting/2011_US_AGRI_Exports')
+>>> df.head()
+
+- Using DataFrame's data to make Map:
+
+>>> layout= dict(title='USA Agricultural Exports (2011)',
+>>> 			 geo= dict( scope= 'usa',
+>>> 			 			showlakes= True,
+>>> 			 			lakecolor='rgb(85, 173, 240)'))
+
+
+>>> data = dict(type= 'choropleth',
+>>> 			colorscale= 'ylorrd',
+>>> 			locationmode= 'USA-states',
+>>> 			
+>>> 			marker= dict(line= dict(color='rgb(0, 0, 0)',
+>>> 									width=1)),
+>>> 			
+>>> 			locations= df['code'],
+>>> 			z= df['total exports'],
+>>> 			text= df['text'],
+>>> 			colorbar={'title':'in Millions od Dollars'})
+
+
+- Create a Graph_objects of the Map:
+>>> choromap = go.Figure(data=[data], layout=layout)
+
+- Display:
+>>> plot(choromap)
+>>> iplot(choromap)		# on Jupyter
+
+
+
+
+
+
+
+
+WORLD - GPD
+
+- Using DataFrame '2014_World_GDP' (Gross Domestic Product):
+
+>>> df = pd.read_csv('3. Python para Visualização de dados/Geographical Plotting/2014_World_GDP')
+>>> df.info()
+
+- Using DataFrame's data to make Map:
+
+>>> data = dict(type= 'choropleth',
+>>> 			colorscale= 'ylorrd',
+>>> 			
+>>> 			locations= df['CODE'],
+>>> 			z= df['GDP (BILLIONS)'],
+>>> 			text= df['COUNTRY'],
+>>> 			colorbar={'title':'in Billions USD'})
+
+>>> layout= dict(title='World Gross Domestic Product (GPD) - 2014',
+>>> 			 geo= dict( showframe=True,
+>>> 			 			projection= dict(type='mercator')))
+
+showframe= <bool - whether show world border or not>
+
+projection-type=
+				'natural earth'
+				'robinson'
+				'mollweide'
+				'miller'
+				'mercator'
+
+
+
+- Create a Graph_objects of the Map:
+>>> choromap = go.Figure(data=[data], layout=layout)
+
+- Display:
+>>> plot(choromap)
+>>> iplot(choromap)		# on Jupyter
+
+
+
+
+
+
+
+
+WORLD - POWER CONSUMPTION
+
+- Using DataFrame '2014_World_Power_Consumption':
+
+>>> df = pd.read_csv('3. Python para Visualização de dados/Geographical Plotting/2014_World_Power_Consumption')
+>>> df.head()
+
+- Using DataFrame's data to make Map:
+
+>>> data = dict(type= 'choropleth',
+>>> 			colorscale= 'inferno',
+>>> 			
+>>> 			locationmode= 'country names',
+>>> 			locations= df['Country'],
+>>> 			z= df['Power Consumption KWH'],
+>>> 			text= df['Text'],
+>>> 			colorbar={'title':'KWH'})
+
+>>> layout= dict(title='World Power Consumption (2014)',
+>>> 			 geo= dict( showframe=True,
+>>> 			 			projection= dict(type='robinson')))
+
+
+- Create a Graph_objects of the Map:
+>>> choromap = go.Figure(data=[data], layout=layout)
+
+- Display:
+>>> plot(choromap)
+>>> iplot(choromap)		# on Jupyter
+
+
+
+
+
+
+
+USA - ELECTION
+
+- Using DataFrame '2012_Election_Data':
+
+>>> df = pd.read_csv('3. Python para Visualização de dados/Geographical Plotting/2012_Election_Data')
+>>> df.head()
+
+- Using DataFrame's data to make Map:
+
+>>> data = dict(type= 'choropleth',
+>>> 			colorscale= 'ylorrd',
+>>> 			locationmode= 'USA-states',
+>>> 			
+>>> 			marker= dict(line= dict(color='rgb(0, 0, 0)',
+>>> 									width=1)),
+>>> 			
+>>> 			locations= df['State Abv'],
+>>> 			z= df['Voting-Age Population (VAP)'],
+>>> 			text= df['State'],
+>>> 			colorbar={'title':'VAP'})
+
+>>> layout= dict(title='USA Election 2012',
+>>> 			 geo= dict( scope= 'usa'))
+
+scope= 
+		"world"
+		"usa"
+		"europe"
+		"asia"
+		"africa"
+		"north america"
+		"south america"
+
+
+- Create a Graph_objects of the Map:
+>>> choromap = go.Figure(data=[data], layout=layout)
+
+- Display:
+>>> plot(choromap)
+>>> iplot(choromap)		# on Jupyter
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

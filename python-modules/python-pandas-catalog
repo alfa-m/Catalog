@@ -1,0 +1,1287 @@
+ 
+		PANDAS
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+>>>	: Some python command.
+[]	: Output of a python command.
+
+<description>	: Something to be replaced according to the description.
+...				: Possible to repeated pattern indefinitely.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	python-pandas
+			High-performance, easy-to-use data structures and data analysis tools for Python
+			
+			
+[conda]		pandas
+			???
+			
+			
+[conda]		pandas-datareader
+			Up to date remote data access for pandas, works for multiple versions of pandas.
+			
+			
+[pacman]	python-pandas-datareader
+			Data readers extracted from the pandas codebase.
+
+
+- Open Library written over Numpy.
+- Data Visualization tool.
+- Similar to Excel.
+
+
+- Import:
+>>> import numpy as np
+>>> import panda as pd
+
+>>> import pandas-datareader as pdr
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: ()
+
+- Pandas Documentation:
+url: (https://pandas.pydata.org/pandas-docs/stable/index.html)
+
+- Numpy Universal Functions:
+url: (https://numpy.org/doc/stable/reference/ufuncs.html)
+
+- Pandas DataReader Documentation:
+url: (https://pandas-datareader.readthedocs.io/en/stable/)
+
+- Remote Data Access:
+url: (https://pandas-datareader.readthedocs.io/en/stable/remote_data.html)
+
+------------------------------------
+
+	SERIES
+
+- Series hold data associated to a index.
+- The Index parameter accepts lists of numbers (like lists) and strings (like dicts). It accepts numpy arrays too.
+- The Data parameter can accept even functions.
+
+- Create a Series with a List of Data and a List of Indexs:
+>>> pd.Series(<list-data>)
+>>> pd.Series(<list-data>, <list-index>)
+>>> pd.Series(data=<list-data>, index=<list-index>)
+
+- Access a Series data:
+>>> <series>[<index>]
+
+- Add Series based on Index:
+>>> <series> + <series>
+
+
+
+------------------------------------
+
+	DATAFRAMES
+
+- Create a DataFrame:
+>>> pd.DataFrame(<data>, <index>, <columns>)
+>>> pd.DataFrame(data=<data>, index=<index>, columns=<columns>)
+
+
+
+- Add a column to a DataFrame:
+>>> <dataframe>[<new-column>] = <series>
+
+- Add a line to the DataFrame:
+>>> <dataframe>.loc[<new-index>] = <series>
+
+
+
+	## Examples ##
+
+>>> df = pd.DataFrame(np.random.randn(5, 4), index='A B C D E'.split(), columns='W X Y Z'.split())
+          W         X         Y         Z
+A -0.260599 -0.517255 -0.401975 -1.745364
+B -0.653223 -1.362995  0.335261  0.666447
+C  2.378122 -0.293997  1.127474 -0.898852
+D  0.636019 -1.455195  0.855026 -2.206777
+E  0.032626  0.987973  0.542521 -0.761312
+
+	## - ##
+
+
+	
+	
+
+INDEXING & SLICING
+
+- Access a column on a DataFrame (returns a Series):
+>>> <dataframe>[<column>]
+
+- Acess multiple columns on a DataFrame (returns a DataFrame):
+>>> <dataframe>[[<column>, ...]]
+
+
+- Locate elements:
+>>> <dataframe>.loc[<index>]							# all line
+>>> <dataframe>.loc[<index>,<column>]					# specific element
+>>> <dataframe>.loc[[<index>, ...], [<column>, ...]]	# multiple lines and/or columns
+
+- Locate using Numpy index (i.e. numbers) notation:
+>>> <dataframe>.iloc[<index>]
+>>> <dataframe>.iloc[<index>, <index>]
+>>> <dataframe>.iloc[<index>:<index>, <column>:<column>]
+
+
+	## Examples ##
+
+>>> df.loc[['A','B'], ['X', 'Y', 'Z']]
+          X         Y         Z
+A -0.517255 -0.401975 -1.745364
+B -1.362995  0.335261  0.666447
+
+>>> df.iloc[0:2, 1:4]
+          X         Y         Z
+A -0.517255 -0.401975 -1.745364
+B -1.362995  0.335261  0.666447
+
+
+	## - ##
+
+
+
+	
+	
+
+
+REMOVING LINES AND COLUMNS
+
+- Return a DataFrame without a specific line:
+>>> <dataframe>.drop(<index>)
+>>> <dataframe>.drop([<index>, ...])
+
+- Return a DataFrame without a specific column:
+>>> <dataframe>.drop(<column>, axis=1)
+>>> <dataframe>.drop([<column>, ...], axis=1)
+
+>>> <dataframe>.drop(columns=<column>)
+>>> <dataframe>.drop(columns=[<column>, ...])
+
+
+
+- Delete a line on a DataFrame:
+>>> <dataframe> = <dataframe>.drop(<index>)
+>>> <dataframe>.drop(<index>, inplace=True)
+
+- Delete a column on a DataFrame:
+>>> <dataframe> = <dataframe>.drop(<column>, axis=1)
+>>> <dataframe>.drop(<column>, axis=1, inplace=True)
+
+>>> del <dataframe>.[<column>]
+
+
+
+----------------------------------
+
+	METHODS & PARAMETERS
+
+
+- Reseting a DataFrame Indexs to default (numbers) and adding the current as a column:
+>>> <dataframe>.reset_index()
+>>> <dataframe>.reset_index(drop=True)			# don't add current as column
+>>> <dataframe>.reset_index(inplace=True)
+
+- Turn a column of a DataFrame into Index:
+>>> <dataframe>.set_index(<column>)
+>>> <dataframe>.set_index(<column>, inplace=True)
+
+
+
+
+
+
+- Find the mean of the values of a column:
+>>> <dataframe>['<column>'].mean()
+
+- Find the Correlation among the columns of the DataFrame:
+>>> <dataframe>.corr()
+
+- Find the minimum or maximum values of a column:
+>>> <dataframe>['<column>'].min()
+>>> <dataframe>['<column>'].max()
+
+- Find the minimum or maximum values of every column:
+>>> <dataframe>.min()
+>>> <dataframe>.max()
+
+- Find the Index of the minimum or maximum values of a column:
+>>> <dataframe>['<column>'].idxmin()
+>>> <dataframe>['<column>'].idxmax()
+
+- Find the Index of the minimum or maximum values of every column:
+>>> <dataframe>.idxmin()
+>>> <dataframe>.idxmax()
+
+- Return the sum of all values of a Series:
+>>> <series>.sum()
+>>> <dataframe>['<column>'].sum()
+
+- Return a Series with the sum of values on each column of a DataFrame:
+>>> <dataframe>.sum()
+
+
+
+
+
+r = (p(t) - p(t-1))/p(t-1)  ==  (p(t) / p(t-1)) -1
+
+- Percentage change between the current and a prior element on every column:
+>>> <dataframe>.pct_change()
+
+- Mean Rolling Window Calculation:
+>>> <series>.rolling(window=<value>).mean()
+>>> <dataframe>.rolling(window=<value>).mean()
+>>> <dataframe>.rolling(window=<value>, axis=1).mean()
+
+>>> <series>.rolling(window=<value>, center=True).mean()
+>>> <dataframe>.rolling(window=<value>, center=True).mean()
+>>> <dataframe>.rolling(window=<value>, axis=1, center=True).mean()
+
+- Sum Rolling Window Calculation:
+>>> <series>.rolling(window=<value>).sum()
+>>> <dataframe>.rolling(window=<value>).sum()
+>>> <dataframe>.rolling(window=<value>, axis=1).sum()
+
+>>> <series>.rolling(window=<value>, center=True).sum()
+>>> <dataframe>.rolling(window=<value>, center=True).sum()
+>>> <dataframe>.rolling(window=<value>, axis=1, center=True).sum()
+
+
+
+
+
+
+- Return first n rows of the DataFrame (default=5):
+>>> <dataframe>.head()
+>>> <dataframe>.head(<n>)
+
+- Get info on number of objects in the columns, object-type, and more...:
+>>> <dataframe>.info()
+
+
+
+
+
+- Return a Numpy Array with only unique values (omiting repetition):
+>>> <series>.unique()
+>>> <dataframe>[<column>].unique()
+
+- Return how many unique values there is on a Series:
+>>> <series>.nunique()
+>>> <dataframe>[<column>].nunique()
+
+- Return a Series with the count of elements on each column:
+>>> <dataframe>.count()
+
+- Count how many elements have a specific value on a column:
+>>> sum(<dataframe>.[<column>] == <value>)
+
+- Return a Series with the count of each value:
+>>> <series>.value_counts()
+>>> <dataframe>[<column>].value_counts()
+
+- Sort the lines of a Dataframe by some column:
+>>> <dataframe>.sort_values(by=<column>)
+>>> <dataframe>.sort_values(by=<column>, ascending=False)
+
+- Return a Dataframe of bool with what values of a Dataframe are null:
+>>> <dataframe>.isnull()
+
+
+
+
+
+- Aply a function to all of the elements (similar to map).
+- Do not use paranthesis passing the function.
+>>> <series>.apply(<function>)
+>>> <dataframe>.apply(<function>)
+>>> <dataframe>[column].apply(<function>)
+
+>>> <series>.apply(<lambda>)
+>>> <dataframe>.apply(<lambda>)
+>>> <dataframe>[column].apply(<lambda>)
+
+
+
+
+
+
+- Convert a datetime-like object (datetime, List, Array-like, ...), or a Series with it, to Timestamp:
+>>> pd.to_datetime(<datetime-like-obj>)
+>>> pd.to_datetime(<series>)
+
+- Timestamp parameters:
+>>> <timestamp>.tz			# timezone
+>>> <timestamp>.year
+>>> <timestamp>.month
+>>> <timestamp>.day
+>>> <timestamp>.weekday
+>>> <timestamp>.hour
+>>> <timestamp>.minute
+>>> <timestamp>.second
+>>> <timestamp>.microsecond
+>>> <timestamp>.nanosecond
+>>> <timestamp>.tzinfo		# datetime.tzinfo
+
+
+
+
+
+
+- Substitute each value in a Series with another value using a 'map' (dict, function or Series):
+>>> <series>.map(<map>)
+>>> <dataframe>[<column>].map(<map>)
+
+
+
+
+
+
+
+
+
+
+PARAMETERS
+
+- Diplay a Series Index:
+>>> <series>.index
+
+- Return a Numpy Array with a Series values:
+>>> <series>.values
+
+
+
+- Display the Index of a DataFrame:
+>>> <dataframe>.index
+
+- Display the Columns of a DataFrame:
+>>> <dataframe>.columns
+
+- Display the Index's names of a DataFrame:
+>>> <dataframe>.index.names
+
+- Return the Shape of a DataFrame (tuple with number of lines and columns):
+>>> <dataframe>.shape
+
+
+
+------------------------------------
+
+	BOOLEAN OPERATIONS & FILTERS
+
+- Boolean expressions can be aplied directly on DataFrames (just like in Numpy Arrays) to be checked for all of it's elements.
+
+- Return a DataFrame of Booleans for each element bigger than a value:
+>>> <dataframe>  >  <value>
+
+
+
+
+FILTER
+
+- It is possible to use this DataFrame of Booleans to Filter a DataFrame of same shape.
+- Intead of being removed (like on Numpy Arrays), values filtered by this method are substituted by NaN (Not a Number).
+
+
+- Use an DataFrame of Booleans to extract specific elements from a DataFrame of same shape:
+>>> <dataframe>[<bool-dataframe>]
+
+
+
+
+	## Examples ##
+
+>>> df > 0
+       W      X      Y      Z
+A  False  False  False  False
+B  False  False   True   True
+C   True  False   True  False
+D   True  False   True  False
+E   True   True   True  False
+
+>>> df[ df > 0 ]
+          W         X         Y         Z
+A       NaN       NaN       NaN       NaN
+B       NaN       NaN  0.335261  0.666447
+C  2.378122       NaN  1.127474       NaN
+D  0.636019       NaN  0.855026       NaN
+E  0.032626  0.987973  0.542521       NaN
+
+
+	## - ##
+
+
+
+
+- It is also possible to filter specific lines using this method.
+- In this case, the lines filtered are removed.
+
+- Return a Series of Booleans for each element bigger than a value on the column:
+>>> <dataframe> [<column>]  >  <value>
+
+- Use an Series of Booleans to omit a specific line from a DataFrame:
+>>> <dataframe>[<bool-series>]
+
+
+	## Examples ##
+
+>>> df['W'] > 0
+A    False
+B    False
+C     True
+D     True
+E     True
+
+>>> df[ df['W'] > 0 ]
+          W         X         Y         Z
+C  2.378122 -0.293997  1.127474 -0.898852
+D  0.636019 -1.455195  0.855026 -2.206777
+E  0.032626  0.987973  0.542521 -0.761312
+
+	## - ##
+
+
+
+
+
+MULTIPLE FILTERS
+
+- It is also possible to use multiple conditions by putting the expressions in parethesis and using the operators:
+	'&' for 'and'
+	'|' for 'or'
+	'~' for 'not'.
+
+- Return a Series of Booleans for each element bigger than a value on the column and smaller on the other column:
+>>> (<dataframe> [<column>]  >  <value>) & (<dataframe> [<column>]  <  <value>)
+
+	## Examples ##
+
+>>> df['X'] < 0   
+A     True
+B     True
+C     True
+D     True
+E    False
+
+>>> df['W'] > 0            
+A    False
+B    False
+C     True
+D     True
+E     True
+
+>>> (df['W'] > 0)  &  (df['X'] < 0)
+A    False
+B    False
+C     True
+D     True
+E    False
+
+>>> df[ (df['W'] > 0)  &  (df['X'] < 0) ]
+          W         X         Y         Z
+C  2.378122 -0.293997  1.127474 -0.898852
+D  0.636019 -1.455195  0.855026 -2.206777
+
+
+	## - ##
+
+
+
+----------------------------------
+
+	MULTIINDEX (HIERARCHIAL INDEX) & NAMES
+
+- Both Series and DataFrame can have multiple 'levels', having different Index for different levels.
+- For that, a MultiIndex object must be used as Index.
+
+- Create a MultiIndex from a List of Tuples:
+>>> pd.MultiIndex.from_tuples(<tuple-list>)
+
+- Create a MultiIndex from a List of Arrays:
+>>> pd.MultiIndex.from_arrays(<array-list>)
+
+- Create a MultiIndex from a DataFrame:
+>>> pd.MultiIndex.from_frame(<dataframe>)
+
+
+
+
+- Make MultinIndex DataFrame:
+>>> pd.DataFrame(<data>, index=<multiindex>, <columns>)
+
+- Make MultinIndex-Columns DataFrame:
+>>> pd.DataFrame(<data>, <index>, columns=<multiindex>)
+
+
+
+	## Examples ##
+
+>>> outside = ['G1','G1','G1','G2','G2','G2']
+>>> inside = [1,2,3,1,2,3]
+>>> hier_index = list(zip(outside,inside))
+
+>>> hier_index = pd.MultiIndex.from_tuples(hier_index)
+
+>>> df = pd.DataFrame(np.random.randn(6, 2), index=hier_index, columns='A B'.split())
+             A         B
+G1 1 -1.953677 -0.706516
+   2 -0.351613  0.285850
+   3  1.144663 -1.750029
+G2 1 -0.618488 -1.755436
+   2  0.215214 -0.145591
+   3 -0.283904 -1.760282
+
+>>> df.loc['G1']
+          A         B
+1 -1.953677 -0.706516
+2 -0.351613  0.285850
+3  1.144663 -1.750029
+
+	## - ##
+
+
+
+
+
+NAMES
+
+- The Index of DataFrames have 'names' to identify them.
+- Using the Names, it is possible make cross-sections ('xs') to select lines with same index on a specific level.
+
+
+
+- Create a MultiIndex with Names:
+>>> pd.MultiIndex.from_tuples(<tuple-list>, names=['<name>', ...])
+>>> pd.MultiIndex.from_arrays(<array-list>, names=['<name>', ...])
+>>> pd.MultiIndex.from_frame(<dataframe>, names=['<name>', ...])
+
+
+
+
+- Display the Index's Names:
+>>> <dataframe>.index.names
+
+- Display the Columns' Names:
+>>> <dataframe>.columns.names
+
+- Add names to a existing DataFrame:
+>>> <dataframe>.index.names = ['<name>', ...]
+>>> <dataframe>.columns.names = ['<name>', ...]
+
+
+
+
+
+CROSS-SELECTION
+
+- Cross-section all Index labels of a level:
+>>> df.xs(<index>)
+>>> df.xs(<index>, level='<name>')
+
+- Cross-section all Column labels of a level:
+>>> df.xs(<index>, axis=1)
+>>> df.xs(<index>, axis=1, level='<name>')
+
+
+	## Examples ##
+
+>>> df.index.names = ['Group', 'Number']
+                     A         B
+Group Number                    
+G1    1      -1.565060 -0.195813
+      2      -0.329907 -0.923693
+      3      -1.288969 -0.260080
+G2    1       1.547195  0.041312
+      2      -1.670262 -1.058485
+      3      -1.017790 -0.411298
+
+>>> df.xs('G1')
+               A         B
+Number                    
+1      -1.565060 -0.195813
+2      -0.329907 -0.923693
+3      -1.288969 -0.260080
+
+>>> df.xs(1, level='Number')
+              A         B
+Group                    
+G1    -1.565060 -0.195813
+G2     1.547195  0.041312
+
+
+	## - ##
+
+------------------------------------
+
+	PIVOT TABLE
+
+- Making a Pivot Table from a DataFrame it takes:
+	- the VALUES of a column as DATA;
+	- a column (or columns, with MultiIndex) as name(s) and its values as INDEX;
+	- the values of a column as COLUMNS.
+
+>>> <dataframe>.pivot_table(values=<colums>, index=[<column>, ...], columns=[<column>, ...])
+
+
+
+	## Examples ##
+>>> data = {'A':['foo','foo','foo','bar','bar','bar'],
+>>> 		'B':['one','one','two','two','one','one'],
+>>> 		'C':['x','y','x','y','x','y'],
+>>> 		'D':[1,3,2,5,4,1]}
+>>> df = pd.DataFrame(data)
+     A    B  C  D
+0  foo  one  x  1
+1  foo  one  y  3
+2  foo  two  x  2
+3  bar  two  y  5
+4  bar  one  x  4
+5  bar  one  y  1
+
+
+>>> df.pivot_table(values='D',index=['A', 'B'],columns=['C'])
+C          x    y
+A   B            
+bar one  4.0  1.0
+    two  NaN  5.0
+foo one  1.0  3.0
+    two  2.0  NaN
+
+
+	## - ##
+
+
+------------------------------------
+
+	MISSING DATA
+
+- Return a DataFrame omiting the axis (default=0) with data missing:
+>>> <dataframe>.dropna()
+>>> <dataframe>.dropna(axis=1)
+
+- Omit missing data from a threshold quantity of missing data and above:
+>>> <dataframe>.dropna(thresh=<value>)
+
+
+
+
+- Return a DataFrame filling all missing data with some value:
+>>> <dataframe>.fillna(value=<value>)
+
+- Return a DataFrame filling each missing value with the value before it (forward-fill method):
+>>> <dataframe>.fillna(method='ffill')
+
+- Fill the missing values on a column of a DataFrame wtih the mean of the column:
+>>> <dataframe>.fillna(value=<dataframe>[<column>].mean())
+
+
+
+
+	## Examples ##
+
+>>> d = {'A':[1, 2, np.nan], 'B':[4, np.nan, np.nan], 'C':[7, 8, 9]}
+>>> df = pd.DataFrame(d)
+     A    B  C
+0  1.0  4.0  7
+1  2.0  NaN  8
+2  NaN  NaN  9
+
+>>> df.dropna(thresh=2)
+     A    B  C
+0  1.0  4.0  7
+1  2.0  NaN  8
+
+>>> df.dropna(1, thresh=2)
+     A  C
+0  1.0  7
+1  2.0  8
+2  NaN  9
+
+	## - ##
+
+
+------------------------------------
+
+	GROUP BY
+
+- The idea is to group all items of a specific column if they follow a condition, and then, make an operation on a different column.
+- For this it is created a Group object, where we make the operations.
+
+- Create a Group object by some column:
+>>> <dataframe>.groupby(<column>)
+>>> <dataframe>.groupby([<column>, ...])
+
+
+METHODS
+
+
+- Only after Applying one of those methods that a DataFrame is returned.
+
+
+- Show a description (with many methods aplied) of the Group:
+>>> <group>.describe()
+
+- Count values on Group:
+>>> <group>.count()
+
+- Sum all values from a Group:
+>>> <group>.sum()
+
+- Get the mean of all values from a Group:
+>>> <group>.mean()
+
+- Get the std of all values from a Group:
+>>> <group>.std()
+
+- Get the minimum of all values from a Group:
+>>> <group>.min()
+
+- Get the maximun of all values from a Group:
+>>> <group>.max()
+
+
+
+
+	## Examples ##
+
+>>> data = {'Empresa':['GOOG','GOOG','MSFT','MSFT','FB','FB'],
+>>>        'Nome':['Sam','Charlie','Amy','Vanessa','Carl','Sarah'],
+>>>        'Venda':[200,120,340,124,243,350]}
+>>> df = pd.DataFrame(data)
+  Empresa     Nome  Venda
+0    GOOG      Sam    200
+1    GOOG  Charlie    120
+2    MSFT      Amy    340
+3    MSFT  Vanessa    124
+4      FB     Carl    243
+5      FB    Sarah    350
+
+>>> g = df.groupby('Empresa')
+>>> g.sum()
+         Venda
+Empresa       
+FB         593
+GOOG       320
+MSFT       464
+
+>>> g.describe()
+        Venda                                                        
+        count   mean         std    min     25%    50%     75%    max
+Empresa                                                              
+FB        2.0  296.5   75.660426  243.0  269.75  296.5  323.25  350.0
+GOOG      2.0  160.0   56.568542  120.0  140.00  160.0  180.00  200.0
+MSFT      2.0  232.0  152.735065  124.0  178.00  232.0  286.00  340.0
+
+	## - ##
+
+
+
+
+
+
+
+
+
+UNSTACK
+
+- A Series with MultiIndex can be Unstacked into a DataFrame:
+>>> <series>.unstack()
+>>> <dataframe>[<column].unstack()
+
+
+
+
+	## Examples ##
+
+>>> df = pd.read_csv('4. Projetos de dados/911.csv')
+
+>>> df['department'] = df['title'].apply(lambda ttl: ttl.split(': ')[0])
+
+>>> df['timeStamp'] = pd.to_datetime(df['timeStamp'])
+>>> df['hour'] = df['timeStamp'].apply(lambda time: time.hour)
+>>> df['dWeek'] = df['timeStamp'].apply(lambda time: time.weekday())
+
+>>> df.groupby(by=['dWeek','hour']).count()['department'].unstack().head()
+
+	## - ##
+
+
+
+------------------------------------
+
+	CONCATENATE, MERGE & JOIN
+
+CONCATENATE
+
+- To Concatenate DataFrames, the axis referent to the operation must have same size.
+- If the DataFrames don't have the same index on the axis of operation they will be added to the resulting DataFrame.
+
+- Return a Dataframe from multiple DataFrames concatenated, on a specific axis (default =0):
+>>> pd.concat([<dataframe>, ...])			# adds lines
+>>> pd.concat([<dataframe>, ...], axis=1)	# adds columns
+
+
+
+
+- Make a DataFrame with Hierarchial Columns:
+>>> pd.concat([<dataframe>, ...], <keys>, <names>)
+
+keys= ['<df-titles>', ...]
+names= ['<name-higher-level>', '<name-lower-level>']
+
+
+
+
+	## Examples ##
+
+>>> df1 = pd.DataFrame({'A': ['A0', 'A1'],
+>>> 					'B': ['B0', 'B1'],})
+    A   B
+0  A0  B0
+1  A1  B1
+
+>>> df2 = pd.DataFrame({'A': ['A2', 'A3'],
+>>> 					'B': ['B2', 'B3'],},
+>>> 					index=[2,3])
+    A   B
+2  A2  B2
+3  A3  B3
+
+>>> pd.concat([df1,df2])
+    A   B
+0  A0  B0
+1  A1  B1
+2  A2  B2
+3  A3  B3
+
+>>> pd.concat([df1,df2], axis=1)
+     A    B    A    B
+0   A0   B0  NaN  NaN
+1   A1   B1  NaN  NaN
+2  NaN  NaN   A2   B2
+3  NaN  NaN   A3   B3
+
+>>> df2.reset_index(drop=True)
+>>> pd.concat([df1,df2], axis=1)
+    A   B   A   B
+0  A0  B0  A2  B2
+1  A1  B1  A3  B3
+
+>>> pd.concat([df1,df2], axis=1, keys=['df1', 'df2'], names=['DataFrames','columns'])
+
+DataFrames df1     df2    
+columns      A   B   A   B
+0           A0  B0  A2  B2
+1           A1  B1  A3  B3
+
+
+	## - ##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MERGE
+
+- The Merge method joins TWO DataFrames given they have some equal values on some column(s).
+- The Merge method have a 'how' parameter that specifies the type of merge performed:
+
+	innner			use intersection of keys from both frames (default)
+	outer			use union of keys from both frames
+	left			use only keys from left frame
+	right			use only keys from right frame
+
+
+- Return DataFrame merging all Similar columns, or just the specified ones:
+>>> pd.merge(<l-dataframe>, <r-dataframe>)
+>>> pd.merge(<dataframe>, <dataframe>, how='<merge-type>')
+>>> pd.merge(<dataframe>, <dataframe>, on=<column>)
+>>> pd.merge(<dataframe>, <dataframe>, on=[<column>, ...])
+
+
+
+
+
+JOIN
+
+- The Join method (unlike the previous two) is a DataFrame's method.
+- It tries to join DataFrame that have possibly different index.
+- It has the same types of 'merge' as the Merge method (default='left').
+
+- Join a Dataframe to another:
+>>> <l-dataframe>.join(<r-dataframe>)
+>>> <dataframe>.join(<dataframe>, how='join-type')
+
+
+
+
+------------------------------------
+
+	DATA INPUT & OUTPUT
+
+- On IPython you can see all possible Input methods by typing and pressing [tab]:
+>>> pd.read_
+pd.read_clipboard(  pd.read_feather(    pd.read_hdf(        pd.read_orc(        pd.read_sas(        pd.read_sql_query(  pd.read_table(      
+pd.read_csv(        pd.read_fwf(        pd.read_html(       pd.read_parquet(    pd.read_spss(       pd.read_sql_table(  
+pd.read_excel(      pd.read_gbq(        pd.read_json(       pd.read_pickle(     pd.read_sql(        pd.read_stata(
+
+
+
+
+
+- Create a DataFrame from a CSV file:
+>>> pd.read_csv('<filepath>')
+
+- Specify the column to be used as index:
+>>> pd.read_csv('<filepath>', index_col=<column>)
+
+
+- Specify a separator (from element to element):
+>>> pd.read_csv('<filepath>', sep='<separator>')
+
+- Specify decimal marker:
+>>> pd.read_csv('<filepath>', decimal='<decimal>')
+
+
+- Export DataFrame to a CSV file:
+>>> <dataframe>.to_csv('<filepath>', sep='<separator>', decimal='<decimal>')
+
+
+
+
+
+- Import a Sheet from a Excel (.xlsx) file:
+>>> pd.read_excel('<filepath>', sheetname='<sheet>')
+
+- Export to a Excel file:
+>> <dataframe>.to_excel(<filepath>, sheet_name='<sheet>')
+
+
+
+
+
+- Import a Table on HTML in a url (returns a list where the DataFrame will be):
+>>> pd.read_html('<url>')
+
+
+
+
+
+	## Examples ##
+
+exemplo:
+a,b,c,d
+0,1,2,3
+4,5,6,7
+8,9,10,11
+12,13,14,15
+
+>>> df = pd.read_csv('exemplo', sep=',')
+    a   b   c   d
+0   0   1   2   3
+1   4   5   6   7
+2   8   9  10  11
+3  12  13  14  15
+
+>>> df.to_csv('exemplo2.csv', sep=';', decimal=',')
+
+exemplo.csv:
+;a;b;c;d
+0;0;1;2;3
+1;4;5;6;7
+2;8;9;10;11
+3;12;13;14;15
+
+
+	## - ##
+
+
+------------------------------------
+
+	DATA VISUALIZATION
+
+
+- All of those Plots return matplotlib's Axes.
+
+
+
+
+SIMPLE PLOT
+
+- Simple graph:
+>>> <dataframe>[<column>].plot()
+
+- Add Rotations to x-axis ticks:
+>>> <dataframe>[<column>].plot(rot=<degrees>)
+
+
+
+
+HISTOGRAM
+
+- Plot a Histogram of a column:
+>>> <dataframe>[<column>].hist()
+>>> <dataframe>[<column>].hist(bins=<bins>)
+
+
+AREA
+
+- Plot a Stacked Area:
+>>> <dataframe>.plot.area()
+>>> <dataframe>.plot.area(alpha=<value>)
+
+
+BARS
+
+- Plot Bars:
+>>> <dataframe>.plot.bar()
+
+- Plot Stacked Bars:
+>>> <dataframe>.plot.bar(stacked=True)
+
+
+
+	## Examples ##
+
+>>> import matplotlib.pyplot as plt
+>>> plt.style.use('bmh')
+>>> plt.style.use('dark_background')
+
+>>> import pandas as pd
+>>> df2 = pd.read_csv('3. Python para Visualização de dados/Visualização de dados incorporada do Pandas/df2')
+>>> print(df2.head())
+>>> df2.plot.area(alpha=.5)
+
+	## - ##
+
+
+
+LINES
+
+- Plot Lines:
+>>> <dataframe>.plot.line(y=<column>)
+>>> <dataframe>.plot.line(y=<column>, lw=<value>)
+>>> <dataframe>.plot.line(y=<column>, figsize=( <width>, <height> ))
+
+
+	## Examples ##
+
+>>> import pandas as pd
+>>> df1 = pd.read_csv('3. Python para Visualização de dados/Visualização de dados incorporada do Pandas/df1', index_col=0)
+>>> df1.plot.line(y='B', lw=1, figsize=(12,5))
+
+	## - ##
+
+
+
+
+SCATTER
+
+- Make a Scatter Plot:
+>>> <dataframe>.plot.scatter(x=<column>, y=<column>)
+
+- Define color of the point using another column:
+>>> <dataframe>.plot.scatter(x=<column>, y=<column>, c=<column>)
+
+- Define size of the point using another column:
+>>> <dataframe>.plot.scatter(x=<column>, y=<column>, s=<dataframe>[<column>])
+
+
+	## Examples ##
+
+>>> df1.plot.scatter(x='A', y='B', s=df1['C']*50, c='C', cmap='coolwarm')
+
+	## - ##
+
+
+
+
+
+
+BOX PLOT
+
+- Make Box Plot:
+>>> <dataframe>.plot.box()
+
+
+
+
+
+
+
+HEXAGON PLOT
+
+- Make Hexagon Plot:
+>>> <dataframe>.plot.hexbin(x=<column>, y=<column>)
+>>> <dataframe>.plot.hexbin(x=<column>, y=<column>, gridsize=<value>)
+>>> <dataframe>.plot.hexbin(x=<column>, y=<column>, cmap=<colormap>)
+
+
+	## Examples ##
+
+>>> df = pd.DataFrame(np.random.rand(1000,2), columns='A B'.split())
+>>> df.plot.hexbin(x='A', y='B', gridsize=20, cmap='Oranges')
+
+	## - ##
+
+
+
+
+
+
+KDE PLOT
+
+- Make KDE Plot:
+>>> <dataframe>.plot.kde()
+>>> <dataframe>[<column>].plot.kde()
+
+
+
+------------------------------------
+
+	DATAREADER
+
+- Functions from pandas_datareader.data and pandas_datareader.wb extract data from various Internet sources into a pandas DataFrame.
+
+- Supports:
+	- Google Finance,
+	- St. Louis FED (FRED),
+	- Kenneth French's data library,
+	- ...
+
+- List of Bank and tickers:
+url: (https://topforeignstocks.com/stock-lists/the-complete-list-of-bank-stocks-trading-on-the-nyse-2/)
+
+
+
+- Imports:
+>>> from pandas_datareader import data, wb
+>>> import datetime
+
+
+
+- Get data of a Bank, from a Internet Source, from a specific period.
+
+>>> <datetime> = datetime.datetime(<year>, <month>, <day>)
+>>> data.DataReader(<name>, <data_source>, <start>, <end>)
+
+name= '<ticker>'
+		'BAC'		Bank of America
+		'C'			Citigroup Inc.
+		'GS'		Goldman Sachs
+		'JPM'		JP Morgan Chase & Co.
+		'MS'		Morgan Stanley
+		'WFC'		Wells Fargo & Company
+
+data_source=
+			"stooq"
+			"yahoo"
+			...
+
+start= <datetime>
+end= <datetime>
+
+
+
+
+	## Examples ##
+
+>>> start = datetime.datetime(2006, 1, 1)
+>>> end = datetime.datetime(2016, 1, 1)
+
+# Bank of America
+>>> BAC = data.DataReader("BAC", 'yahoo', start, end)
+
+# CitiGroup
+>>> C = data.DataReader("C", 'yahoo', start, end)
+
+# Goldman Sachs
+>>> GS = data.DataReader("GS", 'yahoo', start, end)
+
+# JPMorgan Chase
+>>> JPM = data.DataReader("JPM", 'yahoo', start, end)
+
+# Morgan Stanley
+>>> MS = data.DataReader("MS", 'yahoo', start, end)
+
+# Wells Fargo
+>>> WFC = data.DataReader("WFC", 'yahoo', start, end)
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+- 
+
+
+
+
+
+	## Examples ##
+
+
+
+	## - ##
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

@@ -1,9 +1,6 @@
- 
-
 
 		PYTHON
 		DATA SCIENCE & MACHINE LEARNING
-
 
 ------------------------------------
 
@@ -15,7 +12,37 @@ $	: Some command to be used on the Terminal (shell).
 
 <description>	: Something to be replaced according to the description.
 ...				: Possible to repeated pattern indefinitely.
-[key]			: Some Keyboard key to be pressed.
+
+------------------------------------
+
+	PACKAGES
+
+[pacman]	package
+			description
+			
+[conda]		package
+			???
+
+
+- ???
+- ???
+
+
+- Import:
+>>> 
+
+
+----------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: ()
+
+- Data Set and Notebooks on Machine Learning:
+url: (https://www.kaggle.com/)
+url: (https://www.kaggle.com/datasets)
+
 
 ------------------------------------
 
