@@ -45,7 +45,7 @@ $ jupyter notebook stop <port>
 
 	MARKDOWN FORMATING (jupyter)
 
-# Bigger
+# Title
 **negrito**
 *itálico*
 
@@ -439,17 +439,17 @@ Formating Operators (groups in the order they must be placed or not):
 >>> l_1 = [1,2,3]
 >>> l_2 = [4,5,6]
 >>> l_3 = [7,8,9]
->>> matrix = [l_1, l_2, l_3]
+>>> mat = [l_1, l_2, l_3]
 
->>> first_col = [row[0] for row in matrix]
+>>> first_col = [row[0] for row in mat]
 	[1, 4, 7]
->>> first_col = list(list(zip(*matrix))[0])
+>>> first_col = list(list(zip(*mat))[0])
 	[1, 4, 7]
->>> diag = [matrix[ind][ind] for ind in [0,1,2] ]
+>>> diag = [mat[ind][ind] for ind in [0,1,2] ]
 	[1, 5, 9]
->>> diag2 = [matrix[ind][2-ind] for ind in [0,1,2] 
+>>> diag2 = [mat[ind][2-ind] for ind in [0,1,2] 
 	[3, 5, 7]
->>> fulllist = [ matrix[i][j]  for i in [0,1,2] for j in [0,1,2]]
+>>> fulllist = [ mat[i][j]  for i in range(len(mat)) for j in range(len(mat[i]))]
 	[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 

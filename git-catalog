@@ -1,5 +1,21 @@
  
-        GIT
+		GIT
+
+------------------------------------
+
+	HELP
+
+- Help and Manuals:
+$ git help
+$ git help <command>
+
+
+url: (https://git-scm.com/docs)
+merge branches?
+
+------------------------------------
+
+	BASIC START AND MANAGE LOCAL BRANCH AND REMOTES
 
 - Create a local repository:
 $ cd <path-to-repo>
@@ -42,6 +58,7 @@ $ git push <remote> <branch>
 $ git push origin master
 
 
+------------------------------------
 
 
 - Download from a remote repository (master branch):
@@ -71,5 +88,5 @@ $ git config --global credential.helper cache
 $ git config --global credential.helper 'cache --timeout=<time>'
 
 
-
+------------------------------------
 
