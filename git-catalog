@@ -34,6 +34,9 @@ $ git commit -m "<log-message>"
 - List local branches in repo:
 $ git branch
 
+- List all branches:
+$ git branch -a
+
 - Update a remotes with a branch:
 $ git push <remote> <branch>
 $ git push origin master
@@ -46,9 +49,6 @@ $ git clone <url>
 
 - Download a specific branch from a remote repository:
 $ git clone -b <branch> <url>
-
-- List all branches:
-$ git branch -a
 
 - Create new branch:
 $ git branch <new-branch-name>
