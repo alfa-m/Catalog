@@ -183,6 +183,7 @@ Mod ->	1 | 2	<- Floor division
 
 - Some methods:
 
+
 >>> someString.lower()
 	fucking help me
 >>> someString.islower()
@@ -193,14 +194,20 @@ Mod ->	1 | 2	<- Floor division
 >>> someString.isupper()
 	True
 
+
 >>> someString.split()
 	['FUCKING', 'HELP', 'ME']
+
 
 >>> someString.replace('ING HELP', '')
 	FUCK ME
 
 
-	
+>>> '  |separator|  '.join(['FUCKING', 'HELP', 'ME'])
+	FUCKING  |separator|  HELP  |separator|  ME
+
+
+
 ------------------------------------
 
 	STRING FORMATING
@@ -261,7 +268,14 @@ Mod ->	1 | 2	<- Floor division
 
 {:e} - exponent representation (scientific)
 
+{:<total>} - total size of string format
+
 {:.<decimal>} - number of decimal cases
+{:<total>.<decimal>}
+
+{:f} - any number represented as float
+{:.<decimal>f}
+{:<total>.<decimal>f}
 
 {:<} - left align
 {:^} - center align
@@ -383,6 +397,7 @@ Mod ->	1 | 2	<- Floor division
 
 ## Examples ##
 
+
 >>> l_1 = [1,2,3]
 >>> l_2 = [4,5,6]
 >>> l_3 = [7,8,9]
@@ -400,10 +415,36 @@ Mod ->	1 | 2	<- Floor division
 	[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
+
+
+
 >>> celsius = [0, 10, 15, 20, 30, 50, 100]
 >>> fahrenheit = [ temp*(9/5)+32  for temp in  celsius ]
 >>> [int(f) for f in fahrenheit]
 	[32, 50, 59, 68, 86, 122, 212]
+
+
+
+
+
+
+>>> # Multiply matrix
+
+>>> X = [[12,7,3],
+>>> 	[4 ,5,6],
+>>> 	[7 ,8,9]]
+
+>>> Y = [[5,8,1,2],
+>>> 	[6,7,3,0],
+>>> 	[4,5,9,1]]
+
+>>> result = [[sum(a*b for a,b in zip(X_row,Y_col)) for Y_col in zip(*Y)] for X_row in X]
+>>> for r in result: print(r)
+	[114, 160, 60, 27]
+	[74, 97, 73, 14]
+	[119, 157, 112, 23]
+
+
 
 
 ------------------------------------
@@ -453,11 +494,16 @@ Mod ->	1 | 2	<- Floor division
 - Tuple unpacking:
 >>> (<elements>, ...) = <tuple>
 
+
+
+- Defining a tuple if only one item:
+>>> <tuple> = (<object>, )
+
 ------------------------------------
 
 	FILES
 
-- Current working directory:
+- Current working directory (Jupyter):
 >>> pwd
 
 - Open a file:
@@ -475,23 +521,6 @@ Mod ->	1 | 2	<- Floor division
 
 - Print line by line:
 >>> for line in <file>: print(line)
-
-
-
-
-
-
-
-## Examples ##
-- Importing a function:
-	
->>> import os
->>> cwd = os.getcwd()								# currently working directory
->>> os.chdir("<directory-of-the-function-file>")	# REMEMBER TO USE UNDERSCORE (_) INSTEAD OF HIFEN (-) ON FILES YOU GONNA IMPORT FROM
->>> from <file> import <function>
-
->>> os.chdir(cwd)
-
 
 
 
@@ -737,6 +766,8 @@ Mod ->	1 | 2	<- Floor division
 ------------------------------------
 
 	UNPACKING
+
+- Aka Starred Expression.
 
 - Unpacking can be done with lists, tuples and dictionaries.
 
@@ -1046,12 +1077,23 @@ https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence
 
 	PACKAGES AND MODULES
 
-- Some libraries:
+- Some built-in libraries:
 math
 ramdom
 os
 time
 pickle
+
+
+- Available:
+[pacman]	python-gmpy2
+			Provides C-coded Python modules for fast multiple-precision arithmetic.
+			(https://github.com/aleaxit/gmpy)
+			
+			# WARNING (see later below)
+[pip]		gmpy2
+			GMP/MPIR, MPFR (Multiple Precision Floating-point Rounding), and MPC interface to Python 2.6+ and 3.x
+
 
 
 
@@ -1102,6 +1144,38 @@ pickle
 - Install new module:
 $ pip install <module>
 
+WARNING: NEVER run 'pip install <module>' on the TERMINAL. You should never make any changes to '/usr', except through pacman. If you need to install with pip do it in a Virtual Enviroment (like conda).
+
+
+- Display where Python looks for modules:
+>>> import sys
+>>> type(sys.path)
+	list
+>>> print('\n'.join(sys.path))
+
+
+- Add directory temporarily to the 'sys.path' list, to be seen as a package:
+>>> import sys
+>>> sys.path.append('<absolute-path>')
+
+
+- Add directory permanently to 'sys.path':
+Using PYTHONPATH: (https://bic-berkeley.github.io/psych-214-fall-2016/using_pythonpath.html)
+Making a Python Package: (https://packaging.python.org/tutorials/packaging-projects/)
+
+
+- Find where a molude is:
+
+>>> import <module>
+>>> <module>.__file__
+
+>>> import imp
+>>> imp.find_module('<module>')
+
+(The '__file__' attribute is not present for C modules that are statically linked into the interpreter; for extension modules loaded dynamically from a shared library, it is the pathname of the shared library file.)
+
+
+
 
 
 
@@ -1134,6 +1208,17 @@ $ pip install <module>
 >>> import os
 >>> clear = lambda: os.system('clear')
 
+
+
+
+
+- Importing a function:
+>>> import os
+>>> cwd = os.getcwd()								# currently working directory
+>>> os.chdir("<directory-of-the-function-file>")	# REMEMBER TO USE UNDERSCORE (_) INSTEAD OF HIFEN (-) ON FILES YOU GONNA IMPORT FROM
+>>> from <file> import <function>
+
+>>> os.chdir(cwd)
 
 
 

@@ -25,6 +25,10 @@ __________________________________
 - Discover a package's binary:
 $ pacman -Qlq <package_name> | grep /usr/bin/
 
+- Discover which package owns a file:
+$ pacman -Qo <file>
+$ pacman -Qo <file> <file> ...
+
 __________________________________
 
 $ pacman -V
