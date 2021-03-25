@@ -91,6 +91,16 @@ precision - specified in bit.
 			The maximum precision that can be specified is platform dependent and can be retrieved with get_max_precision().
 
 
+round - 
+		0 - RoundToNearest: ties are rounded to an even value
+		1 - RoundToZero: rounded towards 0.0
+		2 - RoundUp: rounded towards +Infinity
+		3 - RoundDown: rounded towards -Infinity
+		4 - RoundAwayZero: rounded away from 0.0
+
+
+
+
 ...
 
 

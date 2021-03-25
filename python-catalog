@@ -126,6 +126,15 @@ Mod ->	1 | 2	<- Floor division
 
 
 
+- Print string:
+>>> print (<str>)
+
+- Print raw string (any escape sequence will be ignored):
+>>> print (r <str>)
+
+
+
+
 
 
 - Tamanho (size):
@@ -212,74 +221,63 @@ Mod ->	1 | 2	<- Floor division
 
 	STRING FORMATING
 
-- Formating Operators:
+- Formating Strings:
 
 >>> ' %<form-op> ' % <obj>
 >>> ' %<form-op>  %<form-op>  ...  %<form-op> ' % (<obj>, <obj>, ..., <obj>)
 
 
 - Formating Operators:
+>>> ' %<padding>.<decimal><format> '
 
-%s - String (or any object with a string representation, like numbers)
-%<total>s - total space for the string (negative to align left)
+padding - minimum padding width (negative to align left, default right)
+decimal - number of decimal cases
+formats - type of format aplied
+	%s - String (or any object with string representation, like numbers)
+	%d - Integers
+	%f - Floating point numbers
+	%x - Integers in hex representation (lowercase)
+	%X - Integers in hex representation (uppercase)
 
-%d - Integers
 
-%f - Floating point numbers
-
-%<total>.<decimal>f - Floating point numbers with a fixed amount of decimal cases precision and a total space for the hole numer (negative to align left)
-
-%x - Integers in hex representation (lowercase)
-%X - Integers in hex representation (uppercase)
 
 
 
 
 
 - New formating (permanently) method:
-
 >>> ' {} '.format(<string>)
 >>> ' {}  {}  ...  {} '.format(<string>, <string>, ..., <string>)
+>>> ' {<key>}  {<key>}  ...  {<key>} '.format( <dict> )
 
->>> ' {}  {}  ...  {} '.format( <dict> )
 
 - Format unpacking tuple:
-
 >>> ' {}  {}  ...  {} '.format( * <tuple> )
 
 
 
 
+- Formating Operators:
 >>> ' {<spec-op>:<form-op>} '
 
-
-- Specifiers Operators:
-
-{} - the strings will be aplied in the order they are passed on 'format()'
-
-{<number>} - positional argument for the strings given to 'format()'
-
-{<key>} - keyword argument, keywords must be defined on the 'format()' arguments
+Specifiers Operators:
+	{} - strings will be aplied in the order passed on 'format()'
+	{<position>} - positional argument for strings given to 'format()'
+	{<key>} - keyword argument, must be defined on 'format()' arguments
 
 
-- Formating Operators:
+Formating Operators:
+	{:b} - binary
+	{:e} - exponent representation (scientific)
+	{:f} - any number represented as float
 
-{:b} - binary
+	{:<padding>} - minimum padding width of string format
+	{:.<decimal>} - number of decimal cases
+	{:<padding>.<decimal>}
 
-{:e} - exponent representation (scientific)
-
-{:<total>} - total size of string format
-
-{:.<decimal>} - number of decimal cases
-{:<total>.<decimal>}
-
-{:f} - any number represented as float
-{:.<decimal>f}
-{:<total>.<decimal>f}
-
-{:<} - left align
-{:^} - center align
-{:>} - right align
+	{:<} - left align (default for strings)
+	{:^} - center align
+	{:>} - right align (default for numbers)
 
 
 
