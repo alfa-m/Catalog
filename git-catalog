@@ -1,6 +1,15 @@
 
 		GIT
-continue: (https://ndpsoftware.com/git-cheatsheet.html#loc=workspace;)
+
+continue: 
+	revert
+	rebase
+	remote
+	pull
+	fetch
+	push
+	clone
+	(https://ndpsoftware.com/git-cheatsheet.html#loc=workspace;)
 ------------------------------------
 
 	HELP
@@ -59,6 +68,10 @@ url: (https://git-scm.com/docs)
 - Push:
 	Updating a Remote Branch with a local Branch's content.
 	If the Remote head is not ancestor to the local head, the push fails.
+
+- Merge:
+	Incorporate on current Branch changes from other Branch's commit since the time their histories diverged.
+	Record the result in a new commit.
 
 - Path name:
 	A file inside the Commits (inside the Repository) have a Path name.
@@ -128,23 +141,17 @@ $ git push origin master
 - Display current Branch and Index (staged and untracked files):
 $ git status
 
-- Display differences not added to Index:
-$ git diff
+- Display Index together with Work-tree:
+$ git ls-files
 
 - Add all files (or some specific file) from the Work-tree to Index:
 $ git add .
 $ git add <file>
 $ git add <file> ... <file>
 
-- Commit contents of Index to current Branch, with a log message:
-$ git commit -m '<log-message>'
-
-- Display Commit history from current Branch:
-$ git log
-
-- View changes in Work-tree relative to a Commit:
-$ git diff <commit>
-$ git diff HEAD
+- Updated all tracked files in Working-tree to Index:
+$ git add -u
+$ git add --update
 
 - Remove file from Work-tree and Index:
 $ git rm <file>
@@ -152,26 +159,55 @@ $ git rm <file>
 - Move file from Work-tree and Index:
 $ git mv <file> <destination>
 
+- Commit contents of Index to current Branch, with a log message:
+$ git commit -m '<log-message>'
+
+- Commit that only records the changes made to a Path name (ignore Index):
+$ git commit <path-name>
+
+- Don't commit, show summary of what's included on next commit:
+$ git commit --dry-run
+
+- Display Commit history from current Branch:
+$ git log
+
+- View changes in Work-tree or specific file, relative to a Commit:
+$ git diff <commit>
+$ git diff <commit> <file>
+$ git diff HEAD
+
 
 
 RESTORE FILES
 
-- Remove a Staged File from the Index (restored from HEAD):
-$ git restore --staged <file>
-
-- Restore a Work-tree File (restored from Index):
+- Restore a File to Work-tree (restored from Index, default):
+$ git restore <file>
 $ git restore --worktree <file>
+$ git restore -W <file>
+
+- Unstage a Staged File from the Index (restored from HEAD):
+$ git restore --staged <file>
+$ git restore -S <file>
+
+- Restore a File to Index and (restored from HEAD):
+$ git restore -SW <file>
+
+- Restore to Work-tree from a previous Commit:
+$ git restore --source <commit> <file>
+
+- Restore to Work-tree and Index from a previous Commit:
+$ git restore --source <commit> -WS <file>
 
 
 
-RESET BRANCH, INDEX OR HEAD
+RESET INDEX OR WORK-TREE
+
+- Reset Index (not Working-tree) to current HEAD (default):
+$ git reset
+$ git reset --mixed
 
 - Reset current HEAD (not Index, nor Working-tree) to a previous Commit:
 $ git reset --soft <commit>
-
-- Reset Index (not Working-tree) to current HEAD:
-$ git reset
-$ git reset --mixed 		#(default)
 
 - Reset Index and Work-tree (and thus, HEAD) to a previous Commit:
 $ git reset --hard <commit>
@@ -180,6 +216,7 @@ $ git reset --hard <commit>
 
 REVERT COMMITS
 
+git help revert
 git-revert(1) is about making a new commit that reverts the changes made by other commits.
 
 
@@ -210,13 +247,26 @@ $ git log --pretty="format:%h %ar %s"
 
 	BRANCHES
 
-- Create a new Branch (from current HEAD, or other commit):
+- List local Branches in Repository:
+$ git branch
+$ git branch -l
+$ git branch -l '<pattern>'
+
+- List Remote Branches:
+$ git branch -r
+
+- List all Branches:
+$ git branch -a
+
+
+
+- Create a new Branch (from current HEAD, or previous commit):
 $ git branch <branch>
 $ git branch <branch> <commit>
 
 - Rename Branch:
-$ git -m <branch> <new-name>
-$ git --move <branch> <new-name>
+$ git branch -m <branch> <new-name>
+$ git branch --move <branch> <new-name>
 
 - View changes in Work-tree relative to the tip of another Branch:
 $ git diff <branch>
@@ -232,21 +282,18 @@ $ git branch -D <branch>
 
 
 
-- List local Branches in Repository:
-$ git branch
-$ git branch -l
-$ git branch -l '<pattern>'
+WARNING: Running 'git merge' with uncommitted changes is discouraged.
 
-- List Remote Branches:
-$ git branch -r
+- Merge current Branch with other Branch's commit (if the other Branch's name is passed, it's HEAD is the commit used):
+$ git merge <commit>
+$ git merge -m '<log-message>' <commit>
+$ git merge <branch>
+$ git merge -m '<log-message>' <branch>
 
-- List all Branches:
-$ git branch -a
-
-
-
-git merge
-git rebase
+- If (and only if) the merge has resulted in conflicts, the following commands are available:
+$ git merge --continue
+$ git merge --abort
+$ git merge --quit
 
 
 
@@ -254,41 +301,57 @@ git rebase
 
 	REMOTES
 
-$ git branch -d -r <remote>/<branch>
+- Add a Remote (previously created on Github website) to Local Repository:
+$ git remote add <name> <url>
+$ git remote add origin https://github.com/<user>/<repo>
+
+- Display Remotes:
+$ git remote -v
+
+--
+$ git branch -rd <remote>/<branch>
 $ git branch -r -l '<remote>/<pattern>'
 
-------------------------------------
+
+
+- Update Branches seen from Remote:
+$ git fetch <remote>
+
+- Fetch and Merge Branch from a Remote:
+$ git pull <remote> <branch>
+$ git pull origin master
 
 
 
 
-------------------------------------
+- Push to a Remote Branch:
+$ git push <remote> <branch>
 
 
 
 
-------------------------------------
-
-
-- Download from a remote repository (master branch):
+- Download Repository a Remote (master branch):
 $ git clone <url>
 
-- Download a specific branch from a remote repository:
+- Download a specific Branch from a Remote:
 $ git clone -b <branch> <url>
 
-- Create new branch:
-$ git branch <new-branch-name>
 
-- Check and update branch to work in:
-$ git checkout <branch>
-$ git checkout master
 
-- Delete branch:
-$ git branch -d <branch-name>
-$ git branch -rd <remote-branch-name>
 
-- Switch branch:
-$ git switch <branch>
+------------------------------------
+
+
+
+
+------------------------------------
+
+
+
+
+------------------------------------
+
+	MISC
 
 - Armazenar senha do github em cache (padrão: 15 min):
 $ git config --global credential.helper cache
