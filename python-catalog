@@ -224,17 +224,19 @@ Mod ->	1 | 2	<- Floor division
 - Formating Strings:
 
 >>> ' %<form-op> ' % <obj>
->>> ' %<form-op>  %<form-op>  ...  %<form-op> ' % (<obj>, <obj>, ..., <obj>)
+>>> ' %<form-op>  ...  %<form-op> ' % (<obj>, ..., <obj>)
 
 
 - Formating Operators:
 >>> ' %<padding>.<decimal><format> '
 
-padding - minimum padding width (negative to align left, default right)
-decimal - number of decimal cases
+padding - minimum padding width (negative to align left, default right, zero on front to fill remaning space with zeros)
+
+decimal - number of decimal cases (default=6), or truncate index for strings
+
 formats - type of format aplied
 	%s - String (or any object with string representation, like numbers)
-	%d - Integers
+	%d - Integers (decimal system)
 	%f - Floating point numbers
 	%x - Integers in hex representation (lowercase)
 	%X - Integers in hex representation (uppercase)
@@ -247,12 +249,30 @@ formats - type of format aplied
 
 - New formating (permanently) method:
 >>> ' {} '.format(<string>)
->>> ' {}  {}  ...  {} '.format(<string>, <string>, ..., <string>)
->>> ' {<key>}  {<key>}  ...  {<key>} '.format( <dict> )
-
+>>> ' {}  ...  {} '.format(<string>, ..., <string>)
+>>> ' {<d>[<key>]}  ...  {<d>[<key>]} '.format( <d>=<dict> )
 
 - Format unpacking tuple:
->>> ' {}  {}  ...  {} '.format( * <tuple> )
+>>> ' {}  ...  {} '.format( * <tuple> )
+
+- Format unpacking dictionary:
+>>> ' {<key>}  ...  {<key>} '.format( ** <dict> )
+
+- Formating class attributes:
+>>> <obj> = <Class>()
+>>> ' {<c>.<attribute>}  ...  {<c>.<attribute>} '.format(<c>=<obj>)
+
+
+
+
+- Format with local variables:
+
+>>> <var> = <value>
+>>> f' {<var>} '
+
+>>> <dict> = {...}
+>>> f' {<dict>[<key>]}  ...  {<dict>[<key>]} '
+
 
 
 
@@ -266,18 +286,38 @@ Specifiers Operators:
 	{<key>} - keyword argument, must be defined on 'format()' arguments
 
 
-Formating Operators:
-	{:b} - binary
-	{:e} - exponent representation (scientific)
-	{:f} - any number represented as float
+Formating Operators (groups in the order they must be placed or not):
+
+	{:*} - fill remaning space with '*'
+	{:0} - fill remaning space with zeros
+
+	{:<} - align left (default for strings)
+	{:^} - align center
+	{:>} - align right (default for numbers)
+
+	{:-} - only prints sign for negative values (default)
+	{:+} - prints '+' for positive values
+	{: } - prints ' ' for positive and '-' for negative values
 
 	{:<padding>} - minimum padding width of string format
-	{:.<decimal>} - number of decimal cases
+	{:.<decimal>} - number of decimal cases (default=6), or truncate index for strings
 	{:<padding>.<decimal>}
 
-	{:<} - left align (default for strings)
-	{:^} - center align
-	{:>} - right align (default for numbers)
+	{:d} - Integers (decimal system)
+	{:f} - Floating point numbers
+	{:b} - Binary
+	{:e} - exponent representation (scientific)
+	{:E} - Exponent representation (uppercase E)
+	{:%} - faction to percentage
+
+
+- Dynamic Formating:
+>>> ' {:{fill}{align}{width}} '.format(<str>, fill='<*/0>', align='<</^/>>', width=<padding>))
+
+
+
+
+
 
 
 
