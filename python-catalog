@@ -503,24 +503,95 @@ Mod ->	1 | 2	<- Floor division
 
 	FILES
 
+- To read or write to a file, it needs to be opened. 
+- When the work is done, it needs to be closed, so the resources tied with the file are freed.
+
+
 - Current working directory (Jupyter):
 >>> pwd
 
 - Open a file:
 >>> <file> = open('<file-path>')
 
-- Read file:
+- Specify the mode while opening a file.
+>>> <file> = open('<file-path>', '<mode>')
+>>> <file> = open('<file-path>', mode='<mode>')
+
+Operations Mode:
+r - read (default)
+w - write, creates the file if it does not exist. Overwrite if it does.
+a - append, creates the file if it does not exist.
+x - exclusive creation, creates the file, returns an error if the file exists.
+
+Mode:
+t - text (default)
+b - binary
+
+
+- When working with files in text mode, it is highly recommended to specify the encoding type.
+- The default encoding is platform dependent. In Linux it is 'utf-8'. In windows, it is 'cp1252'.
+- If relying on default the code will behave differently in different platforms.
+
+>>> <file> = open('<file-path>', '<mode>', <encoding>)
+>>> <file> = open('<file-path>', mode='<mode>', encoding=<encoding>)
+
+
+
+
+
+
+- Read file content:
 >>> <file>.read()
+>>> <file>.read(<size>)
 
 - Set cursor position:
 >>> <file>.seek(<position>)
 >>> <file>.seek(0)				# start of the file
 
+- Return current cursor position:
+>>> <file>.tell()
+
 - Read file to the end of the line from cursor position:
 >>> <file>.readline()
 
-- Print line by line:
->>> for line in <file>: print(line)
+- Return a list with all lines from cursor position:
+>>> <file>.readlines()
+
+
+- Print each line:
+>>> for line in <file>:
+>>> 	print(line)
+
+
+
+
+
+- Write to a file (this method returns the number of characters written):
+>>> <file>.write('<content>')
+
+
+
+
+
+
+- Close a file after it is used:
+>>> <file>.close()
+
+- If an exception occurs when performing a operation on the file, the code exits without closing it.
+- Thus, a safer way to use de file is:
+
+>>> try:
+>>> 	<file> = open('<file-path>', <encoding>)
+>>> 	
+>>> finally:
+>>> 	<file>.close()
+
+- Or even saferer:
+
+>>> with open('<file-path>', <encoding>) as <file>:
+>>> 	<instructions>
+
+
 
 
 
