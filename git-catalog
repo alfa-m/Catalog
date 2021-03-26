@@ -27,7 +27,9 @@ $ git help gitglossary
 $ man gitrevisions
 $ git help gitrevisions
 
-url: (https://git-scm.com/docs)
+
+- REALLY good tutorials:
+url: (https://www.atlassian.com/git/tutorials)
 
 ------------------------------------
 
