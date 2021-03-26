@@ -265,7 +265,7 @@ FUNCTIONS
 >>> rect(<mpc>)
 
 - Projection of complex on to Riemann sphere:
->>> polar(<mpc>)
+>>> proj(<mpc>)
 
 
 

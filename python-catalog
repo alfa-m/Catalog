@@ -1711,6 +1711,8 @@ Making a Python Package: (https://packaging.python.org/tutorials/packaging-proje
 
 >>> zip(<iterable-1>, <iterable-2>, ...)
 
+- Reverse Zip:
+>>> zip( * <zip>)
 
 
 
