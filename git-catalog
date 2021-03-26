@@ -125,9 +125,11 @@ $ git remote add origin https://github.com/<user>/<repo>
 - Display Remotes:
 $ git remote -v
 
+(not needed if remote is empty)
 - Update Branches seen from Remote:
 $ git fetch <remote>
 
+(not needed if remote is empty)
 - Fetch and Merge Branch from a Remote:
 $ git pull <remote> <branch>
 $ git pull origin master
@@ -925,8 +927,6 @@ $ git config --global credential.helper /usr/share/doc/git/contrib/credential/li
 ------------------------------------
 
 
-
-(https://ndpsoftware.com/git-cheatsheet.html#loc=workspace;)
 
 
 ------------------------------------
