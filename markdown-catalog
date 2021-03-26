@@ -1,0 +1,246 @@
+ 
+		MARKDOWN
+
+------------------------------------
+
+	MY TERMINOLOGY
+
+<description>	: Replace according to description.
+...				: Possible to repeated pattern.
+
+------------------------------------
+
+	REFERENCE
+
+[Home Page](url)
+
+[Documentation](url)
+
+[Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+ 
+[Guide](https://www.markdownguide.org/basic-syntax/)
+
+
+------------------------------------
+
+	HEADERS
+
+# <header>
+## <header>
+### <header>
+#### <header>
+##### <header>
+###### <header>
+
+
+
+------------------------------------
+
+	LISTS & PARAGRAPHS
+
+In this examples, leading and trailing SPACES are shown with with dots, but they should NOT be included.
+
+
+
+
+By default, when there is a line break a new paragraph starts.
+To have line break without paragraph use two trailing SPACES:
+
+<text>..
+
+
+Ordered List and sub-List:
+
+1. <text>
+2. <text>
+3. <text>
+..1. <text>
+..2. <text>
+..3. <text>
+
+
+Unordered List and sub-List:
+
+* <text>
+- <text>
++ <text>
+..* <text>
+..- <text>
+..+ <text>
+
+
+Unless the paragraph is in a list, don’t indent paragraphs with spaces or tabs.
+To add another paragraph in a list indent the element with least one leading SPACE:
+
+.<text>
+..<text>
+...<text>
+
+
+------------------------------------
+
+	CODE
+
+Insert some Code (can be inline):
+
+`<code>`
+
+
+Insert a Block of Code:
+
+```
+<code>
+```
+
+
+Insert a Block of Code with syntax highlighting:
+
+```<language>
+<code>
+```
+
+
+
+------------------------------------
+
+	LINKS
+
+URL and URL in angle brackets will automatically get turned into links:
+
+<url>
+< <url> >
+
+
+Make a inline text link:
+
+[ <text> ](<url>)
+[ <text> ](<path>)
+
+
+Make a inline text link with Title (hover to see):
+
+[ <text> ](<url> "<title")
+[ <text> ](<path> "<title")
+
+
+Create a Link Reference (can be defined after the reference itself):
+
+[ <reference> ]:<url>
+[ <reference> ]:<path>
+[ <reference> ]:<url> "<title"
+[ <reference> ]:<path> "<title"
+
+
+Make Reference:
+
+[ <reference> ]
+[ <text> ][ <reference> ]
+
+
+------------------------------------
+
+	EMPHASIS
+
+Italic (Emphasis):
+
+_<text>_
+*<text>*
+
+
+Bold (Strong Emphasis):
+
+**<text>**
+__<text>__
+
+
+Combined:
+
+**<text> ... _<text>_**
+***<text>***
+
+
+Scratch (Strikethrough):
+
+~~<text>~~
+
+
+------------------------------------
+
+	BLOCKQUOTES
+
+Make a blockquote:
+
+> <text>
+
+> <text>
+>
+> <text>
+
+
+Make a nested blockquote:
+
+> <text>
+>> <text>
+> <text>
+
+------------------------------------
+
+	TABLES
+
+Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them.
+
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+	TITTLE
+
+
+
+
+
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------
+
+
+
+------------------------------------

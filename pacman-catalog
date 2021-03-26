@@ -8,8 +8,8 @@
 $	: Some command to be used on the Terminal (shell).
 #	: Some command to be used on the Terminal (shell) as Super User.
 
-<description>	: Something to be replaced according to the description.
-...				: Possible to repeated pattern indefinitely.
+<description>	: Replace according to description.
+...				: Possible to repeated pattern.
 
 ------------------------------------
 

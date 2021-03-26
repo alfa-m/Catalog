@@ -8,10 +8,10 @@
 
 $	: Some command to be used on the Terminal (shell).
 >>	: Matlab Command.
-=>	: Output of a Matlab Command.
+ans : Output of a Matlab Command.
 
-<description>	: Something to be replaced according to the description.
-...				: Possible to repeated pattern indefinitely.
+<description>	: Replace according to description.
+...				: Possible to repeated pattern.
 
 ------------------------------------
 

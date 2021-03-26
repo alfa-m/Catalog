@@ -3,22 +3,35 @@ Catalog of my programming and script languages, useful commands, tips&tricks and
 
 Currently:
 
-- Python
-- Python Modules:
-  - Numpy
-  - Pandas
-  - Matplotlib
-  - Seaborn
-  - Plotly
-  - Gmpy2
-  - OpenCV
-  - Pickleshare
-- R
-- Matlab
-- Octave
-- C++
-- Linux commands
-- Pacman commands
-- Git commands
-- Conda commands
-- LaTeX
+- [Python](./python-catalog)
+- [Python Modules](./python-modules/):
+  - [Numpy](./python-modules/python-numpy-catalog)
+  - [Pandas](./python-modules/python-pandas-catalog)
+  - [Matplotlib](./python-modules/python-matplotlib-catalog)
+  - [Seaborn](./python-modules/python-seaborn-catalog)
+  - [Plotly](./python-modules/python-plotly-catalog)
+  - [Gmpy2](./python-modules/python-gmpy2-catalog)
+  - [OpenCV](./python-modules/python-opencv-catalog)
+  - [Pickleshare](./python-modules/python-pickleshare-catalog)
+
+  
+
+- [R](./r-catalog)
+- [Matlab](./matlab-catalog)
+- [Octave](./octave-catalog)
+
+  
+
+- [C++](./cpp-catalog)
+
+  
+
+- [LaTeX](./latex-catalog)
+- [Markdown](./markdown-catalog)
+
+  
+
+- [Linux commands](./linux-catalog)
+- [Pacman commands](./pacman-catalog)
+- [Git commands](./git-catalog)
+- [Conda commands](./conda-catalog)
