@@ -206,13 +206,24 @@ $ <command> &
 $ jobs
 $ jobs -l
 
-- Suspend a process current running on terminal: CTRL + Z
+- Suspend a process current running on terminal: 
+[CTRL] + [Z]
 
 - Get a suspended process back to foreground:
-$ fg <blank/process_name/ %job_number>
+$ fg
+$ fg <process_name>
+$ fg <job_id>
 
 - Get a suspended process to run on background:
-$ bg <blank/process_name/ %job_number>
+$ bg
+$ bg <process_name>
+$ bg <job_id>
+
+- Put a command on line to run while something is already running:
+- [CTRL] + [Z]
+-$ fg && <command>
+-$ fg ; <command>
+
 
 - Close shell keeping all subprocesses running (?):
 $ disown -a && exit
