@@ -4,6 +4,37 @@
 
 ------------------------------------
 
+	TERMINOLOGY
+
+$	: Some command to be used on the Terminal (shell).
+
+<description>	: Replace according to description.
+...				: Possible to repeated pattern.
+
+------------------------------------
+
+	REFERENCE
+
+- Home Page:
+url: ()
+
+- Documentation:
+url: ()
+
+- Keyrings, D-Bus, and Secret Service:
+url: (https://rtfm.co.ua/en/what-is-linux-keyring-gnome-keyring-secret-service-and-d-bus/)
+
+
+----------------------------------
+
+	HELP
+
+- Official Manual of a command:
+$ man <command>
+
+
+------------------------------------
+
 	MOINTOR SYSTEM
 
 - List running units, ordered by time took to initialize:

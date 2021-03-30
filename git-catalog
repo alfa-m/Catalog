@@ -3,7 +3,7 @@
 
 ------------------------------------
 
-	MY TERMINOLOGY
+	TERMINOLOGY
 
 $	: Some command to be used on the Terminal (shell).
 
@@ -909,7 +909,8 @@ url: (https://docs.github.com/en/github/using-git/caching-your-github-credential
 (on Arch)
 $ git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
-(on Fedora, install 'git-credential-libsecret')
+(on Fedora)
+$ dnf install git-credential-libsecret
 $ git config --global credential.helper /usr/libexec/git-core/git-credential-libsecret
 
 (on Ubuntu)
