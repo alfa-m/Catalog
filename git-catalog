@@ -920,6 +920,12 @@ $ git config --global credential.helper /usr/share/doc/git/contrib/credential/li
 
 
 
+- To make it so the keyring-daemon starts on login (for SDDM) make sure the following lines are on ´/etc/pam.d/sddm´ (at the end of the ´auth´ and ´session´ sections):
+
+auth       optional     pam_gnome_keyring.so
+session    optional     pam_gnome_keyring.so auto_start
+
+
 
 
 ------------------------------------
