@@ -17,6 +17,9 @@
 [pacman]	kile
 			A user friendly TeX/LaTeX frontend for KDE
 
+[pacman]	kbibtex
+			Paper and Texts Reference management application which can be used to collect TeX/LaTeX bibliographies and export them in various formats
+
 [online]	Overleaf
 			An online LaTeX editor that's easy to use. No installation, real-time collaboration, version control, hundreds of LaTeX templates, and more.
 
@@ -40,6 +43,9 @@ Wow man. Thank you. Seriously. I'm on KDE and, with a dark theme, no matter my G
 
 - Cool Slide;
 url: (https://pt.slideshare.net/smarzaro/latex-bsico-i)
+
+- Take a look at KBibTeX:
+url: (https://apps.kde.org/en/kbibtex)
 
 
 
