@@ -440,8 +440,9 @@ $ git help gitrevisions
 
 	DIFFS
 
-- All the following commands can be used with a external tool using:
-$ git difftool
+
+- Get an an idea of the amount of work done:
+$ git diff --stat
 
 
 - View changes in Work-tree, relative to a Commit:
@@ -473,6 +474,15 @@ $ git diff <branch>
 - View changes in Work-tree relative to the tip of Remote Branch:
 $ git fetch <remote>
 $ git diff FETCH_HEAD
+
+
+
+
+
+
+- Almost all those commands can be used with a external tool using (see config for more):
+$ git difftool
+
 
 
 ------------------------------------
@@ -828,9 +838,15 @@ $ git clone -b <branch> <url>
 
 	CONFIGS
 
+- Globa config file:
+´~/.gitconfig´
+
 
 - Check personal configurations:
 $ git config --list
+
+- View all settings and where they are coming from:
+$ git config --list --show-origin
 
 - Reset some configuration:
 $ git config --global --unset-all <config>
@@ -838,16 +854,24 @@ $ git config --unset-all <config>
 
 
 
+
 IDENTITY (AUTHOR OF COMMITS)
 
-- Configure Global user name and e-mail:
-$ git config --global user.name "<name>"
+- Configure Global User name:
+$ git config --global user.name '<name>'
+
+- Configure Global User e-mail:
 $ git config --global user.email <email>
 
-- Configure user name and e-mail for a specific repo:
+- Configure username for a URL:
+$ git config --global credential.<url>.username <username>
+$ git config --global credential.https://github.com.username <username>
+
+- Configure User name and e-mail for a specific repo:
 $ cd <path-to-repo>
-$ git config user.name "<name>"
+$ git config user.name '<name>'
 $ git config user.email <email>
+
 
 - Fix identity of previous commit:
 $ git commit --amend --reset-author
@@ -855,16 +879,17 @@ $ git commit --amend --reset-author
 
 
 
-TOOLS
+
+
+TOOLS CONFIG
 
 - Note: other editors than Vim, Nano, Emacs..., might need other configurations.
 
 - Configure Global default text editor:
 $ git config --global core.editor <text-editor>
 $ git config --global core.editor vim
-$ git config --global core.editor nano
+$ git config --global core.editor 'nano -w'
 $ git config --global core.editor 'kate -b'
-
 
 
 
@@ -878,10 +903,36 @@ $ git config --global merge.tool <diff-tool>
 -For Meld:
 $ git config --global diff.tool meld
 $ git config --global difftool.prompt false
-
 $ git config --global merge.tool meld
 $ git config --global mergetool.prompt false
 
+
+
+
+
+
+
+SAVE CREDENTIALS
+
+- Using the package 'libsecret' to store credentials:
+(on Arch)
+$ git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
+
+(on Fedora)
+$ dnf install git-credential-libsecret
+$ git config --global credential.helper /usr/libexec/git-core/git-credential-libsecret
+
+(on Ubuntu)
+$ cd /usr/share/git/credential/libsecret
+$ sudo make
+$ git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+
+
+
+- To make it so the keyring-daemon starts on login (for SDDM) make sure the following lines are on ´/etc/pam.d/sddm´ (at the end of the ´auth´ and ´session´ sections):
+
+auth       optional     pam_gnome_keyring.so
+session    optional     pam_gnome_keyring.so auto_start
 
 
 
@@ -901,29 +952,6 @@ $ git config --global credential.helper 'cache --timeout=<time>'
 
 - More info on cache credentials:
 url: (https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git)
-
-
-
-
-- Using the package 'libsecret' to store credentials PERMANENTLY:
-(on Arch)
-$ git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
-
-(on Fedora)
-$ dnf install git-credential-libsecret
-$ git config --global credential.helper /usr/libexec/git-core/git-credential-libsecret
-
-(on Ubuntu)
-$ cd /usr/share/git/credential/libsecret
-$ sudo make
-$ git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
-
-
-
-- To make it so the keyring-daemon starts on login (for SDDM) make sure the following lines are on ´/etc/pam.d/sddm´ (at the end of the ´auth´ and ´session´ sections):
-
-auth       optional     pam_gnome_keyring.so
-session    optional     pam_gnome_keyring.so auto_start
 
 
 

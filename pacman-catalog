@@ -42,7 +42,7 @@ __________________________________
 
 __________________________________
 
-	MISC
+	MISC CHECKS
 
 - Discover a package's binary:
 $ pacman -Qlq <package_name> | grep /usr/bin/
@@ -148,10 +148,13 @@ $ Pacman -Q --upgrades
 
 REMOVE
 
-- Remove package with it´s not required AND not explicitly installed dependencies, with no backup:
+- Remove package if it´s not required AND not explicitly installed dependencies, with no backup:
 # pacman -Rsn <package>
 # pacman -R --recursive --nosave <package>
 
+
+- Remove unrequired dependencies:
+# pacman -Rsn "$(pacman -Qtdq)"
 
 
 
@@ -261,6 +264,74 @@ $ paccache -rvk 3
 $ paccache -rvk <num> 
 
 
+
+
+
+
+__________________________________
+
+	YAY
+
+- Managing the AUR.
+
+!!! WARNING:
+             DO NOT use ´sudo´ with the yay command. If Yay needs premission, it will ask for it.
+
+- Most Options and Operation from Pacman work the same way on Yay.
+
+- GitHub Repo:
+url: (https://github.com/Jguer/yay)
+
+
+
+INSTALLATION
+
+(Arch)
+$ cd ~/Coding/AUR/
+$ git clone https://aur.archlinux.org/yay.git
+$ cd yay
+$ makepkg -si
+
+(Manjaro)
+# pacman -Syu yay
+
+
+
+
+CUSTOM COMMMANDS
+
+- Make an Operation with Yay acting only on AUR packages:
+$ yay -<operation> --aur
+
+- Print system statistics:
+$ yay -Ps
+$ yay -P --stats
+
+- Clean unneeded dependencies:
+$ yay -Yc
+$ yay -Y --clean
+
+
+
+
+
+__________________________________
+
+
+
+__________________________________
+
+
+
+__________________________________
+
+
+
+__________________________________
+
+
+
+__________________________________
 
 
 
