@@ -154,7 +154,7 @@ REMOVE
 
 
 - Remove unrequired dependencies:
-# pacman -Rsn "$(pacman -Qtdq)"
+# pacman -Rsn $(pacman -Qtdq)
 
 
 
