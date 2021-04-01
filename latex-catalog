@@ -132,6 +132,23 @@ options:
 
 
 
+- Begin and End Document.
+- This is where all the document content goes.
+- Some commands here are available for all Classes of Documents, some are exclusive to some Classes.
+
+
+\begin{document}
+
+	<content>
+
+\end{document}
+
+
+------------------------------------
+
+	PACKAGES
+
+
 - Use a package:
 
 \usepackage[<options>][<package>]
@@ -153,31 +170,13 @@ options:
 % Use the Latin Moder font:
 \usepackage{lmodern}
 
-
-
-
-
-
-
-
-- Begin and End Document.
-- This is where all the document content goes.
-- Some commands here are available for all Classes of Documents, some are exclusive to some Classes.
-
-
-\begin{document}
-
-	<content>
-
-\end{document}
-
 ------------------------------------
 
 	DOCUMENT CONTENTS
 
 
 
-ORGANIZATION
+SECTIONING
 
 - LaTex numbers Sections, Subsections, Chapters, Parts, etc, automaticly.
 
@@ -464,7 +463,67 @@ DIFFERENT FONT SIZES
 
 ------------------------------------
 
-	CROSSED REFERENCE
+	LINKS & CROSSED REFERENCE
+
+LINKS
+
+- Use package ´hyperref´:
+
+\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage[colorlinks=true, ...]{hyperref}
+
+- Set up ´hyperref´ package color:
+
+\hypersetup{
+    colorlinks=true,
+    
+    linkcolor=  <color>,
+    anchorcolor=<color>,
+    citecolor=  <color>,
+    filecolor=  <color>,
+    menucolor=  <color>,
+    runcolor=   <color>,
+    urlcolor=   <color>,
+    
+    allcolors=  <color>,
+    ...
+}
+
+color:
+		red				% default for linkcolor
+		black			% default for anchorcolor
+		green			% default for citecolor
+		cyan			% default for filecolor and runcolor
+		red				% default for menucolor
+		magenta			% default for urlcolor
+		blue
+
+
+
+- Create a URL link:
+
+\url{ <url> }
+\href{ <url> }{ <text> }
+
+
+(not working, I´m doing something wrong)
+- Create a link to a file (relative path to the Document):
+
+\href{ run:./<relative-path> }{ <text> }
+
+
+- go figure:
+
+url: (https://pt.overleaf.com/learn/latex/Hyperlinks)
+
+
+
+
+
+
+
+CROSSED REFERENCE
 
 - Create a Label that can be referenced:
 
@@ -479,7 +538,6 @@ DIFFERENT FONT SIZES
 - Reference the Section number:
 
 \ref
-
 
 
 

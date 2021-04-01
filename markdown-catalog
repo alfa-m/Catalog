@@ -25,12 +25,12 @@
 
 	HEADERS
 
-# <header>
-## <header>
-### <header>
-#### <header>
-##### <header>
-###### <header>
+# <header 1>
+## <header 2>
+### <header 3>
+#### <header 4>
+##### <header 5>
+###### <header 6>
 
 
 
@@ -41,6 +41,10 @@
 In this examples, leading and trailing SPACES are shown with with dots, but they should NOT be included.
 
 
+
+To add a end of line, use ´line break´ from ´html´:
+
+<br/>
 
 
 By default, when there is a line break a new paragraph starts.
@@ -182,6 +186,19 @@ Make a nested blockquote:
 > <text>
 >> <text>
 > <text>
+
+
+Make a Warning:
+
+> :warning: <text>
+> :<emoji>: <text>
+
+
+Emoji Table:
+
+
+[Emojis](https://gist.github.com/rxaviers/7360908)
+
 
 ------------------------------------
 

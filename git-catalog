@@ -311,6 +311,9 @@ $ git branch --move <branch> <new-name>
 - Switch Branch:
 $ git switch <branch>
 
+- Switch to last Branch:
+$ git switch -
+
 
 
 - Delete Branch:
@@ -673,7 +676,6 @@ $ git restore -SW <file>
 
 - Restore to from a previous Commit:
 $ git restore --source <commit> <file>
-$ git restore --source <commit> -WS <file>
 
 
 
