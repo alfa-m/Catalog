@@ -214,6 +214,7 @@ PARAGRAPH IDENTATION
 
 
 - Or just give a new line at the end of the previous paragraph with:
+- (it is always wrong to have a blank line after ´\\´)
 
 \\
 \newline
@@ -233,7 +234,7 @@ PARAGRAPH IDENTATION
 
 ------------------------------------
 
-	TITTLE & TABLE OF CONTENTS
+	TITLE & TABLE OF CONTENTS
 
 - Define Author:
 
@@ -267,9 +268,9 @@ PARAGRAPH IDENTATION
 
 ------------------------------------
 
-	COMMANDS & CONFIGURATIONS
+	CONFIGURATIONS
 
-- Commands have main parameters in braces '{}' and optional parameters in brackets '[]'.
+- Commands have main parameters in braces ´{ }´ and optional parameters in brackets ´[ ]´.
 
 
 
@@ -329,11 +330,11 @@ number=
 
 - Reserverd Symbols:
 
-	$ $, &, #, _, {, }, %
+	%, $, &, #, _, {, }
 
 - To include reserverd symbols on the text they need to be preceded by the escape character ´\´:
 
-	\$, \&, \#, \_, \{, \}, \%
+	\%, \$, \&, \#, \_, \{, \}
 
 
 
@@ -463,9 +464,290 @@ DIFFERENT FONT SIZES
 
 ------------------------------------
 
-	LINKS & CROSSED REFERENCE
+	MATH
 
-LINKS
+- The way equations are displayed depends on the delimiters (that are not rendered).
+- Also, all the commands in this section are specific for within equations.
+
+	% In-line Equations:
+	\(    \)
+	 $     $
+	\begin{math}    \end{math}
+
+	% Displayed Equations:
+	\[    \]
+	$$    $$
+	\begin{equation*}    \end{equation*}
+	\begin{displaymath}    \end{displaymath}
+
+	% Displayed Numbered Equations:
+	\begin{equation}    \end{equation}
+
+
+- Parenthesis and brackets on equations can be directly typed.
+- Pipes ´| |´ can also be typed directly.
+- Double pipes ´|| ||´ and Braces ´{ }´ need to be escaped.
+- Angle brackets ´⟨ ⟩´ have the command ´langle´.
+
+(    )                  % (    )
+[    ]                  % [    ]
+|    |                  % |    |
+\|    \|                % ||   ||
+\{    \}                % {    }
+\langle    \langle      % ⟨    ⟩
+
+
+- To add space inside a equation (ascending order):
+
+\!        % less than the default
+\,
+\:
+\;
+\         % equel to space in normal text (space after the backslash!)
+\quad     % equal to the current font size
+\qquad    % twice of \quad
+
+
+- To add a text inside a equation:
+
+\textrm{ <text> }
+
+
+- To add parenthesis and brackets resized dynamically use:
+
+\left(    \right)
+\left[    \right]
+
+
+- To add parenthesis and brackets resized dynamically use:
+
+url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses#Reference_guide)
+
+
+- To write Subscript and Superscrip (eg. exponents):
+
+<base>_<subscript>
+<base>_{ <subscript> }
+
+<base>^<superscrip>
+<base>^{ <superscrip> }
+
+<base>_{ <subscript> }^{ <superscrip> }
+
+
+- To write fractions:
+
+\frac{ <dividend> }{ <divisor> }
+
+
+- To write a Integral:
+
+\int_{ <lower> }^{ <upper> }  <equation>  \,dx
+
+
+- To write double/triple Integrals:
+
+\int_{ <lower> }  <equation>  \,du
+\iint_{ <lower> }  <equation>  \,du\,dv
+\iiint_{ <lower> }  <equation>  \,du\,dv\,dw
+
+
+- To write close line/surface Integrals:
+
+\oint_{ <lower> }  <equation>  \,ds
+
+
+- To write Sums and Products:
+
+\sum_{ <lower> }^{ <upper> }  <equation>
+\prod_{ <lower> }^{ <upper> }  <equation>
+
+
+- To write Limits:
+
+\lim_{ <variable> \rightarrow <value> }  <equation>
+
+
+- To write Limits (easier) use the package ´amsmath´:
+
+\usepackage{amsmath}
+\lim_{ <variable> \to <value> }  <equation>
+
+
+
+
+
+
+
+
+
+ALIGN
+
+- To align parts of different equations use the package ´amsmath´:
+
+\usepackage{amsmath}
+
+- In the ´equation´ environment, use the ´split´ environment.
+- Split the equations into smaller pieces, that will be aligned.
+- The double backslash ´\\´ works as a newline character.
+- Use the ampersand character ´&´, to set the vertical align points.
+
+\begin{equation}
+\begin{split}
+<pieces> & = <pieces> \\
+<pieces> & = <pieces> \\
+...
+\end{split}
+\end{equation}
+
+
+- In case each line needs to be Numbered use the ´align´ environment:
+
+\begin{align}
+<pieces> & = <pieces> \\
+<pieces> & = <pieces> \\
+...
+\end{align}
+
+
+- If you just need to display consecutive equations, centered and with no alignment, use the ´gather´ environment:
+
+\begin{gather}    \end{gather}
+\begin{gather*}    \end{gather*}
+
+
+
+
+
+
+CROSSED REFERENCE
+
+- Create a Label that can be referenced.
+- Place it inside Displayed Numbered Equations.
+
+\begin{equation} \label{ <label> }
+<equation>
+\end{equation}
+
+
+
+- Reference the Section number:
+
+\ref{ <label> }
+
+
+
+
+
+
+OPERATORS
+
+	\exp
+	\sin
+	\cos
+	\tan
+	\ln
+	\log
+	\sinh
+	\cosh
+	\tanh
+	\min
+	\max
+	\arcsin
+	\arccos
+	\arctan
+	\sec
+	\csc
+	\cot
+
+
+
+
+
+SYMBOLS
+
+
+- List of Greek Letters:
+
+	\alpha        α
+	\beta         β
+	\gamma        γ
+	\Gamma        Γ
+	\delta        δ
+	\Delta        Δ
+	\epsilon      ϵ
+	\varepsilon   ε
+	\zeta         ζ
+	\eta          η
+	\theta        θ
+	\Theta        Θ
+	\iota         ι
+	\kappa        κ
+	\lambda       λ
+	\Lambda       Λ
+	\mu           μ
+	\nu           ν
+	\xi           ξ
+	\Xi           Ξ
+	\pi           π
+	\Pi           Π
+	\rho          ρ
+	\sigma        σ
+	\Sigma        Σ
+	\tau          τ
+	\upsilon      υ
+	\Upsilon      ϒ
+	\phi          ϕ
+	\varphi       φ
+	\Phi          Φ
+	\chi          χ
+	\psi          ψ
+	\Psi          Ψ
+	\omega        ω
+	\Omega        Ω
+
+
+- List of Common Symbols:
+
+	\pm           ±
+	\times        x
+	\div          ÷
+	\%            %
+	\sqrt{}       √
+	\circ         ○    % use it as superscrip for degrees
+	\neq          ≠
+	\approx       ≈
+	\simeq        ≃
+	\cong         ≅
+	\sim          ∼    % "of the order of"
+	\cdot         ⋅
+	\cdots        ⋯
+	\leq          ≤
+	\geq          ≥
+	\forall       ∀
+	\infty        ∞
+	\partial      ∂
+	\nabla        ∇
+	\therefore    ∴
+	\exists       ∃
+	\nexists      ∄
+
+
+
+- Complete list of Math Symbols:
+
+url: (https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols)
+
+
+- More info:
+
+url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses)
+
+
+
+------------------------------------
+
+	LINKS
 
 - Use package ´hyperref´:
 
@@ -507,37 +789,16 @@ color:
 \href{ <url> }{ <text> }
 
 
-(not working, I´m doing something wrong)
-- Create a link to a file (relative path to the Document):
+- Create a link to a file:
 
-\href{ run:./<relative-path> }{ <text> }
+\href{ file:<path> }{ <text> }
+\href{ file:./<relative-path> }{ <text> }
 
 
-- go figure:
+- Go figure:
 
 url: (https://pt.overleaf.com/learn/latex/Hyperlinks)
 
-
-
-
-
-
-
-CROSSED REFERENCE
-
-- Create a Label that can be referenced:
-
-\label
-
-
-- Reference the page number:
-
-\pageref
-
-
-- Reference the Section number:
-
-\ref
 
 
 
