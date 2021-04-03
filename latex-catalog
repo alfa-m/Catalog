@@ -346,6 +346,35 @@ PARAGRAPH IDENTATION
 
 ------------------------------------
 
+	LISTS
+
+- To create unordered List use the ´itemize´ environment and put the ´item´s inside:
+
+\begin{itemize}
+  \item <text>
+  \item <text>
+  ...
+\end{itemize}
+
+
+- To create unordered List use the ´enumerate´ environment and put the ´item´s inside:
+
+\begin{enumerate}
+  \item <text>
+  \item <text>
+  ...
+\end{enumerate}
+
+
+
+- Nested Lists:
+- You can insert a list inside another list.
+- Including mixed types.
+
+
+
+------------------------------------
+
 	SYMBOLS
 
 
@@ -562,27 +591,6 @@ url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses#Reference_gu
 <base>_{ <subscript> }^{ <superscrip> }
 
 
-- To add a hat to a letter in math-mode (equation):
-
-\hat{ <letter> }
-\widehat{ <letter> }
-
-
-- To add a hat to a letter in text-mode:
-
-\^{ <letter> }
-
-
-- To write a vector (arrow above):
-
-\vec{ <letter> }
-
-
-- To write a vector with superscrip (that doesn´t look crap):
-
-\vec{ <letter> }^{ \, <superscrip> }
-
-
 - To write fractions:
 
 \frac{ <numerator> }{ <denominator> }
@@ -615,6 +623,48 @@ url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses#Reference_gu
 
 \lim_{ <variable> \to <value> }  <equation>
 
+
+
+
+
+
+
+
+
+HATS AND ACCENTS
+
+- To add a hat to a letter in text-mode:
+
+\^{ <letter> }
+
+
+- To add a hat to a letter in math-mode (equation):
+
+\hat{ <letter> }
+\widehat{ <letter> }
+\overrightarrow{ <lettersss> }
+
+
+- To write a vector (arrow above):
+
+\vec{ <letter> }
+
+
+- To write a vector with superscrip (that doesn´t look crap):
+
+\vec{ <letter> }^{ \, <superscrip> }
+
+
+- Misc (ye, I´m lazy):
+
+\dot{x}        % .
+\ddot{x}       % ..
+\acute{x}      % ´
+\grave{x}      % `
+\bar{x}        % -
+\tilde{x}      % ~
+\check{x}      % v
+\breve{x}      % V
 
 
 
