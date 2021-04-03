@@ -112,8 +112,8 @@ options:
 		onecolumn		(default)
 		twocolumn
 		
-		oneside			(default for ´article´ and ´report´)
-		twoside			(default for ´book´)
+		oneside			(pages, default for ´article´ and ´report´)
+		twoside			(pages, default for ´book´)
 		
 		titlepage		(default for ´book´ and ´report´)
 		notitlepage		(default for ´article´)
@@ -169,6 +169,84 @@ options:
 
 % Use the Latin Moder font:
 \usepackage{lmodern}
+
+------------------------------------
+
+	CONFIGURATIONS
+
+- Commands have main parameters in braces ´{ }´ and optional parameters in brackets ´[ ]´.
+
+
+
+- Input a Tex file (only processes the file):
+
+\input{<tex-file>}
+
+
+- Include a Tex file (generates file´s pages):
+
+\include{<tex-file>}
+
+
+
+
+NUMBERING
+
+
+- To suppress page numbering:
+
+\pagenumbering{gobble}
+
+
+- To switch on page numbering with Arabic Numbers:
+
+\pagenumbering{arabic}
+
+
+- To switch on page numbering with Roman Numbers:
+
+\pagenumbering{roman}
+\pagenumbering{Roman}
+
+
+- To switch on page numbering with Letters:
+
+\pagenumbering{alph}
+\pagenumbering{Alph}
+
+
+- Set till which depth of sections are numbered:
+
+\setcounter{secnumdepth}{<number>}
+
+number=
+		0		- Chapter
+		1		- Section
+		2		- Subsection (default)
+		3		- Subsubsection
+		4		- Paragraph
+		5		- Subparagraph
+
+
+- Set till which depth of sections are included on the Table of Contents:
+
+\setcounter{tocdepth}{<number>}
+
+
+
+
+
+HYPHENATION
+
+- Teach LaTeX how to hyphenate a word or to never hyphenate it:
+
+\hyphenation{ hy-phe-na-te }
+\hyphenation{ neverHyphenate }
+
+\hyphenation{ hy-phe-na-te neverHyphenate }
+
+
+
 
 ------------------------------------
 
@@ -263,63 +341,6 @@ PARAGRAPH IDENTATION
 - Generate Table of Contents:
 
 \tableofcontents
-
-
-
-------------------------------------
-
-	CONFIGURATIONS
-
-- Commands have main parameters in braces ´{ }´ and optional parameters in brackets ´[ ]´.
-
-
-
-- Input a Tex file (only processes the file):
-
-\input{<tex-file>}
-
-
-- Include a Tex file (generates file´s pages):
-
-\include{<tex-file>}
-
-
-
-
-
-
-
-
-- Set till which depth of sections are numbered:
-
-\setcounter{secnumdepth}{<number>}
-
-number=
-		0		- Chapter
-		1		- Section
-		2		- Subsection (default)
-		3		- Subsubsection
-		4		- Paragraph
-		5		- Subparagraph
-
-
-- Set till which depth of sections are included on the Table of Contents:
-
-\setcounter{tocdepth}{<number>}
-
-
-
-
-
-
-
-- Teach LaTeX how to hyphenate a word or to never hyphenate it:
-
-\hyphenation{ hy-phe-na-te }
-\hyphenation{ neverHyphenate }
-
-\hyphenation{ hy-phe-na-te neverHyphenate }
-
 
 
 
@@ -466,6 +487,12 @@ DIFFERENT FONT SIZES
 
 	MATH
 
+- Many commands in this section use the package ´amsmath´:
+
+\usepackage{amsmath}
+
+
+
 - The way equations are displayed depends on the delimiters (that are not rendered).
 - Also, all the commands in this section are specific for within equations.
 
@@ -484,17 +511,9 @@ DIFFERENT FONT SIZES
 	\begin{equation}    \end{equation}
 
 
-- Parenthesis and brackets on equations can be directly typed.
-- Pipes ´| |´ can also be typed directly.
-- Double pipes ´|| ||´ and Braces ´{ }´ need to be escaped.
-- Angle brackets ´⟨ ⟩´ have the command ´langle´.
+- To add a text inside a equation:
 
-(    )                  % (    )
-[    ]                  % [    ]
-|    |                  % |    |
-\|    \|                % ||   ||
-\{    \}                % {    }
-\langle    \langle      % ⟨    ⟩
+\textrm{ <text> }
 
 
 - To add space inside a equation (ascending order):
@@ -508,9 +527,17 @@ DIFFERENT FONT SIZES
 \qquad    % twice of \quad
 
 
-- To add a text inside a equation:
+- Parenthesis and brackets on equations can be directly typed.
+- Pipes ´| |´ can also be typed directly.
+- Double pipes ´|| ||´ and Braces ´{ }´ need to be escaped.
+- Angle brackets ´⟨ ⟩´ have the command ´langle´.
 
-\textrm{ <text> }
+(    )                  % (    )
+[    ]                  % [    ]
+|    |                  % |    |
+\|    \|                % ||   ||
+\{    \}                % {    }
+\langle    \langle      % ⟨    ⟩
 
 
 - To add parenthesis and brackets resized dynamically use:
@@ -535,9 +562,30 @@ url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses#Reference_gu
 <base>_{ <subscript> }^{ <superscrip> }
 
 
+- To add a hat to a letter in math-mode (equation):
+
+\hat{ <letter> }
+\widehat{ <letter> }
+
+
+- To add a hat to a letter in text-mode:
+
+\^{ <letter> }
+
+
+- To write a vector (arrow above):
+
+\vec{ <letter> }
+
+
+- To write a vector with superscrip (that doesn´t look crap):
+
+\vec{ <letter> }^{ \, <superscrip> }
+
+
 - To write fractions:
 
-\frac{ <dividend> }{ <divisor> }
+\frac{ <numerator> }{ <denominator> }
 
 
 - To write a Integral:
@@ -565,12 +613,6 @@ url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses#Reference_gu
 
 - To write Limits:
 
-\lim_{ <variable> \rightarrow <value> }  <equation>
-
-
-- To write Limits (easier) use the package ´amsmath´:
-
-\usepackage{amsmath}
 \lim_{ <variable> \to <value> }  <equation>
 
 
@@ -586,6 +628,7 @@ ALIGN
 - To align parts of different equations use the package ´amsmath´:
 
 \usepackage{amsmath}
+
 
 - In the ´equation´ environment, use the ´split´ environment.
 - Split the equations into smaller pieces, that will be aligned.
@@ -634,6 +677,26 @@ CROSSED REFERENCE
 - Reference the Section number:
 
 \ref{ <label> }
+
+
+
+
+
+
+
+MATH FONTS
+
+- Package ´amssymb´ or ´amsfonts´:
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+- Capital letters-only font typefaces:
+
+\mathcal{ <letters> }     % Calligraphic (curly)
+\mathfrak{ <letters> }    % Fraktur (MORE curly)
+\mathbb{ <letters> }      % Blackboard bold (those letters for sets)
 
 
 
@@ -715,6 +778,15 @@ SYMBOLS
 	\%            %
 	\sqrt{}       √
 	\circ         ○    % use it as superscrip for degrees
+	\leq          ≤
+	\geq          ≥
+	\forall       ∀
+	\infty        ∞
+	\in           ∈
+	\notin        ∉
+	\partial      ∂
+	\nabla        ∇
+	\therefore    ∴
 	\neq          ≠
 	\approx       ≈
 	\simeq        ≃
@@ -722,13 +794,6 @@ SYMBOLS
 	\sim          ∼    % "of the order of"
 	\cdot         ⋅
 	\cdots        ⋯
-	\leq          ≤
-	\geq          ≥
-	\forall       ∀
-	\infty        ∞
-	\partial      ∂
-	\nabla        ∇
-	\therefore    ∴
 	\exists       ∃
 	\nexists      ∄
 
