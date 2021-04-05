@@ -24,11 +24,11 @@
 
 - [Conda Forge][conda]
 
-
-
 [conda]:https://docs.conda.io/projects/conda/en/latest/index.html "Conda Documentation"
 [conda-forge]:https://conda-forge.org/feedstock-outputs/ "Packages on Conda Forge"
 [non-conda-forge]:https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#installing-non-conda-packages "Installing non-conda packages"
+
+
 
 ------------------------------------
 
@@ -37,6 +37,7 @@
 - Help on a command:
 
 $ `conda <command> --help`
+<!-- --><br/>
 
 
 
@@ -88,6 +89,7 @@ $ `conda env create -f environment.yml`
 <!-- --><br/>
 
 
+
 ------------------------------------
 
 ### JUPYTER
@@ -130,7 +132,6 @@ $ `conda env create -f environment.yml`
 
 
 
-
 ------------------------------------
 
 ### PACKAGES
@@ -147,6 +148,7 @@ $ `conda env create -f environment.yml`
 >> Basically, never use `pip`.
 >> Use `conda` on Virtual Enviroment.
 >> Use `pacman` (or your package manager) on the system.
+>
 <!-- --><br/>
 
 
@@ -203,6 +205,7 @@ $ `conda search <package> -c conda-forge`
 (`<env>`)$ `conda list`
 
 (`<env>`)$ `conda list <package>`
+<!-- --><br/>
 
 
 
@@ -234,6 +237,7 @@ $ `conda update anaconda`
 <!-- --><br/>
 
 
+
 ------------------------------------
 
 ### MISC
@@ -248,6 +252,7 @@ $ `which conda`
 
 (`<env>`)$ `which python`
 <!-- --><br/>
+
 
 
 ------------------------------------

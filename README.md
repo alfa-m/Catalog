@@ -27,7 +27,7 @@ Currently:
   
 
 - [LaTeX](./latex-catalog)
-- [Markdown](./markdown-catalog)
+- [Markdown](./markdown-catalog.md)
 
   
 

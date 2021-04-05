@@ -556,7 +556,7 @@ DIFFERENT FONT SIZES
 \qquad    % twice of \quad
 
 
-- Parenthesis and brackets on equations can be directly typed.
+- Parentheses and brackets on equations can be directly typed.
 - Pipes ´| |´ can also be typed directly.
 - Double pipes ´|| ||´ and Braces ´{ }´ need to be escaped.
 - Angle brackets ´⟨ ⟩´ have the command ´langle´.
@@ -569,13 +569,13 @@ DIFFERENT FONT SIZES
 \langle    \langle      % ⟨    ⟩
 
 
-- To add parenthesis and brackets resized dynamically use:
+- To add parentheses and brackets resized dynamically use:
 
 \left(    \right)
 \left[    \right]
 
 
-- To add parenthesis and brackets resized dynamically use:
+- To add parentheses and brackets resized dynamically use:
 
 url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses#Reference_guide)
 
