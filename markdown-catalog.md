@@ -7,11 +7,11 @@
 
 + [REFERENCE](#reference)
 + [HEADERS](#headers)
-+ [LISTS & PARAGRAPHS](#lists---paragraphs)
++ [LISTS & PARAGRAPHS](#lists-&-paragraphs)
 + [CODE](#code)
 + [LINKS](#links)
 + [EMPHASIS](#emphasis)
-+ [BLOCKQUOTES](#block-quotes)
++ [BLOCK-QUOTES](#block-quotes)
 + [TABLES](#tables)
 
 <!-- --><br/>
@@ -49,13 +49,26 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 
 ### HEADERS
 
+- Make Headers.  
+  Up to 6 different levels are possible:
+
 ```markdown
-# header 1
-## header 2
-### header 3
-#### header 4
-##### header 5
-###### header 6
+# Header level 1
+```
+```markdown
+## Header level 2
+```
+```markdown
+### Header level 3
+```
+```markdown
+#### Header level 4
+```
+```markdown
+##### Header level 5
+```
+```markdown
+###### Header level 6
 ```
 <!-- --><br/>
 
@@ -71,9 +84,11 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 
 > :warning: **WARNING :**
 >
->> In this examples, leading (at the begining) and trailing (at the end) SPACES are shown with with dots (`.`), but they should NOT be included.
+> > In these examples, leading (at the begining) and trailing (at the end) SPACES are shown with dots (`.`).
+> > Those dots should NOT be included.
+> > When writing Markdown, use spaces instead.
 >
-<!-- --><br/>
+> <!-- --><br/>
 
 
 - To add a end of line, use ´line break´ from ´html´:
