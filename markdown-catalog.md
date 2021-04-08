@@ -7,7 +7,7 @@
 
 + [REFERENCE](#reference)
 + [HEADERS](#headers)
-+ [LISTS & PARAGRAPHS](#lists-&-paragraphs)
++ [LISTS & PARAGRAPHS](#lists--paragraphs)
 + [CODE](#code)
 + [LINKS](#links)
 + [EMPHASIS](#emphasis)
@@ -29,7 +29,7 @@
 	- [Basic Syntax][g-basic]
 
 
-- [Cheatsheet][cheat]
+- [Cheat-Sheet][cheat]
 
 
 [web]:https://daringfireball.net/projects/markdown/ "Daring Fireball: Markdown"
@@ -84,7 +84,7 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 
 > :warning: **WARNING :**
 >
-> > In these examples, leading (at the begining) and trailing (at the end) SPACES are shown with dots (`.`).
+> > In these examples, leading (at the beginning) and trailing (at the end) SPACES are shown with dots (`.`).
 > > Those dots should NOT be included.
 > > When writing Markdown, use spaces instead.
 >
@@ -282,15 +282,39 @@ https://url.com
 
 
 - Make a link to a Header on the file.  
-  The name of the Header must be right, but letter case don´t matter.  
-  You can´t have spaces adjacent to the parentheses.  
-  If the Header name has spaces you may use hyphens (`-`) instead.  
-  If more then one Header have the same name, their link should be numbered:
+  To make Github understand the reference write  it following these steps:  
+   1. Convert all characters to lowercase ASCII characters.
+   1. Remove all punctuation and symbols except spaces and hyphens.
+   1. Convert all spaces to hyphens.
+
+  If more then one Header have the same name, their link should be numbered.
+  On Github, you can also hover over the Header´s link icon to see what´s the link for it.
 
 ```markdown
-[ text ](#<name-of-the-header>)
-[ text ](#<name-of-the-header>-1)
-[ text ](#<name-of-the-header>-2)
+[ text ](#name-of-the-header)
+```
+```markdown
+[ text ](#name-of-the-header-1)
+```
+```markdown
+[ text ](#name-of-the-header-2)
+```
+<!-- --><br/>
+
+
+- Display a Image on the file:
+
+```markdown
+![](url)
+```
+```markdown
+![](url "title")
+```
+```markdown
+![](path)
+```
+```markdown
+![](path "title")
 ```
 <!-- --><br/>
 
@@ -310,7 +334,7 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 
 ### EMPHASIS
 
-- _Italic_ (a.k.a. Emphasis):
+- _Italic_ (_a.k.a._ Emphasis):
 
 ```
 _text_
@@ -321,7 +345,7 @@ _text_
 <!-- --><br/>
 
 
-- **Bold** (a.k.a. Strong Emphasis):
+- **Bold** (_a.k.a._ Strong Emphasis):
 
 ```
 **text**
@@ -343,7 +367,7 @@ __text__
 <!-- --><br/>
 
 
-- ~~Scratch~~ (a.k.a. Strikethrough):
+- ~~Scratch~~ (_a.k.a._ Strikethrough):
 
 ```
 ~~text~~

@@ -41,7 +41,13 @@ Wow man. Thank you. Seriously. I'm on KDE and, with a dark theme, no matter my G
 
 	REFERENCE
 
-- Cool Slide;
+- LaTeX Wiki:
+url: (https://en.wikibooks.org/wiki/LaTeX)
+
+- LaTeX Mathematics Wiki:
+url: (https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
+- Cool Slide:
 url: (https://pt.slideshare.net/smarzaro/latex-bsico-i)
 
 - Take a look at KBibTeX:
@@ -50,9 +56,6 @@ url: (https://apps.kde.org/en/kbibtex)
 
 
 
-
-- Home Page:
-url: ()
 
 OVERLEAF
 
@@ -250,13 +253,13 @@ HYPHENATION
 
 ------------------------------------
 
-	DOCUMENT CONTENTS
+	ANY CLASS ( DOCUMENT CONTENTS )
 
 
 
 SECTIONING
 
-- LaTex numbers Sections, Subsections, Chapters, Parts, etc, automaticly.
+- LaTex numbers Sections, Subsections, Chapters, Parts, etc, automatically.
 
 
 - Create new Section, Subsections and Subsubsections:
@@ -370,6 +373,17 @@ PARAGRAPH IDENTATION
 - Nested Lists:
 - You can insert a list inside another list.
 - Including mixed types.
+
+\begin{enumerate}
+  \item <text>
+  \item <text>
+  \begin{enumerate}
+    \item <text>
+    \item <text>
+    ...
+  \end{enumerate}
+  ...
+\end{enumerate}
 
 
 
@@ -516,14 +530,23 @@ DIFFERENT FONT SIZES
 
 	MATH
 
-- Many commands in this section use the package ´amsmath´:
+- LaTeX Mathematics Wiki:
+
+url: (https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
+
+
+- Many commands in this section use the package ´amsmath´ and, for the fonts section, ´amssymb´:
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 
 
-- The way equations are displayed depends on the delimiters (that are not rendered).
-- Also, all the commands in this section are specific for within equations.
+- The way Equations are displayed depends on the delimiters (that are not rendered).
+- Also, all the commands in this section are specific for within Equations.
+- You CANNOT use empty lines within Equations.
+- Use only one Equation per environment.
 
 	% In-line Equations:
 	\(    \)
@@ -542,10 +565,13 @@ DIFFERENT FONT SIZES
 
 - To add a text inside a equation:
 
-\textrm{ <text> }
+\text{ <text> }
+\textrm{ <text> }     % roman font family
+\textit{ <text> }
+\textbf{ <text> }
 
 
-- To add space inside a equation (ascending order):
+- To add space inside a Equation (ascending order):
 
 \!        % less than the default
 \,
@@ -556,7 +582,7 @@ DIFFERENT FONT SIZES
 \qquad    % twice of \quad
 
 
-- Parentheses and brackets on equations can be directly typed.
+- Parentheses and brackets on Equations can be directly typed.
 - Pipes ´| |´ can also be typed directly.
 - Double pipes ´|| ||´ and Braces ´{ }´ need to be escaped.
 - Angle brackets ´⟨ ⟩´ have the command ´langle´.
@@ -594,6 +620,8 @@ url: (https://www.overleaf.com/learn/latex/Brackets_and_Parentheses#Reference_gu
 - To write fractions:
 
 \frac{ <numerator> }{ <denominator> }
+\tfrac{ <numerator> }{ <denominator> }
+^<numerator>/_<denominator>
 
 
 - To write a Integral:
@@ -673,28 +701,31 @@ HATS AND ACCENTS
 
 
 
-ALIGN
+MULTIPLE EQUATIONS
 
-- To align parts of different equations use the package ´amsmath´:
+- To align parts of different Equations use the package ´amsmath´:
 
 \usepackage{amsmath}
 
 
-- In the ´equation´ environment, use the ´split´ environment.
-- Split the equations into smaller pieces, that will be aligned.
+- If you just need to display consecutive Equations, centered, use the ´gather´ environment.
 - The double backslash ´\\´ works as a newline character.
-- Use the ampersand character ´&´, to set the vertical align points.
 
-\begin{equation}
-\begin{split}
-<pieces> & = <pieces> \\
-<pieces> & = <pieces> \\
+\begin{gather}
+<equation> \\
+<equation> \\
 ...
-\end{split}
-\end{equation}
+\end{gather}
+
+\begin{gather*}
+<equation> \\
+<equation> \\
+...
+\end{gather*}
 
 
-- In case each line needs to be Numbered use the ´align´ environment:
+- To align a certain point of the Equations use the ´align´ environment.
+- Use the ampersand ´&´, to set the vertical align points.
 
 \begin{align}
 <pieces> & = <pieces> \\
@@ -702,11 +733,62 @@ ALIGN
 ...
 \end{align}
 
+\begin{align*}
+<pieces> & = <pieces> \\
+<pieces> & = <pieces> \\
+...
+\end{align*}
 
-- If you just need to display consecutive equations, centered and with no alignment, use the ´gather´ environment:
+\begin{align}
+<pieces> & = <pieces>      &  <pieces> & = <pieces> \\
+<pieces> & = <pieces>      &  <pieces> & = <pieces> \\
+...
+\end{align}
 
-\begin{gather}    \end{gather}
-\begin{gather*}    \end{gather*}
+
+- To split a single Equations into smaller pieces, that will be aligned use the ´multline´ environment:
+
+\begin{multline}
+<pieces> = & <pieces> \\
+& <pieces> \\
+& <pieces> \\
+...
+\end{multline}
+
+\begin{multline*}
+<pieces> = & <pieces> \\
+& <pieces> \\
+& <pieces> \\
+...
+\end{multline*}
+
+
+- To split a single Equations, within the ´equation´ environment, use the ´split´ environment:
+
+\begin{equation}
+\begin{split}
+<pieces> = & <pieces> \\
+& <pieces> \\
+& <pieces> \\
+...
+\end{split}
+\end{equation}
+
+
+
+
+CASE DEFINITION
+
+\begin{equation}
+<pieces> = 
+\begin{cases}
+<pieces>,    & <condition> \\
+<pieces>,    & <condition> \\
+<pieces>,    & <condition> \\
+...
+\end{cases}
+\end{equation}
+
 
 
 
@@ -740,6 +822,12 @@ MATH FONTS
 
 \usepackage{amssymb}
 \usepackage{amsfonts}
+
+
+- To make Mathematical Symbols Bold:
+
+\pmb{ <math> }
+\boldsymbol{ <math> }
 
 
 - Capital letters-only font typefaces:
@@ -919,7 +1007,7 @@ url: (https://pt.overleaf.com/learn/latex/Hyperlinks)
 
 ------------------------------------
 
-	ARTICLE CONTENTS
+	ARTICLE CLASS
 
 -
 
@@ -928,7 +1016,7 @@ url: (https://pt.overleaf.com/learn/latex/Hyperlinks)
 
 ------------------------------------
 
-	BOOK CONTENTS
+	BOOK CLASS
 
 - Create new Part:
 
@@ -938,6 +1026,107 @@ url: (https://pt.overleaf.com/learn/latex/Hyperlinks)
 - Create new Chapter (available on books and reports):
 
 \chapter{<title>}
+
+
+
+
+
+
+
+------------------------------------
+
+	HOMEWORK CLASS
+
+- Custom Class.
+- Get it from:
+
+url: (https://github.com/jez/latex-homework-class)
+
+- The easiest way to use the template is copy the ´.cls´ file to the same directory as the LaTeX project.
+
+- The author recommends to fork the repository then clone the fork.
+- If there are ever any updates, you can ´clone´.
+
+\begin{verbatim}
+
+$ git clone https://github.com/<your-username>/latex-homework-class
+$ cd latex-homework-class
+$ git remote add upstream https://github.com/jez/latex-homework-class
+
+$ git pull upstream master
+
+\end{verbatim}
+
+
+
+- Define Class:
+
+\documentclass{homework}
+
+
+
+- Create new automatically numbered Question:
+
+\question
+\question*{<title>}
+\section{}
+\section*{<title>}
+
+
+- If questions gets separated from their bodies, force them to the next page:
+
+\newpage
+
+
+- To change the Question Type (word before the number), use:
+
+\renewcommand{\questiontype}{<text>}
+
+
+- To force the question number use:
+
+\setcounter{questionCounter}{<number -1>}
+
+
+
+
+
+
+QUESTION COUNTER
+
+- Questions can be devided in Parts.
+- Question Part numbers are auto-incremented.
+- Even if interrupted, within the same question, all parts are continuously numbered.
+
+- Use the ´alphaparts´ environment to list with letters.
+- Add the counters with ´\questionpart´ command:
+
+\begin{alphaparts}
+    \questionpart <text>
+    \questionpart <text>
+    ...
+\end{alphaparts}
+<question-text>
+\begin{alphaparts}
+    \questionpart <text>
+    ...
+\end{alphaparts}
+
+
+
+- Use the ´arabicparts´ environment to list with numbers (includes the ´questionCounter´ number).
+- Add the counters with ´\questionpart´ command:
+
+\begin{arabicparts}
+    \questionpart <text>
+    \questionpart <text>
+    ...
+\end{arabicparts}
+<question-text>
+\begin{arabicparts}
+    \questionpart <text>
+    ...
+\end{arabicparts}
 
 
 
@@ -963,11 +1152,10 @@ url: (https://pt.overleaf.com/learn/latex/Hyperlinks)
 
 
 
-	## Examples ##
 
 
 
-	## - ##
+
 
 
 ------------------------------------

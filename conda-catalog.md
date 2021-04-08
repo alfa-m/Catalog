@@ -3,6 +3,27 @@
 
 ------------------------------------
 
+### TABLE OF CONTENT
+
++ [TERMINOLOGY](#terminology)
++ [REFERENCE](#reference)
++ [HELP](#help)
++ [ENVIRONMENTS](#environments)
++ [PACKAGES](#packages)
++ [UPDATES](#updates)
++ [JUPYTER](#jupyter)
++ [MISC](#misc)
+
+<!-- --><br/>
+
+
+- [Generate a Table of Content from a Markdown file][Table of Content]
+<!-- --><br/>
+
+
+
+------------------------------------
+
 ### TERMINOLOGY
 
 
@@ -19,17 +40,21 @@
 
 ### REFERENCE
 
+= [Installation][install]
+
+
 - [Documentation][conda]
 
 
 - [Conda Forge][conda]
+<!-- --><br/>
 
+
+
+[install]:https://docs.anaconda.com/anaconda/install/ "Anaconda/Conda Installation"
 [conda]:https://docs.conda.io/projects/conda/en/latest/index.html "Conda Documentation"
 [conda-forge]:https://conda-forge.org/feedstock-outputs/ "Packages on Conda Forge"
 [non-conda-forge]:https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#installing-non-conda-packages "Installing non-conda packages"
-
-
-
 ------------------------------------
 
 ### HELP
@@ -86,48 +111,6 @@ $ `conda create -n <env-name> <package>=<pack-version>`
 - Creating an environment from a environment.yml:
 
 $ `conda env create -f environment.yml`
-<!-- --><br/>
-
-
-
-------------------------------------
-
-### JUPYTER
-
-- Open jupyter:
-
-(`<env>`)$ `jupyter notebook`
-
-(`<env>`)$ `jupyter notebook <file.ipynb>`
-
-(`<env>`)$ `jupyper lab`
-
-(`<env>`)$ `jupyper lab <file.ipynb>`
-<!-- --><br/>
-
-
-- List running Jupyter servers:
-
-(`<env>`)$ `jupyter notebook list`
-<!-- --><br/>
-
-
-- Terminate Jupyter server:
-
-(`<env>`)$ `jupyter notebook stop`
-
-(`<env>`)$ `jupyter notebook stop <port>`
-<!-- --><br/>
-
-
-- Jupyter shortcuts (when a cell is selected):
-
-| ShortCut | Meaning |
-| :---: | :--- |
-| [shift] + [Enter] | Run cell & go to the next |
-| [ctrl] + [Enter]  | Run cell & DON'T go next |
-| [alt] + [Enter]   | Run cell, add new cell under & go to it |
-| [d] + [d]         | Delete selected cell |
 <!-- --><br/>
 
 
@@ -234,6 +217,48 @@ $ `conda update anaconda`
 - Update all packages on enviroment:
 
 (`<env>`)$ `conda update --all`
+<!-- --><br/>
+
+
+
+------------------------------------
+
+### JUPYTER
+
+- Open jupyter:
+
+(`<env>`)$ `jupyter notebook`
+
+(`<env>`)$ `jupyter notebook <file.ipynb>`
+
+(`<env>`)$ `jupyper lab`
+
+(`<env>`)$ `jupyper lab <file.ipynb>`
+<!-- --><br/>
+
+
+- List running Jupyter servers:
+
+(`<env>`)$ `jupyter notebook list`
+<!-- --><br/>
+
+
+- Terminate Jupyter server:
+
+(`<env>`)$ `jupyter notebook stop`
+
+(`<env>`)$ `jupyter notebook stop <port>`
+<!-- --><br/>
+
+
+- Jupyter shortcuts (when a cell is selected):
+
+| ShortCut | Meaning |
+| :---: | :--- |
+| [shift] + [Enter] | Run cell & go to the next |
+| [ctrl] + [Enter]  | Run cell & DON'T go next |
+| [alt] + [Enter]   | Run cell, add new cell under & go to it |
+| [d] + [d]         | Delete selected cell |
 <!-- --><br/>
 
 

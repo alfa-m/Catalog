@@ -33,5 +33,5 @@ Currently:
 
 - [Linux commands](./linux-catalog)
 - [Pacman commands](./pacman-catalog)
-- [Git commands](./git-catalog)
+- [Git commands](./git-catalog.md)
 - [Conda commands](./conda-catalog.md)
