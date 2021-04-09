@@ -12,22 +12,22 @@ Currently:
   - [Plotly](./python-modules/python-plotly-catalog)
   - [Gmpy2](./python-modules/python-gmpy2-catalog)
   - [OpenCV](./python-modules/python-opencv-catalog)
-  - [Pickleshare](./python-modules/python-pickleshare-catalog)
+  - [Pickleshare](./python-modules/python-pickleshare-catalog)  
 
   
 
 - [R](./r-catalog)
 - [Matlab](./matlab-catalog)
-- [Octave](./octave-catalog)
+- [Octave](./octave-catalog)  
 
   
 
-- [C++](./cpp-catalog)
+- [C++](./cpp-catalog)  
 
   
 
 - [LaTeX](./latex-catalog)
-- [Markdown](./markdown-catalog.md)
+- [Markdown](./markdown-catalog.md)  
 
   
 

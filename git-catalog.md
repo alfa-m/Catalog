@@ -20,13 +20,23 @@
 	* [REFLOG](#reflog)
 + [BRANCHES](#branches)
 + [SPELL COMMITS](#spell-commits)
-
-<!-- --><br/>
-
-
-- Generate a Table of Content from a Markdown file:
-
-[Table of Content](https://ecotrust-canada.github.io/markdown-toc/ "Table of contents generated with markdown-toc")
++ [REMOTES](#remotes)
++ [DIFFS](#diffs)
++ [MERGE & REBASE](#merge--rebase)
+	* [MERGE](#merge)
+	* [REBASE](#rebase)
++ [UNDO MISTAKES](#undo-mistakes)
+	* [AMEND](#amend)
+	* [STASH](#stash)
+	* [RESTORE (FILES)](#restore-files)
+	* [RESET (INDEX)](#reset-index)
+	* [REVERT (COMMITS)](#revert-commits)
+	* [EXAMPLE CASES](#example-cases)
++ [CONFIGS](#configs)
+	* [IDENTITY](#identity)
+	* [TOOLS CONFIG](#tools-config)
+	* [SAVE CREDENTIALS](#save-credentials)
+	* [CREDENTIALS CACHE](#credentials-cache)
 <!-- --><br/>
 
 
