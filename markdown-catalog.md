@@ -20,7 +20,7 @@
 
 ------------------------------------
 
-### REFERENCE
+### REFERENCES
 
 - [Website][web]
 
@@ -30,12 +30,9 @@
 
 
 - [Cheat-Sheet][cheat]
+<!-- --><br/>
 
-
-[web]:https://daringfireball.net/projects/markdown/ "Daring Fireball: Markdown"
-[guide]:https://www.markdownguide.org/ "Markdown Guide"
-[g-basic]:https://www.markdownguide.org/basic-syntax/ "Basic Syntax"
-[cheat]:https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
+- [Generate a Table of Content from a Markdown file][table-of-content]
 <!-- --><br/>
 
 
@@ -44,6 +41,11 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 <!-- --><br/>
 
 
+[web]:https://daringfireball.net/projects/markdown/ "Daring Fireball: Markdown"
+[guide]:https://www.markdownguide.org/ "Markdown Guide"
+[g-basic]:https://www.markdownguide.org/basic-syntax/ "Basic Syntax"
+[cheat]:https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet"
+[table-of-content]:https://ecotrust-canada.github.io/markdown-toc/ "Table of contents generator"
 
 ------------------------------------
 
@@ -535,3 +537,5 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 
 
 ------------------------------------
+
+[Table of Content]: 

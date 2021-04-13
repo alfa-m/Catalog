@@ -1,15 +1,35 @@
 
 # GIT
 
+
+This is a guide for **git** commands.
+<!-- --><br/>
+
+> **Notes:**
+>
+>> If you want a TL;DR just for starting a Repository right away go here: [Quick Start](#quick-start-basics).  
+>>
+>> For more informations you can see the topics in order starting here: [Work-Tree, Index & Commits](#work-tree-index--commits).  
+>>
+>> See the [Glossary](#glossary) for any terms you don´t understand.  
+>> 
+>> Or go to the [TABLE OF CONTENT](#table-of-content) for more topics.
+>>
+
+<!-- --><br/>
+
+
+
 ------------------------------------
 
 ### TABLE OF CONTENT
 
++ [GLOSSARY](#glossary)
 + [TERMINOLOGY](#terminology)
 + [PACKAGES](#packages)
-+ [HELP](#help)
 + [REFERENCE](#reference)
-+ [GLOSSARY](#glossary)
++ [HELP](#help)
+<!-- --><br/>
 + [QUICK START (BASICS)](#quick-start-basics)
 + [WORK-TREE, INDEX & COMMITS](#work-tree-index--commits)
 	* [WORK-TREE -> INDEX](#work-tree---index)
@@ -43,123 +63,6 @@
 
 ------------------------------------
 
-### TERMINOLOGY
-
-
-| Term/Expression | Meaning |
-| --------------: | :------ |
-| `<description>` | To replace, or that will be replaced, according to description. |
-| `...`           | Possible to repeated pattern. |
-| `$`             | Some command to be used on the Terminal (shell). |
-<!-- --><br/>
-<!-- --><br/>
-
-
-
-Go back to [TABLE OF CONTENT](#table-of-content).
-<!-- --><br/>
-
-
-
-------------------------------------
-
-### PACKAGES
-
-
-| Source | Package | Description |
-| :----: | :-----: | ----------- |
-| pacman | git     | The fast distributed version control system. (pacman) <br/> The stupid content tracker. (man-page) |
-<!-- --><br/>
-<!-- --><br/>
-
-
-
-Go back to [TABLE OF CONTENT](#table-of-content).
-<!-- --><br/>
-
-
-
-----------------------------------
-
-### HELP
-
-- Help:
-
-$ `git help`
-<!-- --><br/>
-
-
-- Manuals about specific Git´s commands:
-
-$ `git help <command>`
-
-$ `man git-<command>`
-<!-- --><br/>
-
-
-- Official Glossary (confusing a.f.):
-
-$ `man gitglossary`
-
-$ `git help gitglossary`
-<!-- --><br/>
-
-
-- More info on spell Commits:
-
-$ `man gitrevisions`
-
-$ `git help gitrevisions`
-<!-- --><br/>
-
-
-- REALLY good tutorials:  
-  [Atlassian Tutorials][atlassian]
-<!-- --><br/>
-<!-- --><br/>
-
-
-
-Go back to [TABLE OF CONTENT](#table-of-content).
-<!-- --><br/>
-
-
-
-
-------------------------------------
-
-### REFERENCE
-
-- [Home Page][git]
-
-
-- [Documentation][doc]
-
-
-- [Atlassian Tutorials][atlassian]
-
-
-- [Git Cheatsheet][cheat]
-<!-- --><br/>
-<!-- --><br/>
-
-
-
-Go back to [TABLE OF CONTENT](#table-of-content).
-<!-- --><br/>
-
-
-
-[git]:https://git-scm.com/ "Git Home Page"
-[doc]:https://git-scm.com/doc "Git Documentation"
-[atlassian]:https://www.atlassian.com/git/tutorials "Atlassian Tutorials"
-[cheat]:https://ndpsoftware.com/git-cheatsheet.html#loc=index "Git Cheatsheet"
-[Merge Rebase]:https://www.atlassian.com/git/tutorials/merging-vs-rebasing "Merging vs. Rebasing"
-[commit1]:./misc/commits_horiz.png
-[commit2]:./misc/commits_vert.png
-
-------------------------------------
-
 ### GLOSSARY
 
 - **Repository** (aka. _Local Repository_):  
@@ -168,7 +71,7 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 
 
 - **Work-tree** (aka. _Working-tree_, _Workspace_, _Working Directory_):  
-  Place where the files of a project's Repository are.  
+  Place where the files of a project's Repositor	y are.  
   It is the directory where you put all the file and subdirectories of your project.
 <!-- --><br/>
 
@@ -292,6 +195,123 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 
 ------------------------------------
 
+### TERMINOLOGY
+
+
+| Term/Expression | Meaning |
+| --------------: | :------ |
+| `<description>` | To replace, or that will be replaced, according to description. |
+| `...`           | Possible to repeated pattern. |
+| `$`             | Some command to be used on the Terminal (shell). |
+<!-- --><br/>
+<!-- --><br/>
+
+
+
+Go back to [TABLE OF CONTENT](#table-of-content).
+<!-- --><br/>
+
+
+
+------------------------------------
+
+### PACKAGES
+
+
+| Source | Package | Description |
+| :----: | :-----: | ----------- |
+| pacman | git     | The fast distributed version control system. (pacman) <br/> The stupid content tracker. (man-page) |
+<!-- --><br/>
+<!-- --><br/>
+
+
+
+Go back to [TABLE OF CONTENT](#table-of-content).
+<!-- --><br/>
+
+
+
+----------------------------------
+
+### REFERENCES
+
+- [Home Page][git]
+
+
+- [Documentation][doc]
+
+
+- [Atlassian Tutorials][atlassian]
+
+
+- [Git Cheatsheet][cheat]
+<!-- --><br/>
+<!-- --><br/>
+
+
+
+Go back to [TABLE OF CONTENT](#table-of-content).
+<!-- --><br/>
+
+
+
+[git]:https://git-scm.com/ "Git Home Page"
+[doc]:https://git-scm.com/doc "Git Documentation"
+[atlassian]:https://www.atlassian.com/git/tutorials "Atlassian Tutorials"
+[cheat]:https://ndpsoftware.com/git-cheatsheet.html#loc=index "Git Cheatsheet"
+[Merge Rebase]:https://www.atlassian.com/git/tutorials/merging-vs-rebasing "Merging vs. Rebasing"
+[commit1]:./misc/commits_horiz.png
+[commit2]:./misc/commits_vert.png
+
+------------------------------------
+
+### HELP
+
+- Help:
+
+$ `git help`
+<!-- --><br/>
+
+
+- Manuals about specific Git´s commands:
+
+$ `git help <command>`
+
+$ `man git-<command>`
+<!-- --><br/>
+
+
+- Official Glossary (confusing a.f.):
+
+$ `man gitglossary`
+
+$ `git help gitglossary`
+<!-- --><br/>
+
+
+- More info on spell Commits:
+
+$ `man gitrevisions`
+
+$ `git help gitrevisions`
+<!-- --><br/>
+
+
+- REALLY good tutorials:  
+  [Atlassian Tutorials][atlassian]
+<!-- --><br/>
+<!-- --><br/>
+
+
+
+Go back to [TABLE OF CONTENT](#table-of-content).
+<!-- --><br/>
+
+
+
+
+------------------------------------
+
 ### QUICK START (BASICS)
 <!-- --><br/>
 
@@ -299,13 +319,9 @@ Go back to [TABLE OF CONTENT](#table-of-content).
 >> This is a "TL;DR section" for starting a Repository right away.
 >> For more details see the other sections.
 >> 
->> You can start [here](#work-tree-index--commits).  
->> See the [Glossary](#glossary) for any terms you don´t understand.  
->> Or go back to [TABLE OF CONTENT](#table-of-content) for more topics.
-> 
-> **Hint:**
+>**Hint:**
 >> See [Identity](#identity) section for how to configure identity.
-<!-- --><br/>
+><!-- --><br/>
 
 
 
@@ -1364,7 +1380,7 @@ $ `git reset --soft <commit>`
 - Requieres Clean Work-Tree.
 
 - Reverting the HEAD to a previous Commit:
-$ `git revert <commit>
+$ `git revert <commit>`
 <!-- --><br/>
 <!-- --><br/>
 
@@ -1540,18 +1556,16 @@ $ `git config --global mergetool.prompt false`
 ##### SAVE CREDENTIALS
 
 - Using the package 'libsecret' to store credentials:
-  - On Arch:
+  - On Arch:  
   
-  $ `git config --global credential.helper /usr/lib/git-core/git-credential-libsecret`
-<!-- --><br/>
-
-  - On Fedora:
-
+  $ `git config --global credential.helper /usr/lib/git-core/git-credential-libsecret`  
+  
+  - On Fedora:  
+  
   $ `dnf install git-credential-libsecret`  
-  $ `git config --global credential.helper /usr/libexec/git-core/git-credential-libsecret`
-<!-- --><br/>
-
-  - On Ubuntu:
+  $ `git config --global credential.helper /usr/libexec/git-core/git-credential-libsecret`  
+  
+  - On Ubuntu:  
   
   $ `cd /usr/share/git/credential/libsecret`  
   $ `sudo make`  

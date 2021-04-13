@@ -1,6 +1,16 @@
 
 # CONDA
 
+This is a guide for **conda** commands.
+<!-- --><br/>
+
+> **Notes:**
+>
+>> No installation instructions are given here.
+>> For that, see the official [Installation][install] Guide.
+>>
+
+<!-- --><br/>
 ------------------------------------
 
 ### TABLE OF CONTENT
@@ -40,7 +50,7 @@
 
 ### REFERENCE
 
-= [Installation][install]
+- [Installation][install]
 
 
 - [Documentation][conda]
