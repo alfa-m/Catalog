@@ -71,8 +71,8 @@ This is a guide for **git** commands.
 
 
 - **Work-tree** (aka. _Working-tree_, _Workspace_, _Working Directory_):  
-  Place where the files of a project's Repositor	y are.  
-  It is the directory where you put all the file and subdirectories of your project.
+  Place where the files of a project's Repository are.  
+  It is the directory where you put all the files and subdirectories of your project.
 <!-- --><br/>
 
 
